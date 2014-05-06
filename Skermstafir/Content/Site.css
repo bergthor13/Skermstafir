@@ -40,10 +40,16 @@ input[type="checkbox"].input-validation-error {
 .validation-summary-valid {
     display: none;
 }
-h1 {
+h1, h1 a, h1 a:hover {
 	display:inline;
 	font-weight:bold;
 	vertical-align:central;
+	text-decoration:none;
+	color:black;
+}
+h1 a {
+	text-decoration:none;
+	color:black;
 }
 
 .shared-header {
@@ -58,15 +64,22 @@ h1 {
 	margin: 10px;
 }
 
+#shared-menu {
+	border-top: solid grey 1px;
+	padding-bottom:15px;
+}
+
 #shared-menu li {
 	display: inline;
 	list-style-type: none;
 	font-weight:bold;
 }
 
-#shared-menu {
-	border-top: solid grey 1px;
-
+#shared-menu .col-md-3 {
+	border-right: solid 1px grey;
+	text-align: center;
+	height: 25px;
+	vertical-align:central;
 }
 
 /* User in header */
@@ -91,9 +104,4 @@ h1 {
 	list-style-type: none;
 	padding-left: 15px;
 	padding-right:12px;
-}
-
-#shared-menu .col-md-3 {
-	border-right: solid 1px grey;
-	text-align: center;
 }

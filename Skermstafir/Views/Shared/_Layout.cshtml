@@ -12,8 +12,8 @@
 	
 	<div class="shared-header">
 		@Html.Partial("_LoginPartial")
-		<img src="http://placekitten.com/80/80" />
-		<h1>Skermstafir</h1>
+		<img src="http://placekitten.com/80/80" alt="Logo Skermstafa" />
+		<h1>@Html.ActionLink("Skermstafir", "Index", "Home")</h1>
 		<ul id="shared-menu">
 			<li class="col-md-3">@Html.ActionLink("Forsíða", "Index", "Home")</li>
 			<li class="col-md-3">@Html.ActionLink("Þýðingar", "Subtitles", "Home")</li>
