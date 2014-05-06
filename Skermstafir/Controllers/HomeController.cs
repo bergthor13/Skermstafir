@@ -6,6 +6,7 @@ using System.Web.Mvc;
 
 namespace Skermstafir.Controllers
 {
+    [RequireHttps]
 	public class HomeController : Controller
 	{
 		public ActionResult Index()
@@ -13,18 +14,24 @@ namespace Skermstafir.Controllers
 			return View();
 		}
 
-		public ActionResult About()
+		public ActionResult Instructions()
 		{
-			ViewBag.Message = "Your application description page.";
+            ViewBag.Message = "Leiðbeiningar";
+			return View();
+		}
+
+		public ActionResult Requests()
+		{
+			ViewBag.Message = "Beiðnir";
 
 			return View();
 		}
 
-		public ActionResult Contact()
-		{
-			ViewBag.Message = "Your contact page.";
+        public ActionResult Subtitles()
+        {
+            ViewBag.Message = "Þýðingar";
 
-			return View();
-		}
+            return View();
+        }
 	}
 }
