@@ -83,23 +83,12 @@ h1 a {
 }
 
 /* User in header */
-.logged-out-list {
-	float: right;
-	padding-top:10px;
-}
-.logged-out-list li {
-	display: inline;
-	list-style-type: none;
-	padding-left: 15px;
-	padding-right:12px;
-}
-
-.logged-in-list {
+.logged-out-list, .logged-in-list {
 	float: right;
 	padding-top:10px;
 }
 
-.logged-in-list li {
+.logged-out-list li, .logged-in-list li {
 	display: inline;
 	list-style-type: none;
 	padding-left: 15px;
@@ -110,22 +99,25 @@ h1 a {
 	border: solid 1px grey;
 	border-radius: 10px;
 	margin-top: 20px;
-	padding: 15px;
 	position: relative;
 }
-h3 {
-	padding:0;
-	margin:0 0 10px 0;
+.box-title {
+	width: 100%;
+	padding: 7px 0 7px 15px;
+	font-size: 1.3em;
+	font-weight:bold;
+	border-bottom: solid grey 1px;
 }
 .search-dialog-left {
 	width:50%;
+	padding: 10px 0 15px 15px;
 }
 
 .search-dialog .search-dialog-right {
 	width:50%;
 	position:absolute;
 	left:60%;
-	top:50%;
+	top:40%;
 }
 
 .search-dialog-right input {
@@ -135,4 +127,12 @@ h3 {
 #search-box {
 	width: 500px;
 	margin-bottom: 15px;
+}
+/* All boxes with lists */
+.tranreq-list {
+	border: solid 1px grey;
+	border-radius: 10px;
+	margin-top: 20px;
+	height:300px;
+	padding: 0;
 }
