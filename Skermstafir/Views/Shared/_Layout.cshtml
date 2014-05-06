@@ -10,9 +10,10 @@
 </head>
 <body>
 	
-	<div class="shared-header col-md-10">
+	<div class="shared-header">
 		@Html.Partial("_LoginPartial")
-		<img src="http://placekitten.com/80/80" /><h1>Skermstafir</h1>
+		<img src="http://placekitten.com/80/80" />
+		<h1>Skermstafir</h1>
 		<ul id="shared-menu">
 			<li class="col-md-3">@Html.ActionLink("Forsíða", "Index", "Home")</li>
 			<li class="col-md-3">@Html.ActionLink("Þýðingar", "Subtitles", "Home")</li>
@@ -20,30 +21,7 @@
 			<li class="col-md-3">@Html.ActionLink("Leiðbeiningar", "Instructions", "Home")</li>
 		</ul>
 	</div>
-	
-	<!-- Beginning of header
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("Skermstafir", "Index", "Home", null, new { @class = "navbar-brand" })
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Forsíða", "Index", "Home")</l>
-                    <li>@Html.ActionLink("Þýðingar", "About", "Home")</li>
-                    <li>@Html.ActionLink("Beiðnir", "Contact", "Home")</li>
-					<li>@Html.ActionLink("Leiðbeiningar", "Index", "Home")</li>
-                </ul>
-                @Html.Partial("_LoginPartial")
-            </div>
-        </div>
-    </div>
-		-->
+
     <div class="container body-content">
         @RenderBody()
         <hr />
