@@ -5,18 +5,18 @@
     {
     @Html.AntiForgeryToken()
 
-    <ul class="nav navbar-nav navbar-right">
-        <li>
-            @Html.ActionLink("Velkomin(n) " + User.Identity.GetUserName(), "Manage", "Account", routeValues: null, htmlAttributes: new { title = "Manage" })
-        </li>
-		<li>@Html.ActionLink("Mínar síður", "Index", "Home")</li>
-        <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
-    </ul>
-    }
+	<ul class="logged-in-list">
+		<li>
+			@Html.ActionLink("Velkomin(n) " + User.Identity.GetUserName(), "Index", "Home")
+		</li>
+		<li>@Html.ActionLink("Mínar síður", "Manage", "Account", routeValues: null, htmlAttributes: new { title = "Manage" })</li>
+		<li><a href="javascript:document.getElementById('logoutForm').submit()">Útskrá</a></li>
+	</ul>
+	}
 }
 else
 {
-    <ul class="nav navbar-nav navbar-right">
+    <ul class="logged-out-list">
         <li>@Html.ActionLink("Nýskrá", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
         <li>@Html.ActionLink("Innskrá", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
     </ul>

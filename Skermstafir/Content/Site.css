@@ -1,5 +1,5 @@
 ﻿body {
-    padding-top: 50px;
+    padding-top: 0px;
     padding-bottom: 20px;
 }
 
@@ -39,4 +39,58 @@ input[type="checkbox"].input-validation-error {
 
 .validation-summary-valid {
     display: none;
+}
+h1 {
+	display:inline;
+	font-weight:bold;
+	vertical-align:central;
+}
+
+.shared-header {
+	margin: 20px 100px 20px 100px;
+	background-color: lightgrey;
+	border-top-left-radius:10px;
+	border-top-right-radius:10px;
+	border: solid grey 1px;
+}
+
+.shared-header img {
+	margin: 10px;
+}
+
+#shared-menu li {
+display: inline;
+list-style-type: none;
+padding-right: 15%;
+font-weight:bold;
+}
+
+#shared-menu {
+	border-top: solid black 1px;
+	border-bottom: solid black 1px;
+	margin: 5px 0px 10px 0px;
+	padding-left:5%;
+}
+
+/* User in header */
+.logged-out-list {
+	float: right;
+	padding-top:10px;
+}
+.logged-out-list li {
+	display: inline;
+	list-style-type: none;
+	padding-left: 15px;
+	padding-right:12px;
+}
+
+.logged-in-list {
+	float: right;
+	padding-top:10px;
+}
+.logged-in-list li {
+	display: inline;
+	list-style-type: none;
+	padding-left: 15px;
+	padding-right:12px;
 }
