@@ -10,14 +10,14 @@
 </head>
 <body>
 	
-	<div class="shared-header">
+	<div class="shared-header col-md-10">
 		@Html.Partial("_LoginPartial")
 		<img src="http://placekitten.com/80/80" /><h1>Skermstafir</h1>
 		<ul id="shared-menu">
-			<li>@Html.ActionLink("Forsíða", "Index", "Home")</li>
-			<li>@Html.ActionLink("Þýðingar", "Subtitles", "Home")</li>
-			<li>@Html.ActionLink("Beiðnir", "Requests", "Home")</li>
-			<li>@Html.ActionLink("Leiðbeiningar", "Instructions", "Home")</li>
+			<li class="col-md-3">@Html.ActionLink("Forsíða", "Index", "Home")</li>
+			<li class="col-md-3">@Html.ActionLink("Þýðingar", "Subtitles", "Home")</li>
+			<li class="col-md-3">@Html.ActionLink("Beiðnir", "Requests", "Home")</li>
+			<li class="col-md-3">@Html.ActionLink("Leiðbeiningar", "Instructions", "Home")</li>
 		</ul>
 	</div>
 	
