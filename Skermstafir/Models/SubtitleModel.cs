@@ -14,5 +14,6 @@ namespace Skermstafir.Models
         public String language { get; set; }
         public List<String> Artists { get; set; }
         public int votes { get; set; }
+        public int downloads { get; set; };
     }
 }
