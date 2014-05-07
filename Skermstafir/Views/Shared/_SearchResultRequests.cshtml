@@ -11,14 +11,14 @@
 		</tr>
 	</thead>
 	<tbody>
-		@for (int i = 0; i < 10; i++)
+		@for (int i = 0; i < Model.modelList.Count; i++)
 		{
 			<tr>
-				<td align="center">▲ 9</td>
-				<td>Anchorman 2, The Legend Continues</td>
-				<td>2014</td>
-				<td>Íslenska</td>
-				<td>Notandanafn</td>
+				<td align="center">▲ @Model.modelList[i].votes</td>
+				<td>@Model.modelList[i].name</td>
+				<td>@Model.modelList[i].yearCreated</td>
+				<td>@Model.modelList[i].Language</td>
+				<td>@Model.modelList[i].user</td>
 				<td align="right"><input type="button" name="stofna" value="Stofna þýðingu" /></td>
 			</tr>
 		}
