@@ -107,13 +107,16 @@ h1 a {
 	font-size: 1.3em;
 	font-weight:bold;
 	border-bottom: solid grey 1px;
+	background: linear-gradient(rgb(235, 235, 235), rgb(200, 200, 200));
+	border-top-left-radius: 10px;
+	border-top-right-radius: 10px;
 }
 .search-dialog-left {
 	width:50%;
 	padding: 10px 0 15px 15px;
 }
 
-.search-dialog .search-dialog-right {
+.search-dialog-right {
 	width:50%;
 	position:absolute;
 	left:60%;
