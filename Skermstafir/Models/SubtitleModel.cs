@@ -15,7 +15,7 @@ namespace Skermstafir.Models
         public List<String> artists { get; set; }
         public int votes { get; set; }
         public int downloads { get; set; }
-
+        public String user { get; set; }
 		public SubtitleModel()
 		{
 			artists = new List<String>();

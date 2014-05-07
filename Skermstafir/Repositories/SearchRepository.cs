@@ -24,6 +24,7 @@ namespace Skermstafir.Repositories
                 dummy.downloads = 25;
                 dummy.content = "Some bullshit";
                 dummy.dateCreated = DateTime.Now;
+                dummy.user = "YOOOUUUU!!!!!";
                 value.Add(dummy);
             }
             return value;
@@ -45,6 +46,7 @@ namespace Skermstafir.Repositories
                 dummy.downloads = 25;
                 dummy.content = "Some bullshit";
                 dummy.dateCreated = DateTime.Now;
+                dummy.user = "YOOOUUUU!!!!!";
                 modelList.Add(dummy);
             }
             return modelList;
@@ -66,6 +68,7 @@ namespace Skermstafir.Repositories
                 dummy.downloads = 25;
                 dummy.content = "Some bullshit";
                 dummy.dateCreated = DateTime.Now;
+                dummy.user = "YOOOUUUU!!!!!";
                 modelList.Add(dummy);
             }
             return modelList;
@@ -84,6 +87,7 @@ namespace Skermstafir.Repositories
             dummy.downloads = 25;
             dummy.content = "Some bullshit";
             dummy.dateCreated = DateTime.Now;
+            dummy.user = "YOOOUUUU!!!!!";
             return dummy;
         }
 
@@ -103,6 +107,7 @@ namespace Skermstafir.Repositories
                 dummy.downloads = 25;
                 dummy.content = "Some bullshit";
                 dummy.dateCreated = DateTime.Now;
+                dummy.user = "YOOOUUUU!!!!!";
                 modelList.Add(dummy);
             }
             return modelList;
@@ -124,6 +129,7 @@ namespace Skermstafir.Repositories
                 dummy.downloads = 25;
                 dummy.content = "Some bullshit";
                 dummy.dateCreated = DateTime.Now;
+                dummy.user = "YOOOUUUU!!!!!";
                 modelList.Add(dummy);
             }
             return modelList;
