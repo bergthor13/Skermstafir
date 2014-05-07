@@ -13,5 +13,10 @@ namespace Skermstafir.Models
         {
             modelList = new List<RequestModel>();
         }
+
+        public void Add(RequestModel model)
+        {
+            modelList.Add(model);
+        }
     }
 }
