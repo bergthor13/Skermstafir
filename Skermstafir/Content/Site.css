@@ -159,15 +159,21 @@ h1 a {
 
 .table {
 	background: white;
-
 }
 
+/* Gradient on top of table*/
 .table thead {
 	background: linear-gradient(rgb(235, 235, 235), rgb(200, 200, 200));
 }
 
+/* Setting width of column to minimum */
 .table .min {
 	width: 10px;
+}
+
+/* Setting the width of the column up */
+.table .up {
+	width: 50px;
 }
 
 .search-result-row td{

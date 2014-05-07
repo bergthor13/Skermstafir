@@ -1,19 +1,18 @@
 ﻿<table class="table table-striped">
 	<thead>
 		<tr>
-
-			<th align="center">Upp</th>
+			<th class="up" align="center">Upp</th>
 			<th>Titill</th>
-			<th>Útgáfuár</th>
+			<th class ="min" align="center">Útgáfuár</th>
 			<th>Tungumál</th>
 			<th>Stofnandi</th>
-			<th align="right">Stofna þýðingu</th>
+			<th class="min" align=right">Stofna þýðingu</th>
 		</tr>
 	</thead>
 	<tbody>
 		@for (int i = 0; i < Model.modelList.Count; i++)
 		{
-			<tr>
+			<tr data-id="@Model.modelList[i].Id">
 				<td align="center">▲ @Model.modelList[i].votes</td>
 				<td>@Model.modelList[i].name</td>
 				<td>@Model.modelList[i].yearCreated</td>
