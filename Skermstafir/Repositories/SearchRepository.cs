@@ -9,9 +9,9 @@ namespace Skermstafir.Repositories
     public class SearchRepository
     {
         // queries database to get the newest starting from start and ending at end bot inclusive
-        public List<SubtitleModel> GetSubtitleByNewest(int start, int end)
+        public SubtitleModelList GetSubtitleByNewest(int start, int end)
         {
-            List<SubtitleModel> modelList = new List<SubtitleModel>();
+            SubtitleModelList value = new SubtitleModelList();
             // here is dummy code for integration purposes
             for (int i = 0; i < end - start; i++)
             {
@@ -24,9 +24,9 @@ namespace Skermstafir.Repositories
                 dummy.downloads = 25;
                 dummy.content = "Some bullshit";
                 dummy.dateCreated = DateTime.Now;
-                modelList.Add(dummy);
+                value.modelList.Add(dummy);
             }
-            return modelList;
+            return value;
         }
 
         // queries database to get a list of most popular subtitles starting at index start and ending at index end both inclusive
