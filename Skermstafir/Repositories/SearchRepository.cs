@@ -8,7 +8,7 @@ namespace Skermstafir.Repositories
 {
     public class SearchRepository
     {
-        // queries database to get the newest starting from start and ending at end bot ionclusive
+        // queries database to get the newest starting from start and ending at end bot inclusive
         public List<SubtitleModel> GetSubtitleByNewest(int start, int end)
         {
             List<SubtitleModel> modelList = new List<SubtitleModel>();
@@ -113,5 +113,10 @@ namespace Skermstafir.Repositories
             }
             return modelList;
         }
-    }
+
+		internal List<SubtitleModel> GetSubtitleByCreationName(int p1, int p2)
+		{
+			throw new NotImplementedException();
+		}
+	}
 }

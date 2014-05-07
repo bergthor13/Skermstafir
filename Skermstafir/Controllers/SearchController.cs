@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Skermstafir.Models;
+using Skermstafir.Repositories;
 
 namespace Skermstafir.Controllers
 {
@@ -10,9 +12,9 @@ namespace Skermstafir.Controllers
     {
         //
         // GET: /Search/
-        public ActionResult Index()
+        public ActionResult Subtitles()
         {
-            return View();
+			return View();
         }
 	}
 }
