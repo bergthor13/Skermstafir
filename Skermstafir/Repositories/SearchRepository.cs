@@ -21,7 +21,7 @@ namespace Skermstafir.Repositories
                 dummy.votes = 94;
                 dummy.yearCreated = 2014;
                 dummy.artists.Add("None");
-                dummy.downloads = 25;
+                dummy.downloads = 20000000;
                 dummy.content = "Some bullshit";
                 dummy.dateCreated = DateTime.Now;
                 dummy.user = "YOOOUUUU!!!!!";

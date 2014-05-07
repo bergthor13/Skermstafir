@@ -29,14 +29,13 @@ namespace Skermstafir.Repositories
             {
                 RequestModel dummy = new RequestModel();
                 dummy.name = "Anchorman 2, The Legend Continues";
-                dummy.votes = 25;
+                dummy.votes = 32;
                 dummy.yearCreated = 2014;
                 dummy.dateAdded = DateTime.Now;
-                dummy.Language = "Íslenska";
+				dummy.Language = "Íslenska";
                 dummy.artists.Add("Bruce Willis");
-                dummy.votes = 25;
-                dummy.description = "None";
-                dummy.user = "YOOOUUUU!!!!!";
+				dummy.description = "None";
+				dummy.user = "YOOOUUUU!!!!!";
                 modelList.Add(dummy);
             }
             return modelList;
@@ -56,7 +55,6 @@ namespace Skermstafir.Repositories
                 dummy.dateAdded = DateTime.Now;
                 dummy.Language = "Íslenska";
                 dummy.artists.Add("Bruce Willis");
-                dummy.votes = 25;
                 dummy.description = "None";
                 dummy.user = "YOOOUUUU!!!!!";
                 modelList.Add(dummy);
@@ -77,7 +75,6 @@ namespace Skermstafir.Repositories
                 dummy.dateAdded = DateTime.Now;
                 dummy.Language = "Íslenska";
                 dummy.artists.Add("Bruce Willis");
-                dummy.votes = 25;
                 dummy.description = "None";
                 dummy.user = "YOOOUUUU!!!!!";
                 modelList.Add(dummy);
@@ -95,7 +92,6 @@ namespace Skermstafir.Repositories
             dummy.dateAdded = DateTime.Now;
             dummy.Language = "Íslenska";
             dummy.artists.Add("Bruce Willis");
-            dummy.votes = 25;
             dummy.description = "None";
             dummy.user = "YOOOUUUU!!!!!";
             return dummy;
@@ -113,7 +109,6 @@ namespace Skermstafir.Repositories
                 dummy.dateAdded = DateTime.Now;
                 dummy.Language = "Íslenska";
                 dummy.artists.Add("Bruce Willis");
-                dummy.votes = 25;
                 dummy.description = "None";
                 dummy.user = "YOOOUUUU!!!!!";
                 modelList.Add(dummy);
