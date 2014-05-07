@@ -40,6 +40,8 @@ input[type="checkbox"].input-validation-error {
 .validation-summary-valid {
     display: none;
 }
+
+/* HEADER BEGIN */
 h1, h1 a, h1 a:hover {
 	display:inline;
 	font-weight:bold;
@@ -54,7 +56,7 @@ h1 a {
 
 .shared-header {
 	margin: 15px 100px 0px 100px;
-	background-color: lightgrey;
+	background: linear-gradient(rgb(235, 235, 235), rgb(200, 200, 200));
 	border-top-left-radius:10px;
 	border-top-right-radius:10px;
 	border: solid grey 1px;
@@ -82,25 +84,29 @@ h1 a {
 	vertical-align:central;
 }
 
-/* User in header */
+/* User management */
 .logged-out-list, .logged-in-list {
 	float: right;
 	padding-top:10px;
 }
 
+/* User management */
 .logged-out-list li, .logged-in-list li {
 	display: inline;
 	list-style-type: none;
 	padding-left: 15px;
 	padding-right:12px;
 }
+/* HEADER END */
 
+/* The whole search box */
 .search-dialog {
 	border: solid 1px grey;
 	border-radius: 10px;
 	margin-top: 20px;
 	position: relative;
 }
+/* The title of the box */
 .box-title {
 	width: 100%;
 	padding: 7px 0 7px 15px;
@@ -111,11 +117,14 @@ h1 a {
 	border-top-left-radius: 10px;
 	border-top-right-radius: 10px;
 }
+
+/* Left side of the search dialog */
 .search-dialog-left {
 	width:50%;
 	padding: 10px 0 15px 15px;
 }
 
+/* Right side of the search dialog */
 .search-dialog-right {
 	width:50%;
 	position:absolute;
@@ -123,15 +132,16 @@ h1 a {
 	top:40%;
 }
 
+/* Period search boxes (Frá og til)*/
 .search-dialog-right input {
 	width: 100px;
 }
-
+/* Search textbox */
 #search-box {
 	width: 500px;
 	margin-bottom: 15px;
 }
-/* All boxes with lists */
+/* Boxes on front page. */
 .tranreq-list {
 	border: solid 1px grey;
 	border-radius: 10px;
