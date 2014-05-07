@@ -50,12 +50,27 @@ namespace Skermstafir.Repositories
             return modelList;
         }
 
-        // query database to get all subtitles created by a specific user starting at index start and ending at index end both inclusive
+        // queries database and gets subtitles from a specific user starting at index start and ending at index end both inclusice
         public List<SubtitleModel> GetSubtitleByUser(String username, int start, int end)
         {
             List<SubtitleModel> modelList = new List<SubtitleModel>();
+            // here is dummy code for integration purposes
+            for (int i = 0; i < end - start; i++)
+            {
+                SubtitleModel dummy = new SubtitleModel();
+                dummy.name = "Anchorman 2, The Legend Continues";
+                dummy.language = "Íslenska";
+                dummy.votes = 99;
+                dummy.yearCreated = 2014;
+                dummy.artists.Add("None");
+                dummy.downloads = 25;
+                dummy.content = "Some bullshit";
+                dummy.dateCreated = DateTime.Now;
+                modelList.Add(dummy);
+            }
             return modelList;
         }
+
 
         // query database to get a specific subtitle
         public SubtitleModel GetSubtitleByID(int id)
@@ -114,25 +129,6 @@ namespace Skermstafir.Repositories
             return modelList;
         }
 
-        // queries database and gets subtitles from a specific user starting at index start and ending at index end both inclusice
-        public List<SubtitleModel> GetSubtitleByUser(String username, int start, int end)
-        {
-            List<SubtitleModel> modelList = new List<SubtitleModel>();
-            // here is dummy code for integration purposes
-            for (int i = 0; i < end - start; i++)
-            {
-                SubtitleModel dummy = new SubtitleModel();
-                dummy.name = "Anchorman 2, The Legend Continues";
-                dummy.language = "Íslenska";
-                dummy.votes = 99;
-                dummy.yearCreated = 2014;
-                dummy.artists.Add("None");
-                dummy.downloads = 25;
-                dummy.content = "Some bullshit";
-                dummy.dateCreated = DateTime.Now;
-                modelList.Add(dummy);
-            }
-            return modelList;
-        }
+        
 	}
 }
