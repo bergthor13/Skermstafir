@@ -8,5 +8,10 @@ namespace Skermstafir.Models
     public class RequestModelList
     {
         public List<RequestModel> modelList { get; set; }
+
+        public RequestModelList()
+        {
+            modelList = new List<RequestModel>();
+        }
     }
 }

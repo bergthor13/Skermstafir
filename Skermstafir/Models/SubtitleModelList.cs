@@ -8,5 +8,10 @@ namespace Skermstafir.Models
     public class SubtitleModelList
     {
         public List<SubtitleModel> modelList { get; set; }
+
+        public SubtitleModelList()
+        {
+            modelList = new List<SubtitleModel>();
+        }
     }
 }
