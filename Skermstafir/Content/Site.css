@@ -1,7 +1,7 @@
 ﻿body {
     padding-top: 0px;
     padding-bottom: 20px;
-    background-color:darkgray;
+    background-color:lightgray;
 }
 
 /* Set padding to keep content from hitting the edges */
@@ -57,7 +57,7 @@ h1 a {
 
 .shared-header {
 	margin: 15px 100px 0px 100px;
-	background: linear-gradient(rgb(235, 235, 235), rgb(200, 200, 200));
+	background: linear-gradient(rgb(215, 215, 215), rgb(180, 180, 180));
 	border-top-left-radius:10px;
 	border-top-right-radius:10px;
 	border: solid grey 1px;
@@ -74,6 +74,7 @@ h1 a {
 
 #shared-menu li {
 	display: inline;
+    color: red;
 	list-style-type: none;
 	font-weight:bold;
 }
@@ -84,6 +85,11 @@ h1 a {
 	height: 25px;
 	vertical-align:central;
 }
+
+a {
+    color: #b00;
+}
+
 
 /* User management */
 .logged-out-list, .logged-in-list {
@@ -114,7 +120,7 @@ h1 a {
 	font-size: 1.3em;
 	font-weight:bold;
 	border-bottom: solid grey 1px;
-	background: linear-gradient(rgb(235, 235, 235), rgb(200, 200, 200));
+	background: linear-gradient(rgb(215, 215, 215), rgb(180, 180, 180));
 	border-top-left-radius: 10px;
 	border-top-right-radius: 10px;
 }
