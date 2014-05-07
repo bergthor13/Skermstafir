@@ -10,9 +10,17 @@ namespace Skermstafir.Controllers
     {
         //
         // GET: /Subtitle/
-        public ActionResult Index()
+        public ActionResult Subtitle(int subtitleID)
         {
             return View();
         }
+		public ActionResult CreateNewSubtitle()
+		{
+			return View();
+		}
+		public ActionResult EditSubtitle(int subtitleID)
+		{
+			return View();
+		}
 	}
 }
