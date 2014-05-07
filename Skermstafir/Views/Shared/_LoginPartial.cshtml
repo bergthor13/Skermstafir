@@ -7,7 +7,7 @@
 
 	<ul class="logged-in-list">
 		<li>
-			@Html.ActionLink("Velkomin(n) " + User.Identity.GetUserName(), "Index", "Home")
+			@("Velkomin(n) " + User.Identity.GetUserName() + "!")
 		</li>
 		<li>@Html.ActionLink("Mínar síður", "Manage", "Account", routeValues: null, htmlAttributes: new { title = "Manage" })</li>
 		<li><a href="javascript:document.getElementById('logoutForm').submit()">Útskrá</a></li>
