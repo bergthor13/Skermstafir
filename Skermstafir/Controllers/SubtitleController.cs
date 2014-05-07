@@ -14,10 +14,14 @@ namespace Skermstafir.Controllers
         {
             return View();
         }
+
+		// Creates a new translation
 		public ActionResult CreateNewSubtitle()
 		{
 			return View();
 		}
+
+		// Edits the translation with the ID subtitleID
 		public ActionResult EditSubtitle(int subtitleID)
 		{
 			return View();

@@ -10,7 +10,12 @@ namespace Skermstafir.Controllers
     {
         //
         // GET: /Request/
-        public ActionResult Index()
+		public ActionResult Request(int requestID)
+		{
+			return View();
+		}
+		// Adds a new request.
+        public ActionResult AddRequest()
         {
             return View();
         }

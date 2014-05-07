@@ -30,7 +30,7 @@ namespace Skermstafir.Controllers
         public ActionResult Subtitles()
         {
             ViewBag.Message = "Þýðingar";
-
+			
             return View();
         }
 	}

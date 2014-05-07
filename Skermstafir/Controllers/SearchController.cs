@@ -12,7 +12,8 @@ namespace Skermstafir.Controllers
     {
         //
         // GET: /Search/
-        public ActionResult Subtitles()
+		// FormData PARAMETER
+        public ActionResult Search()
         {
 			return View();
         }
