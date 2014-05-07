@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Skermstafir.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -30,8 +31,10 @@ namespace Skermstafir.Controllers
         public ActionResult Subtitles()
         {
             ViewBag.Message = "Þýðingar";
+			SearchController sc = new SearchController();
+			sc.Search();
 			
-            return View();
+            return View("Subtitles");
         }
 	}
 }

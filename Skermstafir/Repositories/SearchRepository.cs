@@ -20,7 +20,7 @@ namespace Skermstafir.Repositories
                 dummy.language = "Íslenska";
                 dummy.votes = 99;
                 dummy.yearCreated = 2014;
-                dummy.Artists.Add("None");
+                dummy.artists.Add("None");
                 dummy.downloads = 25;
                 dummy.content = "Some bullshit";
                 dummy.dateCreated = DateTime.Now;
@@ -41,7 +41,7 @@ namespace Skermstafir.Repositories
                 dummy.language = "Íslenska";
                 dummy.votes = 99;
                 dummy.yearCreated = 2014;
-                dummy.Artists.Add("None");
+                dummy.artists.Add("None");
                 dummy.downloads = 25;
                 dummy.content = "Some bullshit";
                 dummy.dateCreated = DateTime.Now;
@@ -65,7 +65,7 @@ namespace Skermstafir.Repositories
             dummy.language = "Íslenska";
             dummy.votes = 99;
             dummy.yearCreated = 2014;
-            dummy.Artists.Add("None");
+            dummy.artists.Add("None");
             dummy.downloads = 25;
             dummy.content = "Some bullshit";
             dummy.dateCreated = DateTime.Now;
@@ -84,7 +84,7 @@ namespace Skermstafir.Repositories
                 dummy.language = "Íslenska";
                 dummy.votes = 99;
                 dummy.yearCreated = 2014;
-                dummy.Artists.Add("None");
+                dummy.artists.Add("None");
                 dummy.downloads = 25;
                 dummy.content = "Some bullshit";
                 dummy.dateCreated = DateTime.Now;
@@ -105,7 +105,7 @@ namespace Skermstafir.Repositories
                 dummy.language = "Íslenska";
                 dummy.votes = 99;
                 dummy.yearCreated = 2014;
-                dummy.Artists.Add("None");
+                dummy.artists.Add("None");
                 dummy.downloads = 25;
                 dummy.content = "Some bullshit";
                 dummy.dateCreated = DateTime.Now;
@@ -115,6 +115,11 @@ namespace Skermstafir.Repositories
         }
 
 		internal List<SubtitleModel> GetSubtitleByCreationName(int p1, int p2)
+		{
+			throw new NotImplementedException();
+		}
+
+		internal List<SubtitleModel> GetSubtitleByUser(int p1, int p2)
 		{
 			throw new NotImplementedException();
 		}

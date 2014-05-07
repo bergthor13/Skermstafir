@@ -12,8 +12,13 @@ namespace Skermstafir.Models
         public int yearCreated { get; set; }
         public DateTime dateCreated { get; set; }
         public String language { get; set; }
-        public List<String> Artists { get; set; }
+        public List<String> artists { get; set; }
         public int votes { get; set; }
         public int downloads { get; set; }
+
+		public SubtitleModel()
+		{
+			artists = new List<String>();
+		}
     }
 }

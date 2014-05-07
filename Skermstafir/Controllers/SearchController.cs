@@ -15,7 +15,12 @@ namespace Skermstafir.Controllers
 		// FormData PARAMETER
         public ActionResult Search()
         {
-			return View();
+			List<SubtitleModel> result = new List<SubtitleModel>();
+			SearchRepository sc = new SearchRepository();
+
+			result = sc.GetSubtitleByNewest(0, 5);
+
+			return View("Subtitles", result);
         }
 	}
 }
