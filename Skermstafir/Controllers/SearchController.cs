@@ -15,8 +15,8 @@ namespace Skermstafir.Controllers
 		// FormData PARAMETER
         public ActionResult Search()
         {
-			List<SubtitleModel> result = new List<SubtitleModel>();
-			SearchRepository sc = new SearchRepository();
+            SubtitleModelList result = new SubtitleModelList();
+  			SearchRepository sc = new SearchRepository();
 
 			result = sc.GetSubtitleByNewest(0, 5);
 
