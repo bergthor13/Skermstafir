@@ -21,9 +21,9 @@ namespace Skermstafir.Repositories
         }
 
         // queries and gets requests starting from index start and ending at index end
-        public List<RequestModel> GetRequestByNewest(int start, int end)
+        public RequestModelList GetRequestByNewest(int start, int end)
         {
-            List<RequestModel> modelList = new List<RequestModel>();
+            RequestModelList modelList = new RequestModelList();
             // bellow is dummy code
             for (int i = 0; i < end - start; i++)
             {
@@ -42,9 +42,9 @@ namespace Skermstafir.Repositories
         }
 
         // queries database and gets most popular requests starting at index start and ending at index end
-        public List<RequestModel> GetByMostPopular(int start, int end)
+        public RequestModelList GetByMostPopular(int start, int end)
         {
-            List<RequestModel> modelList = new List<RequestModel>();
+            RequestModelList modelList = new RequestModelList();
             //Bellow is dummy code
             for (int i = 0; i < end - start; i++)
             {
@@ -63,9 +63,9 @@ namespace Skermstafir.Repositories
         }
 
         // queries database and gets all requests from a specific user starting at index start and ending at index end both inclusive
-        public List<RequestModel> GetRequestByUser(String username, int start, int end)
+        public RequestModelList GetRequestByUser(String username, int start, int end)
         {
-            List<RequestModel> modelList = new List<RequestModel>();
+            RequestModelList modelList = new RequestModelList();
             for (int i = 0; i < end - start; i++)
             {
                 RequestModel dummy = new RequestModel();
@@ -97,9 +97,9 @@ namespace Skermstafir.Repositories
             return dummy;
         }
         // queries database and gets request in language starting at index start and ending at index end both inclusive
-        public List<RequestModel> GetRequestByLanguage(String language, int start, int end)
+        public RequestModelList GetRequestByLanguage(String language, int start, int end)
         {
-            List<RequestModel> modelList = new List<RequestModel>();
+            RequestModelList modelList = new RequestModelList();
             for (int i = 0; i < end - start; i++)
             {
                 RequestModel dummy = new RequestModel();

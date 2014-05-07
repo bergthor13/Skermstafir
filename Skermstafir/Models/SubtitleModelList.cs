@@ -13,5 +13,9 @@ namespace Skermstafir.Models
         {
             modelList = new List<SubtitleModel>();
         }
+
+        public void Add(SubtitleModel model){
+            modelList.Add(model);
+        }
     }
 }

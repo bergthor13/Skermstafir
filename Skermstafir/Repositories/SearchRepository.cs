@@ -24,15 +24,15 @@ namespace Skermstafir.Repositories
                 dummy.downloads = 25;
                 dummy.content = "Some bullshit";
                 dummy.dateCreated = DateTime.Now;
-                value.modelList.Add(dummy);
+                value.Add(dummy);
             }
             return value;
         }
 
         // queries database to get a list of most popular subtitles starting at index start and ending at index end both inclusive
-        public List<SubtitleModel> GetSubtitleByMostPopular(int start, int end)
+        public SubtitleModelList GetSubtitleByMostPopular(int start, int end)
         {
-            List<SubtitleModel> modelList = new List<SubtitleModel>();
+            SubtitleModelList modelList = new SubtitleModelList();
             // here is dummy code for integration purposes
             for (int i = 0; i < end - start; i++)
             {
@@ -51,9 +51,9 @@ namespace Skermstafir.Repositories
         }
 
         // queries database and gets subtitles from a specific user starting at index start and ending at index end both inclusice
-        public List<SubtitleModel> GetSubtitleByUser(String username, int start, int end)
+        public SubtitleModelList GetSubtitleByUser(String username, int start, int end)
         {
-            List<SubtitleModel> modelList = new List<SubtitleModel>();
+            SubtitleModelList modelList = new SubtitleModelList();
             // here is dummy code for integration purposes
             for (int i = 0; i < end - start; i++)
             {
@@ -88,9 +88,9 @@ namespace Skermstafir.Repositories
         }
 
         // query database to get subtitles by language starting at index start and ending at index end both inclusive
-        public List<SubtitleModel> GetSubtitleByLanguage(string Language, int start, int end)
+        public SubtitleModelList GetSubtitleByLanguage(string Language, int start, int end)
         {
-            List<SubtitleModel> modelList = new List<SubtitleModel>();
+            SubtitleModelList modelList = new SubtitleModelList();
             // here is dummy code for integration purposes
             for (int i = 0; i < end - start; i++)
             {
@@ -109,9 +109,9 @@ namespace Skermstafir.Repositories
         }
 
         // query database to get subtitles by creation year starting from start and ending with end both inclusive
-        public List<SubtitleModel> GetSubtitleByCreationDate(int startYear, int endYear, int start, int end)
+        public SubtitleModelList GetSubtitleByCreationDate(int startYear, int endYear, int start, int end)
         {
-            List<SubtitleModel> modelList = new List<SubtitleModel>();
+            SubtitleModelList modelList = new SubtitleModelList();
             // here is dummy code for integration purposes
             for (int i = 0; i < end - start; i++)
             {
