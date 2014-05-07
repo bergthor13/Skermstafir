@@ -36,5 +36,5 @@ namespace Skermstafir.Controllers
 			
             return View("Subtitles");
         }
-	}
+    }
 }
