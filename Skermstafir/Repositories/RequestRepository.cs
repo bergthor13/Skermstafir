@@ -36,6 +36,7 @@ namespace Skermstafir.Repositories
                 dummy.artists.Add("Bruce Willis");
                 dummy.votes = 25;
                 dummy.description = "None";
+                dummy.user = "YOOOUUUU!!!!!";
                 modelList.Add(dummy);
             }
             return modelList;
@@ -57,6 +58,7 @@ namespace Skermstafir.Repositories
                 dummy.artists.Add("Bruce Willis");
                 dummy.votes = 25;
                 dummy.description = "None";
+                dummy.user = "YOOOUUUU!!!!!";
                 modelList.Add(dummy);
             }
             return modelList;
@@ -77,6 +79,7 @@ namespace Skermstafir.Repositories
                 dummy.artists.Add("Bruce Willis");
                 dummy.votes = 25;
                 dummy.description = "None";
+                dummy.user = "YOOOUUUU!!!!!";
                 modelList.Add(dummy);
             }
             return modelList;
@@ -94,6 +97,7 @@ namespace Skermstafir.Repositories
             dummy.artists.Add("Bruce Willis");
             dummy.votes = 25;
             dummy.description = "None";
+            dummy.user = "YOOOUUUU!!!!!";
             return dummy;
         }
         // queries database and gets request in language starting at index start and ending at index end both inclusive
@@ -111,6 +115,7 @@ namespace Skermstafir.Repositories
                 dummy.artists.Add("Bruce Willis");
                 dummy.votes = 25;
                 dummy.description = "None";
+                dummy.user = "YOOOUUUU!!!!!";
                 modelList.Add(dummy);
             }
             return modelList;
