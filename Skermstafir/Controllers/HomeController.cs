@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Skermstafir.Repositories;
 
 namespace Skermstafir.Controllers
 {
@@ -31,10 +32,10 @@ namespace Skermstafir.Controllers
         public ActionResult Subtitles()
         {
             ViewBag.Message = "Þýðingar";
-			SearchController sc = new SearchController();
-			sc.Search();
-			
-            return View("Subtitles");
+            SubtitleModelList result = new SubtitleModelList();
+			SearchRepository sc = new SearchRepository();
+            result = sc.GetSubtitleByNewest(0, 5);
+            return View("Subtitles", result);
         }
 	}
 }
