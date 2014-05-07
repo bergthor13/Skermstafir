@@ -18,7 +18,7 @@ namespace Skermstafir.Repositories
                 SubtitleModel dummy = new SubtitleModel();
                 dummy.name = "Anchorman 2, The Legend Continues";
                 dummy.language = "Íslenska";
-                dummy.votes = 99;
+                dummy.votes = 94;
                 dummy.yearCreated = 2014;
                 dummy.artists.Add("None");
                 dummy.downloads = 25;

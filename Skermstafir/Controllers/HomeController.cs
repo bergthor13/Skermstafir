@@ -25,8 +25,10 @@ namespace Skermstafir.Controllers
 		public ActionResult Requests()
 		{
 			ViewBag.Message = "Beiðnir";
-
-			return View();
+			RequestModelList result = new RequestModelList();
+			RequestRepository sc = new RequestRepository();
+			result = sc.GetRequestByNewest(0, 20);
+			return View("Requests", result);
 		}
 
         public ActionResult Subtitles()
@@ -34,7 +36,7 @@ namespace Skermstafir.Controllers
             ViewBag.Message = "Þýðingar";
             SubtitleModelList result = new SubtitleModelList();
 			SearchRepository sc = new SearchRepository();
-            result = sc.GetSubtitleByNewest(0, 5);
+            result = sc.GetSubtitleByNewest(0, 20);
             return View("Subtitles", result);
         }
     }
