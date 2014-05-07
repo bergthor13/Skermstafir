@@ -14,6 +14,16 @@ namespace Skermstafir.Repositories
 
         }
 
-        
+        // delete a specific subtitle from database
+        public void DeleteSubtitle(int id)
+        {
+
+        }
+
+        // change an existing subtitle entry in the database
+        public void ChangeExistingSubtitle(int id, SubtitleModel editSub)
+        {
+
+        }
     }
 }
