@@ -37,5 +37,5 @@ namespace Skermstafir.Controllers
             result = sc.GetSubtitleByNewest(0, 5);
             return View("Subtitles", result);
         }
-	}
+    }
 }
