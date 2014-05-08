@@ -1,6 +1,4 @@
 ﻿body {
-    /*padding-top: 0px;
-    padding-bottom: 20px;*/
     background-color:#444;
     color: #ddd;
 }
@@ -132,7 +130,7 @@ a:hover {
 	font-weight:bold;
 	border-bottom: solid grey 1px;
 	background: #2a2a2a;
-    color: #FFA540;
+    color: #ddd;
 }
 
 /* Left side of the search dialog */
@@ -174,12 +172,17 @@ a:hover {
 }
 
 .table {
-	background: white;
+	background: #444;
+}
+
+.table-striped > tbody > tr:nth-child(2n+1) > td, .table-striped > tbody > tr:nth-child(2n+1) > th {
+   background-color: #333;
 }
 
 /* Gradient on top of table*/
 .table thead {
-	background: linear-gradient(rgb(235, 235, 235), rgb(200, 200, 200));
+	background: linear-gradient rgb(42, 42, 72), rgb(2,2,2);
+    color: #FFA540;
 }
 
 /* Setting width of column to minimum */
