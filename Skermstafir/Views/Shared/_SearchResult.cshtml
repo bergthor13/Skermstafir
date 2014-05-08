@@ -1,29 +1,30 @@
-﻿@Html.ActionLink("Opna beiðni síðuna", "RequestItem/0", "Request")
-<table class="table table-striped">
-	<thead>
-		<tr>
-			<th>Upp</th>
-			<th>Titill</th>
-			<th>Útgáfuár</th>
-			<th>Tungumál</th>
-			<th>Stofnandi</th>
-			<th>Hala</th>
-			<th>Niðurhöl</th>
-		</tr>
-	</thead>
-	<tbody>
-		@for (int i = 0; i < Model.modelList.Count; i++)
-		{
-			<tr>
-				<td align ="center">▲ @Model.modelList[i].votes</td>
-				<td>@Model.modelList[i].name</td>
-				<td>@Model.modelList[i].yearCreated</td>
-				<td>@Model.modelList[i].language</td>
-				<td>@Model.modelList[i].user</td>
-				<td>▼</td>
-				<td>@Model.modelList[i].downloads</td>
-			</tr>
-		}
-	</tbody>
+﻿@Html.ActionLink("Opna beiðni síðuna", "Request", "Request")
 
-</table>
+	<table class="table table-striped">
+		<thead>
+			<tr>
+				<th>Upp</th>
+				<th>Titill</th>
+				<th>Útgáfuár</th>
+				<th>Tungumál</th>
+				<th>Stofnandi</th>
+				<th>Hala</th>
+				<th>Niðurhöl</th>
+			</tr>
+		</thead>
+		<tbody>
+			@for (int i = 0; i < Model.modelList.Count; i++)
+			{
+				<tr>
+					<td align="center">▲ @Model.modelList[i].votes</td>
+					<td>@Model.modelList[i].name</td>
+					<td>@Model.modelList[i].yearCreated</td>
+					<td>@Model.modelList[i].language</td>
+					<td>@Model.modelList[i].user</td>
+					<td>▼</td>
+					<td>@Model.modelList[i].downloads</td>
+				</tr>
+			}
+		</tbody>
+
+	</table>
