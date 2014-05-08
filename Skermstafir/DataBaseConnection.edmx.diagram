@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="215a121226bf488fb3d7f4aa3abbff05" Name="Diagram1">
+        <EntityTypeShape EntityType="VERK014_H22Model.C__MigrationHistory" Width="1.5" PointX="2.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="VERK014_H22Model.Artist" Width="1.5" PointX="4.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="VERK014_H22Model.AspNetRole" Width="1.5" PointX="3" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="VERK014_H22Model.AspNetUserClaim" Width="1.5" PointX="7.5" PointY="1.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="VERK014_H22Model.AspNetUserLogin" Width="1.5" PointX="7.5" PointY="8.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="VERK014_H22Model.AspNetUser" Width="1.5" PointX="5.25" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="VERK014_H22Model.Comment" Width="1.5" PointX="0.75" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="VERK014_H22Model.Genre" Width="1.5" PointX="0.75" PointY="1.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="VERK014_H22Model.Language" Width="1.5" PointX="0.75" PointY="8.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="VERK014_H22Model.Request" Width="1.5" PointX="6" PointY="15.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="VERK014_H22Model.Subtitle" Width="1.5" PointX="3" PointY="4.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="VERK014_H22Model.Vote" Width="1.5" PointX="8.25" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="VERK014_H22Model.Request_has_Artist" Width="1.5" PointX="8.25" PointY="16.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="VERK014_H22Model.Subtitle_has_Artist" Width="1.5" PointX="5.25" PointY="13" IsExpanded="true" />
+        <AssociationConnector Association="VERK014_H22Model.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_User_Id" ManuallyRouted="false" />
+        <AssociationConnector Association="VERK014_H22Model.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="VERK014_H22Model.FK_dbo_Request_dbo_Language_LanguageId" ManuallyRouted="false" />
+        <AssociationConnector Association="VERK014_H22Model.FK_dbo_Subtitle_dbo_Language_LanguageId" ManuallyRouted="false" />
+        <AssociationConnector Association="VERK014_H22Model.FK_dbo_Request_has_Artist_dbo_Request_RequestId" ManuallyRouted="false" />
+        <AssociationConnector Association="VERK014_H22Model.FK_dbo_Subtitle_has_Artist_dbo_Subtitle_SubtitleId" ManuallyRouted="false" />
+        <AssociationConnector Association="VERK014_H22Model.AspNetUserRoles" ManuallyRouted="false" />
+        <AssociationConnector Association="VERK014_H22Model.Request_has_Vote" ManuallyRouted="false" />
+        <AssociationConnector Association="VERK014_H22Model.Subtitle_has_Comment" ManuallyRouted="false" />
+        <AssociationConnector Association="VERK014_H22Model.Subtitle_has_Genre" ManuallyRouted="false" />
+        <AssociationConnector Association="VERK014_H22Model.Subtitle_has_Vote" ManuallyRouted="false" />
+        <AssociationConnector Association="VERK014_H22Model.User_has_Comment" ManuallyRouted="false" />
+        <AssociationConnector Association="VERK014_H22Model.User_has_Subtitle" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
