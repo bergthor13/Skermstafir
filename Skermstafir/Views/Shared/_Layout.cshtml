@@ -9,11 +9,10 @@
 
 </head>
 <body>
-
     <div class="container body-content">
 		<div class="shared-header">
 			@Html.Partial("_LoginPartial")
-            <img id="logo" src="~/Content/Pictures/StLogo.png" alt="Logo Skermstafa" width="80" />
+            <a href="@Url.Content("/Home/Index/")"><img id="logo" src="~/Content/Pictures/StLogo.png" alt="Logo Skermstafa" width="80" />
 			<h1>@Html.ActionLink("Skermstafir.is", "Index", "Home")</h1>
 			<ul id="shared-menu">
 				<li class="col-md-3">@Html.ActionLink("Forsíða", "Index", "Home")</li>
