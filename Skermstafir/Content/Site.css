@@ -197,6 +197,14 @@ a:hover {
 	width: 60px;
 }
 
+#upp {
+    color: #3BA3D0;
+    display: inline;
+}
+#nidur {
+    color: #38E156;
+}
+
 h4 {
 	margin-top: 2px;
 	margin-bottom: 10px;
