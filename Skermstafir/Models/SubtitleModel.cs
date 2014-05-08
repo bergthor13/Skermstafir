@@ -7,6 +7,7 @@ namespace Skermstafir.Models
 {
     public class SubtitleModel
     {
+        public int id { get; set; }
         public String name { get; set; }
         public String content { get; set; }
         public int yearCreated { get; set; }

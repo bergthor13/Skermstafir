@@ -28,6 +28,7 @@ namespace Skermstafir.Repositories
             for (int i = 0; i < end - start; i++)
             {
                 RequestModel dummy = new RequestModel();
+                dummy.id = 1;
                 dummy.name = "Anchorman 2, The Legend Continues";
                 dummy.votes = 32;
                 dummy.yearCreated = 2014;
@@ -49,6 +50,7 @@ namespace Skermstafir.Repositories
             for (int i = 0; i < end - start; i++)
             {
                 RequestModel dummy = new RequestModel();
+                dummy.id = 1;
                 dummy.name = "Anchorman 2, The Legend Continues";
                 dummy.votes = 25;
                 dummy.yearCreated = 2014;
@@ -69,6 +71,7 @@ namespace Skermstafir.Repositories
             for (int i = 0; i < end - start; i++)
             {
                 RequestModel dummy = new RequestModel();
+                dummy.id = 1;
                 dummy.name = "Anchorman 2, The Legend Continues";
                 dummy.votes = 25;
                 dummy.yearCreated = 2014;
@@ -86,6 +89,7 @@ namespace Skermstafir.Repositories
         public RequestModel GetRequestByID(int id)
         {
             RequestModel dummy = new RequestModel();
+            dummy.id = 1;
             dummy.name = "Anchorman 2, The Legend Continues";
             dummy.votes = 25;
             dummy.yearCreated = 2014;
@@ -103,6 +107,7 @@ namespace Skermstafir.Repositories
             for (int i = 0; i < end - start; i++)
             {
                 RequestModel dummy = new RequestModel();
+                dummy.id = 1;
                 dummy.name = "Anchorman 2, The Legend Continues";
                 dummy.votes = 25;
                 dummy.yearCreated = 2014;

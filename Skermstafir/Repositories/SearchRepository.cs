@@ -16,6 +16,7 @@ namespace Skermstafir.Repositories
             for (int i = 0; i < end - start; i++)
             {
                 SubtitleModel dummy = new SubtitleModel();
+                dummy.id = 1;
                 dummy.name = "Anchorman 2, The Legend Continues";
                 dummy.language = "Íslenska";
                 dummy.votes = 94;
@@ -38,6 +39,7 @@ namespace Skermstafir.Repositories
             for (int i = 0; i < end - start; i++)
             {
                 SubtitleModel dummy = new SubtitleModel();
+                dummy.id = 1;
                 dummy.name = "Anchorman 2, The Legend Continues";
                 dummy.language = "Íslenska";
                 dummy.votes = 99;
@@ -60,6 +62,7 @@ namespace Skermstafir.Repositories
             for (int i = 0; i < end - start; i++)
             {
                 SubtitleModel dummy = new SubtitleModel();
+                dummy.id = 1;
                 dummy.name = "Anchorman 2, The Legend Continues";
                 dummy.language = "Íslenska";
                 dummy.votes = 99;
@@ -79,6 +82,7 @@ namespace Skermstafir.Repositories
         public SubtitleModel GetSubtitleByID(int id)
         {
             SubtitleModel dummy = new SubtitleModel();
+            dummy.id = 1;
             dummy.name = "Anchorman 2, The Legend Continues";
             dummy.language = "Íslenska";
             dummy.votes = 99;
@@ -99,6 +103,7 @@ namespace Skermstafir.Repositories
             for (int i = 0; i < end - start; i++)
             {
                 SubtitleModel dummy = new SubtitleModel();
+                dummy.id = 1;
                 dummy.name = "Anchorman 2, The Legend Continues";
                 dummy.language = "Íslenska";
                 dummy.votes = 99;
@@ -121,6 +126,7 @@ namespace Skermstafir.Repositories
             for (int i = 0; i < end - start; i++)
             {
                 SubtitleModel dummy = new SubtitleModel();
+                dummy.id = 1;
                 dummy.name = "Anchorman 2, The Legend Continues";
                 dummy.language = "Íslenska";
                 dummy.votes = 99;
