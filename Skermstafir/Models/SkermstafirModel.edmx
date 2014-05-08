@@ -1,0 +1,913 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="SkermstafirModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Artist">
+          <Key>
+            <PropertyRef Name="IDArtist" />
+          </Key>
+          <Property Name="IDArtist" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Comment">
+          <Key>
+            <PropertyRef Name="IDComment" />
+          </Key>
+          <Property Name="IDComment" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Content" Type="nvarchar" MaxLength="255" />
+          <Property Name="DateCreated" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Genre">
+          <Key>
+            <PropertyRef Name="IDGenre" />
+          </Key>
+          <Property Name="IDGenre" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Language">
+          <Key>
+            <PropertyRef Name="IDLanguage" />
+          </Key>
+          <Property Name="IDLanguage" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Request">
+          <Key>
+            <PropertyRef Name="IDRequest" />
+          </Key>
+          <Property Name="IDRequest" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LanguageID" Type="int" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Description" Type="nvarchar" MaxLength="255" />
+          <Property Name="YearCreated" Type="int" />
+          <Property Name="DateAdded" Type="datetime" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'Skermstafir.dbo.Request_has_Artist' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Request_has_Artist">
+          <Key>
+            <PropertyRef Name="RequestID" />
+            <PropertyRef Name="ArtistID" />
+          </Key>
+          <Property Name="RequestID" Type="int" Nullable="false" />
+          <Property Name="ArtistID" Type="int" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'Skermstafir.dbo.Request_has_Vote' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Request_has_Vote">
+          <Key>
+            <PropertyRef Name="RequestID" />
+            <PropertyRef Name="VoteID" />
+          </Key>
+          <Property Name="RequestID" Type="int" Nullable="false" />
+          <Property Name="VoteID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Subtitle">
+          <Key>
+            <PropertyRef Name="IDSubtitle" />
+          </Key>
+          <Property Name="IDSubtitle" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LanguageID" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Description" Type="nvarchar" MaxLength="255" />
+          <Property Name="YearCreated" Type="int" />
+          <Property Name="Content" Type="nvarchar(max)" />
+          <Property Name="DateAdded" Type="datetime" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'Skermstafir.dbo.Subtitle_has_Artist' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Subtitle_has_Artist">
+          <Key>
+            <PropertyRef Name="SubtitleID" />
+            <PropertyRef Name="ArtistID" />
+          </Key>
+          <Property Name="SubtitleID" Type="int" Nullable="false" />
+          <Property Name="ArtistID" Type="int" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'Skermstafir.dbo.Subtitle_has_Comment' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Subtitle_has_Comment">
+          <Key>
+            <PropertyRef Name="SubtitleID" />
+            <PropertyRef Name="CommentID" />
+          </Key>
+          <Property Name="SubtitleID" Type="int" Nullable="false" />
+          <Property Name="CommentID" Type="int" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'Skermstafir.dbo.Subtitle_has_Genre' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Subtitle_has_Genre">
+          <Key>
+            <PropertyRef Name="SubtitleID" />
+            <PropertyRef Name="GenreID" />
+          </Key>
+          <Property Name="SubtitleID" Type="int" Nullable="false" />
+          <Property Name="GenreID" Type="int" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'Skermstafir.dbo.Subtitle_has_Vote' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Subtitle_has_Vote">
+          <Key>
+            <PropertyRef Name="SubtitleID" />
+            <PropertyRef Name="VoteID" />
+          </Key>
+          <Property Name="SubtitleID" Type="int" Nullable="false" />
+          <Property Name="VoteID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="IDUser" />
+          </Key>
+          <Property Name="IDUser" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Password" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'Skermstafir.dbo.User_has_Comment' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="User_has_Comment">
+          <Key>
+            <PropertyRef Name="UserID" />
+            <PropertyRef Name="CommentID" />
+          </Key>
+          <Property Name="UserID" Type="int" Nullable="false" />
+          <Property Name="CommentID" Type="int" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'Skermstafir.dbo.User_has_Subtitle' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="User_has_Subtitle">
+          <Key>
+            <PropertyRef Name="UserID" />
+            <PropertyRef Name="SubtitleID" />
+          </Key>
+          <Property Name="UserID" Type="int" Nullable="false" />
+          <Property Name="SubtitleID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Vote">
+          <Key>
+            <PropertyRef Name="IDVote" />
+          </Key>
+          <Property Name="IDVote" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="User_ID" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="Request_has_Artist-ArtistID_Artist-IDArtist">
+          <End Role="Artist" Type="Self.Artist" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Request_has_Artist" Type="Self.Request_has_Artist" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Artist">
+              <PropertyRef Name="IDArtist" />
+            </Principal>
+            <Dependent Role="Request_has_Artist">
+              <PropertyRef Name="ArtistID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Request_has_Artist-RequestID_Request-IDRequest">
+          <End Role="Request" Type="Self.Request" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Request_has_Artist" Type="Self.Request_has_Artist" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Request">
+              <PropertyRef Name="IDRequest" />
+            </Principal>
+            <Dependent Role="Request_has_Artist">
+              <PropertyRef Name="RequestID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Request_has_Vote-RequestID_Request-IDRequest">
+          <End Role="Request" Type="Self.Request" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Request_has_Vote" Type="Self.Request_has_Vote" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Request">
+              <PropertyRef Name="IDRequest" />
+            </Principal>
+            <Dependent Role="Request_has_Vote">
+              <PropertyRef Name="RequestID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Request_has_Vote-VoteID_Vote-IDVote">
+          <End Role="Vote" Type="Self.Vote" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Request_has_Vote" Type="Self.Request_has_Vote" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Vote">
+              <PropertyRef Name="IDVote" />
+            </Principal>
+            <Dependent Role="Request_has_Vote">
+              <PropertyRef Name="VoteID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Request-LanguageID_Language-IDLanguage">
+          <End Role="Language" Type="Self.Language" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Request" Type="Self.Request" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Language">
+              <PropertyRef Name="IDLanguage" />
+            </Principal>
+            <Dependent Role="Request">
+              <PropertyRef Name="LanguageID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Subtitle_has_Artist-ArtistID_Artist-IDArtist">
+          <End Role="Artist" Type="Self.Artist" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Subtitle_has_Artist" Type="Self.Subtitle_has_Artist" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Artist">
+              <PropertyRef Name="IDArtist" />
+            </Principal>
+            <Dependent Role="Subtitle_has_Artist">
+              <PropertyRef Name="ArtistID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Subtitle_has_Artist-SubtitleID_Subtitle-IDSubtitle">
+          <End Role="Subtitle" Type="Self.Subtitle" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Subtitle_has_Artist" Type="Self.Subtitle_has_Artist" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Subtitle">
+              <PropertyRef Name="IDSubtitle" />
+            </Principal>
+            <Dependent Role="Subtitle_has_Artist">
+              <PropertyRef Name="SubtitleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Subtitle_has_Comment-CommentID_Comment-IDComment">
+          <End Role="Comment" Type="Self.Comment" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Subtitle_has_Comment" Type="Self.Subtitle_has_Comment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Comment">
+              <PropertyRef Name="IDComment" />
+            </Principal>
+            <Dependent Role="Subtitle_has_Comment">
+              <PropertyRef Name="CommentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Subtitle_has_Comment-SubtitleID_Subtitle-IDSubtitle">
+          <End Role="Subtitle" Type="Self.Subtitle" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Subtitle_has_Comment" Type="Self.Subtitle_has_Comment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Subtitle">
+              <PropertyRef Name="IDSubtitle" />
+            </Principal>
+            <Dependent Role="Subtitle_has_Comment">
+              <PropertyRef Name="SubtitleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Subtitle_has_Genre-GenreID_Genre-IDGenre">
+          <End Role="Genre" Type="Self.Genre" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Subtitle_has_Genre" Type="Self.Subtitle_has_Genre" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Genre">
+              <PropertyRef Name="IDGenre" />
+            </Principal>
+            <Dependent Role="Subtitle_has_Genre">
+              <PropertyRef Name="GenreID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Subtitle_has_Genre-SubtitleID_Subtitle-IDSubtitle">
+          <End Role="Subtitle" Type="Self.Subtitle" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Subtitle_has_Genre" Type="Self.Subtitle_has_Genre" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Subtitle">
+              <PropertyRef Name="IDSubtitle" />
+            </Principal>
+            <Dependent Role="Subtitle_has_Genre">
+              <PropertyRef Name="SubtitleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Subtitle_has_Vote-SubtitleID_Subtitle-IDSubtitle">
+          <End Role="Subtitle" Type="Self.Subtitle" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Subtitle_has_Vote" Type="Self.Subtitle_has_Vote" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Subtitle">
+              <PropertyRef Name="IDSubtitle" />
+            </Principal>
+            <Dependent Role="Subtitle_has_Vote">
+              <PropertyRef Name="SubtitleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Subtitle_has_Vote-VoteID_Vote-IDVote">
+          <End Role="Vote" Type="Self.Vote" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Subtitle_has_Vote" Type="Self.Subtitle_has_Vote" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Vote">
+              <PropertyRef Name="IDVote" />
+            </Principal>
+            <Dependent Role="Subtitle_has_Vote">
+              <PropertyRef Name="VoteID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Subtitle-LanguageID_Language-IDLanguage">
+          <End Role="Language" Type="Self.Language" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Subtitle" Type="Self.Subtitle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Language">
+              <PropertyRef Name="IDLanguage" />
+            </Principal>
+            <Dependent Role="Subtitle">
+              <PropertyRef Name="LanguageID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="User_has_Comment-CommentID_Comment-IDComment">
+          <End Role="Comment" Type="Self.Comment" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="User_has_Comment" Type="Self.User_has_Comment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Comment">
+              <PropertyRef Name="IDComment" />
+            </Principal>
+            <Dependent Role="User_has_Comment">
+              <PropertyRef Name="CommentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="User_has_Comment-UserID_User-IDUser">
+          <End Role="User" Type="Self.User" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="User_has_Comment" Type="Self.User_has_Comment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="IDUser" />
+            </Principal>
+            <Dependent Role="User_has_Comment">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="User_has_Subtitle-SubtitleID_Subtitle-IDSubtitle">
+          <End Role="Subtitle" Type="Self.Subtitle" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="User_has_Subtitle" Type="Self.User_has_Subtitle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Subtitle">
+              <PropertyRef Name="IDSubtitle" />
+            </Principal>
+            <Dependent Role="User_has_Subtitle">
+              <PropertyRef Name="SubtitleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="User_has_Subtitle-UserID_User-IDUser">
+          <End Role="User" Type="Self.User" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="User_has_Subtitle" Type="Self.User_has_Subtitle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="IDUser" />
+            </Principal>
+            <Dependent Role="User_has_Subtitle">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="SkermstafirModelStoreContainer">
+          <EntitySet Name="Artist" EntityType="Self.Artist" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Comment" EntityType="Self.Comment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Genre" EntityType="Self.Genre" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Language" EntityType="Self.Language" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Request" EntityType="Self.Request" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Subtitle" EntityType="Self.Subtitle" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Vote" EntityType="Self.Vote" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Request_has_Artist" EntityType="Self.Request_has_Artist" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Request_has_Artist].[RequestID] AS [RequestID], 
+    [Request_has_Artist].[ArtistID] AS [ArtistID]
+    FROM [dbo].[Request_has_Artist] AS [Request_has_Artist]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="Request_has_Vote" EntityType="Self.Request_has_Vote" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Request_has_Vote].[RequestID] AS [RequestID], 
+    [Request_has_Vote].[VoteID] AS [VoteID]
+    FROM [dbo].[Request_has_Vote] AS [Request_has_Vote]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="Subtitle_has_Artist" EntityType="Self.Subtitle_has_Artist" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Subtitle_has_Artist].[SubtitleID] AS [SubtitleID], 
+    [Subtitle_has_Artist].[ArtistID] AS [ArtistID]
+    FROM [dbo].[Subtitle_has_Artist] AS [Subtitle_has_Artist]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="Subtitle_has_Comment" EntityType="Self.Subtitle_has_Comment" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Subtitle_has_Comment].[SubtitleID] AS [SubtitleID], 
+    [Subtitle_has_Comment].[CommentID] AS [CommentID]
+    FROM [dbo].[Subtitle_has_Comment] AS [Subtitle_has_Comment]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="Subtitle_has_Genre" EntityType="Self.Subtitle_has_Genre" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Subtitle_has_Genre].[SubtitleID] AS [SubtitleID], 
+    [Subtitle_has_Genre].[GenreID] AS [GenreID]
+    FROM [dbo].[Subtitle_has_Genre] AS [Subtitle_has_Genre]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="Subtitle_has_Vote" EntityType="Self.Subtitle_has_Vote" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Subtitle_has_Vote].[SubtitleID] AS [SubtitleID], 
+    [Subtitle_has_Vote].[VoteID] AS [VoteID]
+    FROM [dbo].[Subtitle_has_Vote] AS [Subtitle_has_Vote]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="User_has_Comment" EntityType="Self.User_has_Comment" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [User_has_Comment].[UserID] AS [UserID], 
+    [User_has_Comment].[CommentID] AS [CommentID]
+    FROM [dbo].[User_has_Comment] AS [User_has_Comment]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="User_has_Subtitle" EntityType="Self.User_has_Subtitle" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [User_has_Subtitle].[UserID] AS [UserID], 
+    [User_has_Subtitle].[SubtitleID] AS [SubtitleID]
+    FROM [dbo].[User_has_Subtitle] AS [User_has_Subtitle]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="Request_has_Artist-ArtistID_Artist-IDArtist" Association="Self.Request_has_Artist-ArtistID_Artist-IDArtist">
+            <End Role="Artist" EntitySet="Artist" />
+            <End Role="Request_has_Artist" EntitySet="Request_has_Artist" />
+          </AssociationSet>
+          <AssociationSet Name="Request_has_Artist-RequestID_Request-IDRequest" Association="Self.Request_has_Artist-RequestID_Request-IDRequest">
+            <End Role="Request" EntitySet="Request" />
+            <End Role="Request_has_Artist" EntitySet="Request_has_Artist" />
+          </AssociationSet>
+          <AssociationSet Name="Request_has_Vote-RequestID_Request-IDRequest" Association="Self.Request_has_Vote-RequestID_Request-IDRequest">
+            <End Role="Request" EntitySet="Request" />
+            <End Role="Request_has_Vote" EntitySet="Request_has_Vote" />
+          </AssociationSet>
+          <AssociationSet Name="Request_has_Vote-VoteID_Vote-IDVote" Association="Self.Request_has_Vote-VoteID_Vote-IDVote">
+            <End Role="Vote" EntitySet="Vote" />
+            <End Role="Request_has_Vote" EntitySet="Request_has_Vote" />
+          </AssociationSet>
+          <AssociationSet Name="Request-LanguageID_Language-IDLanguage" Association="Self.Request-LanguageID_Language-IDLanguage">
+            <End Role="Language" EntitySet="Language" />
+            <End Role="Request" EntitySet="Request" />
+          </AssociationSet>
+          <AssociationSet Name="Subtitle_has_Artist-ArtistID_Artist-IDArtist" Association="Self.Subtitle_has_Artist-ArtistID_Artist-IDArtist">
+            <End Role="Artist" EntitySet="Artist" />
+            <End Role="Subtitle_has_Artist" EntitySet="Subtitle_has_Artist" />
+          </AssociationSet>
+          <AssociationSet Name="Subtitle_has_Artist-SubtitleID_Subtitle-IDSubtitle" Association="Self.Subtitle_has_Artist-SubtitleID_Subtitle-IDSubtitle">
+            <End Role="Subtitle" EntitySet="Subtitle" />
+            <End Role="Subtitle_has_Artist" EntitySet="Subtitle_has_Artist" />
+          </AssociationSet>
+          <AssociationSet Name="Subtitle_has_Comment-CommentID_Comment-IDComment" Association="Self.Subtitle_has_Comment-CommentID_Comment-IDComment">
+            <End Role="Comment" EntitySet="Comment" />
+            <End Role="Subtitle_has_Comment" EntitySet="Subtitle_has_Comment" />
+          </AssociationSet>
+          <AssociationSet Name="Subtitle_has_Comment-SubtitleID_Subtitle-IDSubtitle" Association="Self.Subtitle_has_Comment-SubtitleID_Subtitle-IDSubtitle">
+            <End Role="Subtitle" EntitySet="Subtitle" />
+            <End Role="Subtitle_has_Comment" EntitySet="Subtitle_has_Comment" />
+          </AssociationSet>
+          <AssociationSet Name="Subtitle_has_Genre-GenreID_Genre-IDGenre" Association="Self.Subtitle_has_Genre-GenreID_Genre-IDGenre">
+            <End Role="Genre" EntitySet="Genre" />
+            <End Role="Subtitle_has_Genre" EntitySet="Subtitle_has_Genre" />
+          </AssociationSet>
+          <AssociationSet Name="Subtitle_has_Genre-SubtitleID_Subtitle-IDSubtitle" Association="Self.Subtitle_has_Genre-SubtitleID_Subtitle-IDSubtitle">
+            <End Role="Subtitle" EntitySet="Subtitle" />
+            <End Role="Subtitle_has_Genre" EntitySet="Subtitle_has_Genre" />
+          </AssociationSet>
+          <AssociationSet Name="Subtitle_has_Vote-SubtitleID_Subtitle-IDSubtitle" Association="Self.Subtitle_has_Vote-SubtitleID_Subtitle-IDSubtitle">
+            <End Role="Subtitle" EntitySet="Subtitle" />
+            <End Role="Subtitle_has_Vote" EntitySet="Subtitle_has_Vote" />
+          </AssociationSet>
+          <AssociationSet Name="Subtitle_has_Vote-VoteID_Vote-IDVote" Association="Self.Subtitle_has_Vote-VoteID_Vote-IDVote">
+            <End Role="Vote" EntitySet="Vote" />
+            <End Role="Subtitle_has_Vote" EntitySet="Subtitle_has_Vote" />
+          </AssociationSet>
+          <AssociationSet Name="Subtitle-LanguageID_Language-IDLanguage" Association="Self.Subtitle-LanguageID_Language-IDLanguage">
+            <End Role="Language" EntitySet="Language" />
+            <End Role="Subtitle" EntitySet="Subtitle" />
+          </AssociationSet>
+          <AssociationSet Name="User_has_Comment-CommentID_Comment-IDComment" Association="Self.User_has_Comment-CommentID_Comment-IDComment">
+            <End Role="Comment" EntitySet="Comment" />
+            <End Role="User_has_Comment" EntitySet="User_has_Comment" />
+          </AssociationSet>
+          <AssociationSet Name="User_has_Comment-UserID_User-IDUser" Association="Self.User_has_Comment-UserID_User-IDUser">
+            <End Role="User" EntitySet="User" />
+            <End Role="User_has_Comment" EntitySet="User_has_Comment" />
+          </AssociationSet>
+          <AssociationSet Name="User_has_Subtitle-SubtitleID_Subtitle-IDSubtitle" Association="Self.User_has_Subtitle-SubtitleID_Subtitle-IDSubtitle">
+            <End Role="Subtitle" EntitySet="Subtitle" />
+            <End Role="User_has_Subtitle" EntitySet="User_has_Subtitle" />
+          </AssociationSet>
+          <AssociationSet Name="User_has_Subtitle-UserID_User-IDUser" Association="Self.User_has_Subtitle-UserID_User-IDUser">
+            <End Role="User" EntitySet="User" />
+            <End Role="User_has_Subtitle" EntitySet="User_has_Subtitle" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="SkermstafirModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Artist">
+          <Key>
+            <PropertyRef Name="IDArtist" />
+          </Key>
+          <Property Name="IDArtist" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Requests" Relationship="Self.Request_has_Artist" FromRole="Artist" ToRole="Request" />
+          <NavigationProperty Name="Subtitles" Relationship="Self.Subtitle_has_Artist" FromRole="Artist" ToRole="Subtitle" />
+        </EntityType>
+        <EntityType Name="Comment">
+          <Key>
+            <PropertyRef Name="IDComment" />
+          </Key>
+          <Property Name="IDComment" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Content" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="DateCreated" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Subtitles" Relationship="Self.Subtitle_has_Comment" FromRole="Comment" ToRole="Subtitle" />
+          <NavigationProperty Name="Users" Relationship="Self.User_has_Comment" FromRole="Comment" ToRole="User" />
+        </EntityType>
+        <EntityType Name="Genre">
+          <Key>
+            <PropertyRef Name="IDGenre" />
+          </Key>
+          <Property Name="IDGenre" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Subtitles" Relationship="Self.Subtitle_has_Genre" FromRole="Genre" ToRole="Subtitle" />
+        </EntityType>
+        <EntityType Name="Language">
+          <Key>
+            <PropertyRef Name="IDLanguage" />
+          </Key>
+          <Property Name="IDLanguage" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Requests" Relationship="Self.Request_LanguageID_Language_IDLanguage" FromRole="Language" ToRole="Request" />
+          <NavigationProperty Name="Subtitles" Relationship="Self.Subtitle_LanguageID_Language_IDLanguage" FromRole="Language" ToRole="Subtitle" />
+        </EntityType>
+        <EntityType Name="Request">
+          <Key>
+            <PropertyRef Name="IDRequest" />
+          </Key>
+          <Property Name="IDRequest" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LanguageID" Type="Int32" Nullable="false" />
+          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="YearCreated" Type="Int32" />
+          <Property Name="DateAdded" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Language" Relationship="Self.Request_LanguageID_Language_IDLanguage" FromRole="Request" ToRole="Language" />
+          <NavigationProperty Name="Artists" Relationship="Self.Request_has_Artist" FromRole="Request" ToRole="Artist" />
+          <NavigationProperty Name="Votes" Relationship="Self.Request_has_Vote" FromRole="Request" ToRole="Vote" />
+        </EntityType>
+        <EntityType Name="Subtitle">
+          <Key>
+            <PropertyRef Name="IDSubtitle" />
+          </Key>
+          <Property Name="IDSubtitle" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LanguageID" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="YearCreated" Type="Int32" />
+          <Property Name="Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DateAdded" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Language" Relationship="Self.Subtitle_LanguageID_Language_IDLanguage" FromRole="Subtitle" ToRole="Language" />
+          <NavigationProperty Name="Artists" Relationship="Self.Subtitle_has_Artist" FromRole="Subtitle" ToRole="Artist" />
+          <NavigationProperty Name="Comments" Relationship="Self.Subtitle_has_Comment" FromRole="Subtitle" ToRole="Comment" />
+          <NavigationProperty Name="Genres" Relationship="Self.Subtitle_has_Genre" FromRole="Subtitle" ToRole="Genre" />
+          <NavigationProperty Name="Votes" Relationship="Self.Subtitle_has_Vote" FromRole="Subtitle" ToRole="Vote" />
+          <NavigationProperty Name="Users" Relationship="Self.User_has_Subtitle" FromRole="Subtitle" ToRole="User" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="IDUser" />
+          </Key>
+          <Property Name="IDUser" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Comments" Relationship="Self.User_has_Comment" FromRole="User" ToRole="Comment" />
+          <NavigationProperty Name="Subtitles" Relationship="Self.User_has_Subtitle" FromRole="User" ToRole="Subtitle" />
+        </EntityType>
+        <EntityType Name="Vote">
+          <Key>
+            <PropertyRef Name="IDVote" />
+          </Key>
+          <Property Name="IDVote" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="User_ID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Requests" Relationship="Self.Request_has_Vote" FromRole="Vote" ToRole="Request" />
+          <NavigationProperty Name="Subtitles" Relationship="Self.Subtitle_has_Vote" FromRole="Vote" ToRole="Subtitle" />
+        </EntityType>
+        <Association Name="Request_LanguageID_Language_IDLanguage">
+          <End Role="Language" Type="Self.Language" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Request" Type="Self.Request" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Language">
+              <PropertyRef Name="IDLanguage" />
+            </Principal>
+            <Dependent Role="Request">
+              <PropertyRef Name="LanguageID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Subtitle_LanguageID_Language_IDLanguage">
+          <End Role="Language" Type="Self.Language" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Subtitle" Type="Self.Subtitle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Language">
+              <PropertyRef Name="IDLanguage" />
+            </Principal>
+            <Dependent Role="Subtitle">
+              <PropertyRef Name="LanguageID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Request_has_Artist">
+          <End Role="Artist" Type="Self.Artist" Multiplicity="*" />
+          <End Role="Request" Type="Self.Request" Multiplicity="*" />
+        </Association>
+        <Association Name="Request_has_Vote">
+          <End Role="Request" Type="Self.Request" Multiplicity="*" />
+          <End Role="Vote" Type="Self.Vote" Multiplicity="*" />
+        </Association>
+        <Association Name="Subtitle_has_Artist">
+          <End Role="Artist" Type="Self.Artist" Multiplicity="*" />
+          <End Role="Subtitle" Type="Self.Subtitle" Multiplicity="*" />
+        </Association>
+        <Association Name="Subtitle_has_Comment">
+          <End Role="Comment" Type="Self.Comment" Multiplicity="*" />
+          <End Role="Subtitle" Type="Self.Subtitle" Multiplicity="*" />
+        </Association>
+        <Association Name="Subtitle_has_Genre">
+          <End Role="Genre" Type="Self.Genre" Multiplicity="*" />
+          <End Role="Subtitle" Type="Self.Subtitle" Multiplicity="*" />
+        </Association>
+        <Association Name="Subtitle_has_Vote">
+          <End Role="Subtitle" Type="Self.Subtitle" Multiplicity="*" />
+          <End Role="Vote" Type="Self.Vote" Multiplicity="*" />
+        </Association>
+        <Association Name="User_has_Comment">
+          <End Role="Comment" Type="Self.Comment" Multiplicity="*" />
+          <End Role="User" Type="Self.User" Multiplicity="*" />
+        </Association>
+        <Association Name="User_has_Subtitle">
+          <End Role="Subtitle" Type="Self.Subtitle" Multiplicity="*" />
+          <End Role="User" Type="Self.User" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="SkermstafirEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Artists" EntityType="Self.Artist" />
+          <EntitySet Name="Comments" EntityType="Self.Comment" />
+          <EntitySet Name="Genres" EntityType="Self.Genre" />
+          <EntitySet Name="Languages" EntityType="Self.Language" />
+          <EntitySet Name="Requests" EntityType="Self.Request" />
+          <EntitySet Name="Subtitles" EntityType="Self.Subtitle" />
+          <EntitySet Name="Users" EntityType="Self.User" />
+          <EntitySet Name="Votes" EntityType="Self.Vote" />
+          <AssociationSet Name="Request_LanguageID_Language_IDLanguage" Association="Self.Request_LanguageID_Language_IDLanguage">
+            <End Role="Language" EntitySet="Languages" />
+            <End Role="Request" EntitySet="Requests" />
+          </AssociationSet>
+          <AssociationSet Name="Subtitle_LanguageID_Language_IDLanguage" Association="Self.Subtitle_LanguageID_Language_IDLanguage">
+            <End Role="Language" EntitySet="Languages" />
+            <End Role="Subtitle" EntitySet="Subtitles" />
+          </AssociationSet>
+          <AssociationSet Name="Request_has_Artist" Association="Self.Request_has_Artist">
+            <End Role="Artist" EntitySet="Artists" />
+            <End Role="Request" EntitySet="Requests" />
+          </AssociationSet>
+          <AssociationSet Name="Request_has_Vote" Association="Self.Request_has_Vote">
+            <End Role="Request" EntitySet="Requests" />
+            <End Role="Vote" EntitySet="Votes" />
+          </AssociationSet>
+          <AssociationSet Name="Subtitle_has_Artist" Association="Self.Subtitle_has_Artist">
+            <End Role="Artist" EntitySet="Artists" />
+            <End Role="Subtitle" EntitySet="Subtitles" />
+          </AssociationSet>
+          <AssociationSet Name="Subtitle_has_Comment" Association="Self.Subtitle_has_Comment">
+            <End Role="Comment" EntitySet="Comments" />
+            <End Role="Subtitle" EntitySet="Subtitles" />
+          </AssociationSet>
+          <AssociationSet Name="Subtitle_has_Genre" Association="Self.Subtitle_has_Genre">
+            <End Role="Genre" EntitySet="Genres" />
+            <End Role="Subtitle" EntitySet="Subtitles" />
+          </AssociationSet>
+          <AssociationSet Name="Subtitle_has_Vote" Association="Self.Subtitle_has_Vote">
+            <End Role="Subtitle" EntitySet="Subtitles" />
+            <End Role="Vote" EntitySet="Votes" />
+          </AssociationSet>
+          <AssociationSet Name="User_has_Comment" Association="Self.User_has_Comment">
+            <End Role="Comment" EntitySet="Comments" />
+            <End Role="User" EntitySet="Users" />
+          </AssociationSet>
+          <AssociationSet Name="User_has_Subtitle" Association="Self.User_has_Subtitle">
+            <End Role="Subtitle" EntitySet="Subtitles" />
+            <End Role="User" EntitySet="Users" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="SkermstafirModelStoreContainer" CdmEntityContainer="SkermstafirEntities">
+          <EntitySetMapping Name="Artists">
+            <EntityTypeMapping TypeName="SkermstafirModel.Artist">
+              <MappingFragment StoreEntitySet="Artist">
+                <ScalarProperty Name="IDArtist" ColumnName="IDArtist" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Comments">
+            <EntityTypeMapping TypeName="SkermstafirModel.Comment">
+              <MappingFragment StoreEntitySet="Comment">
+                <ScalarProperty Name="IDComment" ColumnName="IDComment" />
+                <ScalarProperty Name="Content" ColumnName="Content" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Genres">
+            <EntityTypeMapping TypeName="SkermstafirModel.Genre">
+              <MappingFragment StoreEntitySet="Genre">
+                <ScalarProperty Name="IDGenre" ColumnName="IDGenre" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Languages">
+            <EntityTypeMapping TypeName="SkermstafirModel.Language">
+              <MappingFragment StoreEntitySet="Language">
+                <ScalarProperty Name="IDLanguage" ColumnName="IDLanguage" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Requests">
+            <EntityTypeMapping TypeName="SkermstafirModel.Request">
+              <MappingFragment StoreEntitySet="Request">
+                <ScalarProperty Name="IDRequest" ColumnName="IDRequest" />
+                <ScalarProperty Name="LanguageID" ColumnName="LanguageID" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="YearCreated" ColumnName="YearCreated" />
+                <ScalarProperty Name="DateAdded" ColumnName="DateAdded" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Subtitles">
+            <EntityTypeMapping TypeName="SkermstafirModel.Subtitle">
+              <MappingFragment StoreEntitySet="Subtitle">
+                <ScalarProperty Name="IDSubtitle" ColumnName="IDSubtitle" />
+                <ScalarProperty Name="LanguageID" ColumnName="LanguageID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="YearCreated" ColumnName="YearCreated" />
+                <ScalarProperty Name="Content" ColumnName="Content" />
+                <ScalarProperty Name="DateAdded" ColumnName="DateAdded" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="SkermstafirModel.User">
+              <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="IDUser" ColumnName="IDUser" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Votes">
+            <EntityTypeMapping TypeName="SkermstafirModel.Vote">
+              <MappingFragment StoreEntitySet="Vote">
+                <ScalarProperty Name="IDVote" ColumnName="IDVote" />
+                <ScalarProperty Name="User_ID" ColumnName="User_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="Request_has_Artist" TypeName="SkermstafirModel.Request_has_Artist" StoreEntitySet="Request_has_Artist">
+            <EndProperty Name="Artist">
+              <ScalarProperty Name="IDArtist" ColumnName="ArtistID" />
+            </EndProperty>
+            <EndProperty Name="Request">
+              <ScalarProperty Name="IDRequest" ColumnName="RequestID" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="Request_has_Vote" TypeName="SkermstafirModel.Request_has_Vote" StoreEntitySet="Request_has_Vote">
+            <EndProperty Name="Request">
+              <ScalarProperty Name="IDRequest" ColumnName="RequestID" />
+            </EndProperty>
+            <EndProperty Name="Vote">
+              <ScalarProperty Name="IDVote" ColumnName="VoteID" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="Subtitle_has_Artist" TypeName="SkermstafirModel.Subtitle_has_Artist" StoreEntitySet="Subtitle_has_Artist">
+            <EndProperty Name="Artist">
+              <ScalarProperty Name="IDArtist" ColumnName="ArtistID" />
+            </EndProperty>
+            <EndProperty Name="Subtitle">
+              <ScalarProperty Name="IDSubtitle" ColumnName="SubtitleID" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="Subtitle_has_Comment" TypeName="SkermstafirModel.Subtitle_has_Comment" StoreEntitySet="Subtitle_has_Comment">
+            <EndProperty Name="Comment">
+              <ScalarProperty Name="IDComment" ColumnName="CommentID" />
+            </EndProperty>
+            <EndProperty Name="Subtitle">
+              <ScalarProperty Name="IDSubtitle" ColumnName="SubtitleID" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="Subtitle_has_Genre" TypeName="SkermstafirModel.Subtitle_has_Genre" StoreEntitySet="Subtitle_has_Genre">
+            <EndProperty Name="Genre">
+              <ScalarProperty Name="IDGenre" ColumnName="GenreID" />
+            </EndProperty>
+            <EndProperty Name="Subtitle">
+              <ScalarProperty Name="IDSubtitle" ColumnName="SubtitleID" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="Subtitle_has_Vote" TypeName="SkermstafirModel.Subtitle_has_Vote" StoreEntitySet="Subtitle_has_Vote">
+            <EndProperty Name="Subtitle">
+              <ScalarProperty Name="IDSubtitle" ColumnName="SubtitleID" />
+            </EndProperty>
+            <EndProperty Name="Vote">
+              <ScalarProperty Name="IDVote" ColumnName="VoteID" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="User_has_Comment" TypeName="SkermstafirModel.User_has_Comment" StoreEntitySet="User_has_Comment">
+            <EndProperty Name="Comment">
+              <ScalarProperty Name="IDComment" ColumnName="CommentID" />
+            </EndProperty>
+            <EndProperty Name="User">
+              <ScalarProperty Name="IDUser" ColumnName="UserID" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="User_has_Subtitle" TypeName="SkermstafirModel.User_has_Subtitle" StoreEntitySet="User_has_Subtitle">
+            <EndProperty Name="Subtitle">
+              <ScalarProperty Name="IDSubtitle" ColumnName="SubtitleID" />
+            </EndProperty>
+            <EndProperty Name="User">
+              <ScalarProperty Name="IDUser" ColumnName="UserID" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
