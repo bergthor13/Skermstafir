@@ -13,15 +13,15 @@
 
 
         @Html.Partial("_LoginPartial")
-        <img id="logo" src="~/Content/Pictures/StLogo.png" alt="Logo Skermstafa" width="80" />
-        <h1>@Html.ActionLink("Skermstafir.is", "Index", "Home")</h1>
-        <ul id="shared-menu">
-            <li class="col-md-3">@Html.ActionLink("Forsíða", "Index", "Home")</li>
-            <li class="col-md-3">@Html.ActionLink("Þýðingar", "Subtitles", "Home")</li>
-            <li class="col-md-3">@Html.ActionLink("Beiðnir", "Requests", "Home")</li>
-            <li class="col-md-3">@Html.ActionLink("Leiðbeiningar", "Instructions", "Home")</li>
-        </ul>
-    </div>
+		<a href="@Url.Content("/Home/Index/")"><img id="logo" src="~/Content/Pictures/StLogo.png" alt="Logo Skermstafa" width="80" /></a>
+			<h1>@Html.ActionLink("Skermstafir.is", "Index", "Home")</h1>
+			<ul id="shared-menu">
+				<li class="col-md-3">@Html.ActionLink("Forsíða", "Index", "Home")</li>
+				<li class="col-md-3">@Html.ActionLink("Þýðingar", "Subtitles", "Home")</li>
+				<li class="col-md-3">@Html.ActionLink("Beiðnir", "Requests", "Home")</li>
+				<li class="col-md-3">@Html.ActionLink("Leiðbeiningar", "Instructions", "Home")</li>
+			</ul>
+</div>
     <div class="container body-content">
         
         @RenderBody()
