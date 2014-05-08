@@ -191,3 +191,8 @@ a, a:hover {
 .search-result-row td{
 	vertical-align: bottom;
 }
+
+/* Front page lists BEGIN */
+.fp-list {
+	border-bottom: solid 1px grey;
+}
