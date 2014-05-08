@@ -9,18 +9,94 @@
 <h5 align="middle">Hér getur þú halað niður skjátexta fyrir myndefni sem þú hyggst horfa á í tölvutæku formi, fengið leiðbeiningar um hvernig hægt er að tengja skjátextann við myndefnið, lagt inn beiðni um að tiltekið myndefni sé þýtt og tekið þátt í að þýða myndefni. Allt er ókeypis og frjálst!</h5> 
 
 <div id="popular-translations" class="col-md-6 tranreq-list tranList">
-	<p class="box-title">Vinsælar þýðingar</p>
-	@Html.Partial("_FrontPageTableCellTrans")
+
+
+<p class="box-title">Vinsælar þýðingar</p>
+@for (int i = 0; i < 3; i++)
+{
+	<div class="fp-list" data-id="">
+		<!-- Up button, upvote count, flag-->
+		<div class="first-column">
+			<div>▲</div> <div>@Model.popularSubtitleList.modelList[i].votes</div>
+			<img src="http://www.placekitten.com/20/15" alt="Flag" />
+		</div>
+
+		<h4 class="second-column">@Model.popularSubtitleList.modelList[i].name</h4>
+		<p id="year">Útgáfuár: @Model.popularSubtitleList.modelList[i].yearCreated</p>
+
+		<div class="third-column">
+			<input type="button" name="download" value="Niðurhala" />
+		</div>
+		<p id="creator">Stofnandi: @Model.popularSubtitleList.modelList[i].user</p>
+	</div>
+}
 </div>
+
+
 <div id="popular-requests" class="col-md-6 tranreq-list reqList">
 	<p class="box-title">Vinsælar beiðnir</p>
-	@Html.Partial("_FrontPageTableCellReq")
+@for (int i = 0; i < 3; i++)
+{
+	<div class="fp-list" data-id="">
+		<!-- Up button, upvote count, flag-->
+		<div class="first-column">
+			<div>▲</div> <div>@Model.newestSubtitleList.modelList[i].votes</div>
+			<img src="http://www.placekitten.com/20/15" alt="Flag" />
+		</div>
+
+		<h4 class="second-column">@Model.newestSubtitleList.modelList[i].name</h4>
+		<p id="year">Útgáfuár: @Model.newestSubtitleList.modelList[i].yearCreated</p>
+
+		<div class="third-column">
+			<input type="button" name="download" value="Stofna þýðingu" />
+		</div>
+		<p id="creator">Stofnandi: @Model.newestSubtitleList.modelList[i].user</p>
+	</div>
+}
 </div>
+
+
 <div id="newest-translations" class="col-md-6 tranreq-list tranList">
 	<p class="box-title">Nýjustu þýðingar</p>
-	@Html.Partial("_FrontPageTableCellTrans")
+	@for (int i = 0; i < 3; i++)
+	{
+		<div class="fp-list" data-id="">
+			<!-- Up button, upvote count, flag-->
+			<div class="first-column">
+				<div>▲</div> <div>@Model.newestSubtitleList.modelList[i].votes</div>
+				<img src="http://www.placekitten.com/20/15" alt="Flag" />
+			</div>
+
+			<h4 class="second-column">@Model.newestSubtitleList.modelList[i].name</h4>
+			<p id="year">Útgáfuár: @Model.newestSubtitleList.modelList[i].yearCreated</p>
+
+			<div class="third-column">
+				<input type="button" name="download" value="Niðurhala" />
+			</div>
+			<p id="creator">Stofnandi: @Model.newestSubtitleList.modelList[i].user</p>
+		</div>
+	}
 </div>
+
+
 <div id="newest-requests" class="col-md-6 tranreq-list reqList">
 	<p class="box-title">Nýjustu beiðnir</p>
-	@Html.Partial("_FrontPageTableCellReq")
+	@for (int i = 0; i < 3; i++)
+	{
+		<div class="fp-list" data-id="">
+			<!-- Up button, upvote count, flag-->
+			<div class="first-column">
+				<div>▲</div> <div>@Model.newestRequestList.modelList[i].votes</div>
+				<img src="http://www.placekitten.com/20/15" alt="Flag" />
+			</div>
+
+			<h4 class="second-column">@Model.newestRequestList.modelList[i].name</h4>
+			<p id="year">Útgáfuár: @Model.newestRequestList.modelList[i].yearCreated</p>
+
+			<div class="third-column">
+				<input type="button" name="download" value="Stofna þýðingu" />
+			</div>
+			<p id="creator">Stofnandi: @Model.newestRequestList.modelList[i].user</p>
+		</div>
+	}
 </div>
