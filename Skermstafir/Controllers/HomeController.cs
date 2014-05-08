@@ -13,7 +13,15 @@ namespace Skermstafir.Controllers
 	{
 		public ActionResult Index()
 		{
-			return View();
+            ViewBag.Message = "Forsíða";
+            SearchRepository sRep = new SearchRepository();
+            RequestRepository rRep = new RequestRepository();
+            MultipleModelLists model = new MultipleModelLists();
+            model.newestRequestList = rRep.GetRequestByNewest(0, 5);
+            model.popularRequestList = rRep.GetByMostPopular(0, 5);
+            model.newestSubtitleList = sRep.GetSubtitleByNewest(0, 5);
+            model.popularSubtitleList = sRep.GetSubtitleByMostPopular(0, 5);
+			return View(model);
 		}
 
 		public ActionResult Instructions()
