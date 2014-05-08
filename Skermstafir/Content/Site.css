@@ -136,6 +136,17 @@ a:hover {
 	margin-bottom: 0;
 }
 
+.box-title2 {
+	width: 100%;
+	padding: 7px 10px 7px 15px;
+	font-size: 1.3em;
+	font-weight:bold;
+	border: gray solid 1px;
+	background: #2a2a2a;
+    color: #DDD;
+	margin-bottom: 0;
+}
+
 /* Left side of the search dialog */
 .search-dialog-left {
 	width:50%;
@@ -264,3 +275,10 @@ h4 {
 	top:0px;
 	right:0px;
 }
+
+.login-noaccount {
+    font-weight: normal;
+    font-size: 11pt;
+    color: white;
+    padding-left: 17%;
+}   
