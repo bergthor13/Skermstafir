@@ -231,6 +231,11 @@
     <Content Include="Views\Home\Requests.cshtml" />
     <Content Include="Views\Home\Subtitles.cshtml" />
     <Content Include="Views\Shared\_Search.cshtml" />
+    <Content Include="Views\Shared\_FrontPageTableCellReq.cshtml" />
+    <Content Include="Views\Shared\_FrontPageTableCellTrans.cshtml" />
+    <Content Include="Views\Shared\_SearchRequests.cshtml" />
+    <Content Include="Views\Shared\_SearchResult.cshtml" />
+    <Content Include="Views\Shared\_SearchResultRequests.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
