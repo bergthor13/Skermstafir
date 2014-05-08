@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="8e3aacc00289484694ae51e5f277ca5d" Name="Diagram1">
+        <EntityTypeShape EntityType="SkermstafirDatabase.C__MigrationHistory" Width="1.5" PointX="5.75" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SkermstafirDatabase.Artist" Width="1.5" PointX="0.75" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SkermstafirDatabase.AspNetRole" Width="1.5" PointX="9" PointY="2.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SkermstafirDatabase.AspNetUserClaim" Width="1.5" PointX="13.5" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="SkermstafirDatabase.AspNetUserLogin" Width="1.5" PointX="13.5" PointY="6.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SkermstafirDatabase.AspNetUser" Width="1.5" PointX="11.25" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SkermstafirDatabase.Comment" Width="1.5" PointX="3.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SkermstafirDatabase.Genre" Width="1.5" PointX="3.75" PointY="8.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SkermstafirDatabase.Language" Width="1.5" PointX="0.75" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="SkermstafirDatabase.Request" Width="1.5" PointX="3" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SkermstafirDatabase.Subtitle" Width="1.5" PointX="6" PointY="4.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SkermstafirDatabase.Vote" Width="1.5" PointX="8.25" PointY="5" IsExpanded="true" />
+        <AssociationConnector Association="SkermstafirDatabase.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_User_Id" ManuallyRouted="false" />
+        <AssociationConnector Association="SkermstafirDatabase.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="SkermstafirDatabase.FK_dbo_Request_dbo_Language_LanguageId" ManuallyRouted="false" />
+        <AssociationConnector Association="SkermstafirDatabase.FK_dbo_Subtitle_dbo_Language_LanguageId" ManuallyRouted="false" />
+        <AssociationConnector Association="SkermstafirDatabase.AspNetUserRoles" ManuallyRouted="false" />
+        <AssociationConnector Association="SkermstafirDatabase.Request_has_Artist" ManuallyRouted="false" />
+        <AssociationConnector Association="SkermstafirDatabase.Request_has_Vote" ManuallyRouted="false" />
+        <AssociationConnector Association="SkermstafirDatabase.Subtitle_has_Artist" ManuallyRouted="false" />
+        <AssociationConnector Association="SkermstafirDatabase.Subtitle_has_Comment" ManuallyRouted="false" />
+        <AssociationConnector Association="SkermstafirDatabase.Subtitle_has_Genre" ManuallyRouted="false" />
+        <AssociationConnector Association="SkermstafirDatabase.Subtitle_has_Vote" ManuallyRouted="false" />
+        <AssociationConnector Association="SkermstafirDatabase.User_has_Comment" ManuallyRouted="false" />
+        <AssociationConnector Association="SkermstafirDatabase.User_has_Subtitle" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
