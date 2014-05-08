@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using Skermstafir.Models;
-using System.Linq;
 
 namespace Skermstafir.Repositories
 {

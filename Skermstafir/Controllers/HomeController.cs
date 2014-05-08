@@ -21,7 +21,7 @@ namespace Skermstafir.Controllers
             model.popularRequestList = rRep.GetByMostPopular(0, 5);
             model.newestSubtitleList = sRep.GetSubtitleByNewest(0, 5);
             model.popularSubtitleList = sRep.GetSubtitleByMostPopular(0, 5);
-			return View(model);
+			return View("Index", model);
 		}
 
 		public ActionResult Instructions()
