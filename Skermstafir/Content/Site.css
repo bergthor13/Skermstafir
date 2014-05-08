@@ -1,7 +1,8 @@
 ﻿body {
     padding-top: 0px;
     padding-bottom: 20px;
-    background:linear-gradient(rgb(245, 245, 245), rgb(240, 240, 240));
+    background-color:#444;
+    color: #ddd;
 }
 
 /* Set padding to keep content from hitting the edges */
@@ -49,19 +50,27 @@ h1, h1 a, h1 a:hover {
 	font-weight:bold;
 	vertical-align:central;
 	text-decoration:none;
-	color:black;
+	color: #A60C00;
 }
 h1 a {
-	text-decoration:none;
-	color:black;
+	color:#FFA540;
+    padding-top:54px;
+}
+
+h3 {
+    color: #FF7D73;
+}
+
+h5 {
+    color: #65E17B;
+    font-size: 14px;
+    margin: 0px 138px;
 }
 
 .shared-header {
-	margin: 15px 0px 0px 0px;
-	background: linear-gradient(rgb(215, 215, 215), rgb(180, 180, 180));
-	border-top-left-radius:10px;
-	border-top-right-radius:10px;
+	background: #2a2a2a;
 	border: solid grey 1px;
+    padding-bottom: 21px;
 }
 
 .shared-header img {
@@ -69,26 +78,28 @@ h1 a {
 }
 
 #shared-menu {
-	border-top: solid grey 1px;
-	padding-bottom:15px;
+	padding: 0px 150px;
+    vertical-align:central;
 }
 
 #shared-menu li {
 	display: inline;
-    color: red;
 	list-style-type: none;
 	font-weight:bold;
+    border: 1px solid grey;
+    padding: 5px 0px;
 }
 
 #shared-menu .col-md-3 {
-	border-right: solid 1px grey;
 	text-align: center;
-	height: 25px;
-	vertical-align:central;
 }
 
-a, a:hover {
-    color: #b00;
+a {
+    color: #FFA540;
+}
+
+a:hover {
+    color: #A60C00
 }
 
 
@@ -109,31 +120,26 @@ a, a:hover {
 
 /* The whole search box */
 .search-dialog {
-	border: solid 1px grey;
 	border-radius: 10px;
 	margin-top: 20px;
 	margin-bottom: 20px;
 	position: relative;
-	background: rgb(250,250,250);
 }
 /* The title of the box */
 .box-title {
 	width: 100%;
-	padding: 7px 0 7px 15px;
+	padding: 7px 10px 7px 15px;
 	font-size: 1.3em;
 	font-weight:bold;
 	border-bottom: solid grey 1px;
-	background: linear-gradient(rgb(235, 235, 235), rgb(200, 200, 200));
-	border-top-left-radius: 10px;
-	border-top-right-radius: 10px;
-	margin-bottom: 0;
+	background: #2a2a2a;
+    color: #FFA540;
 }
 
 /* Left side of the search dialog */
 .search-dialog-left {
 	width:50%;
 	padding-left: 15px;
-	padding-top:15px;
 }
 
 /* Right side of the search dialog */
@@ -141,7 +147,7 @@ a, a:hover {
 	width:50%;
 	position:absolute;
 	left:45%;
-	top:40%;
+	top:0%;
 }
 
 /* Period search boxes (Frá og til)*/
@@ -161,19 +167,15 @@ a, a:hover {
 /* Boxes on front page. */
 .tranreq-list {
 	border: solid 1px grey;
-	border-top-left-radius: 10px;
-	border-top-right-radius: 10px;
-	margin-top: 20px;
-	height:284px;
-	padding: 0;
-	background: rgb(250,250,250);
+	margin: 11px;
+    padding: 0px;
+	height:300px;
+    width: 48%;
+    background: #333;
 }
 
 .table {
 	background: white;
-	border: 1px solid;
-	border-top-left-radius: 10px;
-	border-top-right-radius: 10px;
 }
 
 /* Gradient on top of table*/
