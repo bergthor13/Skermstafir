@@ -4,14 +4,14 @@
     ViewBag.Title = "Innskráning";
 }
 
-<h2>@ViewBag.Title.</h2>
+<h2>@ViewBag.Title</h2>
 <div class="row">
     <div class="col-md-8">
-        <section id="loginForm">
+        <section id="loginForm" class="box-title2">
             @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
             {
                 @Html.AntiForgeryToken()
-                <h4>Use a local account to log in.</h4>
+                <h4>Skráðu þig inn hér að neðan.</h4>
                 <hr />
                 @Html.ValidationSummary(true)
                 <div class="form-group">
@@ -38,17 +38,17 @@
                 </div>
                 <div class="form-group">
                     <div class="col-md-offset-2 col-md-10">
-                        <input type="submit" value="Log in" class="btn btn-default" />
+                        <input type="submit" value="Innskrá" class="btn btn-default" />
                     </div>
                 </div>
-                <p>
-                    @Html.ActionLink("Register", "Register") if you don't have a local account.
+                <p class="login-noaccount">
+                    Nýskráðu þig @Html.ActionLink("hér", "Register") ef þú átt ekki aðgang.
                 </p>
             }
         </section>
     </div>
     <div class="col-md-4">
-        <section id="socialLoginForm">
+        <section id="socialLoginForm" class="box-title2">
             @Html.Partial("_ExternalLoginsListPartial", new { Action = "ExternalLogin", ReturnUrl = ViewBag.ReturnUrl })
         </section>
     </div>
