@@ -21,13 +21,13 @@
 			<img src="http://www.placekitten.com/16/11" alt="Flag" />
 		</div>
 
-		<h4 class="second-column">@Model.popularSubtitleList.modelList[i].name</h4>
-		<p id="year">Útgáfuár: @Model.popularSubtitleList.modelList[i].yearCreated</p>
+		<h4 class="second-column">@Model.popularSubtitleList.modelList[i].subtitle.Name</h4>
+		<p id="year">Útgáfuár: @Model.popularSubtitleList.modelList[i].subtitle.YearCreated</p>
 
 		<div class="third-column">
 			<input type="button" name="download" value="Niðurhala" />
 		</div>
-		<p id="creator">Stofnandi: @Model.popularSubtitleList.modelList[i].user</p>
+		<p id="creator">Stofnandi: @Model.popularSubtitleList.modelList[i].user.UserName</p>
 	</div>
 }
 </div>
@@ -44,13 +44,13 @@
 			<img src="http://www.placekitten.com/16/11" alt="Flag" />
 		</div>
 
-		<h4 class="second-column">@Model.newestSubtitleList.modelList[i].name</h4>
-		<p id="year">Útgáfuár: @Model.newestSubtitleList.modelList[i].yearCreated</p>
+		<h4 class="second-column">@Model.newestSubtitleList.modelList[i].subtitle.Name</h4>
+		<p id="year">Útgáfuár: @Model.newestSubtitleList.modelList[i].subtitle.YearCreated</p>
 
 		<div class="third-column">
 			<input type="button" name="download" value="Stofna þýðingu" />
 		</div>
-		<p id="creator">Stofnandi: @Model.newestSubtitleList.modelList[i].user</p>
+		<p id="creator">Stofnandi: @Model.newestSubtitleList.modelList[i].user.UserName</p>
 	</div>
 }
 </div>
@@ -67,8 +67,8 @@
 				<img src="http://www.placekitten.com/16/11" alt="Flag" />
 			</div>
 
-			<h4 class="second-column">@Model.newestSubtitleList.modelList[i].name</h4>
-			<p id="year">Útgáfuár: @Model.newestSubtitleList.modelList[i].yearCreated</p>
+			<h4 class="second-column">@Model.newestSubtitleList.modelList[i].subtitle.Name</h4>
+			<p id="year">Útgáfuár: @Model.newestSubtitleList.modelList[i].subtitle.YearCreated</p>
 
 			<div class="third-column">
 				<input type="button" name="download" value="Niðurhala" />
@@ -90,13 +90,13 @@
 				<img src="http://www.placekitten.com/16/11" alt="Flag" />
 			</div>
 
-			<h4 class="second-column">@Model.newestRequestList.modelList[i].name</h4>
-			<p id="year">Útgáfuár: @Model.newestRequestList.modelList[i].yearCreated</p>
+			<h4 class="second-column">@Model.newestRequestList.modelList[i].request.Name</h4>
+			<p id="year">Útgáfuár: @Model.newestRequestList.modelList[i].request.YearCreated</p>
 
 			<div class="third-column">
 				<input type="button" name="download" value="Stofna þýðingu" />
 			</div>
-			<p id="creator">Stofnandi: @Model.newestRequestList.modelList[i].user</p>
+			<p id="creator">Stofnandi: @Model.newestRequestList.modelList[i].request.Username</p>
 		</div>
 	}
 </div>
