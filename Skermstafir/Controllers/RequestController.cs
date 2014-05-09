@@ -12,12 +12,9 @@ namespace Skermstafir.Controllers
     {
         //
         // GET: /Request/
-		public ActionResult Request(int? requestID)
+		public ActionResult ShowRequest(int? requestID)
 		{
-			RequestModel result = new RequestModel();
-			RequestRepository rr = new RequestRepository();
-			result = rr.GetRequestByID(0);
-			return View(result);
+			return View();
 		}
 		// Adds a new request.
         public ActionResult AddRequest()
