@@ -11,7 +11,7 @@ namespace Skermstafir.Repositories
         // Add a subtitlemodel object to database
         public void AddSubtitle(SubtitleModel model)
         {
-
+            // Add the subtitle
         }
 
         // delete a specific subtitle from database
