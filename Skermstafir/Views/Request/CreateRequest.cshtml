@@ -1,0 +1,16 @@
+﻿@model Skermstafir.Models.RequestModel
+
+
+
+<h3>Stofna beiðni</h3>
+
+<form>
+    <div id="TitillMyndefnis">
+        <p style="display: inline">Titill myndefnis: </p>
+        @Html.EditorFor(model => model.request.Name)
+    </div>
+    <div id="UtgafuarMyndefnis">
+        <p style="display: inline">Útgáfuár: </p>
+        @Html.EditorFor(model => model.request.YearCreated)
+    </div>
+</form>
