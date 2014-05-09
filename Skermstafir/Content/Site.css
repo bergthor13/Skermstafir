@@ -311,11 +311,9 @@ h4 {
 /*change password*/
 .form-control.lykilord
 {
-<<<<<<< HEAD
     width:50%;
     margin-right:0;
 }
-
 
 .subtitle-box {
 	border: solid 1px grey;
@@ -337,7 +335,4 @@ h4 {
 	position:absolute;
 	top:65px;
 	right:15px;
-=======
-    width: 120%;
->>>>>>> fbd38648741bec242f05864f69faeded8873cd54
 }
