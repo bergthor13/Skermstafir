@@ -8,9 +8,12 @@
 <h3 align="middle">Velkominn á skermstafir.is þar sem fólkið í landinu sameinast í að skiptast á skjátextum. </h3>
 <h5 align="middle">Hér getur þú halað niður skjátexta fyrir myndefni sem þú hyggst horfa á í tölvutæku formi, fengið leiðbeiningar um hvernig hægt er að tengja skjátextann við myndefnið, lagt inn beiðni um að tiltekið myndefni sé þýtt og tekið þátt í að þýða myndefni. Allt er ókeypis og frjálst!</h5>
 
+@if (Request.IsAuthenticated)
+{
+	<p>User is Logged In</p>
+}
+
 <div id="popular-translations" class="col-md-6 tranreq-list tranList">
-
-
 	<p class="box-title">Vinsælar þýðingar</p>
 	@foreach (var item in Model.popularSubtitleList.modelList)
 	{
