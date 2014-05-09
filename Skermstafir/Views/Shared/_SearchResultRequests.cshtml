@@ -1,4 +1,5 @@
-﻿<table class="table table-striped">
+﻿@Html.ActionLink("Opna beiðni síðuna", "ShowRequest", "Request")
+<table class="table table-striped">
 	<thead>
 		<tr>
 			<th class="up" align="center">Upp</th>
@@ -10,15 +11,14 @@
 		</tr>
 	</thead>
 	<tbody>
-		@for (int i = 0; i < Model.modelList.Count; i++)
+		@foreach (var request in Model.modelList)
 		{
 			<tr>
-				<td align="center">▲ @Model.modelList[i].votes</td>
-	
-				<td>@Model.modelList[i].name</td>
-				<td>@Model.modelList[i].yearCreated</td>
-				<td>@Model.modelList[i].Language</td>
-				<td>@Model.modelList[i].user</td>
+				<td align="center">▲ bla</td>
+				<td>@request.Name</td>
+				<td>@request.YearCreated</td>
+				<td>Lang</td>
+				<td>User</td>
 				<td align="right"><input type="button" name="stofna" value="Stofna þýðingu" /></td>
 			</tr>
 		}

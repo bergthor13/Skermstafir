@@ -1,30 +1,29 @@
-﻿@Html.ActionLink("Opna beiðni síðuna", "Request", "Request")
-
-	<table class="table table-striped">
-		<thead>
+﻿@Html.ActionLink("Opna þýðingu síðuna", "ShowSubtitle", "Subtitle")
+<table class="table table-striped">
+	<thead>
+		<tr>
+			<th>Upp</th>
+			<th>Titill</th>
+			<th>Útgáfuár</th>
+			<th>Tungumál</th>
+			<th>Stofnandi</th>
+			<th>Hala</th>
+			<th>Niðurhöl</th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach (var sub in Model.modelList)
+		{
 			<tr>
-				<th>Upp</th>
-				<th>Titill</th>
-				<th>Útgáfuár</th>
-				<th>Tungumál</th>
-				<th>Stofnandi</th>
-				<th>Hala</th>
-				<th>Niðurhöl</th>
+				<td align="center">▲ </td>
+				<td>@sub.Name</td>
+				<td>@sub.YearCreated</td>
+				<td>User</td>
+				<td>@sub.Language.Name</td>
+				<td>▼</td>
+				<td>NOT IMPL</td>
 			</tr>
-		</thead>
-		<tbody>
-			@for (int i = 0; i < Model.modelList.Count; i++)
-			{
-				<tr>
-					<td align="center">▲ @Model.modelList[i].votes</td>
-					<td>@Model.modelList[i].name</td>
-					<td>@Model.modelList[i].yearCreated</td>
-					<td>@Model.modelList[i].language</td>
-					<td>@Model.modelList[i].user</td>
-					<td>▼</td>
-					<td>@Model.modelList[i].downloads</td>
-				</tr>
-			}
-		</tbody>
+		}
+	</tbody>
 
-	</table>
+</table>
