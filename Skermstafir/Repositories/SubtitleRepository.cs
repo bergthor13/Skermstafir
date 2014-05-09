@@ -13,24 +13,32 @@ namespace Skermstafir.Repositories
         {
             using (SkermData db = new SkermData())
             {
-                // Add the subtitle itself
                 db.Subtitles.Add(model.subtitle);
-                // Add the artists
-                // Connect the subtitle with the genres
-                // Connect the subtitle with his author
             }
         }
 
         // delete a specific subtitle from database
         public void DeleteSubtitle(int id)
         {
-
+            using (SkermData db = new SkermData())
+            {
+                Subtitle toBeDeleted = (from item in db.Subtitles
+                                        where item.IdSubtitle == id
+                                        select item).Single();
+                db.Subtitles.Remove(toBeDeleted);
+            }
         }
 
         // change an existing subtitle entry in the database
         public void ChangeExistingSubtitle(int id, SubtitleModel editSub)
         {
-
+            using (SkermData db = new SkermData())
+            {
+                Subtitle toBeChanged = (from item in db.Subtitles
+                                        where item.IdSubtitle == id
+                                        select item).Single();
+                toBeChanged = editSub.subtitle;
+            }
         }
     }
 }
