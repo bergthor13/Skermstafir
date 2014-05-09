@@ -75,12 +75,14 @@ namespace Skermstafir.Repositories
         // query database to get subtitles by creation year starting from start and ending with end both inclusive
         public SubtitleModelList GetSubtitleByCreationDate(int startYear, int endYear, int start, int end)
         {
-            SubtitleModelList modelList = new SubtitleModelList();
-            // here is dummy code for integration purposes
-            for (int i = 0; i < end - start; i++)
+            SubtitleModelList model = new SubtitleModelList();
+            using (SkermData db = new SkermData())
             {
+                model.modelList = (from sub in db.Subtitles
+                                   where sub.YearCreated >= startYear && sub.YearCreated <= endYear
+                                   select sub).Skip(start).Take(end - start).ToList();
             }
-            return modelList;
+            return model;
         }
 
         
