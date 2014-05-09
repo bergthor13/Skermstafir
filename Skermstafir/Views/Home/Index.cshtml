@@ -20,16 +20,20 @@
 		<div class="fp-list" data-id="">
 			<!-- Up button, upvote count, flag-->
 			<div class="first-column">
+<<<<<<< HEAD
+				<div>▲</div> <div>00</div>
+=======
                 <div class="blueup">▲</div> <div>item.votes</div>
+>>>>>>> 4be52bc1ef7c2d7fdb466599853d340e2f213a40
 				<img src="http://www.placekitten.com/16/11" alt="Flag" />
 			</div>
-			<h4 class="second-column">item.subtitle.Name</h4>
-			<p id="year">Útgáfuár: item.subtitle.YearCreated</p>
+			<h4 class="second-column">@item.Name</h4>
+			<p id="year">Útgáfuár: @item.YearCreated</p>
 
 			<div class="third-column">
 				<input type="button" name="download" value="Niðurhala" />
 			</div>
-			<p id="creator">Stofnandi: item.user.UserName</p>
+			<p id="creator">Stofnandi: ERMAHGERD</p>
 		</div>
 	}
 </div>
@@ -37,7 +41,7 @@
 
 <div id="popular-requests" class="col-md-6 tranreq-list reqList">
 	<p class="box-title">Vinsælar beiðnir</p>
-	@foreach (var item in Model.popularSubtitleList.modelList)
+	@foreach (var item in Model.popularRequestList.modelList)
 	{
 		<div class="fp-list" data-id="">
 			<!-- Up button, upvote count, flag-->
@@ -46,8 +50,8 @@
 				<img src="http://www.placekitten.com/16/11" alt="Flag" />
 			</div>
 
-			<h4 class="second-column">item.subtitle.Name</h4>
-			<p id="year">Útgáfuár: item.subtitle.YearCreated</p>
+			<h4 class="second-column">@item.Name</h4>
+			<p id="year">Útgáfuár: @item.YearCreated</p>
 
 			<div class="third-column">
 				@if (Request.IsAuthenticated)
@@ -72,8 +76,8 @@
 				<img src="http://www.placekitten.com/16/11" alt="Flag" />
 			</div>
 
-			<h4 class="second-column">item.subtitle.Name</h4>
-			<p id="year">Útgáfuár: item.subtitle.YearCreated</p>
+			<h4 class="second-column">@item.Name</h4>
+			<p id="year">Útgáfuár: @item.YearCreated</p>
 
 			<div class="third-column">
 				<input type="button" name="download" value="Niðurhala" />
@@ -95,8 +99,8 @@
 				<img src="http://www.placekitten.com/16/11" alt="Flag" />
 			</div>
 
-			<h4 class="second-column">item.request.Name</h4>
-			<p id="year">Útgáfuár: item.request.YearCreated</p>
+			<h4 class="second-column">@item.Name</h4>
+			<p id="year">Útgáfuár: @item.YearCreated</p>
 
 			<div class="third-column">
 			@if (Request.IsAuthenticated)
