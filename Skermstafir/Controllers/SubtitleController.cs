@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Skermstafir.Models;
+using Skermstafir.Repositories;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -10,9 +12,11 @@ namespace Skermstafir.Controllers
     {
         //
         // GET: /Subtitle/
-        public ActionResult Subtitle(int subtitleID)
+        public ActionResult ShowSubtitle(int? subtitleID)
         {
-            return View();
+			SearchRepository sr = new SearchRepository();
+			SubtitleModel result = sr.GetSubtitleByID(5);
+			return View(result);
         }
 
 		// Creates a new translation
