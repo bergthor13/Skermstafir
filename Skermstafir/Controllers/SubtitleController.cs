@@ -5,7 +5,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using Skermstafir.Models;
 
 namespace Skermstafir.Controllers
 {
@@ -23,7 +22,8 @@ namespace Skermstafir.Controllers
 		// Creates a new translation
 		public ActionResult CreateNewSubtitle()
 		{
-			return View();
+            SubtitleModel model = new SubtitleModel();
+			return View(model);
 		}
 
 		// Edits the translation with the ID subtitleID
