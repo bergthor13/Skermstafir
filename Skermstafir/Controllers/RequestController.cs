@@ -19,9 +19,10 @@ namespace Skermstafir.Controllers
 			return View(result);
 		}
 		// Adds a new request.
-        public ActionResult AddRequest()
+        public ActionResult CreateRequest()
         {
-            return View();
+            RequestModel newRequest = new RequestModel();
+            return View(newRequest);
         }
 	}
 }
