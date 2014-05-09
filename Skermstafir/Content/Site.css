@@ -283,22 +283,37 @@ h4 {
     padding-left: 17%;
 }  
 /*width for manage.cshtml*/
-.col-md-3.tranreq-list 
+.col-md-3.tranreq-list.top
 {
     width: 35%;
     margin:0 0 0 0;
+    height: 50%;
 }
 
-.col-md-6.tranreq-list
+.col-md-3.tranreq-list.bottom
+{
+    width: 35%;
+    margin:0 0 0 0;
+    height: 50%;
+}
+
+.col-md-6.tranreq-list.top
 {
     width: 65%;
     margin:0 0 0 0;
-
+    height: 50%;
 }
+
+.col-md-6.tranreq-list.bottom
+{
+    width: 65%;
+    margin:0 0 0 0;
+    min-height: 50%;
+}
+
 /*change password*/
 .form-control.lykilord
 {
     width:50%;
-    margin-left:50%;
     margin-right:0;
 }
