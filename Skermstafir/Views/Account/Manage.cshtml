@@ -20,23 +20,23 @@
 <div class="row">
     <div class="col-md-3 tranreq-list">
         <p class="box-title">Stillingar</p>
+        <div class="col-md-12">
+            @if (ViewBag.HasLocalPassword)
+            {
+                @Html.Partial("_ChangePasswordPartial")
+            }
+            else
+            {
+                @Html.Partial("_SetPasswordPartial")
+            }
+        </div>
     </div>
     <div class="col-md-6 tranreq-list">
         <p class="box-title">Mínar beiðnir</p>
     </div>
 </div>
 <div class="row">
-    <div class="col-md-12">
-        @if (ViewBag.HasLocalPassword)
-        {
-            @Html.Partial("_ChangePasswordPartial")
-        }
-        else
-        {
-            @Html.Partial("_SetPasswordPartial")
-        }
-
-    </div>
+    
 </div>
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
