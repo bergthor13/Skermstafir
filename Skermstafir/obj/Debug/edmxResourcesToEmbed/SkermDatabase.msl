@@ -1,0 +1,192 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="SkermDatabaseStoreContainer" CdmEntityContainer="SkermData">
+    <EntitySetMapping Name="C__MigrationHistory">
+      <EntityTypeMapping TypeName="SkermDatabase.C__MigrationHistory">
+        <MappingFragment StoreEntitySet="__MigrationHistory">
+          <ScalarProperty Name="MigrationId" ColumnName="MigrationId" />
+          <ScalarProperty Name="ContextKey" ColumnName="ContextKey" />
+          <ScalarProperty Name="Model" ColumnName="Model" />
+          <ScalarProperty Name="ProductVersion" ColumnName="ProductVersion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Artists">
+      <EntityTypeMapping TypeName="SkermDatabase.Artist">
+        <MappingFragment StoreEntitySet="Artist">
+          <ScalarProperty Name="IdArtist" ColumnName="IdArtist" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AspNetRoles">
+      <EntityTypeMapping TypeName="SkermDatabase.AspNetRole">
+        <MappingFragment StoreEntitySet="AspNetRoles">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AspNetUserClaims">
+      <EntityTypeMapping TypeName="SkermDatabase.AspNetUserClaim">
+        <MappingFragment StoreEntitySet="AspNetUserClaims">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="ClaimType" ColumnName="ClaimType" />
+          <ScalarProperty Name="ClaimValue" ColumnName="ClaimValue" />
+          <ScalarProperty Name="User_Id" ColumnName="User_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AspNetUserLogins">
+      <EntityTypeMapping TypeName="SkermDatabase.AspNetUserLogin">
+        <MappingFragment StoreEntitySet="AspNetUserLogins">
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="LoginProvider" ColumnName="LoginProvider" />
+          <ScalarProperty Name="ProviderKey" ColumnName="ProviderKey" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AspNetUsers">
+      <EntityTypeMapping TypeName="SkermDatabase.AspNetUser">
+        <MappingFragment StoreEntitySet="AspNetUsers">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+          <ScalarProperty Name="SecurityStamp" ColumnName="SecurityStamp" />
+          <ScalarProperty Name="Discriminator" ColumnName="Discriminator" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Comments">
+      <EntityTypeMapping TypeName="SkermDatabase.Comment">
+        <MappingFragment StoreEntitySet="Comment">
+          <ScalarProperty Name="IdComment" ColumnName="IdComment" />
+          <ScalarProperty Name="Content" ColumnName="Content" />
+          <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Genres">
+      <EntityTypeMapping TypeName="SkermDatabase.Genre">
+        <MappingFragment StoreEntitySet="Genre">
+          <ScalarProperty Name="IdGenre" ColumnName="IdGenre" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Languages">
+      <EntityTypeMapping TypeName="SkermDatabase.Language">
+        <MappingFragment StoreEntitySet="Language">
+          <ScalarProperty Name="IdLanguage" ColumnName="IdLanguage" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Requests">
+      <EntityTypeMapping TypeName="SkermDatabase.Request">
+        <MappingFragment StoreEntitySet="Request">
+          <ScalarProperty Name="IdRequest" ColumnName="IdRequest" />
+          <ScalarProperty Name="LanguageId" ColumnName="LanguageId" />
+          <ScalarProperty Name="Username" ColumnName="Username" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="YearCreated" ColumnName="YearCreated" />
+          <ScalarProperty Name="DateAdded" ColumnName="DateAdded" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Subtitles">
+      <EntityTypeMapping TypeName="SkermDatabase.Subtitle">
+        <MappingFragment StoreEntitySet="Subtitle">
+          <ScalarProperty Name="IdSubtitle" ColumnName="IdSubtitle" />
+          <ScalarProperty Name="LanguageId" ColumnName="LanguageId" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="YearCreated" ColumnName="YearCreated" />
+          <ScalarProperty Name="Content" ColumnName="Content" />
+          <ScalarProperty Name="DateAdded" ColumnName="DateAdded" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Votes">
+      <EntityTypeMapping TypeName="SkermDatabase.Vote">
+        <MappingFragment StoreEntitySet="Vote">
+          <ScalarProperty Name="IdVote" ColumnName="IdVote" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="AspNetUserRoles" TypeName="SkermDatabase.AspNetUserRoles" StoreEntitySet="AspNetUserRoles">
+      <EndProperty Name="AspNetRoles">
+        <ScalarProperty Name="Id" ColumnName="RoleId" />
+      </EndProperty>
+      <EndProperty Name="AspNetUsers">
+        <ScalarProperty Name="Id" ColumnName="UserId" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="Request_has_Artist" TypeName="SkermDatabase.Request_has_Artist" StoreEntitySet="Request_has_Artist">
+      <EndProperty Name="Artist">
+        <ScalarProperty Name="IdArtist" ColumnName="ArtistId" />
+      </EndProperty>
+      <EndProperty Name="Request">
+        <ScalarProperty Name="IdRequest" ColumnName="RequestId" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="Request_has_Vote" TypeName="SkermDatabase.Request_has_Vote" StoreEntitySet="Request_has_Vote">
+      <EndProperty Name="Request">
+        <ScalarProperty Name="IdRequest" ColumnName="RequestId" />
+      </EndProperty>
+      <EndProperty Name="Vote">
+        <ScalarProperty Name="IdVote" ColumnName="VoteId" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="Subtitle_has_Artist" TypeName="SkermDatabase.Subtitle_has_Artist" StoreEntitySet="Subtitle_has_Artist">
+      <EndProperty Name="Artist">
+        <ScalarProperty Name="IdArtist" ColumnName="ArtistId" />
+      </EndProperty>
+      <EndProperty Name="Subtitle">
+        <ScalarProperty Name="IdSubtitle" ColumnName="SubtitleId" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="Subtitle_has_Comment" TypeName="SkermDatabase.Subtitle_has_Comment" StoreEntitySet="Subtitle_has_Comment">
+      <EndProperty Name="Comment">
+        <ScalarProperty Name="IdComment" ColumnName="CommentId" />
+      </EndProperty>
+      <EndProperty Name="Subtitle">
+        <ScalarProperty Name="IdSubtitle" ColumnName="SubtitleId" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="Subtitle_has_Genre" TypeName="SkermDatabase.Subtitle_has_Genre" StoreEntitySet="Subtitle_has_Genre">
+      <EndProperty Name="Genre">
+        <ScalarProperty Name="IdGenre" ColumnName="GenreId" />
+      </EndProperty>
+      <EndProperty Name="Subtitle">
+        <ScalarProperty Name="IdSubtitle" ColumnName="SubtitleId" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="Subtitle_has_Vote" TypeName="SkermDatabase.Subtitle_has_Vote" StoreEntitySet="Subtitle_has_Vote">
+      <EndProperty Name="Subtitle">
+        <ScalarProperty Name="IdSubtitle" ColumnName="SubtitleId" />
+      </EndProperty>
+      <EndProperty Name="Vote">
+        <ScalarProperty Name="IdVote" ColumnName="VoteId" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="User_has_Comment" TypeName="SkermDatabase.User_has_Comment" StoreEntitySet="User_has_Comment">
+      <EndProperty Name="Comment">
+        <ScalarProperty Name="IdComment" ColumnName="CommentId" />
+      </EndProperty>
+      <EndProperty Name="AspNetUsers">
+        <ScalarProperty Name="Id" ColumnName="UserId" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="User_has_Subtitle" TypeName="SkermDatabase.User_has_Subtitle" StoreEntitySet="User_has_Subtitle">
+      <EndProperty Name="Subtitle">
+        <ScalarProperty Name="IdSubtitle" ColumnName="SubtitleId" />
+      </EndProperty>
+      <EndProperty Name="AspNetUsers">
+        <ScalarProperty Name="Id" ColumnName="UserId" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping>
