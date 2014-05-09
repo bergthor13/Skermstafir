@@ -20,8 +20,7 @@
 		<div class="fp-list" data-id="">
 			<!-- Up button, upvote count, flag-->
 			<div class="first-column">
-				<div>▲</div> <div>00</div>
-                <div class="blueup">▲</div> <div>item.votes</div>
+                <div class="blueup">▲</div> <div>@item.Votes.Count</div>
 				<img src="http://www.placekitten.com/16/11" alt="Flag" />
 			</div>
 			<h4 class="second-column">@item.Name</h4>
@@ -30,7 +29,7 @@
 			<div class="third-column">
 				<input type="button" name="download" value="Niðurhala" />
 			</div>
-			<p id="creator">Stofnandi: ERMAHGERD</p>
+			<p id="creator">Stofnandi: @item.AspNetUsers.FirstOrDefault().UserName</p>
 		</div>
 	}
 </div>
@@ -43,7 +42,7 @@
 		<div class="fp-list" data-id="">
 			<!-- Up button, upvote count, flag-->
 			<div class="first-column">
-                <div class="blueup">▲</div> <div>item.votes</div>
+                <div class="blueup">▲</div> <div>@item.Votes.Count</div>
 				<img src="http://www.placekitten.com/16/11" alt="Flag" />
 			</div>
 
@@ -56,7 +55,7 @@
 					<input type="button" name="download" value="Stofna þýðingu" />
 				}
 			</div>
-			<p id="creator">Stofnandi: item.user.UserName</p>
+			<p id="creator">Stofnandi: @item.Username</p>
 		</div>
 	}
 </div>
@@ -69,7 +68,7 @@
 		<div class="fp-list" data-id="">
 			<!-- Up button, upvote count, flag-->
 			<div class="first-column">
-                <div class="blueup">▲</div> <div>item.votes</div>
+                <div class="blueup">▲</div> <div>@item.Votes.Count </div>
 				<img src="http://www.placekitten.com/16/11" alt="Flag" />
 			</div>
 
@@ -79,7 +78,7 @@
 			<div class="third-column">
 				<input type="button" name="download" value="Niðurhala" />
 			</div>
-			<p id="creator">Stofnandi: item.user.UserName</p>
+			<p id="creator">Stofnandi: @item.AspNetUsers.FirstOrDefault().UserName</p>
 		</div>
 	}
 </div>
@@ -92,7 +91,7 @@
 		<div class="fp-list" data-id="">
 			<!-- Up button, upvote count, flag-->
 			<div class="first-column">
-                <div class="blueup">▲</div> <div>item.votes</div>
+                <div class="blueup">▲</div> <div>@item.Votes.Count </div>
 				<img src="http://www.placekitten.com/16/11" alt="Flag" />
 			</div>
 
@@ -105,7 +104,7 @@
 				<input type="button" name="download" value="Stofna þýðingu" />
 			}
 			</div>
-			<p id="creator">Stofnandi: item.request.Username</p>
+			<p id="creator">Stofnandi: @item.Username</p>
 		</div>
 	}
 </div>
