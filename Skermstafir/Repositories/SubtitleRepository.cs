@@ -18,7 +18,6 @@ namespace Skermstafir.Repositories
                 db.SaveChanges();
             }
         }
-
         // delete a specific subtitle from database
         public void DeleteSubtitle(int id)
         {
