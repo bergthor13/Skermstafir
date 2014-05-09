@@ -10,18 +10,30 @@
 
 <p class="text-success">@ViewBag.StatusMessage</p>
 <div class="row">
-    <div class="col-md-3 tranreq-list top">
+    <div id="afrekSection" class="col-md-3 tranreq-list top">
         <p class="box-title">Afrek</p>
-        <p>eigshgrshg</p>
+        <div class="fp-list">
+            <p>Afrek 1</p>
+        </div>
+        <div class="fp-list">
+            <p>Afrek 2</p>
+        </div>
+        <div class="fp-list">
+            <p>Afrek 3</p>
+        </div>
     </div>
-    <div class="col-md-6 tranreq-list top">
+    <div id="transSection" class="col-md-6 tranreq-list top">
         <p class="box-title">Mínar þýðingar</p>
-        <p>ajirghrig/<p>
-        <p>rgjrgh</p>
+        @for (int i = 0; i < 20; i++)
+        {
+            <div class="fp-list">
+                <p>Þýðing</p>
+            </div>
+        }
     </div>
 </div>
 <div class="row">
-    <div class="col-md-3 tranreq-list bottom">
+    <div id="settingSection" class="col-md-3 tranreq-list bottom">
         <p class="box-title">Stillingar</p>
         <div class="col-md-12">
             @if (ViewBag.HasLocalPassword)
@@ -34,8 +46,20 @@
             }
         </div>
     </div>
-    <div class="col-md-6 tranreq-list bottom">
+    <div id="reqSection" class="col-md-6 tranreq-list bottom">
         <p class="box-title">Mínar beiðnir</p>
+        <div class="fp-list">
+            <p>Beiðni 1</p>
+        </div>
+        <div class="fp-list">
+            <p>Beiðni 2</p>
+        </div>
+        <div class="fp-list">
+            <p>Beiðni 3</p>
+        </div>
+        <div class="fp-list">
+            <p>Beiðni 4</p>
+        </div>
     </div>
 </div>
 <div class="row">

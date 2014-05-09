@@ -283,37 +283,33 @@ h4 {
     padding-left: 17%;
 }  
 /*width for manage.cshtml*/
-.col-md-3.tranreq-list.top
+.col-md-3.tranreq-list
 {
     width: 35%;
-    margin:0 0 0 0;
-    height: 50%;
 }
 
-.col-md-3.tranreq-list.bottom
-{
-    width: 35%;
-    margin:0 0 0 0;
-    height: 50%;
-}
-
-.col-md-6.tranreq-list.top
+.col-md-6.tranreq-list
 {
     width: 65%;
-    margin:0 0 0 0;
-    height: 50%;
 }
 
-.col-md-6.tranreq-list.bottom
+.top
 {
-    width: 65%;
-    margin:0 0 0 0;
-    min-height: 50%;
+    height: auto;
+    max-height: 600px;
+    margin: 0px 0px 10px 0px;
+    overflow-y: auto;
+}
+
+.bottom
+{
+    height: auto;
+    max-height: 600px;
+    margin: 0 0 0 0;
 }
 
 /*change password*/
 .form-control.lykilord
 {
-    width:50%;
-    margin-right:0;
+    width: 120%;
 }
