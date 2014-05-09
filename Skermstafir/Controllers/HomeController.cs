@@ -17,10 +17,10 @@ namespace Skermstafir.Controllers
             SearchRepository sRep = new SearchRepository();
             RequestRepository rRep = new RequestRepository();
             MultipleModelLists model = new MultipleModelLists();
-            model.newestRequestList = rRep.GetRequestByNewest(0, 5);
-            model.popularRequestList = rRep.GetByMostPopular(0, 5);
-            model.newestSubtitleList = sRep.GetSubtitleByNewest(0, 5);
-            model.popularSubtitleList = sRep.GetSubtitleByMostPopular(0, 5);
+            model.newestRequestList = rRep.GetRequestByNewest(0, 2);
+            model.popularRequestList = rRep.GetByMostPopular(0, 2);
+            model.newestSubtitleList = sRep.GetSubtitleByNewest(0, 2);
+            model.popularSubtitleList = sRep.GetSubtitleByMostPopular(0, 2);
 			return View("Index", model);
 		}
 
