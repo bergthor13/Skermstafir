@@ -23,7 +23,7 @@ namespace Skermstafir.Models
         public string NewPassword { get; set; }
 
         [DataType(DataType.Password)]
-        [Display(Name = "Staðfesta nýja lykilorð.")]
+        [Display(Name = "Staðfesta lykilorð")]
         [Compare("NewPassword", ErrorMessage = "Þetta er ekki sama lykilorð og þú skrifaðir fyrir ofan, reyndu aftur.")]
         public string ConfirmPassword { get; set; }
     }

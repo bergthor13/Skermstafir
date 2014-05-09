@@ -1,14 +1,14 @@
 ﻿@model Skermstafir.Models.SubtitleModel
 
 @{
-    ViewBag.Title = @Model.subtitle.Name;
+    ViewBag.Title = "Edit Subtitle";
 }
 
 <div class="subtitle-box">
     <div class="box-title">
-        @Model.subtitle.Name
+        <p>Gladiator</p>
 
-        <p class="votes-req-page">▲ @Model.subtitle.Votes</p>
+        <p class="votes-req-page">▲ 15</p>
     </div>
     <div class="flokkar disabled">
         <input type="checkbox" id="genre1" />
@@ -36,9 +36,11 @@
         <label for="genre8">Ævintýri</label>
     </div>
 
-    <p>Stofnandi beiðni: </p>
+    <p>Stofnandi þýðingu: </p>
 
     <p>Útgáfuár:</p>
     <input class="disabled" type="text" name="year" value="2014" />
     <textarea class="disabled">Hér kemur lýsing á myndinni.</textarea>
+    <textarea cols="20" rows="20"></textarea>
+    <textarea cols="20" rows="20"></textarea>
 </div>

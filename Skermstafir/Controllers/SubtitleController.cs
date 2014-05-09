@@ -22,13 +22,15 @@ namespace Skermstafir.Controllers
 		// Creates a new translation
 		public ActionResult CreateNewSubtitle()
 		{
-			return View();
+            SubtitleModel model = new SubtitleModel();
+			return View(model);
 		}
 
 		// Edits the translation with the ID subtitleID
-		public ActionResult EditSubtitle(int subtitleID)
+		public ActionResult EditSubtitle(int? subtitleID)
 		{
-			return View();
+            SubtitleModel model = new SubtitleModel();
+			return View(model);
 		}
 	}
 }

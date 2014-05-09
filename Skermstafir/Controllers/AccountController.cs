@@ -119,10 +119,10 @@ namespace Skermstafir.Controllers
         public ActionResult Manage(ManageMessageId? message)
         {
             ViewBag.StatusMessage =
-                message == ManageMessageId.ChangePasswordSuccess ? "Your password has been changed."
-                : message == ManageMessageId.SetPasswordSuccess ? "Your password has been set."
-                : message == ManageMessageId.RemoveLoginSuccess ? "The external login was removed."
-                : message == ManageMessageId.Error ? "An error has occurred."
+                message == ManageMessageId.ChangePasswordSuccess ? "Lykilorð þitt hefur verið breytt."
+                : message == ManageMessageId.SetPasswordSuccess ? "Lykilorð vistað."
+                : message == ManageMessageId.RemoveLoginSuccess ? "Utanaðkomandi innskráning fjarlægð."
+                : message == ManageMessageId.Error ? "Villa kom upp á!"
                 : "";
             ViewBag.HasLocalPassword = HasPassword();
             ViewBag.ReturnUrl = Url.Action("Manage");

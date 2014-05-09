@@ -4,4 +4,9 @@
 }
 
 @Html.Partial("_Search")
+
+@if (Request.IsAuthenticated)
+{
+	<input type="button" name="createRequest" value="Stofna þýðingu" />
+}
 @Html.Partial("_SearchResult")
