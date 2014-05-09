@@ -23,7 +23,6 @@
 				<div>▲</div> <div>item.votes</div>
 				<img src="http://www.placekitten.com/16/11" alt="Flag" />
 			</div>
-
 			<h4 class="second-column">item.subtitle.Name</h4>
 			<p id="year">Útgáfuár: item.subtitle.YearCreated</p>
 
@@ -51,7 +50,10 @@
 			<p id="year">Útgáfuár: item.subtitle.YearCreated</p>
 
 			<div class="third-column">
-				<input type="button" name="download" value="Stofna þýðingu" />
+				@if (Request.IsAuthenticated)
+				{
+					<input type="button" name="download" value="Stofna þýðingu" />
+				}
 			</div>
 			<p id="creator">Stofnandi: item.user.UserName</p>
 		</div>
@@ -97,7 +99,10 @@
 			<p id="year">Útgáfuár: item.request.YearCreated</p>
 
 			<div class="third-column">
+			@if (Request.IsAuthenticated)
+			{
 				<input type="button" name="download" value="Stofna þýðingu" />
+			}
 			</div>
 			<p id="creator">Stofnandi: item.request.Username</p>
 		</div>
