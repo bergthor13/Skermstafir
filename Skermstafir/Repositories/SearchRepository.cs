@@ -41,18 +41,23 @@ namespace Skermstafir.Repositories
         // query database to get a specific subtitle
         public SubtitleModel GetSubtitleByID(int id)
         {
+            SkermData db = new SkermData();
             SubtitleModel dummy = new SubtitleModel();
+            dummy.subtitle = (from sub in db.Subtitles
+                              where sub.IdSubtitle == id
+                              select sub).SingleOrDefault();
             return dummy;
         }
 
         // query database to get subtitles by language starting at index start and ending at index end both inclusive
-        public SubtitleModelList GetSubtitleByLanguage(string Language, int start, int end)
+        public SubtitleModelList GetSubtitleByLanguage(string language, int start, int end)
         {
+            SkermData db = new SkermData();
             SubtitleModelList modelList = new SubtitleModelList();
-            // here is dummy code for integration purposes
-            for (int i = 0; i < end - start; i++)
-            {
-            }
+            modelList.modelList = (from sub in db.Subtitles
+                                   where sub.Language.Name == language
+                                   orderby sub.IdSubtitle
+                                   select sub).Skip(start).Take(end - start).ToList();
             return modelList;
         }
 
