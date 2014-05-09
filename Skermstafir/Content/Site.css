@@ -285,5 +285,13 @@ h4 {
 /*width for manage.cshtml*/
 .col-md-3.tranreq-list 
 {
-    width: 30%;
+    width: 35%;
+    margin:0 0 0 0;
+}
+
+.col-md-6.tranreq-list
+{
+    width: 65%;
+    margin:0 0 0 0;
+
 }
