@@ -12,22 +12,22 @@
 
 
 	<p class="box-title">Vinsælar þýðingar</p>
-	@for (int i = 0; i < 3; i++)
+	@foreach (var item in Model.popularSubtitleList.modelList)
 	{
 		<div class="fp-list" data-id="">
 			<!-- Up button, upvote count, flag-->
 			<div class="first-column">
-				<div>▲</div> <div>@Model.popularSubtitleList.modelList[i].votes</div>
+				<div>▲</div> <div>item.votes</div>
 				<img src="http://www.placekitten.com/16/11" alt="Flag" />
 			</div>
 
-			<h4 class="second-column">@Model.popularSubtitleList.modelList[i].subtitle.Name</h4>
-			<p id="year">Útgáfuár: @Model.popularSubtitleList.modelList[i].subtitle.YearCreated</p>
+			<h4 class="second-column">item.subtitle.Name</h4>
+			<p id="year">Útgáfuár: item.subtitle.YearCreated</p>
 
 			<div class="third-column">
 				<input type="button" name="download" value="Niðurhala" />
 			</div>
-			<p id="creator">Stofnandi: @Model.popularSubtitleList.modelList[i].user.UserName</p>
+			<p id="creator">Stofnandi: item.user.UserName</p>
 		</div>
 	}
 </div>
@@ -35,22 +35,22 @@
 
 <div id="popular-requests" class="col-md-6 tranreq-list reqList">
 	<p class="box-title">Vinsælar beiðnir</p>
-	@for (int i = 0; i < 3; i++)
+	@foreach (var item in Model.popularSubtitleList.modelList)
 	{
 		<div class="fp-list" data-id="">
 			<!-- Up button, upvote count, flag-->
 			<div class="first-column">
-				<div>▲</div> <div>@Model.newestSubtitleList.modelList[i].votes</div>
+				<div>▲</div> <div>item.votes</div>
 				<img src="http://www.placekitten.com/16/11" alt="Flag" />
 			</div>
 
-			<h4 class="second-column">@Model.newestSubtitleList.modelList[i].subtitle.Name</h4>
-			<p id="year">Útgáfuár: @Model.newestSubtitleList.modelList[i].subtitle.YearCreated</p>
+			<h4 class="second-column">item.subtitle.Name</h4>
+			<p id="year">Útgáfuár: item.subtitle.YearCreated</p>
 
 			<div class="third-column">
 				<input type="button" name="download" value="Stofna þýðingu" />
 			</div>
-			<p id="creator">Stofnandi: @Model.newestSubtitleList.modelList[i].user.UserName</p>
+			<p id="creator">Stofnandi: item.user.UserName</p>
 		</div>
 	}
 </div>
@@ -58,22 +58,22 @@
 
 <div id="newest-translations" class="col-md-6 tranreq-list tranList">
 	<p class="box-title">Nýjustu þýðingar</p>
-	@for (int i = 0; i < 3; i++)
+	@foreach (var item in Model.newestSubtitleList.modelList)
 	{
 		<div class="fp-list" data-id="">
 			<!-- Up button, upvote count, flag-->
 			<div class="first-column">
-				<div>▲</div> <div>@Model.newestSubtitleList.modelList[i].votes</div>
+				<div>▲</div> <div>item.votes</div>
 				<img src="http://www.placekitten.com/16/11" alt="Flag" />
 			</div>
 
-			<h4 class="second-column">@Model.newestSubtitleList.modelList[i].subtitle.Name</h4>
-			<p id="year">Útgáfuár: @Model.newestSubtitleList.modelList[i].subtitle.YearCreated</p>
+			<h4 class="second-column">item.subtitle.Name</h4>
+			<p id="year">Útgáfuár: item.subtitle.YearCreated</p>
 
 			<div class="third-column">
 				<input type="button" name="download" value="Niðurhala" />
 			</div>
-			<p id="creator">Stofnandi: @Model.newestSubtitleList.modelList[i].user.UserName</p>
+			<p id="creator">Stofnandi: item.user.UserName</p>
 		</div>
 	}
 </div>
@@ -81,22 +81,22 @@
 
 <div id="newest-requests" class="col-md-6 tranreq-list reqList">
 	<p class="box-title">Nýjustu beiðnir</p>
-	@for (int i = 0; i < 3; i++)
+	@foreach (var item in Model.newestRequestList.modelList)
 	{
 		<div class="fp-list" data-id="">
 			<!-- Up button, upvote count, flag-->
 			<div class="first-column">
-				<div>▲</div> <div>@Model.newestRequestList.modelList[i].votes</div>
+				<div>▲</div> <div>item.votes</div>
 				<img src="http://www.placekitten.com/16/11" alt="Flag" />
 			</div>
 
-			<h4 class="second-column">@Model.newestRequestList.modelList[i].request.Name</h4>
-			<p id="year">Útgáfuár: @Model.newestRequestList.modelList[i].request.YearCreated</p>
+			<h4 class="second-column">item.request.Name</h4>
+			<p id="year">Útgáfuár: item.request.YearCreated</p>
 
 			<div class="third-column">
 				<input type="button" name="download" value="Stofna þýðingu" />
 			</div>
-			<p id="creator">Stofnandi: @Model.newestRequestList.modelList[i].request.Username</p>
+			<p id="creator">Stofnandi: item.request.Username</p>
 		</div>
 	}
 </div>

@@ -46,6 +46,7 @@ namespace Skermstafir.Repositories
             dummy.subtitle = (from sub in db.Subtitles
                               where sub.IdSubtitle == id
                               select sub).SingleOrDefault();
+            db.Subtitles.Add()
             return dummy;
         }
 
