@@ -18,7 +18,7 @@ namespace Skermstafir.Repositories
                 db.SaveChanges();
             }
         }
-        // delete a specific subtitle from database
+        // Delete a specific subtitle from database
         public void DeleteSubtitle(int id)
         {
             using (SkermData db = new SkermData())
@@ -31,7 +31,7 @@ namespace Skermstafir.Repositories
             }
         }
 
-        // change an existing subtitle entry in the database
+        // Change an existing subtitle entry in the database
         public void ChangeExistingSubtitle(int id, SubtitleModel editSub)
         {
             using (SkermData db = new SkermData())
