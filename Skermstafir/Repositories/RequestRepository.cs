@@ -24,21 +24,7 @@ namespace Skermstafir.Repositories
         public RequestModelList GetRequestByNewest(int start, int end)
         {
             RequestModelList modelList = new RequestModelList();
-            // bellow is dummy code
-            for (int i = 0; i < end - start; i++)
-            {
-                RequestModel dummy = new RequestModel();
-                dummy.id = 1;
-                dummy.name = "Anchorman 2, The Legend Continues";
-                dummy.votes = 32;
-                dummy.yearCreated = 2014;
-                dummy.dateAdded = DateTime.Now;
-				dummy.Language = "Íslenska";
-                dummy.artists.Add("Bruce Willis");
-				dummy.description = "None";
-				dummy.user = "YOOOUUUU!!!!!";
-                modelList.Add(dummy);
-            }
+     
             return modelList;
         }
 
@@ -46,21 +32,6 @@ namespace Skermstafir.Repositories
         public RequestModelList GetByMostPopular(int start, int end)
         {
             RequestModelList modelList = new RequestModelList();
-            //Bellow is dummy code
-            for (int i = 0; i < end - start; i++)
-            {
-                RequestModel dummy = new RequestModel();
-                dummy.id = 1;
-                dummy.name = "Anchorman 2, The Legend Continues";
-                dummy.votes = 25;
-                dummy.yearCreated = 2014;
-                dummy.dateAdded = DateTime.Now;
-                dummy.Language = "Íslenska";
-                dummy.artists.Add("Bruce Willis");
-                dummy.description = "None";
-                dummy.user = "YOOOUUUU!!!!!";
-                modelList.Add(dummy);
-            }
             return modelList;
         }
 
@@ -68,20 +39,6 @@ namespace Skermstafir.Repositories
         public RequestModelList GetRequestByUser(String username, int start, int end)
         {
             RequestModelList modelList = new RequestModelList();
-            for (int i = 0; i < end - start; i++)
-            {
-                RequestModel dummy = new RequestModel();
-                dummy.id = 1;
-                dummy.name = "Anchorman 2, The Legend Continues";
-                dummy.votes = 25;
-                dummy.yearCreated = 2014;
-                dummy.dateAdded = DateTime.Now;
-                dummy.Language = "Íslenska";
-                dummy.artists.Add("Bruce Willis");
-                dummy.description = "None";
-                dummy.user = "YOOOUUUU!!!!!";
-                modelList.Add(dummy);
-            }
             return modelList;
         }
 
@@ -89,35 +46,12 @@ namespace Skermstafir.Repositories
         public RequestModel GetRequestByID(int id)
         {
             RequestModel dummy = new RequestModel();
-            dummy.id = 1;
-            dummy.name = "Anchorman 2, The Legend Continues";
-            dummy.votes = 25;
-            dummy.yearCreated = 2014;
-            dummy.dateAdded = DateTime.Now;
-            dummy.Language = "Íslenska";
-            dummy.artists.Add("Bruce Willis");
-            dummy.description = "None";
-            dummy.user = "YOOOUUUU!!!!!";
             return dummy;
         }
         // queries database and gets request in language starting at index start and ending at index end both inclusive
         public RequestModelList GetRequestByLanguage(String language, int start, int end)
         {
             RequestModelList modelList = new RequestModelList();
-            for (int i = 0; i < end - start; i++)
-            {
-                RequestModel dummy = new RequestModel();
-                dummy.id = 1;
-                dummy.name = "Anchorman 2, The Legend Continues";
-                dummy.votes = 25;
-                dummy.yearCreated = 2014;
-                dummy.dateAdded = DateTime.Now;
-                dummy.Language = "Íslenska";
-                dummy.artists.Add("Bruce Willis");
-                dummy.description = "None";
-                dummy.user = "YOOOUUUU!!!!!";
-                modelList.Add(dummy);
-            }
             return modelList;
         }
 

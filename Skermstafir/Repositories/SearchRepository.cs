@@ -13,21 +13,6 @@ namespace Skermstafir.Repositories
         {
             SubtitleModelList value = new SubtitleModelList();
             // here is dummy code for integration purposes
-            for (int i = 0; i < end - start; i++)
-            {
-                SubtitleModel dummy = new SubtitleModel();
-                dummy.id = 1;
-                dummy.name = "Anchorman 2, The Legend Continues";
-                dummy.language = "Íslenska";
-                dummy.votes = 94;
-                dummy.yearCreated = 2014;
-                dummy.artists.Add("None");
-                dummy.downloads = 20000000;
-                dummy.content = "Some bullshit";
-                dummy.dateCreated = DateTime.Now;
-                dummy.user = "YOOOUUUU!!!!!";
-                value.Add(dummy);
-            }
             return value;
         }
 
@@ -38,18 +23,6 @@ namespace Skermstafir.Repositories
             // here is dummy code for integration purposes
             for (int i = 0; i < end - start; i++)
             {
-                SubtitleModel dummy = new SubtitleModel();
-                dummy.id = 1;
-                dummy.name = "Anchorman 2, The Legend Continues";
-                dummy.language = "Íslenska";
-                dummy.votes = 99;
-                dummy.yearCreated = 2014;
-                dummy.artists.Add("None");
-                dummy.downloads = 25;
-                dummy.content = "Some bullshit";
-                dummy.dateCreated = DateTime.Now;
-                dummy.user = "YOOOUUUU!!!!!";
-                modelList.Add(dummy);
             }
             return modelList;
         }
@@ -61,18 +34,6 @@ namespace Skermstafir.Repositories
             // here is dummy code for integration purposes
             for (int i = 0; i < end - start; i++)
             {
-                SubtitleModel dummy = new SubtitleModel();
-                dummy.id = 1;
-                dummy.name = "Anchorman 2, The Legend Continues";
-                dummy.language = "Íslenska";
-                dummy.votes = 99;
-                dummy.yearCreated = 2014;
-                dummy.artists.Add("None");
-                dummy.downloads = 25;
-                dummy.content = "Some bullshit";
-                dummy.dateCreated = DateTime.Now;
-                dummy.user = "YOOOUUUU!!!!!";
-                modelList.Add(dummy);
             }
             return modelList;
         }
@@ -82,16 +43,6 @@ namespace Skermstafir.Repositories
         public SubtitleModel GetSubtitleByID(int id)
         {
             SubtitleModel dummy = new SubtitleModel();
-            dummy.id = 1;
-            dummy.name = "Anchorman 2, The Legend Continues";
-            dummy.language = "Íslenska";
-            dummy.votes = 99;
-            dummy.yearCreated = 2014;
-            dummy.artists.Add("None");
-            dummy.downloads = 25;
-            dummy.content = "Some bullshit";
-            dummy.dateCreated = DateTime.Now;
-            dummy.user = "YOOOUUUU!!!!!";
             return dummy;
         }
 
@@ -102,18 +53,6 @@ namespace Skermstafir.Repositories
             // here is dummy code for integration purposes
             for (int i = 0; i < end - start; i++)
             {
-                SubtitleModel dummy = new SubtitleModel();
-                dummy.id = 1;
-                dummy.name = "Anchorman 2, The Legend Continues";
-                dummy.language = "Íslenska";
-                dummy.votes = 99;
-                dummy.yearCreated = 2014;
-                dummy.artists.Add("None");
-                dummy.downloads = 25;
-                dummy.content = "Some bullshit";
-                dummy.dateCreated = DateTime.Now;
-                dummy.user = "YOOOUUUU!!!!!";
-                modelList.Add(dummy);
             }
             return modelList;
         }
@@ -125,18 +64,6 @@ namespace Skermstafir.Repositories
             // here is dummy code for integration purposes
             for (int i = 0; i < end - start; i++)
             {
-                SubtitleModel dummy = new SubtitleModel();
-                dummy.id = 1;
-                dummy.name = "Anchorman 2, The Legend Continues";
-                dummy.language = "Íslenska";
-                dummy.votes = 99;
-                dummy.yearCreated = 2014;
-                dummy.artists.Add("None");
-                dummy.downloads = 25;
-                dummy.content = "Some bullshit";
-                dummy.dateCreated = DateTime.Now;
-                dummy.user = "YOOOUUUU!!!!!";
-                modelList.Add(dummy);
             }
             return modelList;
         }
