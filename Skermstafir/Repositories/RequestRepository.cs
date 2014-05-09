@@ -11,12 +11,23 @@ namespace Skermstafir.Repositories
         // adds new request to database
         public void AddRequest(RequestModel newRequest)
         {
+            using(SkermData db = new SkermData())
+            {
+                db.Requests.Add(newRequest.request);
+                db.SaveChanges();
+            }
         }
 
         //deletes a request with a specific id
         public void DeleteRequest(int id)
         {
-
+            using(SkermData db = new SkermData())
+            {
+                Request discardRequest = (from req in db.Requests
+                                          where req.IdRequest == id
+                                          select req).Single();
+                db.Requests.Remove(discardRequest);
+            }
         }
 
         // queries and gets requests starting from index start and ending at index end
