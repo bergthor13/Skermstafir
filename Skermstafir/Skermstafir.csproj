@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -184,6 +184,14 @@
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Pictures\skref1.jpg" />
+    <Content Include="Content\Pictures\skref2.jpg" />
+    <Content Include="Content\Pictures\skref2.png" />
+    <Content Include="Content\Pictures\skref3.jpg" />
+    <Content Include="Content\Pictures\skref4.jpg" />
+    <Content Include="Content\Pictures\skref5.jpg" />
+    <Content Include="Content\Pictures\skref6.jpg" />
+    <Content Include="Content\Pictures\StLogo.png" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -231,6 +239,11 @@
     <Content Include="Views\Home\Requests.cshtml" />
     <Content Include="Views\Home\Subtitles.cshtml" />
     <Content Include="Views\Shared\_Search.cshtml" />
+    <Content Include="Views\Shared\_FrontPageTableCellReq.cshtml" />
+    <Content Include="Views\Shared\_FrontPageTableCellTrans.cshtml" />
+    <Content Include="Views\Shared\_SearchRequests.cshtml" />
+    <Content Include="Views\Shared\_SearchResult.cshtml" />
+    <Content Include="Views\Shared\_SearchResultRequests.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
