@@ -38,6 +38,7 @@ namespace Skermstafir.Repositories
         // queries database and gets all requests from a specific user starting at index start and ending at index end both inclusive
         public RequestModelList GetRequestByUser(String username, int start, int end)
         {
+            SkermData db = new SkermData();
             RequestModelList modelList = new RequestModelList();
             return modelList;
         }
@@ -45,7 +46,12 @@ namespace Skermstafir.Repositories
         // queries and gets a request by id
         public RequestModel GetRequestByID(int id)
         {
+            SkermData db = new SkermData();
             RequestModel dummy = new RequestModel();
+            dummy.request = (from req in db.Requests
+                             where req.IdRequest == id
+                             select req).Single();
+            dummy.votes = dummy.request.Votes.Count;
             return dummy;
         }
         // queries database and gets request in language starting at index start and ending at index end both inclusive

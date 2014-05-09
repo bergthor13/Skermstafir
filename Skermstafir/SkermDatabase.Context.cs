@@ -13,10 +13,10 @@ namespace Skermstafir
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class VERK014_H22Entities : DbContext
+    public partial class SkermData : DbContext
     {
-        public VERK014_H22Entities()
-            : base("name=VERK014_H22Entities")
+        public SkermData()
+            : base("name=SkermData")
         {
         }
     

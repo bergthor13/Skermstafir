@@ -12,7 +12,6 @@ namespace Skermstafir.Repositories
         public SubtitleModelList GetSubtitleByNewest(int start, int end)
         {
             SubtitleModelList value = new SubtitleModelList();
-            // here is dummy code for integration purposes
             return value;
         }
 
