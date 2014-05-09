@@ -235,6 +235,14 @@
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Pictures\skref1.jpg" />
+    <Content Include="Content\Pictures\skref2.jpg" />
+    <Content Include="Content\Pictures\skref2.png" />
+    <Content Include="Content\Pictures\skref3.jpg" />
+    <Content Include="Content\Pictures\skref4.jpg" />
+    <Content Include="Content\Pictures\skref5.jpg" />
+    <Content Include="Content\Pictures\skref6.jpg" />
+    <Content Include="Content\Pictures\StLogo.png" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -297,6 +305,11 @@
       <DependentUpon>SkermDatabase.edmx</DependentUpon>
       <LastGenOutput>SkermDatabase.cs</LastGenOutput>
     </Content>
+    <Content Include="Views\Shared\_FrontPageTableCellReq.cshtml" />
+    <Content Include="Views\Shared\_FrontPageTableCellTrans.cshtml" />
+    <Content Include="Views\Shared\_SearchRequests.cshtml" />
+    <Content Include="Views\Shared\_SearchResult.cshtml" />
+    <Content Include="Views\Shared\_SearchResultRequests.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
