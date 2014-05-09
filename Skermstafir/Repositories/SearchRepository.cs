@@ -42,6 +42,16 @@ namespace Skermstafir.Repositories
         public SubtitleModel GetSubtitleByID(int id)
         {
             SubtitleModel dummy = new SubtitleModel();
+<<<<<<< HEAD
+<<<<<<< HEAD
+            dummy.subtitle = (from sub in db.Subtitles
+                              where sub.IdSubtitle == id
+                              select sub).SingleOrDefault();
+            db.Subtitles.Add()
+=======
+>>>>>>> parent of 0b03134... Dagur er snillingur
+=======
+>>>>>>> parent of 0b03134... Dagur er snillingur
             return dummy;
         }
 

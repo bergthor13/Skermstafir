@@ -19,7 +19,6 @@ namespace Skermstafir.Models
             genres = new List<Genre>();
             artists = new List<Artist>();
             comments = new List<Comment>();
-            votes = 0;
         }
     }
 }
