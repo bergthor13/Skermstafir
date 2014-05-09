@@ -1,5 +1,4 @@
-<<<<<<< HEAD
-﻿@Html.ActionLink("Opna beiðni síðuna", "ShowRequest", "Request")
+@Html.ActionLink("Opna beiðni síðuna", "ShowRequest", "Request")
 <table class="table table-striped">
 	<thead>
 		<tr>
@@ -26,32 +25,3 @@
 	</tbody>
 
 </table>
-=======
-﻿<table class="table table-striped">
-	<thead>
-		<tr>
-			<th class="up" align="center">Upp</th>
-			<th>Titill</th>
-			<th class ="min" align="center">Útgáfuár</th>
-			<th>Tungumál</th>
-			<th>Stofnandi</th>
-			<th class="min" align="right">Stofna þýðingu</th>
-		</tr>
-	</thead>
-	<tbody>
-		@for (int i = 0; i < Model.modelList.Count; i++)
-		{
-			<tr>
-				<td align="center"><p class="blueup">▲</p> @Model.modelList[i].votes</td>
-	
-				<td>@Model.modelList[i].name</td>
-				<td>@Model.modelList[i].yearCreated</td>
-				<td>@Model.modelList[i].Language</td>
-				<td>@Model.modelList[i].user</td>
-				<td align="right"><input type="button" name="stofna" value="Stofna þýðingu" /></td>
-			</tr>
-		}
-	</tbody>
-
-</table>
->>>>>>> 4be52bc1ef7c2d7fdb466599853d340e2f213a40
