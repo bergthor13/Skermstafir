@@ -217,11 +217,11 @@ a:hover {
 	width: 60px;
 }
 
-#upp {
+.blueup {
     color: #3BA3D0;
     display: inline;
 }
-#nidur {
+#greendown {
     color: #38E156;
 }
 
