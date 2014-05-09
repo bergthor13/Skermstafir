@@ -1,0 +1,44 @@
+﻿@model Skermstafir.Models.RequestModel
+
+@{
+	ViewBag.Title = @Model.request.Name;
+}
+
+<div class="subtitle-box">
+	<div class="box-title">
+		@Model.request.Name
+
+		<p class="votes-req-page">▲ 00</p>
+	</div>
+	<div class="flokkar">
+		<input type="checkbox" id="genre1" disabled />
+		<label for="genre1">Kvikmyndir</label>
+
+		<input type="checkbox" id="genre2" disabled />
+		<label for="genre2">Þættir</label>
+
+		<input type="checkbox" id="genre3" disabled />
+		<label for="genre3">Barnaefni</label>
+
+		<input type="checkbox" id="genre4" disabled />
+		<label for="genre4">Heimildir</label> <br />
+
+		<input type="checkbox" id="genre5" disabled />
+		<label for="genre5">Gaman</label>
+
+		<input type="checkbox" id="genre6" disabled />
+		<label for="genre6">Spenna</label>
+
+		<input type="checkbox" id="genre7" disabled />
+		<label for="genre7">Drama</label>
+
+		<input type="checkbox" id="genre8" disabled />
+		<label for="genre8">Ævintýri</label>
+	</div>
+
+	<p>Stofnandi beiðni: </p>
+
+	<p>Útgáfuár:</p>
+	<input type="text" name="year" value="@Model.request.YearCreated" disabled />
+	<textarea disabled>@Model.request.Description</textarea>
+</div>
