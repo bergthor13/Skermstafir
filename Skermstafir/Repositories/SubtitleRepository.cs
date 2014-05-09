@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using Skermstafir.Models;
+//using System.Data.Entity;
 
 namespace Skermstafir.Repositories
 {
@@ -14,6 +15,7 @@ namespace Skermstafir.Repositories
             using (SkermData db = new SkermData())
             {
                 db.Subtitles.Add(model.subtitle);
+                db.SaveChanges();
             }
         }
 
@@ -37,6 +39,7 @@ namespace Skermstafir.Repositories
                 Subtitle toBeChanged = (from item in db.Subtitles
                                         where item.IdSubtitle == id
                                         select item).Single();
+                //db.Entry(editSub.subtitle).State = EntityState.Modified;
                 toBeChanged = editSub.subtitle;
             }
         }
