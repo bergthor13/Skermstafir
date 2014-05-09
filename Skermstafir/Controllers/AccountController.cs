@@ -53,7 +53,7 @@ namespace Skermstafir.Controllers
                 }
                 else
                 {
-                    ModelState.AddModelError("", "Invalid username or password.");
+                    ModelState.AddModelError("", "Rangt notendanafn eða lykilorð.");
                 }
             }
 
