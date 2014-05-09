@@ -4,9 +4,19 @@
     ViewBag.Title = "Mínar síður";
 }
 
-<h2>@ViewBag.Title.</h2>
+<h2>@ViewBag.Title</h2>
+
+
 
 <p class="text-success">@ViewBag.StatusMessage</p>
+<div class="row">
+    <div class="col-md-3 tranreq-list">
+        <p class="box-title">Afrek</p>
+    </div>
+    <div class="col-md-6 tranreq-list">
+        <p class="box-title">Mínar þýðingar</p>
+    </div>
+</div>
 <div class="row">
     <div class="col-md-12">
         @if (ViewBag.HasLocalPassword)

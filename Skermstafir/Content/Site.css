@@ -270,19 +270,20 @@ h4 {
 	text-align:right;
 }
 
+.votes-req-page {
+	position: absolute;
+	top:0px;
+	right:0px;
+}
+
 .login-noaccount {
     font-weight: normal;
     font-size: 11pt;
     color: white;
     padding-left: 17%;
-}
-
-/* Single Request Page*/
-
-.disabled
-
-.votes-req-page {
-	position: absolute;
-	top:40px;
-	right:10px;
+}  
+/*width for manage.cshtml*/
+.col-md-3.tranreq-list 
+{
+    width: 30%;
 }
