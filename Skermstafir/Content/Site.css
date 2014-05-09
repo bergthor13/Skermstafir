@@ -283,12 +283,12 @@ h4 {
     padding-left: 17%;
 }  
 /*width for manage.cshtml*/
-.col-md-3.tranreq-list
+.col-md-3.tranreq-list.manage
 {
     width: 35%;
 }
 
-.col-md-6.tranreq-list
+.col-md-6.tranreq-list.manage
 {
     width: 65%;
 }
