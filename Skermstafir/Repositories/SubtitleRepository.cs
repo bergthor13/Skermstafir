@@ -11,7 +11,14 @@ namespace Skermstafir.Repositories
         // Add a subtitlemodel object to database
         public void AddSubtitle(SubtitleModel model)
         {
-            // Add the subtitle
+            using (SkermData db = new SkermData())
+            {
+                // Add the subtitle itself
+                db.Subtitles.Add(model.subtitle);
+                // Add the artists
+                // Connect the subtitle with the genres
+                // Connect the subtitle with his author
+            }
         }
 
         // delete a specific subtitle from database
