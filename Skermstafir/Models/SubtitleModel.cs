@@ -7,19 +7,18 @@ namespace Skermstafir.Models
 {
     public class SubtitleModel
     {
-        public int id { get; set; }
-        public String name { get; set; }
-        public String content { get; set; }
-        public int yearCreated { get; set; }
-        public DateTime dateCreated { get; set; }
-        public String language { get; set; }
-        public List<String> artists { get; set; }
+        public Subtitle subtitle { get; set; }
+        public ApplicationUser user { get; set; }
+        public List<Genre> genres { get; set; }
+        public List<Artist> artists { get; set; }
+        public List<Comment> comments { get; set; }
         public int votes { get; set; }
-        public int downloads { get; set; }
-        public String user { get; set; }
-		public SubtitleModel()
-		{
-			artists = new List<String>();
-		}
+
+        public SubtitleModel()
+        {
+            genres = new List<Genre>();
+            artists = new List<Artist>();
+            comments = new List<Comment>();
+        }
     }
 }
