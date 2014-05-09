@@ -27,6 +27,7 @@ namespace Skermstafir.Repositories
                                         where item.IdSubtitle == id
                                         select item).Single();
                 db.Subtitles.Remove(toBeDeleted);
+                db.SaveChanges();
             }
         }
 
@@ -40,6 +41,7 @@ namespace Skermstafir.Repositories
                                         select item).Single();
                 //db.Entry(editSub.subtitle).State = EntityState.Modified;
                 toBeChanged = editSub.subtitle;
+                db.SaveChanges();
             }
         }
     }
