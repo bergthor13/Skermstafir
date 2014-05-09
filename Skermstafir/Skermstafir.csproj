@@ -161,22 +161,22 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Artist.cs">
-      <DependentUpon>SkermDatabaseConnection.tt</DependentUpon>
+      <DependentUpon>SkermDatabase.tt</DependentUpon>
     </Compile>
     <Compile Include="AspNetRole.cs">
-      <DependentUpon>SkermDatabaseConnection.tt</DependentUpon>
+      <DependentUpon>SkermDatabase.tt</DependentUpon>
     </Compile>
     <Compile Include="AspNetUser.cs">
-      <DependentUpon>SkermDatabaseConnection.tt</DependentUpon>
+      <DependentUpon>SkermDatabase.tt</DependentUpon>
     </Compile>
     <Compile Include="AspNetUserClaim.cs">
-      <DependentUpon>SkermDatabaseConnection.tt</DependentUpon>
+      <DependentUpon>SkermDatabase.tt</DependentUpon>
     </Compile>
     <Compile Include="AspNetUserLogin.cs">
-      <DependentUpon>SkermDatabaseConnection.tt</DependentUpon>
+      <DependentUpon>SkermDatabase.tt</DependentUpon>
     </Compile>
     <Compile Include="Comment.cs">
-      <DependentUpon>SkermDatabaseConnection.tt</DependentUpon>
+      <DependentUpon>SkermDatabase.tt</DependentUpon>
     </Compile>
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -184,16 +184,16 @@
     <Compile Include="Controllers\SearchController.cs" />
     <Compile Include="Controllers\SubtitleController.cs" />
     <Compile Include="C__MigrationHistory.cs">
-      <DependentUpon>SkermDatabaseConnection.tt</DependentUpon>
+      <DependentUpon>SkermDatabase.tt</DependentUpon>
     </Compile>
     <Compile Include="Genre.cs">
-      <DependentUpon>SkermDatabaseConnection.tt</DependentUpon>
+      <DependentUpon>SkermDatabase.tt</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Language.cs">
-      <DependentUpon>SkermDatabaseConnection.tt</DependentUpon>
+      <DependentUpon>SkermDatabase.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -207,29 +207,29 @@
     <Compile Include="Repositories\SearchRepository.cs" />
     <Compile Include="Repositories\SubtitleRepository.cs" />
     <Compile Include="Request.cs">
-      <DependentUpon>SkermDatabaseConnection.tt</DependentUpon>
+      <DependentUpon>SkermDatabase.tt</DependentUpon>
     </Compile>
-    <Compile Include="SkermDatabaseConnection.Context.cs">
+    <Compile Include="SkermDatabase.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>SkermDatabaseConnection.Context.tt</DependentUpon>
+      <DependentUpon>SkermDatabase.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="SkermDatabaseConnection.cs">
+    <Compile Include="SkermDatabase.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>SkermDatabaseConnection.tt</DependentUpon>
+      <DependentUpon>SkermDatabase.tt</DependentUpon>
     </Compile>
-    <Compile Include="SkermDatabaseConnection.Designer.cs">
+    <Compile Include="SkermDatabase.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>SkermDatabaseConnection.edmx</DependentUpon>
+      <DependentUpon>SkermDatabase.edmx</DependentUpon>
     </Compile>
     <Compile Include="Startup.cs" />
     <Compile Include="Subtitle.cs">
-      <DependentUpon>SkermDatabaseConnection.tt</DependentUpon>
+      <DependentUpon>SkermDatabase.tt</DependentUpon>
     </Compile>
     <Compile Include="Vote.cs">
-      <DependentUpon>SkermDatabaseConnection.tt</DependentUpon>
+      <DependentUpon>SkermDatabase.tt</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -282,22 +282,22 @@
     <Content Include="Views\Home\Requests.cshtml" />
     <Content Include="Views\Home\Subtitles.cshtml" />
     <Content Include="Views\Shared\_Search.cshtml" />
-    <EntityDeploy Include="SkermDatabaseConnection.edmx">
+    <EntityDeploy Include="SkermDatabase.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>SkermDatabaseConnection.Designer.cs</LastGenOutput>
+      <LastGenOutput>SkermDatabase.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="SkermDatabaseConnection.Context.tt">
+    <Content Include="SkermDatabase.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>SkermDatabaseConnection.edmx</DependentUpon>
-      <LastGenOutput>SkermDatabaseConnection.Context.cs</LastGenOutput>
+      <DependentUpon>SkermDatabase.edmx</DependentUpon>
+      <LastGenOutput>SkermDatabase.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="SkermDatabaseConnection.edmx.diagram">
-      <DependentUpon>SkermDatabaseConnection.edmx</DependentUpon>
+    <Content Include="SkermDatabase.edmx.diagram">
+      <DependentUpon>SkermDatabase.edmx</DependentUpon>
     </Content>
-    <Content Include="SkermDatabaseConnection.tt">
+    <Content Include="SkermDatabase.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>SkermDatabaseConnection.edmx</DependentUpon>
-      <LastGenOutput>SkermDatabaseConnection.cs</LastGenOutput>
+      <DependentUpon>SkermDatabase.edmx</DependentUpon>
+      <LastGenOutput>SkermDatabase.cs</LastGenOutput>
     </Content>
   </ItemGroup>
   <ItemGroup>
