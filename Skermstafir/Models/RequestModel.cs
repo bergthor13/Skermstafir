@@ -7,18 +7,13 @@ namespace Skermstafir.Models
 {
     public class RequestModel
     {
-        public int id { get; set; }
-        public String name { get; set; }
-        public string description { get; set; }
-        public int yearCreated { get; set; }
-        public DateTime dateAdded { get; set; }
-        public String Language { get; set; }
-        public List<String> artists { get; set; }
+        public Request request { get; set; }
+        public List<Artist> artists { get; set;}
         public int votes { get; set; }
-        public String user { get; set; }
-		public RequestModel()
-		{
-			artists = new List<String>();
-		}
+
+        public RequestModel()
+        {
+            artists = new List<Artist>();
+        }
 	}
 }
