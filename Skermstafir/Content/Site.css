@@ -506,9 +506,20 @@ fieldset {
 .request-box #lang #language-with-flag {
 	padding-left: 67px;
 }
-
-.subtitle-box input[type=button], .request-box input[type=button] {
+.request-box input[type=button] {
 	position:absolute;
 	right:15px;
+	bottom:15px;
+}
+
+.subtitle-box #download {
+	position:absolute;
+	right:15px;
+	bottom:15px;
+}
+
+.subtitle-box #edit-subtitle {
+	position:absolute;
+	right:95px;
 	bottom:15px;
 }
