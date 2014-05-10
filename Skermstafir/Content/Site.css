@@ -347,9 +347,6 @@ h4 {
 .lysing-text-area {
     width:380px;
     height:100px;
-    color:#ddd;
-    background:#888;
-    border: 1px solid grey;
 }
 
 #lysing-p {
@@ -362,17 +359,16 @@ h4 {
 
 #titill-ib {
     width:380px;
-    color:#ddd;
 }
-
+/*
 .grey-area {
     background:#888;
     border:1px solid grey;
 }
+*/
 
 #utgafuar-ib {
     width:100px;
-    color: #ddd;
 }
 
 #utgafuar-p {
@@ -381,15 +377,11 @@ h4 {
 
 #leikstjori-ib {
     width:200px;
-    color:#ddd;
 }
 
 .adalleikarar-text-area {
     width:380px;
     height:80px;
-    color:#ddd;
-    background:#888;
-    border: 1px solid grey;
 }
 
 #adalleikarar-p {
@@ -404,7 +396,6 @@ h4 {
 
 #hlekkur-ib {
     width:660px;
-    color:#ddd;
 }
 
 .Titill {
@@ -418,10 +409,6 @@ h4 {
 .Tungumal {
     display:inline;
     margin-left: 120px;
-}
-
-.option-text {
-    color: #ddd;
 }
 
 .Utgafuar {
@@ -459,4 +446,14 @@ fieldset {
 .vista-beidni {
     margin-right:50px;
     float:right;
+}
+
+#original-text {
+    width: 660px;
+    height: 300px;
+    margin-left: 3px;
+}
+
+.Upprunaleg-thyding {
+    margin: 15px 0px;
 }
