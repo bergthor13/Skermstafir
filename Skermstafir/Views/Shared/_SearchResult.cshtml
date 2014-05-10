@@ -18,7 +18,7 @@
 				<td align="center"><p class="blueup">▲</p></td>
 				<td>@Html.ActionLink((string)sub.Name, "ShowSubtitle", new { controller = "Subtitle", id = sub.IdSubtitle }, "Subtitle")</td>
 				<td>@sub.YearCreated</td>
-				<td>Tungumál</td>
+				<td>@sub.Language.Name</td>
 				<td>UserName</td>
 				<td id="greendown">▼</td>
 				<td>Niðurhöl</td>
