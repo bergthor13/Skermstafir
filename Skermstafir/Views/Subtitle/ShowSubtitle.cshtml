@@ -38,7 +38,7 @@
 
 	@if (User.Identity.IsAuthenticated)
 	{
-		<input id="edit-subtitle" type="button" name="createSubtitle" value="Breyta þýðingu" />
+		<input id="edit-subtitle" type="button" name="createSubtitle" value="Breyta þýðingu" onclick="location.href='@Url.Action("EditSubtitle", "Subtitle", new { id = Model.subtitle.IdSubtitle })'" />
 	}
 
 	<input id="download" type="button" name="createSubtitle" value="Niðurhala" />
