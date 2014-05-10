@@ -315,29 +315,12 @@ h4 {
     margin-right:0;
 }
 
-
-.subtitle-box {
-	border: solid 1px grey;
-	margin-top: 11px;
-    padding: 0px;
-	height:276px;
-    width: 100%;
-    background: #333;
-	position:relative;
-}
-
 .votes-req-page {
 	position: absolute;
 	top:5px;
 	right:15px;
 }
 
-.subtitle-box #description {
-	position:absolute;
-	top:65px;
-	right:15px;
-    width: 120%;
-}
 
 /*Create Request*/
 .make-me-inline {
@@ -445,6 +428,7 @@ h4 {
     border: 1px solid grey;
     padding: 15px 30px;
     margin-right:300px;
+	
 }
 
 .Hlekkur {
@@ -459,4 +443,47 @@ fieldset {
 .vista-beidni {
     margin-right:50px;
     float:right;
+}
+
+/* View and Edit Subtitles and Requests*/
+.flokkar-view-edit {
+	padding: 15px;
+}
+
+.flokkar-view-edit label {
+	padding-right: 10px;
+}
+
+.request-box #user, .subtitle-box #user{
+	padding-left: 15px;
+}
+
+.request-box #year, .subtitle-box #year {
+	padding-left: 15px;
+}
+
+.request-box #description, .subtitle-box #description {
+	position:absolute;
+	top:55px;
+	right:15px;
+}
+
+.request-box, subtitle-box {
+	border: solid 1px grey;
+	margin-top: 11px;
+    padding: 0px;
+	height:276px;
+    width: 100%;
+    background: #333;
+	position:relative;
+}
+
+.subtitle-box, .request-box {
+	border: solid 1px grey;
+	margin-top: 11px;
+    padding: 0px;
+	height:276px;
+    width: 100%;
+    background: #333;
+	position:relative;
 }
