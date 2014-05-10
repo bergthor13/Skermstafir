@@ -1,4 +1,5 @@
-﻿using Skermstafir.Models;
+﻿using Skermstafir.Exceptions;
+using Skermstafir.Models;
 using Skermstafir.Repositories;
 using System;
 using System.Collections.Generic;
@@ -12,25 +13,56 @@ namespace Skermstafir.Controllers
     {
         //
         // GET: /Subtitle/
-        public ActionResult ShowSubtitle(int? subtitleID)
+        public ActionResult ShowSubtitle(int? id)
         {
 			SearchRepository sr = new SearchRepository();
-			SubtitleModel result = sr.GetSubtitleByID(5);
-			return View(result);
+
+			if (id == null)
+			{
+				return View("Errors/Error");
+			}
+
+            try
+			{
+				int idValue = id.Value;
+				SubtitleModel result;
+				result = sr.GetSubtitleByID(idValue);
+				return View(result);
+			}
+			catch (NoSubtitleFoundException)
+			{
+				return View("Errors/NoSubFound");
+			}
+			
         }
 
 		// Creates a new translation
-		public ActionResult CreateSubtitle()
+		public ActionResult CreateNewSubtitle()
 		{
             SubtitleModel model = new SubtitleModel();
 			return View(model);
 		}
 
 		// Edits the translation with the ID subtitleID
-		public ActionResult EditSubtitle(int? subtitleID)
+		public ActionResult EditSubtitle(int? id)
 		{
-            SubtitleModel model = new SubtitleModel();
-			return View(model);
+			
+			if (id == null)
+			{
+				return View("Errors/NoSubFound");
+			}
+
+            try
+            {
+				SearchRepository sr = new SearchRepository();
+				int idValue = id.Value;
+                SubtitleModel result = sr.GetSubtitleByID(idValue);
+                return View(result);
+            }
+			catch (NoSubtitleFoundException)
+            {
+                return View("Errors/NoSubFound");
+            }
 		}
 	}
 }

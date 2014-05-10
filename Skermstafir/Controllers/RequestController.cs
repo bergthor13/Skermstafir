@@ -1,4 +1,5 @@
-﻿using Skermstafir.Models;
+﻿using Skermstafir.Exceptions;
+using Skermstafir.Models;
 using Skermstafir.Repositories;
 using System;
 using System.Collections.Generic;
@@ -12,17 +13,30 @@ namespace Skermstafir.Controllers
     {
         //
         // GET: /Request/
-		public ActionResult ShowRequest(int? requestID)
+		public ActionResult ShowRequest(int? id)
 		{
-			RequestRepository rr = new RequestRepository();
-			RequestModel result = rr.GetRequestByID(5);
-			return View(result);
+			if (id == null)
+			{
+				return View("Errors/NoSubFound");
+			}
+
+			try
+			{
+				RequestRepository sr = new RequestRepository();
+				int idValue = id.Value;
+				RequestModel result = sr.GetRequestByID(idValue);
+				return View(result);
+			}
+			catch (NoRequestFoundException)
+			{
+				return View("Errors/NoSubFound");
+			}
 		}
 		// Adds a new request.
         public ActionResult CreateRequest()
         {
-            RequestModel model = new RequestModel();
-            return View(model);
+            RequestModel newRequest = new RequestModel();
+            return View(newRequest);
         }
 	}
 }

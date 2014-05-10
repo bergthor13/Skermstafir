@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using Skermstafir.Models;
+using Skermstafir.Exceptions;
 
 namespace Skermstafir.Repositories
 {
@@ -16,7 +17,6 @@ namespace Skermstafir.Repositories
             model.modelList = (from sub in db.Subtitles
                                    orderby sub.DateAdded
                                    select sub).Skip(start).Take(end - start).ToList();
-            
             return model;
         }
 
@@ -28,7 +28,6 @@ namespace Skermstafir.Repositories
                 model.modelList = (from sub in db.Subtitles
                                    orderby sub.Votes.Count
                                    select sub).Skip(start).Take(end - start).ToList();
-            
             return model;
         }
 
@@ -40,7 +39,6 @@ namespace Skermstafir.Repositories
             model.modelList = (from sub in db.Subtitles
                                where sub.AspNetUsers.FirstOrDefault().UserName == username
                                select sub).Skip(start).Take(end - start).ToList();
-            
             return model;
         }
 
@@ -53,7 +51,12 @@ namespace Skermstafir.Repositories
                 model.subtitle = (from sub in db.Subtitles
                                   where sub.IdSubtitle == id
                                   select sub).SingleOrDefault();
-            
+
+				if (model.subtitle == null)
+				{
+                    throw new NoSubtitleFoundException();
+				}
+
             return model;
         }
 
@@ -65,7 +68,6 @@ namespace Skermstafir.Repositories
                 model.modelList = (from sub in db.Subtitles
                                    where sub.Language.Name == language
                                    select sub).Skip(start).Take(end - start).ToList();
-            
             return model;
         }
 
@@ -77,7 +79,6 @@ namespace Skermstafir.Repositories
                 model.modelList = (from sub in db.Subtitles
                                    where sub.YearCreated >= startYear && sub.YearCreated <= endYear
                                    select sub).Skip(start).Take(end - start).ToList();
-            
             return model;
         }
 

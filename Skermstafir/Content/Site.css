@@ -315,29 +315,12 @@ h4 {
     margin-right:0;
 }
 
-
-.subtitle-box {
-	border: solid 1px grey;
-	margin-top: 11px;
-    padding: 0px;
-	height:276px;
-    width: 100%;
-    background: #333;
-	position:relative;
-}
-
 .votes-req-page {
 	position: absolute;
 	top:5px;
 	right:15px;
 }
 
-.subtitle-box #description {
-	position:absolute;
-	top:65px;
-	right:15px;
-    width: 120%;
-}
 
 /*Create Request*/
 .make-me-inline {
@@ -347,6 +330,9 @@ h4 {
 .lysing-text-area {
     width:380px;
     height:100px;
+    color:#ddd;
+    background:#888;
+    border: 1px solid grey;
 }
 
 #lysing-p {
@@ -359,16 +345,17 @@ h4 {
 
 #titill-ib {
     width:380px;
+    color:#ddd;
 }
-/*
+
 .grey-area {
     background:#888;
     border:1px solid grey;
 }
-*/
 
 #utgafuar-ib {
     width:100px;
+    color: #ddd;
 }
 
 #utgafuar-p {
@@ -377,11 +364,15 @@ h4 {
 
 #leikstjori-ib {
     width:200px;
+    color:#ddd;
 }
 
 .adalleikarar-text-area {
     width:380px;
     height:80px;
+    color:#ddd;
+    background:#888;
+    border: 1px solid grey;
 }
 
 #adalleikarar-p {
@@ -396,6 +387,7 @@ h4 {
 
 #hlekkur-ib {
     width:660px;
+    color:#ddd;
 }
 
 .Titill {
@@ -409,6 +401,10 @@ h4 {
 .Tungumal {
     display:inline;
     margin-left: 120px;
+}
+
+.option-text {
+    color: #ddd;
 }
 
 .Utgafuar {
@@ -432,6 +428,7 @@ h4 {
     border: 1px solid grey;
     padding: 15px 30px;
     margin-right:300px;
+	
 }
 
 .Hlekkur {
@@ -448,12 +445,100 @@ fieldset {
     float:right;
 }
 
-#original-text {
-    width: 660px;
-    height: 300px;
-    margin-left: 3px;
+/* View and Edit Subtitles and Requests*/
+.flokkar-view-edit {
+	padding: 15px;
 }
 
-.Upprunaleg-thyding {
-    margin: 15px 0px;
+.flokkar-view-edit label {
+	padding-right: 10px;
+}
+
+.request-box #user, .subtitle-box #user{
+	padding-left: 15px;
+		font-size: 1.2em;
+}
+
+.request-box #year, .subtitle-box #year {
+	padding-left: 15px;
+
+}
+
+.request-box #lang, .subtitle-box #lang {
+	padding-left: 15px;
+	font-size: 1.2em;
+}
+
+.request-box #description, .subtitle-box #description {
+	position:absolute;
+	top:55px;
+	right:15px;
+}
+
+.request-box, subtitle-box {
+	border: solid 1px grey;
+	margin-top: 11px;
+    padding: 0px;
+	height:276px;
+    width: 100%;
+    background: #333;
+	position:relative;
+}
+
+.subtitle-box, .request-box {
+	border: solid 1px grey;
+	margin-top: 11px;
+    padding: 0px;
+	height:308px;
+    width: 100%;
+    background: #333;
+	position:relative;
+}
+
+.field-desc {
+	font-weight: bold;
+}
+
+.request-box #user #username {
+	padding-left: 15px;
+}
+
+.request-box #lang #language-with-flag {
+	padding-left: 67px;
+}
+.request-box input[type=button] {
+	position:absolute;
+	right:15px;
+	bottom:15px;
+}
+
+.subtitle-box #download {
+	position:absolute;
+	right:15px;
+	bottom:15px;
+}
+.subtitle-box .info {
+	padding-left: 0px;
+	margin-left:-12px
+}
+
+.subtitle-box .info .col-md-2{
+	text-align:right;
+	font-weight:bold;
+}
+
+
+.subtitle-box #edit-subtitle {
+	position:absolute;
+	right:95px;
+	bottom:15px;
+}
+
+.subtitle-box .info [name=actors],
+.subtitle-box .info [name=director] {
+	width: 30%
+}
+
+.subtitle-box .info [name=year] {
+	width: 80px
 }
