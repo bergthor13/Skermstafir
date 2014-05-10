@@ -7,7 +7,7 @@
 <div class="subtitle-box">
 	<div class="box-title">
 		<p>@Model.subtitle.Name</p>
-		<p class="votes-req-page">▲ 15</p>
+		<p class="votes-req-page">▲ @Model.subtitle.Votes.Count</p>
 	</div>
 
 	<div class="flokkar disabled">
@@ -36,7 +36,7 @@
 		<label for="genre8">Ævintýri</label>
 	</div>
 
-	<p>Stofnandi þýðingu: </p>
+	<p>Stofnandi þýðingu: @Model.subtitle.AspNetUsers.FirstOrDefault().UserName</p>
 
 	<p>Útgáfuár:</p>
 	<input type="text" name="year" value="@Model.subtitle.YearCreated" disabled />
