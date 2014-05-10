@@ -6,11 +6,11 @@
 
 <div class="subtitle-box">
 	<div class="box-title">
-		<p>@Model.subtitle.Name</p>
-		<p class="votes-req-page">▲ 15</p>
+		@Model.subtitle.Name
+		<p class="votes-req-page">▲ 00NI</p>
 	</div>
 
-	<div class="flokkar disabled">
+	<div class="flokkar-view-edit">
 		<input type="checkbox" id="genre1" disabled />
 		<label for="genre1">Kvikmyndir</label>
 
@@ -36,10 +36,9 @@
 		<label for="genre8">Ævintýri</label>
 	</div>
 
-	<p>Stofnandi þýðingu: </p>
-
-	<p>Útgáfuár:</p>
-	<input type="text" name="year" value="@Model.subtitle.YearCreated" disabled />
+	<p id="user">Stofnandi þýðingu: @Model.subtitle.AspNetUsers.FirstOrDefault().UserName</p>
+	<p id="year">Útgáfuár: <input type="text" name="year" value="@Model.subtitle.YearCreated" disabled /></p>
+	
 	<textarea id="description" cols="50" rows="8" disabled>@Model.subtitle.Description</textarea>
 </div>
 <div class="col-md-6">
