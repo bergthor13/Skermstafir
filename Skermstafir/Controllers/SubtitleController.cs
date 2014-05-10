@@ -12,10 +12,15 @@ namespace Skermstafir.Controllers
     {
         //
         // GET: /Subtitle/
-        public ActionResult ShowSubtitle(int? subtitleID)
+        public ActionResult ShowSubtitle(int? id)
         {
 			SearchRepository sr = new SearchRepository();
-			SubtitleModel result = sr.GetSubtitleByID(5);
+			if (id == null)
+			{
+				return View("Error");
+			}
+			int idValue = id.Value;
+			SubtitleModel result = sr.GetSubtitleByID(idValue);
 			return View(result);
         }
 
@@ -29,8 +34,10 @@ namespace Skermstafir.Controllers
 		// Edits the translation with the ID subtitleID
 		public ActionResult EditSubtitle(int? subtitleID)
 		{
-            SubtitleModel model = new SubtitleModel();
-			return View(model);
+			SearchRepository sr = new SearchRepository();
+			int id = subtitleID.Value;
+			SubtitleModel result = sr.GetSubtitleByID(id);
+			return View(result);
 		}
 	}
 }
