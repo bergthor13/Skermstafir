@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 ﻿body {
     /*padding-top: 0px;
     padding-bottom: 20px;*/
@@ -312,7 +311,6 @@ h4 {
 /*change password*/
 .form-control.lykilord
 {
-<<<<<<< HEAD
     width:50%;
     margin-right:0;
 }
@@ -350,7 +348,7 @@ h4 {
     width:380px;
     height:100px;
     color:#ddd;
-    background:#666;
+    background:#888;
     border: 1px solid grey;
 }
 
@@ -368,7 +366,7 @@ h4 {
 }
 
 .grey-area {
-    background:#666;
+    background:#888;
     border:1px solid grey;
 }
 
@@ -390,7 +388,7 @@ h4 {
     width:380px;
     height:80px;
     color:#ddd;
-    background:#666;
+    background:#888;
     border: 1px solid grey;
 }
 
@@ -461,345 +459,4 @@ fieldset {
 .vista-beidni {
     margin-right:50px;
     float:right;
-    background: #3BA3D0;
-    border: 2px solid #ddd;
-=======
-﻿body {
-    /*padding-top: 0px;
-    padding-bottom: 20px;*/
-    background-color:#444;
-    color: #ddd;
-}
-
-/* Set padding to keep content from hitting the edges */
-.body-content {
-    padding-left: 15px;
-    padding-right: 15px;
-}
-
-/* Set width on the form input elements since they're 100% wide by default */
-input,
-select,
-textarea {
-    max-width: 100%;
-	padding-left: 5px;
-}
-
-/* styles for validation helpers */
-.field-validation-error {
-    color: #b94a48;
-}
-
-.field-validation-valid {
-    display: none;
-}
-
-input.input-validation-error {
-    border: 1px solid #b94a48;
-}
-
-input[type="checkbox"].input-validation-error {
-    border: 0 none;
-}
-
-.validation-summary-errors {
-    color: #b94a48;
-}
-
-.validation-summary-valid {
-    display: none;
-}
-
-/* HEADER BEGIN */
-h1, h1 a, h1 a:hover {
-	display:inline;
-	font-weight:bold;
-	vertical-align:central;
-	text-decoration:none;
-	color: #A60C00;
-}
-h1 a {
-	color:#FFA540;
-    padding-top:54px;
-}
-
-h3 {
-    color: #FF7D73;
-}
-
-h5 {
-    color: #65E17B;
-    font-size: 14px;
-    margin: 0px 138px;
-}
-
-.shared-header {
-	background: #2a2a2a;
-	border: solid grey 1px;
-    padding-bottom: 21px;
-    margin: 0px;
-}
-
-.shared-header img {
-	margin: 10px;
-}
-
-#shared-menu {
-	padding: 0px 150px;
-    vertical-align:central;
-}
-
-#shared-menu li {
-	display: inline;
-	list-style-type: none;
-	font-weight:bold;
-    border: 1px solid grey;
-    padding: 5px 0px;
-}
-
-#shared-menu .col-md-3 {
-	text-align: center;
-}
-
-a {
-    color: #FFA540;
-}
-
-a:hover {
-    color: #A60C00
-}
-
-
-/* User management */
-.logged-out-list, .logged-in-list {
-	float: right;
-	padding-top:10px;
-}
-
-/* User management */
-.logged-out-list li, .logged-in-list li {
-	display: inline;
-	list-style-type: none;
-	padding-left: 15px;
-	padding-right:12px;
-}
-/* HEADER END */
-
-/* The whole search box */
-.search-dialog {
-	margin: 20px 170px;
-	position: relative;
-}
-/* The title of the box */
-.box-title {
-	width: 100%;
-	padding: 7px 10px 7px 15px;
-	font-size: 1.3em;
-	font-weight:bold;
-	border-bottom: solid grey 1px;
-	background: #2a2a2a;
-    color: #ddd;
-	margin-bottom: 0;
-}
-
-.box-title2 {
-	width: 100%;
-	padding: 7px 10px 7px 15px;
-	font-size: 1.3em;
-	font-weight:bold;
-	border: gray solid 1px;
-	background: #2a2a2a;
-    color: #DDD;
-	margin-bottom: 0;
-}
-
-/* Left side of the search dialog */
-.search-dialog-left {
-	width:50%;
-	padding-left: 15px;
-}
-
-/* Right side of the search dialog */
-.search-dialog-right {
-	width:50%;
-	position:absolute;
-	left:55%;
-	top:0%;
-}
-
-/* Period search boxes (Frá og til)*/
-.search-dialog-right input {
-	width: 100px;
-}
-/* Search textbox */
-#search-box {
-	width: 500px;
-	margin-bottom: 15px;
-}
-
-.flokkar label {
-	padding-right: 10px;
-}
-
-/* Boxes on front page. */
-.tranreq-list {
-	border: solid 1px grey;
-	margin: 11px;
-    padding: 0px;
-	height:284px;
-    width: 48%;
-    background: #333;
-}
-
-.request-box {
-	border: solid 1px grey;
-	margin-top: 10px;
-    padding: 0px;
-	height:284px;
-    width: 100%;
-    background: #333;
-}
-
-.table {
-	background: #444;
-}
-
-.table-striped > tbody > tr:nth-child(2n+1) > td, .table-striped > tbody > tr:nth-child(2n+1) > th {
-   background-color: #333;
-}
-
-/* Gradient on top of table*/
-.table thead {
-    color:#FFA540;
-}
-
-/* Setting width of column to minimum */
-.table .min {
-	width: 10px;
-}
-
-/* Setting the width of the column up */
-.table .up {
-	width: 60px;
-}
-
-.blueup {
-    color: #3BA3D0;
-    display: inline;
-}
-#greendown {
-    color: #38E156;
-}
-
-h4 {
-	margin-top: 2px;
-	margin-bottom: 10px;
-}
-
-/* Front page lists BEGIN */
-.fp-list {
-	border-bottom: solid 1px grey;
-	padding: 10px;
-	position: relative;
-
-}
-
-.fp-list .second-column {
-	position: absolute;
-	top: 10px;
-	left: 45px;
-	width: 65%;
-
-}
-
-.fp-list .third-column {
-	position:absolute;
-	right: 10px;
-	top: 10px;
-	text-align: right;
-	width: 50%;
-	height: 100%;
-}
-
-.fp-list #creator {
-	position:absolute;
-	bottom: 0px;
-	right: 10px;
-	text-align:right;
-	padding-right: 0;
-	margin-right: 0;
-}
-.fp-list #year {
-	position:absolute;
-	bottom: 0px;
-	left: 45px;
-	text-align:right;
-}
-
-.votes-req-page {
-	position: absolute;
-	top:0px;
-	right:0px;
-}
-
-.login-noaccount {
-    font-weight: normal;
-    font-size: 11pt;
-    color: white;
-    padding-left: 17%;
-}  
-/*width for manage.cshtml*/
-.col-md-3.tranreq-list.manage
-{
-    width: 35%;
-}
-
-.col-md-6.tranreq-list.manage
-{
-    width: 65%;
-}
-
-.top
-{
-    height: auto;
-    max-height: 600px;
-    margin: 0px 0px 10px 0px;
-    overflow-y: auto;
-}
-
-.bottom
-{
-    height: auto;
-    max-height: 600px;
-    margin: 0 0 0 0;
-}
-
-/*change password*/
-.form-control.lykilord
-{
-    width:50%;
-    margin-right:0;
-}
-
-.subtitle-box {
-	border: solid 1px grey;
-	margin-top: 11px;
-    padding: 0px;
-	height:276px;
-    width: 100%;
-    background: #333;
-	position:relative;
-}
-
-.votes-req-page {
-	position: absolute;
-	top:5px;
-	right:15px;
-}
-
-.subtitle-box #description {
-	position:absolute;
-	top:65px;
-	right:15px;
->>>>>>> b67e5a31a0040b73007f3e243721e1cc32dd8f4d
 }
