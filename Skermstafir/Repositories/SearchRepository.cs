@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using Skermstafir.Models;
+using Skermstafir.Exceptions;
 
 namespace Skermstafir.Repositories
 {
@@ -53,6 +54,10 @@ namespace Skermstafir.Repositories
                 model.subtitle = (from sub in db.Subtitles
                                   where sub.IdSubtitle == id
                                   select sub).SingleOrDefault();
+				if (model.subtitle == null)
+				{
+					throw new NoSubtitleFoundException();
+				}
             
             return model;
         }
