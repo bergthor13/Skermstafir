@@ -337,7 +337,129 @@ h4 {
 	position:absolute;
 	top:65px;
 	right:15px;
-=======
     width: 120%;
->>>>>>> fbd38648741bec242f05864f69faeded8873cd54
+}
+
+/*Create Request*/
+.make-me-inline {
+    display:inline;
+}
+
+.lysing-text-area {
+    width:380px;
+    height:100px;
+    color:#ddd;
+    background:#666;
+    border: 1px solid grey;
+}
+
+#lysing-p {
+    margin-left: 89px;
+}
+
+#leikstjori-p {
+    margin-left: 74px;
+}
+
+#titill-ib {
+    width:380px;
+    color:#ddd;
+}
+
+.grey-area {
+    background:#666;
+    border:1px solid grey;
+}
+
+#utgafuar-ib {
+    width:100px;
+    color: #ddd;
+}
+
+#utgafuar-p {
+    margin-left: 75px;
+}
+
+#leikstjori-ib {
+    width:200px;
+    color:#ddd;
+}
+
+.adalleikarar-text-area {
+    width:380px;
+    height:80px;
+    color:#ddd;
+    background:#666;
+    border: 1px solid grey;
+}
+
+#adalleikarar-p {
+    margin-left: 55px;
+}
+
+.flokkar-header {
+    margin:0px;
+    padding:5px;
+    font-size:18px;
+}
+
+#hlekkur-ib {
+    width:660px;
+    color:#ddd;
+}
+
+.Titill {
+    margin-bottom:15px;
+}
+
+#titill-p {
+    margin-left: 37px;
+}
+
+.Tungumal {
+    display:inline;
+    margin-left: 120px;
+}
+
+.option-text {
+    color: #ddd;
+}
+
+.Utgafuar {
+    display:inline;
+}
+
+.Lysing {
+    margin: 15px 0px;
+}
+
+.Leikstjori {
+    margin-bottom: 15px;
+}
+
+.Adalleikarar {
+    margin-bottom: 15px;
+}
+
+.Flokkar {
+    float:right;
+    border: 1px solid grey;
+    padding: 15px 30px;
+    margin-right:300px;
+}
+
+.Hlekkur {
+    display: inline;
+}
+
+fieldset {
+    border:1px solid grey;
+    padding: 20px;
+}
+
+.vista-beidni {
+    margin-right:50px;
+    float:right;
+    background: #3BA3D0;
+    border: 2px solid #ddd;
 }
