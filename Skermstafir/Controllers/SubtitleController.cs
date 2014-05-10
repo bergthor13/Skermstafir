@@ -22,18 +22,18 @@ namespace Skermstafir.Controllers
 				return View("Errors/Error");
 			}
 
-			int idValue = id.Value;
-			SubtitleModel result;
-
             try
 			{
+				int idValue = id.Value;
+				SubtitleModel result;
 				result = sr.GetSubtitleByID(idValue);
+				return View(result);
 			}
 			catch (NoSubtitleFoundException)
 			{
 				return View("Errors/NoSubFound");
 			}
-			return View(result);
+			
         }
 
 		// Creates a new translation
@@ -44,14 +44,19 @@ namespace Skermstafir.Controllers
 		}
 
 		// Edits the translation with the ID subtitleID
-		public ActionResult EditSubtitle(int? subtitleID)
+		public ActionResult EditSubtitle(int? id)
 		{
-			SearchRepository sr = new SearchRepository();
+			
+			if (id == null)
+			{
+				return View("Errors/NoSubFound");
+			}
 
             try
             {
-                int id = subtitleID.Value;
-                SubtitleModel result = sr.GetSubtitleByID(id);
+				SearchRepository sr = new SearchRepository();
+				int idValue = id.Value;
+                SubtitleModel result = sr.GetSubtitleByID(idValue);
                 return View(result);
             }
 			catch (NoSubtitleFoundException)
