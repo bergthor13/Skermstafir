@@ -6,10 +6,10 @@
 
 <div class="subtitle-box">
 	<div class="box-title">
-		<p>Gladiator</p>
+		<p>@Model.subtitle.Name</p>
 		<p class="votes-req-page">▲ @Model.subtitle.Votes.Count</p>
 	</div>
-	<div class="flokkar">
+	<div class="flokkar-view-edit">
 		<input type="checkbox" id="genre1" />
 		<label for="genre1">Kvikmyndir</label>
 
@@ -39,12 +39,12 @@
 
 	<p>Útgáfuár:</p>
 	<input type="text" name="year" value="@Model.subtitle.YearCreated" disabled />
-	<textarea id="description" cols="50" rows="8" disabled>@Model.subtitle.Description</textarea>
+	<textarea id="description" cols="50" rows="8">@Model.subtitle.Description</textarea>
 </div>
 <div class="col-md-6">
-	<textarea id="originalText" cols="900" rows="40" disabled></textarea>
+	<textarea id="originalText" cols="900" rows="40"></textarea>
 </div>
 
 <div class="col-md-6">
-	<textarea id="editedText" cols="900" rows="40" disabled></textarea>
+	<textarea id="editedText" cols="900" rows="40"></textarea>
 </div>

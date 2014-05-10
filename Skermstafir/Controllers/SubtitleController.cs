@@ -1,5 +1,4 @@
-﻿using Skermstafir.Exceptions;
-using Skermstafir.Models;
+﻿using Skermstafir.Models;
 using Skermstafir.Repositories;
 using System;
 using System.Collections.Generic;
@@ -26,7 +25,7 @@ namespace Skermstafir.Controllers
 			{
 				result = sr.GetSubtitleByID(idValue);
 			}
-			catch (NoSubtitleFoundException)
+			catch (NoSubtitleFoundException ex)
 			{
 
 				return View("Errors/NoSubFound");
