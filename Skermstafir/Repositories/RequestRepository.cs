@@ -68,6 +68,12 @@ namespace Skermstafir.Repositories
             model.request = (from req in db.Requests
                                 where req.IdRequest == id
                                 select req).Single();
+
+            if (model.request == null)
+            {
+                throw new Exception();
+            }
+
             return model;
         }
         // queries database and gets request in language starting at index start and ending at index end both inclusive
