@@ -481,11 +481,21 @@ fieldset {
 	width:400px
 }
 
-.subtitle-box, .request-box {
+.subtitle-box {
 	border: solid 1px grey;
 	margin-top: 11px;
     padding: 0px;
 	height:333px;
+    width: 100%;
+    background: #333;
+	position:relative;
+}
+
+.request-box {
+	border: solid 1px grey;
+	margin-top: 11px;
+    padding: 0px;
+	height:250px;
     width: 100%;
     background: #333;
 	position:relative;
@@ -518,11 +528,16 @@ fieldset {
 	margin-left:-12px
 }
 
-.subtitle-box .info .col-md-2{
+.subtitle-box .info .col-md-2, .request-box .info .col-md-2{
 	text-align:right;
 	font-weight:bold;
 }
 
+
+.request-box .info {
+	padding-left: 0px;
+	margin-left: -20px;
+}
 
 .subtitle-box #edit-subtitle {
 	position:absolute;
