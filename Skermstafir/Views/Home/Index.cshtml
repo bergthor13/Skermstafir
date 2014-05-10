@@ -40,7 +40,7 @@
 				<img src="http://www.placekitten.com/16/11" alt="Flag" />
 			</div>
 
-			<h4 class="second-column">@item.Name</h4>
+			<h4 class="second-column">@Html.ActionLink((string)item.Name, "ShowRequest", new { controller = "Request", id = item.IdRequest }, "Request")</h4>
 			<p id="year">Útgáfuár: @item.YearCreated</p>
 
 			<div class="third-column">
@@ -87,7 +87,7 @@
 				<img src="http://www.placekitten.com/16/11" alt="Flag" />
 			</div>
 
-			<h4 class="second-column">@item.Name</h4>
+			<h4 class="second-column">@Html.ActionLink((string)item.Name, "ShowRequest", new { controller = "Request", id = item.IdRequest }, "Request")</h4>
 			<p id="year">Útgáfuár: @item.YearCreated</p>
 
 			<div class="third-column">
