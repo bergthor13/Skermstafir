@@ -1,6 +1,68 @@
 ﻿@model Skermstafir.Models.SubtitleModel
 
 @{
+<<<<<<< HEAD
+    ViewBag.Title = "Stofna þýðingu";
+}
+
+<h3>Stofna þýðingu</h3>
+<form action="#" method="get">
+    <fieldset>
+        <div class="Titill">
+            <p class="make-me-inline" id="titill-p">Titill myndefnis: </p>
+            <input type="text" id="titill-ib" placeholder="t.d. Anchorman 2, The Legend Continues" class="grey-area">
+        </div>
+        <div class="Flokkar">
+            <h5 class="flokkar-header">Flokkar: </h5>
+            <input type="checkbox" name="flokkar" value="Kvikmyndir"> Kvikmynd<br>
+            <input type="checkbox" name="flokkar" value="Þaettir"> Þáttur<br>
+            <input type="checkbox" name="flokkar" value="Barnaefni"> Barnaefni<br>
+            <input type="checkbox" name="flokkar" value="Heimildir"> Heimild<br>
+            <input type="checkbox" name="flokkar" value="Gaman"> Gaman<br>
+            <input type="checkbox" name="flokkar" value="Spenna"> Spenna<br>
+            <input type="checkbox" name="flokkar" value="Drama"> Drama<br>
+            <input type="checkbox" name="flokkar" value="Aevintyri"> Ævintýri<br>
+        </div>
+        <div class="Utgafuar">
+            <p class="make-me-inline" id="utgafuar-p">Útgáfuár: </p>
+            <input type="text" id="utgafuar-ib" placeholder="t.d. 2014" class="grey-area">
+        </div>
+        <div class="Tungumal">
+            <p class="make-me-inline">Tungumál: </p>
+            <select class="grey-area">
+                <option class="option-text" value="Islenska">Íslenska</option>
+                <option class="option-text" value="Enska">Enska</option>
+            </select>
+        </div>
+        <div class="Lysing">
+            <p class="make-me-inline" id="lysing-p">Lýsing: </p>
+            <textarea class="lysing-text-area" placeholder="Stutt lýsing og söguþráður."></textarea>
+        </div>
+        <div class="Leikstjori">
+            <p class="make-me-inline" id="leikstjori-p">Leikstjóri: </p>
+            <input type="text" id="leikstjori-ib" placeholder="t.d. Woody Allen" class="grey-area">
+        </div>
+        <div class="Adalleikarar">
+            <p class="make-me-inline" id="adalleikarar-p">Aðalleikarar: </p>
+            <textarea class="adalleikarar-text-area" placeholder="Komma aðskilur leikara t.d. Paul Rudd, Philip Seymour Hoffman, Meg Ryan"></textarea>
+        </div>
+        <div class="Hlekkur">
+            <p class="make-me-inline">Hlekkur á myndskeið: </p>
+            <input type="text" id="hlekkur-ib" placeholder="t.d. af YouTube, Vimeo eða annað." class="grey-area">
+        </div>
+        <div class="Upprunaleg-thyding">
+            <p class="make-me-inline">Texti sem á að þýða:</p>
+            <textarea id="original-text" placeholder="Afritaðu textann úr upprunalegu .srt skránni hingað."></textarea>
+        </div>
+        <input type="submit" value="Vista beiðni" class="vista-beidni" />
+    </fieldset>
+</form>
+
+
+
+
+
+=======
     ViewBag.Title = "Stök Þýðing";
 }
 
@@ -48,3 +110,4 @@
 <div class="col-md-6">
     <textarea id="editedText" cols="900" rows="40" disabled></textarea>
 </div>
+>>>>>>> 208e500bfac3b1b6322a4b85145141cf181a4f70
