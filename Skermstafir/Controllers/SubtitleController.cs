@@ -46,9 +46,17 @@ namespace Skermstafir.Controllers
 		public ActionResult EditSubtitle(int? subtitleID)
 		{
 			SearchRepository sr = new SearchRepository();
-            int id = subtitleID.Value;
-			SubtitleModel result = sr.GetSubtitleByID(id);
-			return View(result);
+
+            try
+            {
+                int id = subtitleID.Value;
+                SubtitleModel result = sr.GetSubtitleByID(id);
+                return View(result);
+            }
+            catch (Exception)
+            {
+                return View("Errors/NoSubFound");
+            }
 		}
 	}
 }
