@@ -517,9 +517,28 @@ fieldset {
 	right:15px;
 	bottom:15px;
 }
+.subtitle-box .info {
+	padding-left: 0px;
+	margin-left:-12px
+}
+
+.subtitle-box .info .col-md-2{
+	text-align:right;
+	font-weight:bold;
+}
+
 
 .subtitle-box #edit-subtitle {
 	position:absolute;
 	right:95px;
 	bottom:15px;
+}
+
+.subtitle-box .info [name=actors],
+.subtitle-box .info [name=director] {
+	width: 30%
+}
+
+.subtitle-box .info [name=year] {
+	width: 80px
 }

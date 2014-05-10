@@ -11,7 +11,7 @@
 	</div>
 
 	<div class="flokkar-view-edit">
-		<input type="checkbox" id="genre1" disabled />
+		<input type="checkbox" id="genre1" disabled/>
 		<label for="genre1">Kvikmyndir</label>
 		<input type="checkbox" id="genre2" disabled />
 		<label for="genre2">Þættir</label>
@@ -28,26 +28,51 @@
 		<input type="checkbox" id="genre8" disabled />
 		<label for="genre8">Ævintýri</label>
 	</div>
-	
+
 	<textarea id="description" cols="50" rows="10" disabled>@Model.subtitle.Description</textarea>
+
 	@if (User.Identity.IsAuthenticated)
 	{
-		<input id="edit-subtitle"type="button" name="createSubtitle" value="Breyta þýðingu" />
+		<input id="edit-subtitle" type="button" name="createSubtitle" value="Breyta þýðingu" />
 	}
-	
-		<input id="download" type="button" name="createSubtitle" value="Niðurhala" />
-	
-	<p id="user">Stofnandi þýðingu: @Model.subtitle.AspNetUsers.FirstOrDefault().UserName</p>
 
-	<p id="year">Útgáfuár: <input type="text" name="year" value="@Model.subtitle.YearCreated" disabled /></p>
+	<input id="download" type="button" name="createSubtitle" value="Niðurhala" />
+
+	<p class="info">
+		<span class="col-md-2">Stofnandi þýðingar:</span>
+		@Model.subtitle.AspNetUsers.FirstOrDefault().UserName
+	</p>
+	<p class="info">
+		<span class="col-md-2">Tungumál:</span>
+		<span id="language-with-flag">
+			<img src="http://www.placekitten.com/32/22" alt="Flag" /> @Model.subtitle.Language.Name
+		</span>
+	</p>
+
+	<p class="info">
+		<label for="actors" class="col-md-2">Aðalleikarar:</label>
+		<input type="text" name="actors" value="NOT IMPL" disabled />
+	</p>
+
+	<p class="info">
+		<label for="director" class="col-md-2">Leikstjóri:</label>
+		<input type="text" name="director" value="NOT IMPL" disabled />
+	</p>
+
+	<p class="info">
+		<label for="year" class="col-md-2">Útgáfuár:</label>
+		<input type="text" name="year" value="@Model.subtitle.YearCreated" disabled />
+	</p>
 </div>
 
 
 <div class="col-md-6">
+	<h3 align="center">Upprunalegur texti</h3>
 	<textarea id="originalText" cols="900" rows="40" disabled></textarea>
 </div>
 
 <div class="col-md-6">
+	<h3 align="center">Þýðing:</h3>
 	<textarea id="editedText" cols="900" rows="40" disabled></textarea>
 </div>
 
