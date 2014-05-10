@@ -2,13 +2,13 @@
 <table class="table table-striped">
 	<thead>
 		<tr>
-			<th>Upp</th>
+			<th class="min">Upp</th>
 			<th>Titill</th>
-			<th>Útgáfuár</th>
+			<th class ="min">Útgáfuár</thclass>
 			<th>Tungumál</th>
 			<th>Stofnandi</th>
-			<th>Hala</th>
-			<th>Niðurhöl</th>
+			<th class ="min">Niðurhöl</thclass>
+			<th class="min">Niðurhala</th>
 		</tr>
 	</thead>
 	<tbody>
@@ -20,8 +20,8 @@
 				<td>@subtitle.YearCreated</td>
 				<td>@subtitle.Language.Name</td>
 				<td>UserName</td> <!--subtitle.AspNetUsers.FirstOrDefault().UserName virkar ekki!-->
-				<td id="greendown">▼</td>
 				<td>Niðurhöl</td>
+				<td align="right"><input type="button" name="stofna" value="Niðurhala" /></td>
 			</tr>
 		}
 	</tbody>
