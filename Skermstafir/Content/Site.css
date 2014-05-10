@@ -507,7 +507,7 @@ fieldset {
 	padding-left: 67px;
 }
 
-input[type=button] {
+.subtitle-box input[type=button], .request-box input[type=button] {
 	position:absolute;
 	right:15px;
 	bottom:15px;
