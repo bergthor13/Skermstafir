@@ -7,7 +7,7 @@
 <div class="subtitle-box">
 	<div class="box-title">
 		@Model.subtitle.Name (@Model.subtitle.YearCreated)
-		<p class="votes-req-page">▲ 00NI</p>
+		<p class="votes-req-page">▲ @Model.subtitle.Votes.Count</p>
 	</div>
 
 	<div class="flokkar disabled">
@@ -46,6 +46,12 @@
 	}
 	
 		<input id="download" type="button" name="createSubtitle" value="Niðurhala" />
+	
+	<p>Stofnandi þýðingu: @Model.subtitle.AspNetUsers.FirstOrDefault().UserName</p>
+
+	<p>Útgáfuár:</p>
+	<input type="text" name="year" value="@Model.subtitle.YearCreated" disabled />
+	<textarea id="description" cols="50" rows="8" disabled>@Model.subtitle.Description</textarea>
 </div>
 <div class="col-md-6">
 	<textarea id="originalText" cols="900" rows="40" disabled></textarea>
