@@ -39,7 +39,7 @@
 					  rows="10" >@Model.subtitle.Description</textarea>
 			</span>
 
-			<input id="download" type="submit" name="createSubtitle" value="Vista" />
+		<input id="download" onclick="location.href='@Url.Action("ShowSubtitle", "Subtitle", new { id = Model.subtitle.IdSubtitle })'" type="submit" name="createSubtitle" value="Vista" />
 
 			<p class="info">
 				<span class="col-md-2">Stofnandi þýðingar:</span>
