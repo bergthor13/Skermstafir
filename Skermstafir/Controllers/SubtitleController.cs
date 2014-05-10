@@ -1,5 +1,4 @@
-﻿using Skermstafir.Exceptions;
-using Skermstafir.Models;
+﻿using Skermstafir.Models;
 using Skermstafir.Repositories;
 using System;
 using System.Collections.Generic;
@@ -26,7 +25,7 @@ namespace Skermstafir.Controllers
 			{
 				result = sr.GetSubtitleByID(idValue);
 			}
-			catch (NoSubtitleFoundException)
+			catch (NoSubtitleFoundException ex)
 			{
 
 				return View("Errors/NoSubFound");
@@ -46,7 +45,12 @@ namespace Skermstafir.Controllers
 		public ActionResult EditSubtitle(int? subtitleID)
 		{
 			SearchRepository sr = new SearchRepository();
+<<<<<<< HEAD
 			SubtitleModel result = sr.GetSubtitleByID(2);
+=======
+            int id = subtitleID;
+			SubtitleModel result = sr.GetSubtitleByID(id);
+>>>>>>> 2dcde19076ee6a351aa51d6f57ed10a870212a20
 			return View(result);
 		}
 	}

@@ -6,11 +6,16 @@
 
 <div class="subtitle-box">
 	<div class="box-title">
+<<<<<<< HEAD
 		@Model.subtitle.Name (@Model.subtitle.YearCreated)
 		<p class="votes-req-page">▲ 00NI</p>
+=======
+		<p>@Model.subtitle.Name</p>
+		<p class="votes-req-page">▲ @Model.subtitle.Votes.Count</p>
+>>>>>>> 2dcde19076ee6a351aa51d6f57ed10a870212a20
 	</div>
 
-	<div class="flokkar-view-edit">
+	<div class="flokkar disabled">
 		<input type="checkbox" id="genre1" disabled />
 		<label for="genre1">Kvikmyndir</label>
 
@@ -36,6 +41,7 @@
 		<label for="genre8">Ævintýri</label>
 	</div>
 
+<<<<<<< HEAD
 	<p id="user">Stofnandi þýðingu: @Model.subtitle.AspNetUsers.FirstOrDefault().UserName</p>
 	<p id="year">Útgáfuár: <input type="text" name="year" value="@Model.subtitle.YearCreated" disabled /></p>
 	
@@ -47,6 +53,13 @@
 	
 		<input id="download" type="button" name="createSubtitle" value="Niðurhala" />
 	
+=======
+	<p>Stofnandi þýðingu: @Model.subtitle.AspNetUsers.FirstOrDefault().UserName</p>
+
+	<p>Útgáfuár:</p>
+	<input type="text" name="year" value="@Model.subtitle.YearCreated" disabled />
+	<textarea id="description" cols="50" rows="8" disabled>@Model.subtitle.Description</textarea>
+>>>>>>> 2dcde19076ee6a351aa51d6f57ed10a870212a20
 </div>
 <div class="col-md-6">
 	<textarea id="originalText" cols="900" rows="40" disabled></textarea>

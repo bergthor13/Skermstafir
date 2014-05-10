@@ -1,0 +1,28 @@
+﻿@Html.ActionLink("Opna breyta þýðingu síðuna", "EditSubtitle", "Subtitle")
+<table class="table table-striped">
+	<thead>
+		<tr>
+			<th>Upp</th>
+			<th>Titill</th>
+			<th>Útgáfuár</th>
+			<th>Tungumál</th>
+			<th>Stofnandi</th>
+			<th>Hala</th>
+			<th>Niðurhöl</th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach (var subtitle in Model.modelList)
+		{
+			<tr>
+				<td align="center"><p class="blueup">▲ @subtitle.Votes.Count</p></td>
+				<td>@Html.ActionLink((string)subtitle.Name, "ShowSubtitle", new { controller = "Subtitle", id = subtitle.IdSubtitle }, "Subtitle")</td>
+				<td>@subtitle.YearCreated</td>
+				<td>@subtitle.Language.Name</td>
+				<td>UserName</td> <!--subtitle.AspNetUsers.FirstOrDefault().UserName virkar ekki!-->
+				<td id="greendown">▼</td>
+				<td>Niðurhöl</td>
+			</tr>
+		}
+	</tbody>
+</table>
