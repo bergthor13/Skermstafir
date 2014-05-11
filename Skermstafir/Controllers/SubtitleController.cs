@@ -11,7 +11,14 @@ namespace Skermstafir.Controllers
 {
     public class SubtitleController : Controller
     {
-        //
+
+		// Creates a new translation
+		public ActionResult CreateSubtitle()
+		{
+			SubtitleModel model = new SubtitleModel();
+			return View(model);
+		}
+
         // GET: /Subtitle/
         public ActionResult ShowSubtitle(int? id)
         {
@@ -27,18 +34,11 @@ namespace Skermstafir.Controllers
 				int idValue = id.Value;
 				SubtitleModel result;
 				result = sr.GetSubtitleByID(idValue);
-				// Go through each genre.
-				foreach (var item in result.subtitle.Genres)
-				{
-					if (item.Name == "Kvikmyndir")	  { result.genreValue[0] = true; }
-					if (item.Name == "Þættir")		  { result.genreValue[1] = true; }
-					if (item.Name == "Barnaefni")  { result.genreValue[2] = true; }
-					if (item.Name == "Heimildir") { result.genreValue[3] = true; }
-					if (item.Name == "Gaman")		  { result.genreValue[4] = true; }
-					if (item.Name == "Spenna")		  { result.genreValue[5] = true; }
-					if (item.Name == "Drama")		  { result.genreValue[6] = true; }
-					if (item.Name == "Ævintýri")	  { result.genreValue[7] = true; }
-				}
+
+				// Mark genres of the subtitle to
+				// display in the view (checkboxes)
+				GenreToArray(result);
+
 				return View(result);
 			}
 			catch (NoSubtitleFoundException)
@@ -47,13 +47,6 @@ namespace Skermstafir.Controllers
 			}
 			
         }
-
-		// Creates a new translation
-		public ActionResult CreateSubtitle()
-		{
-            SubtitleModel model = new SubtitleModel();
-			return View(model);
-		}
 
 		// Gets the translation to be edited with the ID subtitleID
 		[Authorize]
@@ -71,7 +64,12 @@ namespace Skermstafir.Controllers
 				SearchRepository sr = new SearchRepository();
 				int idValue = id.Value;
                 SubtitleModel result = sr.GetSubtitleByID(idValue);
-                return View(result);
+
+				// Mark genres of the subtitle to
+				// display in the view (checkboxes)
+				GenreToArray(result);
+				
+				return View(result);
             }
 			catch (NoSubtitleFoundException)
             {
@@ -97,6 +95,7 @@ namespace Skermstafir.Controllers
 			editedSub.subtitle.YearCreated = Convert.ToInt32(fd["year"]);
 			editedSub.subtitle.Content = fd["originalText"];
 			editedSub.subtitle.Description = fd["description"];
+
 			//editedSub.subtitle.Genres = ;
 			//editedSub.subtitle.Artists = ;
 
@@ -104,8 +103,29 @@ namespace Skermstafir.Controllers
 			
 			// Get the new list
 			editedSub = search.GetSubtitleByID(idValue);
+			// Mark genres of the subtitle to
+			// display in the view (checkboxes)
+			GenreToArray(editedSub);
 
-			return View("ShowSubtitle", editedSub);
+			return this.RedirectToAction("ShowSubtitle", new { id = idValue });
+		}
+
+		// Helper Function:
+		// Puts true to an array iff the genre exists in this subtitle
+		public void GenreToArray(SubtitleModel sm)
+		{
+			foreach (var item in sm.subtitle.Genres)
+			{
+				if (item.Name == "Kvikmyndir") { sm.genreValue[0] = true; }
+				if (item.Name == "Þættir") { sm.genreValue[1] = true; }
+				if (item.Name == "Barnaefni") { sm.genreValue[2] = true; }
+				if (item.Name == "Heimildir") { sm.genreValue[3] = true; }
+				if (item.Name == "Gaman") { sm.genreValue[4] = true; }
+				if (item.Name == "Spenna") { sm.genreValue[5] = true; }
+				if (item.Name == "Drama") { sm.genreValue[6] = true; }
+				if (item.Name == "Ævintýri") { sm.genreValue[7] = true; }
+			}
 		}
 	}
+
 }
