@@ -103,6 +103,9 @@ namespace Skermstafir.Controllers
 			
 			// Get the new list
 			editedSub = search.GetSubtitleByID(idValue);
+			// Mark genres of the subtitle to
+			// display in the view (checkboxes)
+			GenreToArray(editedSub);
 
 			return View("ShowSubtitle", editedSub);
 		}
