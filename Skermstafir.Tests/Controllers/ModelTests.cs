@@ -11,7 +11,7 @@ using Skermstafir.Controllers;
 namespace Skermstafir.Tests.Controllers
 {
 	[TestClass]
-    class SearchControllerTest
+    class ModelTests
     {
     }
 }

@@ -6,34 +6,36 @@
 
 <h2>@ViewBag.Title</h2>
 
-
-
 <p class="text-success">@ViewBag.StatusMessage</p>
+
 <div class="row">
-    <div id="afrekSection" class="col-md-3 tranreq-list top manage">
+    <div id="myAchievements" class="col-md-3 tranreq-list leftSection">
         <p class="box-title">Afrek</p>
-        <div class="fp-list">
-            <p>Afrek 1</p>
-        </div>
-        <div class="fp-list">
-            <p>Afrek 2</p>
-        </div>
-        <div class="fp-list">
-            <p>Afrek 3</p>
+        <div class="top manage">
+            @for (int i = 0; i < 20; i++)
+            {
+                <div class="fp-list">
+                    <p>Afrek</p>
+                </div>
+            }
         </div>
     </div>
-    <div id="transSection" class="col-md-6 tranreq-list top manage">
+
+    <div id="mySubtitles" class="col-md-6 tranreq-list rightSection">
         <p class="box-title">Mínar þýðingar</p>
-        @for (int i = 0; i < 20; i++)
-        {
-            <div class="fp-list">
-                <p>Þýðing</p>
-            </div>
-        }
+        <div class="top manage">
+            @for (int i = 0; i < 20; i++)
+            {
+                <div class="fp-list">
+                    <p>Þýðing</p>
+                </div>
+            }
+        </div>
     </div>
 </div>
+
 <div class="row">
-    <div id="settingSection" class="col-md-3 tranreq-list bottom manage">
+    <div id="mySettings" class="col-md-3 tranreq-list leftSection">
         <p class="box-title">Stillingar</p>
         <div class="col-md-12">
             @if (ViewBag.HasLocalPassword)
@@ -46,25 +48,20 @@
             }
         </div>
     </div>
-    <div id="reqSection" class="col-md-6 tranreq-list bottom manage">
+
+    <div id="myRequests" class="col-md-6 tranreq-list rightSection">
         <p class="box-title">Mínar beiðnir</p>
-        <div class="fp-list">
-            <p>Beiðni 1</p>
-        </div>
-        <div class="fp-list">
-            <p>Beiðni 2</p>
-        </div>
-        <div class="fp-list">
-            <p>Beiðni 3</p>
-        </div>
-        <div class="fp-list">
-            <p>Beiðni 4</p>
+        <div class="bottom manage">
+            @for (int i = 0; i < 20; i++)
+            {
+                <div class="fp-list">
+                    <p>Þýðing</p>
+                </div>
+            }
         </div>
     </div>
 </div>
-<div class="row">
-    
-</div>
+
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }

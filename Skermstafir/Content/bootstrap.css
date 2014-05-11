@@ -1110,6 +1110,9 @@ pre code {
   .col-md-5 {
     width: 41.66666666666667%;
   }
+  .col-md-5.lykilord {
+    width: 50%;
+  }
   .col-md-6 {
     width: 50%;
   }
@@ -1119,11 +1122,18 @@ pre code {
   .col-md-8 {
     width: 66.66666666666666%;
   }
+  .col-md-8.loginbox {
+    width: 60%;
+  }
   .col-md-9 {
     width: 75%;
   }
   .col-md-10 {
     width: 83.33333333333334%;
+  }
+  .col-md-10.logininput {
+    width: 55%;
+    padding-left: 5%;
   }
   .col-md-11 {
     width: 91.66666666666666%;
