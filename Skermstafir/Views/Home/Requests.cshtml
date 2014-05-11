@@ -4,5 +4,5 @@
 }
 
 @Html.Partial("_SearchRequests")
-<input type="button" name="createRequest" value="Stofna beiðni" />
+<input type="button" name="createRequest" value="Stofna beiðni" onclick="location.href='@Url.Action("CreateRequest", "Request")'" />
 @Html.Partial("_SearchResultRequests")

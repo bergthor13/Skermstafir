@@ -7,6 +7,6 @@
 
 @if (Request.IsAuthenticated)
 {
-	<input type="button" name="createRequest" value="Stofna þýðingu" />
+    <input type="button" name="createSubtitle" value="Stofna þýðingu" onclick="location.href='@Url.Action("CreateSubtitle", "Subtitle")'" />
 }
 @Html.Partial("_SearchResultSubtitles")
