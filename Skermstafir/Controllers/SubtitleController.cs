@@ -12,15 +12,32 @@ namespace Skermstafir.Controllers
     public class SubtitleController : Controller
     {
 
-		// Creates a new translation
+		/// <summary>
+		/// Creates a new translation.
+		/// </summary>
+		[Authorize]
+		[HttpGet]
 		public ActionResult CreateSubtitle()
 		{
 			SubtitleModel model = new SubtitleModel();
 			return View(model);
 		}
 
-        // GET: /Subtitle/
-        public ActionResult ShowSubtitle(int? id)
+		/// <summary>
+		/// Creates a new translation.
+		/// </summary>
+		[Authorize]
+		[HttpPost]
+		public ActionResult CreateSubtitle(FormCollection fc)
+		{
+			SubtitleModel model = new SubtitleModel();
+			return View(model);
+		}
+
+		///<summary>
+        /// Gets the translation to be edited with the ID 'id'
+		///</summary>
+        public ActionResult ShowSubtitle(int? id) // THIS ONE IS READY (I think).
         {
 			SearchRepository sr = new SearchRepository();
 
@@ -31,14 +48,16 @@ namespace Skermstafir.Controllers
 
             try
 			{
+				// Convert ID from Nullable int to int.
 				int idValue = id.Value;
+
+				// Get the desired item.
 				SubtitleModel result;
 				result = sr.GetSubtitleByID(idValue);
 
-				// Mark genres of the subtitle to
-				// display in the view (checkboxes)
-				GenreToArray(result);
-
+				// Fill the empty model variables (genreValue[] and artistsForView).
+				FillModel(result);
+				
 				return View(result);
 			}
 			catch (NoSubtitleFoundException)
@@ -48,10 +67,12 @@ namespace Skermstafir.Controllers
 			
         }
 
-		// Gets the translation to be edited with the ID subtitleID
+		/// <summary>
+		/// Gets the translation to be edited with the ID subtitleID
+		/// </summary> 
 		[Authorize]
 		[HttpGet]
-		public ActionResult EditSubtitle(int? id)
+		public ActionResult EditSubtitle(int? id) // THIS ONE IS READY (I think).
 		{
 			
 			if (id == null)
@@ -61,13 +82,15 @@ namespace Skermstafir.Controllers
 
             try
             {
-				SearchRepository sr = new SearchRepository();
+				// Convert ID from Nullable int to int.
 				int idValue = id.Value;
+
+				// Get the desired item.
+				SearchRepository sr = new SearchRepository();
                 SubtitleModel result = sr.GetSubtitleByID(idValue);
 
-				// Mark genres of the subtitle to
-				// display in the view (checkboxes)
-				GenreToArray(result);
+				// Fill the empty model variables (genreValue[] and artistsForView).
+				FillModel(result);
 				
 				return View(result);
             }
@@ -93,7 +116,7 @@ namespace Skermstafir.Controllers
 
 			// Change the subtitle
 			editedSub.subtitle.YearCreated = Convert.ToInt32(fd["year"]);
-			editedSub.subtitle.Content = fd["originalText"];
+			editedSub.subtitle.Content = fd["editedText"];
 			editedSub.subtitle.Description = fd["description"];
 
 			//editedSub.subtitle.Genres = ;
@@ -103,17 +126,21 @@ namespace Skermstafir.Controllers
 			
 			// Get the new list
 			editedSub = search.GetSubtitleByID(idValue);
-			// Mark genres of the subtitle to
-			// display in the view (checkboxes)
-			GenreToArray(editedSub);
+			
+			// Fill the empty model variables.
+			FillModel(editedSub);
 
 			return this.RedirectToAction("ShowSubtitle", new { id = idValue });
 		}
 
-		// Helper Function:
-		// Puts true to an array iff the genre exists in this subtitle
-		public void GenreToArray(SubtitleModel sm)
+
+		/// <summary>
+		/// Helper Function. 
+		/// <para>Fills in the rest of the model (genreValue[] and artistsForView)</para>
+		/// </summary> 
+		public void FillModel(SubtitleModel sm)
 		{
+			// Put genres in a bool array
 			foreach (var item in sm.subtitle.Genres)
 			{
 				if (item.Name == "Kvikmyndir") { sm.genreValue[0] = true; }
@@ -124,6 +151,20 @@ namespace Skermstafir.Controllers
 				if (item.Name == "Spenna") { sm.genreValue[5] = true; }
 				if (item.Name == "Drama") { sm.genreValue[6] = true; }
 				if (item.Name == "Ævintýri") { sm.genreValue[7] = true; }
+			}
+
+			// Put artists in a string
+			foreach (var art in sm.subtitle.Artists)
+			{
+				if (art != sm.subtitle.Artists.Last())
+				{
+					sm.artistsForView += art.Name + ", ";
+				}
+				else
+				{
+					sm.artistsForView += art.Name;
+				}
+
 			}
 		}
 	}

@@ -40,7 +40,7 @@
 					  rows="10">@Model.subtitle.Description</textarea>
 			</span>
 
-		<input id="download" onclick="location.href='@Url.Action("ShowSubtitle", "Subtitle", new { id = Model.subtitle.IdSubtitle })'" type="submit" name="createSubtitle" value="Vista" />
+		<input id="download" type="submit" name="createSubtitle" value="Vista" />
 
 			<p class="info">
 				<span class="col-md-2">Stofnandi þýðingar:</span>
@@ -57,7 +57,7 @@
 
 			<p class="info">
 				<label for="actors" class="col-md-2">Aðalleikarar:</label>
-				<input type="text" name="actors" value="NOT IMPL"  />
+				<input type="text" name="actors" value="@Model.artistsForView" />
 			</p>
 
 			<p class="info">
