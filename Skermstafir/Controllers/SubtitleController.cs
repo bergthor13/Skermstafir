@@ -107,7 +107,7 @@ namespace Skermstafir.Controllers
 			// display in the view (checkboxes)
 			GenreToArray(editedSub);
 
-			return View("ShowSubtitle", editedSub);
+			return this.RedirectToAction("ShowSubtitle", new { id = idValue });
 		}
 
 		// Helper Function:
