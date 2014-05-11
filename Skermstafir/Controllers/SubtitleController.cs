@@ -27,6 +27,18 @@ namespace Skermstafir.Controllers
 				int idValue = id.Value;
 				SubtitleModel result;
 				result = sr.GetSubtitleByID(idValue);
+				// Go through each genre.
+				foreach (var item in result.subtitle.Genres)
+				{
+					if (item.Name == "Kvikmyndir")	  { result.genreValue[0] = true; }
+					if (item.Name == "Þættir")		  { result.genreValue[1] = true; }
+					if (item.Name == "Barnaefni")  { result.genreValue[2] = true; }
+					if (item.Name == "Heimildir") { result.genreValue[3] = true; }
+					if (item.Name == "Gaman")		  { result.genreValue[4] = true; }
+					if (item.Name == "Spenna")		  { result.genreValue[5] = true; }
+					if (item.Name == "Drama")		  { result.genreValue[6] = true; }
+					if (item.Name == "Ævintýri")	  { result.genreValue[7] = true; }
+				}
 				return View(result);
 			}
 			catch (NoSubtitleFoundException)
@@ -43,7 +55,8 @@ namespace Skermstafir.Controllers
 			return View(model);
 		}
 
-		// Edits the translation with the ID subtitleID
+		// Gets the translation to be edited with the ID subtitleID
+		[Authorize]
 		[HttpGet]
 		public ActionResult EditSubtitle(int? id)
 		{
@@ -67,23 +80,31 @@ namespace Skermstafir.Controllers
 		}
 
 		// Takes the form data submitted and sends it to the repository.
+		[Authorize]
 		[HttpPost]
 		public ActionResult EditSubtitle(int? id, FormCollection fd, Subtitle sub)
 		{
 			int idValue = id.Value;
 			SubtitleModel editedSub = new SubtitleModel();
 			SearchRepository search = new SearchRepository();
-			using (var db = new SkermData())
-			{
-				SubtitleRepository sr = new SubtitleRepository();
+			var db = new SkermData();
+			
+			SubtitleRepository sr = new SubtitleRepository();
 				
-				editedSub = search.GetSubtitleByID(idValue);
-				editedSub.subtitle.YearCreated = Convert.ToInt32(fd["year"]);
-				sr.ChangeExistingSubtitle(idValue, editedSub);
-
-			}
 			editedSub = search.GetSubtitleByID(idValue);
-			// Works when debugged, but not otherwise.
+
+			// Change the subtitle
+			editedSub.subtitle.YearCreated = Convert.ToInt32(fd["year"]);
+			editedSub.subtitle.Content = fd["originalText"];
+			editedSub.subtitle.Description = fd["description"];
+			//editedSub.subtitle.Genres = ;
+			//editedSub.subtitle.Artists = ;
+
+			sr.ChangeExistingSubtitle(idValue, editedSub);
+			
+			// Get the new list
+			editedSub = search.GetSubtitleByID(idValue);
+
 			return View("ShowSubtitle", editedSub);
 		}
 	}

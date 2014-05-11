@@ -8,5 +8,6 @@ namespace Skermstafir.Models
     public class SubtitleModel
     {
         public Subtitle subtitle { get; set; }
+		public bool[] genreValue = new bool[8];
     }
 }
