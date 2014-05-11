@@ -579,3 +579,8 @@ fieldset {
 .subtitle-box .info [name=year] {
 	width: 80px
 }
+
+.green-letters {
+    color: #65E17B;
+    font-size: 14px;
+}
