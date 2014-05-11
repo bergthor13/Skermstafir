@@ -37,7 +37,7 @@ namespace Skermstafir.Controllers
         }
 
 		// Creates a new translation
-		public ActionResult CreateNewSubtitle()
+		public ActionResult CreateSubtitle()
 		{
             SubtitleModel model = new SubtitleModel();
 			return View(model);
