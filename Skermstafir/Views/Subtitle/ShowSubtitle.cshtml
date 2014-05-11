@@ -7,11 +7,11 @@
 <div class="subtitle-box">
 	<div class="box-title">
 		@Model.subtitle.Name (@Model.subtitle.YearCreated)
-		<p class="votes-req-page">▲ @Model.subtitle.Votes.Count</p>
+		<p class="votes-req-page"><span class="blueup">▲ @Model.subtitle.Votes.Count</span></p>
 	</div>
 
 	<div class="flokkar-view-edit">
-		<input type="checkbox" id="genre1" disabled/>
+		<input type="checkbox" id="genre1" disabled />
 		<label for="genre1">Kvikmyndir</label>
 		<input type="checkbox" id="genre2" disabled />
 		<label for="genre2">Þættir</label>
@@ -28,12 +28,17 @@
 		<input type="checkbox" id="genre8" disabled />
 		<label for="genre8">Ævintýri</label>
 	</div>
-
-	<textarea id="description" cols="50" rows="10" disabled>@Model.subtitle.Description</textarea>
+	<span id="description">
+		<label for="description">Lýsing:</label>
+		<textarea id="description-text"
+				  name="description"
+				  cols="50"
+				  rows="10" disabled>@Model.subtitle.Description</textarea>
+	</span>
 
 	@if (User.Identity.IsAuthenticated)
 	{
-		<input id="edit-subtitle" type="button" name="createSubtitle" value="Breyta þýðingu" />
+		<input id="edit-subtitle" type="button" name="createSubtitle" value="Breyta þýðingu" onclick="location.href='@Url.Action("EditSubtitle", "Subtitle", new { id = Model.subtitle.IdSubtitle })'" />
 	}
 
 	<input id="download" type="button" name="createSubtitle" value="Niðurhala" />
@@ -42,10 +47,12 @@
 		<span class="col-md-2">Stofnandi þýðingar:</span>
 		@Model.subtitle.AspNetUsers.FirstOrDefault().UserName
 	</p>
+
 	<p class="info">
 		<span class="col-md-2">Tungumál:</span>
 		<span id="language-with-flag">
-			<img src="http://www.placekitten.com/32/22" alt="Flag" /> @Model.subtitle.Language.Name
+			<img src="http://www.placekitten.com/32/22" alt="Flag" />
+			@Model.subtitle.Language.Name
 		</span>
 	</p>
 
@@ -63,6 +70,11 @@
 		<label for="year" class="col-md-2">Útgáfuár:</label>
 		<input type="text" name="year" value="@Model.subtitle.YearCreated" disabled />
 	</p>
+
+	<p class="info">
+		<label for="link" class="col-md-2">Linkur á myndband:</label>
+		<input type="text" name="link" value="NOT IMPL" disabled />
+	</p>
 </div>
 
 
@@ -75,4 +87,3 @@
 	<h3 align="center">Þýðing:</h3>
 	<textarea id="editedText" cols="900" rows="40" disabled></textarea>
 </div>
-

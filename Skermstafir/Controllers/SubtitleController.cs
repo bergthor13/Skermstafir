@@ -19,7 +19,7 @@ namespace Skermstafir.Controllers
 
 			if (id == null)
 			{
-				return View("Errors/Error");
+				return View("Errors/NoSubFound");
 			}
 
             try
@@ -44,6 +44,7 @@ namespace Skermstafir.Controllers
 		}
 
 		// Edits the translation with the ID subtitleID
+		[HttpGet]
 		public ActionResult EditSubtitle(int? id)
 		{
 			
@@ -63,6 +64,27 @@ namespace Skermstafir.Controllers
             {
                 return View("Errors/NoSubFound");
             }
+		}
+
+		// Takes the form data submitted and sends it to the repository.
+		[HttpPost]
+		public ActionResult EditSubtitle(int? id, FormCollection fd, Subtitle sub)
+		{
+			int idValue = id.Value;
+			SubtitleModel editedSub = new SubtitleModel();
+			SearchRepository search = new SearchRepository();
+			using (var db = new SkermData())
+			{
+				SubtitleRepository sr = new SubtitleRepository();
+				
+				editedSub = search.GetSubtitleByID(idValue);
+				editedSub.subtitle.YearCreated = Convert.ToInt32(fd["year"]);
+				sr.ChangeExistingSubtitle(idValue, editedSub);
+
+			}
+			editedSub = search.GetSubtitleByID(idValue);
+			// Works when debugged, but not otherwise.
+			return View("ShowSubtitle", editedSub);
 		}
 	}
 }

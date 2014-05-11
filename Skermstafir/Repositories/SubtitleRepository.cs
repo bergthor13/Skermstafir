@@ -29,12 +29,14 @@ namespace Skermstafir.Repositories
         // Change an existing subtitle entry in the database
         public void ChangeExistingSubtitle(int id, SubtitleModel editSub)
         {
-            SkermData db = new SkermData();
-            Subtitle toBeChanged = (from item in db.Subtitles
-                                    where item.IdSubtitle == id
-                                    select item).Single();
-            toBeChanged = editSub.subtitle;
-            db.SaveChanges();
+			using (SkermData db = new SkermData())
+			{
+				Subtitle toBeChanged = (from item in db.Subtitles
+										where item.IdSubtitle == id
+										select item).Single();
+				toBeChanged = editSub.subtitle;
+				db.SaveChanges();
+			}
         }
     }
 }
