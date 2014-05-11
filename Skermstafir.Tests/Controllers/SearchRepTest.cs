@@ -10,6 +10,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Skermstafir.Tests.Controllers
 {
+	[TestClass]
     class SearchRepTest
     {
         [TestMethod]
