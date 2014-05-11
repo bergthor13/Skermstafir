@@ -28,7 +28,7 @@ namespace Skermstafir.Controllers
 		/// </summary>
 		[Authorize]
 		[HttpPost]
-		public ActionResult CreateSubtitle()
+		public ActionResult CreateSubtitle(FormCollection fc)
 		{
 			SubtitleModel model = new SubtitleModel();
 			return View(model);
