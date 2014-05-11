@@ -32,8 +32,8 @@ namespace Skermstafir.Controllers
 				{
 					if (item.Name == "Kvikmyndir")	  { result.genreValue[0] = true; }
 					if (item.Name == "Þættir")		  { result.genreValue[1] = true; }
-					if (item.Name == "Teiknimyndir")  { result.genreValue[2] = true; }
-					if (item.Name == "Heimildarefni") { result.genreValue[3] = true; }
+					if (item.Name == "Barnaefni")  { result.genreValue[2] = true; }
+					if (item.Name == "Heimildir") { result.genreValue[3] = true; }
 					if (item.Name == "Gaman")		  { result.genreValue[4] = true; }
 					if (item.Name == "Spenna")		  { result.genreValue[5] = true; }
 					if (item.Name == "Drama")		  { result.genreValue[6] = true; }
