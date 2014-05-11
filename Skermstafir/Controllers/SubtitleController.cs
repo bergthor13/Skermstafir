@@ -12,15 +12,32 @@ namespace Skermstafir.Controllers
     public class SubtitleController : Controller
     {
 
-		// Creates a new translation
+		/// <summary>
+		/// Creates a new translation.
+		/// </summary>
+		[Authorize]
+		[HttpGet]
 		public ActionResult CreateSubtitle()
 		{
 			SubtitleModel model = new SubtitleModel();
 			return View(model);
 		}
 
-        // GET: /Subtitle/
-        public ActionResult ShowSubtitle(int? id)
+		/// <summary>
+		/// Creates a new translation.
+		/// </summary>
+		[Authorize]
+		[HttpPost]
+		public ActionResult CreateSubtitle()
+		{
+			SubtitleModel model = new SubtitleModel();
+			return View(model);
+		}
+
+		///<summary>
+        /// Gets the translation to be edited with the ID 'id'
+		///</summary>
+        public ActionResult ShowSubtitle(int? id) // THIS ONE IS READY (I think).
         {
 			SearchRepository sr = new SearchRepository();
 
@@ -31,12 +48,14 @@ namespace Skermstafir.Controllers
 
             try
 			{
+				// Convert ID from Nullable int to int.
 				int idValue = id.Value;
+
+				// Get the desired item.
 				SubtitleModel result;
 				result = sr.GetSubtitleByID(idValue);
 
-				// Mark genres of the subtitle to
-				// display in the view (checkboxes)
+				// Fill the empty model variables (genreValue[] and artistsForView).
 				FillModel(result);
 				
 				return View(result);
@@ -48,7 +67,9 @@ namespace Skermstafir.Controllers
 			
         }
 
-		// Gets the translation to be edited with the ID subtitleID
+		/// <summary>
+		/// Gets the translation to be edited with the ID subtitleID
+		/// </summary> 
 		[Authorize]
 		[HttpGet]
 		public ActionResult EditSubtitle(int? id) // THIS ONE IS READY (I think).
