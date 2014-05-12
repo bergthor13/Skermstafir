@@ -28,6 +28,7 @@ namespace Skermstafir
         public string Description { get; set; }
         public Nullable<int> YearCreated { get; set; }
         public Nullable<System.DateTime> DateAdded { get; set; }
+        public string Director { get; set; }
         public string Link { get; set; }
     
         public virtual Language Language { get; set; }
