@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Schema Namespace="SkermDatabase" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+<Schema Namespace="SkermData" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
   <EntityType Name="C__MigrationHistory">
     <Key>
       <PropertyRef Name="MigrationId" />
@@ -10,14 +10,14 @@
     <Property Name="Model" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
     <Property Name="ProductVersion" Type="String" MaxLength="32" FixedLength="false" Unicode="true" Nullable="false" />
   </EntityType>
-  <EntityType Name="Artist">
+  <EntityType Name="Actor">
     <Key>
-      <PropertyRef Name="IdArtist" />
+      <PropertyRef Name="IdActor" />
     </Key>
-    <Property Name="IdArtist" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IdActor" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <NavigationProperty Name="Requests" Relationship="Self.Request_has_Artist" FromRole="Artist" ToRole="Request" />
-    <NavigationProperty Name="Subtitles" Relationship="Self.Subtitle_has_Artist" FromRole="Artist" ToRole="Subtitle" />
+    <NavigationProperty Name="Requests" Relationship="Self.Request_has_Actor" FromRole="Actor" ToRole="Request" />
+    <NavigationProperty Name="Subtitles" Relationship="Self.Subtitle_has_Actor" FromRole="Actor" ToRole="Subtitle" />
   </EntityType>
   <EntityType Name="AspNetRole">
     <Key>
@@ -73,12 +73,22 @@
     <NavigationProperty Name="Subtitles" Relationship="Self.Subtitle_has_Comment" FromRole="Comment" ToRole="Subtitle" />
     <NavigationProperty Name="AspNetUsers" Relationship="Self.User_has_Comment" FromRole="Comment" ToRole="AspNetUsers" />
   </EntityType>
+  <EntityType Name="Director">
+    <Key>
+      <PropertyRef Name="IdDirector" />
+    </Key>
+    <Property Name="IdDirector" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Requests" Relationship="Self.FK_dbo_Request_dbo_Director_DirectorId" FromRole="Director" ToRole="Request" />
+    <NavigationProperty Name="Subtitles" Relationship="Self.FK_dbo_Subtitle_dbo_Director_DirectorId" FromRole="Director" ToRole="Subtitle" />
+  </EntityType>
   <EntityType Name="Genre">
     <Key>
       <PropertyRef Name="IdGenre" />
     </Key>
     <Property Name="IdGenre" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Requests" Relationship="Self.Request_has_Genre" FromRole="Genre" ToRole="Request" />
     <NavigationProperty Name="Subtitles" Relationship="Self.Subtitle_has_Genre" FromRole="Genre" ToRole="Subtitle" />
   </EntityType>
   <EntityType Name="Language">
@@ -96,13 +106,17 @@
     </Key>
     <Property Name="IdRequest" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="LanguageId" Type="Int32" Nullable="false" />
+    <Property Name="DirectorId" Type="Int32" Nullable="false" />
     <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="Description" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
     <Property Name="YearCreated" Type="Int32" />
     <Property Name="DateAdded" Type="DateTime" Precision="3" />
+    <Property Name="Link" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Director" Relationship="Self.FK_dbo_Request_dbo_Director_DirectorId" FromRole="Request" ToRole="Director" />
     <NavigationProperty Name="Language" Relationship="Self.FK_dbo_Request_dbo_Language_LanguageId" FromRole="Request" ToRole="Language" />
-    <NavigationProperty Name="Artists" Relationship="Self.Request_has_Artist" FromRole="Request" ToRole="Artist" />
+    <NavigationProperty Name="Actors" Relationship="Self.Request_has_Actor" FromRole="Request" ToRole="Actor" />
+    <NavigationProperty Name="Genres" Relationship="Self.Request_has_Genre" FromRole="Request" ToRole="Genre" />
     <NavigationProperty Name="Votes" Relationship="Self.Request_has_Vote" FromRole="Request" ToRole="Vote" />
   </EntityType>
   <EntityType Name="Subtitle">
@@ -111,13 +125,17 @@
     </Key>
     <Property Name="IdSubtitle" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="LanguageId" Type="Int32" Nullable="false" />
+    <Property Name="DirectorId" Type="Int32" Nullable="false" />
     <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="Description" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
     <Property Name="YearCreated" Type="Int32" />
     <Property Name="Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="EditContent" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="DateAdded" Type="DateTime" Precision="3" />
+    <Property Name="Link" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Director" Relationship="Self.FK_dbo_Subtitle_dbo_Director_DirectorId" FromRole="Subtitle" ToRole="Director" />
     <NavigationProperty Name="Language" Relationship="Self.FK_dbo_Subtitle_dbo_Language_LanguageId" FromRole="Subtitle" ToRole="Language" />
-    <NavigationProperty Name="Artists" Relationship="Self.Subtitle_has_Artist" FromRole="Subtitle" ToRole="Artist" />
+    <NavigationProperty Name="Actors" Relationship="Self.Subtitle_has_Actor" FromRole="Subtitle" ToRole="Actor" />
     <NavigationProperty Name="Comments" Relationship="Self.Subtitle_has_Comment" FromRole="Subtitle" ToRole="Comment" />
     <NavigationProperty Name="Genres" Relationship="Self.Subtitle_has_Genre" FromRole="Subtitle" ToRole="Genre" />
     <NavigationProperty Name="Votes" Relationship="Self.Subtitle_has_Vote" FromRole="Subtitle" ToRole="Vote" />
@@ -160,6 +178,34 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_dbo_Request_dbo_Director_DirectorId">
+    <End Role="Director" Type="Self.Director" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Request" Type="Self.Request" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Director">
+        <PropertyRef Name="IdDirector" />
+      </Principal>
+      <Dependent Role="Request">
+        <PropertyRef Name="DirectorId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_Subtitle_dbo_Director_DirectorId">
+    <End Role="Director" Type="Self.Director" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Subtitle" Type="Self.Subtitle" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Director">
+        <PropertyRef Name="IdDirector" />
+      </Principal>
+      <Dependent Role="Subtitle">
+        <PropertyRef Name="DirectorId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_dbo_Request_dbo_Language_LanguageId">
     <End Role="Language" Type="Self.Language" Multiplicity="1">
       <OnDelete Action="Cascade" />
@@ -192,16 +238,20 @@
     <End Role="AspNetRoles" Type="Self.AspNetRole" Multiplicity="*" />
     <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="*" />
   </Association>
-  <Association Name="Request_has_Artist">
-    <End Role="Artist" Type="Self.Artist" Multiplicity="*" />
+  <Association Name="Request_has_Actor">
+    <End Role="Actor" Type="Self.Actor" Multiplicity="*" />
+    <End Role="Request" Type="Self.Request" Multiplicity="*" />
+  </Association>
+  <Association Name="Request_has_Genre">
+    <End Role="Genre" Type="Self.Genre" Multiplicity="*" />
     <End Role="Request" Type="Self.Request" Multiplicity="*" />
   </Association>
   <Association Name="Request_has_Vote">
     <End Role="Request" Type="Self.Request" Multiplicity="*" />
     <End Role="Vote" Type="Self.Vote" Multiplicity="*" />
   </Association>
-  <Association Name="Subtitle_has_Artist">
-    <End Role="Artist" Type="Self.Artist" Multiplicity="*" />
+  <Association Name="Subtitle_has_Actor">
+    <End Role="Actor" Type="Self.Actor" Multiplicity="*" />
     <End Role="Subtitle" Type="Self.Subtitle" Multiplicity="*" />
   </Association>
   <Association Name="Subtitle_has_Comment">
@@ -224,14 +274,15 @@
     <End Role="Subtitle" Type="Self.Subtitle" Multiplicity="*" />
     <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="*" />
   </Association>
-  <EntityContainer Name="SkermData" annotation:LazyLoadingEnabled="true">
+  <EntityContainer Name="SkermData3" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="C__MigrationHistory" EntityType="Self.C__MigrationHistory" />
-    <EntitySet Name="Artists" EntityType="Self.Artist" />
+    <EntitySet Name="Actors" EntityType="Self.Actor" />
     <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRole" />
     <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaim" />
     <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogin" />
     <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUser" />
     <EntitySet Name="Comments" EntityType="Self.Comment" />
+    <EntitySet Name="Directors" EntityType="Self.Director" />
     <EntitySet Name="Genres" EntityType="Self.Genre" />
     <EntitySet Name="Languages" EntityType="Self.Language" />
     <EntitySet Name="Requests" EntityType="Self.Request" />
@@ -245,6 +296,14 @@
       <End Role="AspNetUsers" EntitySet="AspNetUsers" />
       <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
     </AssociationSet>
+    <AssociationSet Name="FK_dbo_Request_dbo_Director_DirectorId" Association="Self.FK_dbo_Request_dbo_Director_DirectorId">
+      <End Role="Director" EntitySet="Directors" />
+      <End Role="Request" EntitySet="Requests" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_Subtitle_dbo_Director_DirectorId" Association="Self.FK_dbo_Subtitle_dbo_Director_DirectorId">
+      <End Role="Director" EntitySet="Directors" />
+      <End Role="Subtitle" EntitySet="Subtitles" />
+    </AssociationSet>
     <AssociationSet Name="FK_dbo_Request_dbo_Language_LanguageId" Association="Self.FK_dbo_Request_dbo_Language_LanguageId">
       <End Role="Language" EntitySet="Languages" />
       <End Role="Request" EntitySet="Requests" />
@@ -257,16 +316,20 @@
       <End Role="AspNetRoles" EntitySet="AspNetRoles" />
       <End Role="AspNetUsers" EntitySet="AspNetUsers" />
     </AssociationSet>
-    <AssociationSet Name="Request_has_Artist" Association="Self.Request_has_Artist">
-      <End Role="Artist" EntitySet="Artists" />
+    <AssociationSet Name="Request_has_Actor" Association="Self.Request_has_Actor">
+      <End Role="Actor" EntitySet="Actors" />
+      <End Role="Request" EntitySet="Requests" />
+    </AssociationSet>
+    <AssociationSet Name="Request_has_Genre" Association="Self.Request_has_Genre">
+      <End Role="Genre" EntitySet="Genres" />
       <End Role="Request" EntitySet="Requests" />
     </AssociationSet>
     <AssociationSet Name="Request_has_Vote" Association="Self.Request_has_Vote">
       <End Role="Request" EntitySet="Requests" />
       <End Role="Vote" EntitySet="Votes" />
     </AssociationSet>
-    <AssociationSet Name="Subtitle_has_Artist" Association="Self.Subtitle_has_Artist">
-      <End Role="Artist" EntitySet="Artists" />
+    <AssociationSet Name="Subtitle_has_Actor" Association="Self.Subtitle_has_Actor">
+      <End Role="Actor" EntitySet="Actors" />
       <End Role="Subtitle" EntitySet="Subtitles" />
     </AssociationSet>
     <AssociationSet Name="Subtitle_has_Comment" Association="Self.Subtitle_has_Comment">

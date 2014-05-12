@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Schema Namespace="SkermDatabase.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2005" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+<Schema Namespace="SkermData.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2005" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
   <EntityType Name="__MigrationHistory">
     <Key>
       <PropertyRef Name="MigrationId" />
@@ -10,11 +10,11 @@
     <Property Name="Model" Type="varbinary(max)" Nullable="false" />
     <Property Name="ProductVersion" Type="nvarchar" MaxLength="32" Nullable="false" />
   </EntityType>
-  <EntityType Name="Artist">
+  <EntityType Name="Actor">
     <Key>
-      <PropertyRef Name="IdArtist" />
+      <PropertyRef Name="IdActor" />
     </Key>
-    <Property Name="IdArtist" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IdActor" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Name" Type="nvarchar" MaxLength="50" />
   </EntityType>
   <EntityType Name="AspNetRoles">
@@ -69,6 +69,13 @@
     <Property Name="Content" Type="nvarchar" MaxLength="255" />
     <Property Name="DateCreated" Type="datetime" />
   </EntityType>
+  <EntityType Name="Director">
+    <Key>
+      <PropertyRef Name="IdDirector" />
+    </Key>
+    <Property Name="IdDirector" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" />
+  </EntityType>
   <EntityType Name="Genre">
     <Key>
       <PropertyRef Name="IdGenre" />
@@ -89,21 +96,33 @@
     </Key>
     <Property Name="IdRequest" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="LanguageId" Type="int" Nullable="false" />
+    <Property Name="DirectorId" Type="int" Nullable="false" />
     <Property Name="Username" Type="nvarchar" MaxLength="50" />
     <Property Name="Name" Type="nvarchar" MaxLength="50" />
     <Property Name="Description" Type="nvarchar" MaxLength="255" />
     <Property Name="YearCreated" Type="int" />
     <Property Name="DateAdded" Type="datetime" />
+    <Property Name="Link" Type="nvarchar" MaxLength="100" />
   </EntityType>
   <!--Errors Found During Generation:
-warning 6002: The table/view 'VERK014_H22.dbo.Request_has_Artist' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
-  <EntityType Name="Request_has_Artist">
+warning 6002: The table/view 'VERK014_H22.dbo.Request_has_Actor' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="Request_has_Actor">
     <Key>
       <PropertyRef Name="RequestId" />
-      <PropertyRef Name="ArtistId" />
+      <PropertyRef Name="ActorId" />
     </Key>
     <Property Name="RequestId" Type="int" Nullable="false" />
-    <Property Name="ArtistId" Type="int" Nullable="false" />
+    <Property Name="ActorId" Type="int" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'VERK014_H22.dbo.Request_has_Genre' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="Request_has_Genre">
+    <Key>
+      <PropertyRef Name="RequestId" />
+      <PropertyRef Name="GenreId" />
+    </Key>
+    <Property Name="RequestId" Type="int" Nullable="false" />
+    <Property Name="GenreId" Type="int" Nullable="false" />
   </EntityType>
   <!--Errors Found During Generation:
 warning 6002: The table/view 'VERK014_H22.dbo.Request_has_Vote' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -121,21 +140,24 @@ warning 6002: The table/view 'VERK014_H22.dbo.Request_has_Vote' does not have a 
     </Key>
     <Property Name="IdSubtitle" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="LanguageId" Type="int" Nullable="false" />
+    <Property Name="DirectorId" Type="int" Nullable="false" />
     <Property Name="Name" Type="nvarchar" MaxLength="50" />
     <Property Name="Description" Type="nvarchar" MaxLength="255" />
     <Property Name="YearCreated" Type="int" />
     <Property Name="Content" Type="nvarchar(max)" />
+    <Property Name="EditContent" Type="nvarchar(max)" />
     <Property Name="DateAdded" Type="datetime" />
+    <Property Name="Link" Type="nvarchar" MaxLength="100" />
   </EntityType>
   <!--Errors Found During Generation:
-warning 6002: The table/view 'VERK014_H22.dbo.Subtitle_has_Artist' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
-  <EntityType Name="Subtitle_has_Artist">
+warning 6002: The table/view 'VERK014_H22.dbo.Subtitle_has_Actor' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="Subtitle_has_Actor">
     <Key>
       <PropertyRef Name="SubtitleId" />
-      <PropertyRef Name="ArtistId" />
+      <PropertyRef Name="ActorId" />
     </Key>
     <Property Name="SubtitleId" Type="int" Nullable="false" />
-    <Property Name="ArtistId" Type="int" Nullable="false" />
+    <Property Name="ActorId" Type="int" Nullable="false" />
   </EntityType>
   <!--Errors Found During Generation:
 warning 6002: The table/view 'VERK014_H22.dbo.Subtitle_has_Comment' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -250,6 +272,20 @@ warning 6002: The table/view 'VERK014_H22.dbo.User_has_Subtitle' does not have a
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_dbo_Request_dbo_Director_DirectorId">
+    <End Role="Director" Type="Self.Director" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Request" Type="Self.Request" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Director">
+        <PropertyRef Name="IdDirector" />
+      </Principal>
+      <Dependent Role="Request">
+        <PropertyRef Name="DirectorId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_dbo_Request_dbo_Language_LanguageId">
     <End Role="Language" Type="Self.Language" Multiplicity="1">
       <OnDelete Action="Cascade" />
@@ -264,28 +300,58 @@ warning 6002: The table/view 'VERK014_H22.dbo.User_has_Subtitle' does not have a
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_dbo_Request_has_Artist_dbo_Artist_ArtistId">
-    <End Role="Artist" Type="Self.Artist" Multiplicity="1" />
-    <End Role="Request_has_Artist" Type="Self.Request_has_Artist" Multiplicity="*" />
+  <Association Name="FK_dbo_Request_has_Actor_dbo_Actor_ActorId">
+    <End Role="Actor" Type="Self.Actor" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Request_has_Actor" Type="Self.Request_has_Actor" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="Artist">
-        <PropertyRef Name="IdArtist" />
+      <Principal Role="Actor">
+        <PropertyRef Name="IdActor" />
       </Principal>
-      <Dependent Role="Request_has_Artist">
-        <PropertyRef Name="ArtistId" />
+      <Dependent Role="Request_has_Actor">
+        <PropertyRef Name="ActorId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_dbo_Request_has_Artist_dbo_Request_RequestId">
+  <Association Name="FK_dbo_Request_has_Actor_dbo_Request_RequestId">
     <End Role="Request" Type="Self.Request" Multiplicity="1">
       <OnDelete Action="Cascade" />
     </End>
-    <End Role="Request_has_Artist" Type="Self.Request_has_Artist" Multiplicity="*" />
+    <End Role="Request_has_Actor" Type="Self.Request_has_Actor" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Request">
         <PropertyRef Name="IdRequest" />
       </Principal>
-      <Dependent Role="Request_has_Artist">
+      <Dependent Role="Request_has_Actor">
+        <PropertyRef Name="RequestId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_Request_has_Genre_dbo_Genre_GenreId">
+    <End Role="Genre" Type="Self.Genre" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Request_has_Genre" Type="Self.Request_has_Genre" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Genre">
+        <PropertyRef Name="IdGenre" />
+      </Principal>
+      <Dependent Role="Request_has_Genre">
+        <PropertyRef Name="GenreId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_Request_has_Genre_dbo_Request_RequestId">
+    <End Role="Request" Type="Self.Request" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Request_has_Genre" Type="Self.Request_has_Genre" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Request">
+        <PropertyRef Name="IdRequest" />
+      </Principal>
+      <Dependent Role="Request_has_Genre">
         <PropertyRef Name="RequestId" />
       </Dependent>
     </ReferentialConstraint>
@@ -318,6 +384,20 @@ warning 6002: The table/view 'VERK014_H22.dbo.User_has_Subtitle' does not have a
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_dbo_Subtitle_dbo_Director_DirectorId">
+    <End Role="Director" Type="Self.Director" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Subtitle" Type="Self.Subtitle" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Director">
+        <PropertyRef Name="IdDirector" />
+      </Principal>
+      <Dependent Role="Subtitle">
+        <PropertyRef Name="DirectorId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_dbo_Subtitle_dbo_Language_LanguageId">
     <End Role="Language" Type="Self.Language" Multiplicity="1">
       <OnDelete Action="Cascade" />
@@ -332,28 +412,30 @@ warning 6002: The table/view 'VERK014_H22.dbo.User_has_Subtitle' does not have a
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_dbo_Subtitle_has_Artist_dbo_Artist_ArtistId">
-    <End Role="Artist" Type="Self.Artist" Multiplicity="1" />
-    <End Role="Subtitle_has_Artist" Type="Self.Subtitle_has_Artist" Multiplicity="*" />
+  <Association Name="FK_dbo_Subtitle_has_Actor_dbo_Actor_ActorId">
+    <End Role="Actor" Type="Self.Actor" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Subtitle_has_Actor" Type="Self.Subtitle_has_Actor" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="Artist">
-        <PropertyRef Name="IdArtist" />
+      <Principal Role="Actor">
+        <PropertyRef Name="IdActor" />
       </Principal>
-      <Dependent Role="Subtitle_has_Artist">
-        <PropertyRef Name="ArtistId" />
+      <Dependent Role="Subtitle_has_Actor">
+        <PropertyRef Name="ActorId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_dbo_Subtitle_has_Artist_dbo_Subtitle_SubtitleId">
+  <Association Name="FK_dbo_Subtitle_has_Actor_dbo_Subtitle_SubtitleId">
     <End Role="Subtitle" Type="Self.Subtitle" Multiplicity="1">
       <OnDelete Action="Cascade" />
     </End>
-    <End Role="Subtitle_has_Artist" Type="Self.Subtitle_has_Artist" Multiplicity="*" />
+    <End Role="Subtitle_has_Actor" Type="Self.Subtitle_has_Actor" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Subtitle">
         <PropertyRef Name="IdSubtitle" />
       </Principal>
-      <Dependent Role="Subtitle_has_Artist">
+      <Dependent Role="Subtitle_has_Actor">
         <PropertyRef Name="SubtitleId" />
       </Dependent>
     </ReferentialConstraint>
@@ -498,25 +580,32 @@ warning 6002: The table/view 'VERK014_H22.dbo.User_has_Subtitle' does not have a
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <EntityContainer Name="SkermDatabaseStoreContainer">
+  <EntityContainer Name="SkermDataStoreContainer">
     <EntitySet Name="__MigrationHistory" EntityType="Self.__MigrationHistory" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="Artist" EntityType="Self.Artist" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Actor" EntityType="Self.Actor" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Comment" EntityType="Self.Comment" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Director" EntityType="Self.Director" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Genre" EntityType="Self.Genre" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Language" EntityType="Self.Language" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Request" EntityType="Self.Request" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Subtitle" EntityType="Self.Subtitle" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Vote" EntityType="Self.Vote" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="Request_has_Artist" EntityType="Self.Request_has_Artist" store:Type="Tables" store:Schema="dbo">
+    <EntitySet Name="Request_has_Actor" EntityType="Self.Request_has_Actor" store:Type="Tables" store:Schema="dbo">
       <DefiningQuery>SELECT 
-    [Request_has_Artist].[RequestId] AS [RequestId], 
-    [Request_has_Artist].[ArtistId] AS [ArtistId]
-    FROM [dbo].[Request_has_Artist] AS [Request_has_Artist]</DefiningQuery>
+    [Request_has_Actor].[RequestId] AS [RequestId], 
+    [Request_has_Actor].[ActorId] AS [ActorId]
+    FROM [dbo].[Request_has_Actor] AS [Request_has_Actor]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="Request_has_Genre" EntityType="Self.Request_has_Genre" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [Request_has_Genre].[RequestId] AS [RequestId], 
+    [Request_has_Genre].[GenreId] AS [GenreId]
+    FROM [dbo].[Request_has_Genre] AS [Request_has_Genre]</DefiningQuery>
     </EntitySet>
     <EntitySet Name="Request_has_Vote" EntityType="Self.Request_has_Vote" store:Type="Tables" store:Schema="dbo">
       <DefiningQuery>SELECT 
@@ -524,11 +613,11 @@ warning 6002: The table/view 'VERK014_H22.dbo.User_has_Subtitle' does not have a
     [Request_has_Vote].[VoteId] AS [VoteId]
     FROM [dbo].[Request_has_Vote] AS [Request_has_Vote]</DefiningQuery>
     </EntitySet>
-    <EntitySet Name="Subtitle_has_Artist" EntityType="Self.Subtitle_has_Artist" store:Type="Tables" store:Schema="dbo">
+    <EntitySet Name="Subtitle_has_Actor" EntityType="Self.Subtitle_has_Actor" store:Type="Tables" store:Schema="dbo">
       <DefiningQuery>SELECT 
-    [Subtitle_has_Artist].[SubtitleId] AS [SubtitleId], 
-    [Subtitle_has_Artist].[ArtistId] AS [ArtistId]
-    FROM [dbo].[Subtitle_has_Artist] AS [Subtitle_has_Artist]</DefiningQuery>
+    [Subtitle_has_Actor].[SubtitleId] AS [SubtitleId], 
+    [Subtitle_has_Actor].[ActorId] AS [ActorId]
+    FROM [dbo].[Subtitle_has_Actor] AS [Subtitle_has_Actor]</DefiningQuery>
     </EntitySet>
     <EntitySet Name="Subtitle_has_Comment" EntityType="Self.Subtitle_has_Comment" store:Type="Tables" store:Schema="dbo">
       <DefiningQuery>SELECT 
@@ -576,17 +665,29 @@ warning 6002: The table/view 'VERK014_H22.dbo.User_has_Subtitle' does not have a
       <End Role="AspNetUsers" EntitySet="AspNetUsers" />
       <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
     </AssociationSet>
+    <AssociationSet Name="FK_dbo_Request_dbo_Director_DirectorId" Association="Self.FK_dbo_Request_dbo_Director_DirectorId">
+      <End Role="Director" EntitySet="Director" />
+      <End Role="Request" EntitySet="Request" />
+    </AssociationSet>
     <AssociationSet Name="FK_dbo_Request_dbo_Language_LanguageId" Association="Self.FK_dbo_Request_dbo_Language_LanguageId">
       <End Role="Language" EntitySet="Language" />
       <End Role="Request" EntitySet="Request" />
     </AssociationSet>
-    <AssociationSet Name="FK_dbo_Request_has_Artist_dbo_Artist_ArtistId" Association="Self.FK_dbo_Request_has_Artist_dbo_Artist_ArtistId">
-      <End Role="Artist" EntitySet="Artist" />
-      <End Role="Request_has_Artist" EntitySet="Request_has_Artist" />
+    <AssociationSet Name="FK_dbo_Request_has_Actor_dbo_Actor_ActorId" Association="Self.FK_dbo_Request_has_Actor_dbo_Actor_ActorId">
+      <End Role="Actor" EntitySet="Actor" />
+      <End Role="Request_has_Actor" EntitySet="Request_has_Actor" />
     </AssociationSet>
-    <AssociationSet Name="FK_dbo_Request_has_Artist_dbo_Request_RequestId" Association="Self.FK_dbo_Request_has_Artist_dbo_Request_RequestId">
+    <AssociationSet Name="FK_dbo_Request_has_Actor_dbo_Request_RequestId" Association="Self.FK_dbo_Request_has_Actor_dbo_Request_RequestId">
       <End Role="Request" EntitySet="Request" />
-      <End Role="Request_has_Artist" EntitySet="Request_has_Artist" />
+      <End Role="Request_has_Actor" EntitySet="Request_has_Actor" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_Request_has_Genre_dbo_Genre_GenreId" Association="Self.FK_dbo_Request_has_Genre_dbo_Genre_GenreId">
+      <End Role="Genre" EntitySet="Genre" />
+      <End Role="Request_has_Genre" EntitySet="Request_has_Genre" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_Request_has_Genre_dbo_Request_RequestId" Association="Self.FK_dbo_Request_has_Genre_dbo_Request_RequestId">
+      <End Role="Request" EntitySet="Request" />
+      <End Role="Request_has_Genre" EntitySet="Request_has_Genre" />
     </AssociationSet>
     <AssociationSet Name="FK_dbo_Request_has_Vote_dbo_Request_RequestId" Association="Self.FK_dbo_Request_has_Vote_dbo_Request_RequestId">
       <End Role="Request" EntitySet="Request" />
@@ -596,17 +697,21 @@ warning 6002: The table/view 'VERK014_H22.dbo.User_has_Subtitle' does not have a
       <End Role="Vote" EntitySet="Vote" />
       <End Role="Request_has_Vote" EntitySet="Request_has_Vote" />
     </AssociationSet>
+    <AssociationSet Name="FK_dbo_Subtitle_dbo_Director_DirectorId" Association="Self.FK_dbo_Subtitle_dbo_Director_DirectorId">
+      <End Role="Director" EntitySet="Director" />
+      <End Role="Subtitle" EntitySet="Subtitle" />
+    </AssociationSet>
     <AssociationSet Name="FK_dbo_Subtitle_dbo_Language_LanguageId" Association="Self.FK_dbo_Subtitle_dbo_Language_LanguageId">
       <End Role="Language" EntitySet="Language" />
       <End Role="Subtitle" EntitySet="Subtitle" />
     </AssociationSet>
-    <AssociationSet Name="FK_dbo_Subtitle_has_Artist_dbo_Artist_ArtistId" Association="Self.FK_dbo_Subtitle_has_Artist_dbo_Artist_ArtistId">
-      <End Role="Artist" EntitySet="Artist" />
-      <End Role="Subtitle_has_Artist" EntitySet="Subtitle_has_Artist" />
+    <AssociationSet Name="FK_dbo_Subtitle_has_Actor_dbo_Actor_ActorId" Association="Self.FK_dbo_Subtitle_has_Actor_dbo_Actor_ActorId">
+      <End Role="Actor" EntitySet="Actor" />
+      <End Role="Subtitle_has_Actor" EntitySet="Subtitle_has_Actor" />
     </AssociationSet>
-    <AssociationSet Name="FK_dbo_Subtitle_has_Artist_dbo_Subtitle_SubtitleId" Association="Self.FK_dbo_Subtitle_has_Artist_dbo_Subtitle_SubtitleId">
+    <AssociationSet Name="FK_dbo_Subtitle_has_Actor_dbo_Subtitle_SubtitleId" Association="Self.FK_dbo_Subtitle_has_Actor_dbo_Subtitle_SubtitleId">
       <End Role="Subtitle" EntitySet="Subtitle" />
-      <End Role="Subtitle_has_Artist" EntitySet="Subtitle_has_Artist" />
+      <End Role="Subtitle_has_Actor" EntitySet="Subtitle_has_Actor" />
     </AssociationSet>
     <AssociationSet Name="FK_dbo_Subtitle_has_Comment_dbo_Comment_CommentId" Association="Self.FK_dbo_Subtitle_has_Comment_dbo_Comment_CommentId">
       <End Role="Comment" EntitySet="Comment" />
