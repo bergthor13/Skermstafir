@@ -16,7 +16,7 @@ namespace Skermstafir
     {
         public Subtitle()
         {
-            this.Artists = new HashSet<Artist>();
+            this.Actors = new HashSet<Actor>();
             this.Comments = new HashSet<Comment>();
             this.Genres = new HashSet<Genre>();
             this.Votes = new HashSet<Vote>();
@@ -25,17 +25,18 @@ namespace Skermstafir
     
         public int IdSubtitle { get; set; }
         public int LanguageId { get; set; }
+        public int DirectorId { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
         public Nullable<int> YearCreated { get; set; }
         public string Content { get; set; }
         public string EditContent { get; set; }
         public Nullable<System.DateTime> DateAdded { get; set; }
-        public string Director { get; set; }
         public string Link { get; set; }
     
+        public virtual Director Director { get; set; }
         public virtual Language Language { get; set; }
-        public virtual ICollection<Artist> Artists { get; set; }
+        public virtual ICollection<Actor> Actors { get; set; }
         public virtual ICollection<Comment> Comments { get; set; }
         public virtual ICollection<Genre> Genres { get; set; }
         public virtual ICollection<Vote> Votes { get; set; }

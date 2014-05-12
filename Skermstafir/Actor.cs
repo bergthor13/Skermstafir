@@ -12,15 +12,15 @@ namespace Skermstafir
     using System;
     using System.Collections.Generic;
     
-    public partial class Artist
+    public partial class Actor
     {
-        public Artist()
+        public Actor()
         {
             this.Requests = new HashSet<Request>();
             this.Subtitles = new HashSet<Subtitle>();
         }
     
-        public int IdArtist { get; set; }
+        public int IdActor { get; set; }
         public string Name { get; set; }
     
         public virtual ICollection<Request> Requests { get; set; }
