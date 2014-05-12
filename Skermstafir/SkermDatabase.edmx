@@ -143,6 +143,7 @@ warning 6002: The table/view 'VERK014_H22.dbo.Request_has_Vote' does not have a 
           <Property Name="Content" Type="nvarchar(max)" />
           <Property Name="EditContent" Type="nvarchar(max)" />
           <Property Name="DateAdded" Type="datetime" />
+          <Property Name="Director" Type="nvarchar" MaxLength="50" />
           <Property Name="Link" Type="nvarchar" MaxLength="100" />
         </EntityType>
         <!--Errors Found During Generation:
@@ -834,6 +835,7 @@ warning 6002: The table/view 'VERK014_H22.dbo.User_has_Subtitle' does not have a
           <Property Name="Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="EditContent" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="DateAdded" Type="DateTime" Precision="3" />
+          <Property Name="Director" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Link" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Language" Relationship="Self.FK_dbo_Subtitle_dbo_Language_LanguageId" FromRole="Subtitle" ToRole="Language" />
           <NavigationProperty Name="Artists" Relationship="Self.Subtitle_has_Artist" FromRole="Subtitle" ToRole="Artist" />
@@ -947,7 +949,7 @@ warning 6002: The table/view 'VERK014_H22.dbo.User_has_Subtitle' does not have a
           <End Role="Subtitle" Type="Self.Subtitle" Multiplicity="*" />
           <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="*" />
         </Association>
-        <EntityContainer Name="SkermDatabase" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="SkermDataConnection" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="C__MigrationHistory" EntityType="Self.C__MigrationHistory" />
           <EntitySet Name="Artists" EntityType="Self.Artist" />
           <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRole" />
@@ -1022,7 +1024,7 @@ warning 6002: The table/view 'VERK014_H22.dbo.User_has_Subtitle' does not have a
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="SkermDataStoreContainer" CdmEntityContainer="SkermDatabase">
+        <EntityContainerMapping StorageEntityContainer="SkermDataStoreContainer" CdmEntityContainer="SkermDataConnection">
           <EntitySetMapping Name="C__MigrationHistory">
             <EntityTypeMapping TypeName="SkermData.C__MigrationHistory">
               <MappingFragment StoreEntitySet="__MigrationHistory">
@@ -1129,6 +1131,7 @@ warning 6002: The table/view 'VERK014_H22.dbo.User_has_Subtitle' does not have a
                 <ScalarProperty Name="Content" ColumnName="Content" />
                 <ScalarProperty Name="EditContent" ColumnName="EditContent" />
                 <ScalarProperty Name="DateAdded" ColumnName="DateAdded" />
+                <ScalarProperty Name="Director" ColumnName="Director" />
                 <ScalarProperty Name="Link" ColumnName="Link" />
               </MappingFragment>
             </EntityTypeMapping>
