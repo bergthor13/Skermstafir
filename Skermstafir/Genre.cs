@@ -16,14 +16,12 @@ namespace Skermstafir
     {
         public Genre()
         {
-            this.Requests = new HashSet<Request>();
             this.Subtitles = new HashSet<Subtitle>();
         }
     
         public int IdGenre { get; set; }
         public string Name { get; set; }
     
-        public virtual ICollection<Request> Requests { get; set; }
         public virtual ICollection<Subtitle> Subtitles { get; set; }
     }
 }
