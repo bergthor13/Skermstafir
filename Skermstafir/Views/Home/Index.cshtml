@@ -16,7 +16,14 @@
                 <!-- Up button, upvote count, flag-->
                 <div class="first-column">
                     <div class="blueup">▲</div> <div>@item.Votes.Count</div>
-                    <img src="http://www.placekitten.com/16/11" alt="Flag" />
+                    @if (item.LanguageId == 1)
+                    {
+                        <img src="http://www.senojflags.com/images/national-flag-icons/Iceland-Flag.png" alt="Flag" />
+                    }
+                    else
+                    {
+                        <img src="http://www.senojflags.com/images/national-flag-icons/England-Flag.png" alt="Flag" />  
+                    }
                 </div>
                 <h4 class="second-column">@Html.ActionLink((string)item.Name, "ShowSubtitle", new { controller = "Subtitle", id = item.IdSubtitle }, "Subtitle")</h4>
                 <p id="year">Útgáfuár: @item.YearCreated</p>
@@ -39,7 +46,14 @@
                 <!-- Up button, upvote count, flag-->
                 <div class="first-column">
                     <div class="blueup">▲</div> <div>@item.Votes.Count</div>
-                    <img src="http://www.placekitten.com/16/11" alt="Flag" />
+                    @if (item.LanguageId == 1)
+                    {
+                        <img src="http://www.senojflags.com/images/national-flag-icons/Iceland-Flag.png" alt="Flag" />
+                    }
+                    else
+                    {
+                        <img src="http://www.senojflags.com/images/national-flag-icons/England-Flag.png" alt="Flag" />
+                    }
                 </div>
 
                 <h4 class="second-column">@Html.ActionLink((string)item.Name, "ShowRequest", new { controller = "Request", id = item.IdRequest }, "Request")</h4>
@@ -63,7 +77,14 @@
                 <!-- Up button, upvote count, flag-->
                 <div class="first-column">
                     <div class="blueup">▲</div> <div>@item.Votes.Count </div>
-                    <img src="http://www.placekitten.com/16/11" alt="Flag" />
+                    @if (item.LanguageId == 1)
+                    {
+                        <img src="http://www.senojflags.com/images/national-flag-icons/Iceland-Flag.png" alt="Flag" />
+                    }
+                    else
+                    {
+                        <img src="http://www.senojflags.com/images/national-flag-icons/England-Flag.png" alt="Flag" />
+                    }
                 </div>
 
                 <h4 class="second-column">@Html.ActionLink((string)item.Name, "ShowSubtitle", new { controller = "Subtitle", id = item.IdSubtitle }, "Subtitle")</h4>
@@ -87,7 +108,14 @@
                 <!-- Up button, upvote count, flag-->
                 <div class="first-column">
                     <div class="blueup">▲</div> <div>@item.Votes.Count </div>
-                    <img src="http://www.placekitten.com/16/11" alt="Flag" />
+                    @if (item.LanguageId == 1)
+                    {
+                        <img src="http://www.senojflags.com/images/national-flag-icons/Iceland-Flag.png" alt="Flag" />
+                    }
+                    else
+                    {
+                        <img src="http://www.senojflags.com/images/national-flag-icons/England-Flag.png" alt="Flag" />
+                    }
                 </div>
 
                 <h4 class="second-column">@Html.ActionLink((string)item.Name, "ShowRequest", new { controller = "Request", id = item.IdRequest }, "Request")</h4>
