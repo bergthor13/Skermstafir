@@ -261,7 +261,11 @@ h4.changepw {
 	border-bottom: solid 1px grey;
 	padding: 10px;
 	position: relative;
+}
 
+.btn.btn-default p
+{
+    margin: 0;
 }
 
 .fp-list .second-column {
@@ -601,4 +605,9 @@ fieldset {
 
 .make-me-green {
     color: #65E17B;
+}
+
+.flokkar
+{
+    margin-top: 10px;
 }
