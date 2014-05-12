@@ -3,17 +3,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using Skermstafir.Models;
+using Skermstafir.Interfaces;
 using Skermstafir.Exceptions;
 
 namespace Skermstafir.Repositories
 {
-    public class SearchRepository
+    public class SearchRepository : ISearchRepository
     {
+		public SkermData db = new SkermData();
         // queries database to get the newest starting from start and ending at end bot inclusive
         public SubtitleModelList GetSubtitleByNewest(int start, int end)
         {
             SubtitleModelList model = new SubtitleModelList();
-            SkermData db = new SkermData();
             model.modelList = (from sub in db.Subtitles
                                    orderby sub.DateAdded
                                    select sub).Skip(start).Take(end - start).ToList();
@@ -24,7 +25,6 @@ namespace Skermstafir.Repositories
         public SubtitleModelList GetSubtitleByMostPopular(int start, int end)
         {
             SubtitleModelList model = new SubtitleModelList();
-            SkermData db = new SkermData();
                 model.modelList = (from sub in db.Subtitles
                                    orderby sub.Votes.Count
                                    select sub).Skip(start).Take(end - start).ToList();
@@ -35,7 +35,6 @@ namespace Skermstafir.Repositories
         public SubtitleModelList GetSubtitleByUser(String username, int start, int end)
         {
             SubtitleModelList model = new SubtitleModelList();
-            SkermData db = new SkermData();
             model.modelList = (from sub in db.Subtitles
                                where sub.AspNetUsers.FirstOrDefault().UserName == username
                                select sub).Skip(start).Take(end - start).ToList();
@@ -47,7 +46,6 @@ namespace Skermstafir.Repositories
         public SubtitleModel GetSubtitleByID(int id)
         {
             SubtitleModel model = new SubtitleModel();
-            SkermData db = new SkermData();
                 model.subtitle = (from sub in db.Subtitles
                                   where sub.IdSubtitle == id
                                   select sub).SingleOrDefault();
@@ -64,7 +62,6 @@ namespace Skermstafir.Repositories
         public SubtitleModelList GetSubtitleByLanguage(string language, int start, int end)
         {
             SubtitleModelList model = new SubtitleModelList();
-            SkermData db = new SkermData();
                 model.modelList = (from sub in db.Subtitles
                                    where sub.Language.Name == language
                                    select sub).Skip(start).Take(end - start).ToList();
@@ -75,7 +72,6 @@ namespace Skermstafir.Repositories
         public SubtitleModelList GetSubtitleByCreationDate(int startYear, int endYear, int start, int end)
         {
             SubtitleModelList model = new SubtitleModelList();
-            SkermData db = new SkermData();
                 model.modelList = (from sub in db.Subtitles
                                    where sub.YearCreated >= startYear && sub.YearCreated <= endYear
                                    select sub).Skip(start).Take(end - start).ToList();

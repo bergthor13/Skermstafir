@@ -9,14 +9,16 @@
 <p class="text-success">@ViewBag.StatusMessage</p>
 
 <div class="row">
-    <div id="myAchievements" class="col-md-3 tranreq-list leftSection">
-        <p class="box-title">Afrek</p>
-        <div class="top manage">
-            @for (int i = 0; i < 20; i++)
+    <div id="mySettings" class="col-md-3 tranreq-list leftSection">
+        <p class="box-title">Stillingar</p>
+        <div class="col-md-12">
+            @if (ViewBag.HasLocalPassword)
             {
-                <div class="fp-list">
-                    <p>Afrek</p>
-                </div>
+                @Html.Partial("_ChangePasswordPartial")
+            }
+            else
+            {
+                @Html.Partial("_SetPasswordPartial")
             }
         </div>
     </div>
@@ -35,20 +37,6 @@
 </div>
 
 <div class="row">
-    <div id="mySettings" class="col-md-3 tranreq-list leftSection">
-        <p class="box-title">Stillingar</p>
-        <div class="col-md-12">
-            @if (ViewBag.HasLocalPassword)
-            {
-                @Html.Partial("_ChangePasswordPartial")
-            }
-            else
-            {
-                @Html.Partial("_SetPasswordPartial")
-            }
-        </div>
-    </div>
-
     <div id="myRequests" class="col-md-6 tranreq-list rightSection">
         <p class="box-title">Mínar beiðnir</p>
         <div class="bottom manage">
