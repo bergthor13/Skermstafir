@@ -26,7 +26,7 @@ namespace Skermstafir.Repositories
         {
             SubtitleModelList model = new SubtitleModelList();
                 model.modelList = (from sub in db.Subtitles
-                                   orderby sub.Votes.Count
+                                   orderby sub.Votes.Count descending
                                    select sub).Skip(start).Take(end - start).ToList();
             return model;
         }

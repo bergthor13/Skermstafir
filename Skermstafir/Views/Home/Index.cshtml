@@ -7,90 +7,91 @@
 
 <h3 align="middle">Velkominn á skermstafir.is þar sem fólkið í landinu sameinast í að skiptast á skjátextum. </h3>
 <h5 align="middle">Hér getur þú halað niður skjátexta fyrir myndefni sem þú hyggst horfa á í tölvutæku formi, fengið leiðbeiningar um hvernig hægt er að tengja skjátextann við myndefnið, lagt inn beiðni um að tiltekið myndefni sé þýtt og tekið þátt í að þýða myndefni. Allt er ókeypis og frjálst!</h5>
+<div class="row">
+    <div id="popular-translations" class="col-md-6 tranreq-list tranList">
+        <p class="box-title">Vinsælar þýðingar</p>
+        @foreach (var item in Model.popularSubtitleList.modelList)
+        {
+            <div class="fp-list" data-id="">
+                <!-- Up button, upvote count, flag-->
+                <div class="first-column">
+                    <div class="blueup">▲</div> <div>@item.Votes.Count</div>
+                    <img src="http://www.placekitten.com/16/11" alt="Flag" />
+                </div>
+                <h4 class="second-column">@Html.ActionLink((string)item.Name, "ShowSubtitle", new { controller = "Subtitle", id = item.IdSubtitle }, "Subtitle")</h4>
+                <p id="year">Útgáfuár: @item.YearCreated</p>
 
-<div id="popular-translations" class="col-md-6 tranreq-list tranList">
-	<p class="box-title">Vinsælar þýðingar</p>
-	@foreach (var item in Model.popularSubtitleList.modelList)
-	{
-		<div class="fp-list" data-id="">
-			<!-- Up button, upvote count, flag-->
-			<div class="first-column">
-                <div class="blueup">▲</div> <div>@item.Votes.Count</div>
-				<img src="http://www.placekitten.com/16/11" alt="Flag" />
-			</div>
-			<h4 class="second-column">@Html.ActionLink((string)item.Name, "ShowSubtitle", new { controller = "Subtitle", id = item.IdSubtitle }, "Subtitle")</h4>
-			<p id="year">Útgáfuár: @item.YearCreated</p>
+                <div class="third-column">
+                    <input type="button" name="download" onclick="location.href='@Url.Action("Download", "Subtitle", new { id = item.IdSubtitle })'" value="Niðurhala" />
+                </div>
+                <p id="creator">Stofnandi: @item.AspNetUsers.FirstOrDefault().UserName</p>
+            </div>
+        }
+    </div>
 
-			<div class="third-column">
-				<input type="button" name="download" onclick="location.href='@Url.Action("Download", "Subtitle", new { id = item.IdSubtitle })'" value="Niðurhala" />
-			</div>
-			<p id="creator">Stofnandi: @item.AspNetUsers.FirstOrDefault().UserName</p>
-		</div>
-	}
-</div>
+    <div id="popular-requests" class="col-md-6 tranreq-list reqList">
+        <p class="box-title">Vinsælar beiðnir</p>
+        @foreach (var item in Model.popularRequestList.modelList)
+        {
+            <div class="fp-list" data-id="">
+                <!-- Up button, upvote count, flag-->
+                <div class="first-column">
+                    <div class="blueup">▲</div> <div>@item.Votes.Count</div>
+                    <img src="http://www.placekitten.com/16/11" alt="Flag" />
+                </div>
 
-<div id="popular-requests" class="col-md-6 tranreq-list reqList">
-	<p class="box-title">Vinsælar beiðnir</p>
-	@foreach (var item in Model.popularRequestList.modelList)
-	{
-		<div class="fp-list" data-id="">
-			<!-- Up button, upvote count, flag-->
-			<div class="first-column">
-                <div class="blueup">▲</div> <div>@item.Votes.Count</div>
-				<img src="http://www.placekitten.com/16/11" alt="Flag" />
-			</div>
+                <h4 class="second-column">@Html.ActionLink((string)item.Name, "ShowRequest", new { controller = "Request", id = item.IdRequest }, "Request")</h4>
+                <p id="year">Útgáfuár: @item.YearCreated</p>
 
-			<h4 class="second-column">@Html.ActionLink((string)item.Name, "ShowRequest", new { controller = "Request", id = item.IdRequest }, "Request")</h4>
-			<p id="year">Útgáfuár: @item.YearCreated</p>
+                <div class="third-column">
+                    <input type="button" name="download" onclick="location.href='@Url.Action("CreateSubtitleFromRequest", "Subtitle", new { id = item.IdRequest })'" value="Stofna þýðingu" />
+                </div>
+                <p id="creator">Stofnandi: @item.Username</p>
+            </div>
+        }
+    </div>
 
-			<div class="third-column">
-				<input type="button" name="download" onclick="location.href='@Url.Action("CreateSubtitleFromRequest", "Subtitle", new { id = item.IdRequest })'" value="Stofna þýðingu" />
-			</div>
-			<p id="creator">Stofnandi: @item.Username</p>
-		</div>
-	}
-</div>
+    <div id="newest-translations" class="col-md-6 tranreq-list tranList">
+        <p class="box-title">Nýjustu þýðingar</p>
+        @foreach (var item in Model.newestSubtitleList.modelList)
+        {
+            <div class="fp-list" data-id="">
+                <!-- Up button, upvote count, flag-->
+                <div class="first-column">
+                    <div class="blueup">▲</div> <div>@item.Votes.Count </div>
+                    <img src="http://www.placekitten.com/16/11" alt="Flag" />
+                </div>
 
-<div id="newest-translations" class="col-md-6 tranreq-list tranList">
-	<p class="box-title">Nýjustu þýðingar</p>
-	@foreach (var item in Model.newestSubtitleList.modelList)
-	{
-		<div class="fp-list" data-id="">
-			<!-- Up button, upvote count, flag-->
-			<div class="first-column">
-                <div class="blueup">▲</div> <div>@item.Votes.Count </div>
-				<img src="http://www.placekitten.com/16/11" alt="Flag" />
-			</div>
+                <h4 class="second-column">@Html.ActionLink((string)item.Name, "ShowSubtitle", new { controller = "Subtitle", id = item.IdSubtitle }, "Subtitle")</h4>
+                <p id="year">Útgáfuár: @item.YearCreated</p>
 
-			<h4 class="second-column">@Html.ActionLink((string)item.Name, "ShowSubtitle", new { controller = "Subtitle", id = item.IdSubtitle }, "Subtitle")</h4>
-			<p id="year">Útgáfuár: @item.YearCreated</p>
+                <div class="third-column">
+                    <input type="button" name="download" onclick="location.href='@Url.Action("Download", "Subtitle", new { id = item.IdSubtitle })'" value="Niðurhala" />
+                </div>
+                <p id="creator">Stofnandi: @item.AspNetUsers.FirstOrDefault().UserName</p>
+            </div>
+        }
+    </div>
 
-			<div class="third-column">
-				<input type="button" name="download" onclick="location.href='@Url.Action("Download", "Subtitle", new { id = item.IdSubtitle })'" value="Niðurhala" />
-			</div>
-			<p id="creator">Stofnandi: @item.AspNetUsers.FirstOrDefault().UserName</p>
-		</div>
-	}
-</div>
+    <div id="newest-requests" class="col-md-6 tranreq-list reqList">
+        <p class="box-title">Nýjustu beiðnir</p>
+        @foreach (var item in Model.newestRequestList.modelList)
+        {
+            <div class="fp-list" data-id="">
+                <!-- Up button, upvote count, flag-->
+                <div class="first-column">
+                    <div class="blueup">▲</div> <div>@item.Votes.Count </div>
+                    <img src="http://www.placekitten.com/16/11" alt="Flag" />
+                </div>
 
-<div id="newest-requests" class="col-md-6 tranreq-list reqList">
-	<p class="box-title">Nýjustu beiðnir</p>
-	@foreach (var item in Model.newestRequestList.modelList)
-	{
-		<div class="fp-list" data-id="">
-			<!-- Up button, upvote count, flag-->
-			<div class="first-column">
-                <div class="blueup">▲</div> <div>@item.Votes.Count </div>
-				<img src="http://www.placekitten.com/16/11" alt="Flag" />
-			</div>
+                <h4 class="second-column">@Html.ActionLink((string)item.Name, "ShowRequest", new { controller = "Request", id = item.IdRequest }, "Request")</h4>
+                <p id="year">Útgáfuár: @item.YearCreated</p>
 
-			<h4 class="second-column">@Html.ActionLink((string)item.Name, "ShowRequest", new { controller = "Request", id = item.IdRequest }, "Request")</h4>
-			<p id="year">Útgáfuár: @item.YearCreated</p>
-
-			<div class="third-column">
-				<input type="button" name="download" onclick="location.href='@Url.Action("CreateSubtitleFromRequest", "Subtitle", new { id = item.IdRequest })'" value="Stofna þýðingu" />
-			</div>
-			<p id="creator">Stofnandi: @item.Username</p>
-		</div>
-	}
+                <div class="third-column">
+                    <input type="button" name="download" onclick="location.href='@Url.Action("CreateSubtitleFromRequest", "Subtitle", new { id = item.IdRequest })'" value="Stofna þýðingu" />
+                </div>
+                <p id="creator">Stofnandi: @item.Username</p>
+            </div>
+        }
+    </div>
 </div>
