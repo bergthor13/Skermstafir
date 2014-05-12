@@ -51,11 +51,12 @@ namespace Skermstafir.Controllers
 			DateTime dt = new DateTime();
 			sModel.subtitle.DateAdded = dt.Date+dt.TimeOfDay;
 			// VANTAR GENRES Í REQUEST
-			sModel.subtitle.Artists = rmodel.request.Artists;
+			sModel.subtitle.Artists     = rmodel.request.Artists;
 			sModel.subtitle.YearCreated = rmodel.request.YearCreated;
-			sModel.subtitle.Name = rmodel.request.Name;
-			sModel.subtitle.Language = rmodel.request.Language;
+			sModel.subtitle.Name        = rmodel.request.Name;
+			sModel.subtitle.Language    = rmodel.request.Language;
 			sModel.subtitle.Description = rmodel.request.Description;
+			// Put genres in a bool array
 			FillModel(sModel);
 			return View("CreateSubtitle", sModel);
 		}
