@@ -15,6 +15,4 @@ namespace Skermstafir.Models
 			subtitle = new Subtitle();
 		}
 	}
-
-
 }

@@ -57,11 +57,11 @@ namespace Skermstafir.Controllers
 			{
 				if (art != rm.request.Actors.Last())
 				{
-					rm.artistsForView += art.Name + ", ";
+					rm.actorsForView += art.Name + ", ";
 				}
 				else
 				{
-					rm.artistsForView += art.Name;
+					rm.actorsForView += art.Name;
 				}
 			}
 		}
