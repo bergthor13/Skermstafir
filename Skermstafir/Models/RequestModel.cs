@@ -11,6 +11,9 @@ namespace Skermstafir.Models
         public List<Artist> artists { get; set;}
         public int votes { get; set; }
 
+		public bool[] genreValue = new bool[8];
+		public string artistsForView;
+
         public RequestModel()
         {
             artists = new List<Artist>();

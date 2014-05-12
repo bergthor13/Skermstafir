@@ -9,10 +9,10 @@ using System.Web.Mvc;
 
 namespace Skermstafir.Controllers
 {
-    public class RequestController : Controller
-    {
-        //
-        // GET: /Request/
+	public class RequestController : Controller
+	{
+		//
+		// GET: /Request/
 		public ActionResult ShowRequest(int? id)
 		{
 			if (id == null)
@@ -25,6 +25,7 @@ namespace Skermstafir.Controllers
 				RequestRepository sr = new RequestRepository();
 				int idValue = id.Value;
 				RequestModel result = sr.GetRequestByID(idValue);
+				FillModel(result);
 				return View(result);
 			}
 			catch (NoRequestFoundException)
@@ -33,10 +34,36 @@ namespace Skermstafir.Controllers
 			}
 		}
 		// Adds a new request.
-        public ActionResult CreateRequest()
-        {
-            RequestModel model = new RequestModel();
-            return View(model);
-        }
+		public ActionResult CreateRequest()
+		{
+			RequestModel model = new RequestModel();
+			return View(model);
+		}
+
+		public void FillModel(RequestModel rm)
+		{
+			foreach (var item in rm.request.Genres)
+			{
+				for (int i = 0; i < 8; i++)
+				{
+					if (item.IdGenre == i + 1)
+					{
+						rm.genreValue[i] = true;
+					}
+				}
+			}
+
+			foreach (var art in rm.request.Artists)
+			{
+				if (art != rm.request.Artists.Last())
+				{
+					rm.artistsForView += art.Name + ", ";
+				}
+				else
+				{
+					rm.artistsForView += art.Name;
+				}
+			}
+		}
 	}
 }

@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="SkermDatabase.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2005" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="VERK014_H22Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2005" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="__MigrationHistory">
           <Key>
             <PropertyRef Name="MigrationId" />
@@ -99,6 +99,8 @@
           <Property Name="Description" Type="nvarchar" MaxLength="255" />
           <Property Name="YearCreated" Type="int" />
           <Property Name="DateAdded" Type="datetime" />
+          <Property Name="Director" Type="nvarchar" MaxLength="50" />
+          <Property Name="Link" Type="nvarchar" MaxLength="100" />
         </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'VERK014_H22.dbo.Request_has_Artist' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -109,6 +111,16 @@ warning 6002: The table/view 'VERK014_H22.dbo.Request_has_Artist' does not have 
           </Key>
           <Property Name="RequestId" Type="int" Nullable="false" />
           <Property Name="ArtistId" Type="int" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'VERK014_H22.dbo.Request_has_Genre' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Request_has_Genre">
+          <Key>
+            <PropertyRef Name="RequestId" />
+            <PropertyRef Name="GenreId" />
+          </Key>
+          <Property Name="RequestId" Type="int" Nullable="false" />
+          <Property Name="GenreId" Type="int" Nullable="false" />
         </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'VERK014_H22.dbo.Request_has_Vote' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -130,7 +142,10 @@ warning 6002: The table/view 'VERK014_H22.dbo.Request_has_Vote' does not have a 
           <Property Name="Description" Type="nvarchar" MaxLength="255" />
           <Property Name="YearCreated" Type="int" />
           <Property Name="Content" Type="nvarchar(max)" />
+          <Property Name="EditContent" Type="nvarchar(max)" />
           <Property Name="DateAdded" Type="datetime" />
+          <Property Name="Director" Type="nvarchar" MaxLength="50" />
+          <Property Name="Link" Type="nvarchar" MaxLength="100" />
         </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'VERK014_H22.dbo.Subtitle_has_Artist' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -291,6 +306,34 @@ warning 6002: The table/view 'VERK014_H22.dbo.User_has_Subtitle' does not have a
               <PropertyRef Name="IdRequest" />
             </Principal>
             <Dependent Role="Request_has_Artist">
+              <PropertyRef Name="RequestId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Request_has_Genre_dbo_Genre_GenreId">
+          <End Role="Genre" Type="Self.Genre" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Request_has_Genre" Type="Self.Request_has_Genre" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Genre">
+              <PropertyRef Name="IdGenre" />
+            </Principal>
+            <Dependent Role="Request_has_Genre">
+              <PropertyRef Name="GenreId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Request_has_Genre_dbo_Request_RequestId">
+          <End Role="Request" Type="Self.Request" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Request_has_Genre" Type="Self.Request_has_Genre" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Request">
+              <PropertyRef Name="IdRequest" />
+            </Principal>
+            <Dependent Role="Request_has_Genre">
               <PropertyRef Name="RequestId" />
             </Dependent>
           </ReferentialConstraint>
@@ -503,7 +546,7 @@ warning 6002: The table/view 'VERK014_H22.dbo.User_has_Subtitle' does not have a
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="SkermDatabaseStoreContainer">
+        <EntityContainer Name="VERK014_H22ModelStoreContainer">
           <EntitySet Name="__MigrationHistory" EntityType="Self.__MigrationHistory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Artist" EntityType="Self.Artist" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" Schema="dbo" store:Type="Tables" />
@@ -522,6 +565,12 @@ warning 6002: The table/view 'VERK014_H22.dbo.User_has_Subtitle' does not have a
     [Request_has_Artist].[RequestId] AS [RequestId], 
     [Request_has_Artist].[ArtistId] AS [ArtistId]
     FROM [dbo].[Request_has_Artist] AS [Request_has_Artist]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="Request_has_Genre" EntityType="Self.Request_has_Genre" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Request_has_Genre].[RequestId] AS [RequestId], 
+    [Request_has_Genre].[GenreId] AS [GenreId]
+    FROM [dbo].[Request_has_Genre] AS [Request_has_Genre]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="Request_has_Vote" EntityType="Self.Request_has_Vote" store:Type="Tables" store:Schema="dbo">
             <DefiningQuery>SELECT 
@@ -593,6 +642,14 @@ warning 6002: The table/view 'VERK014_H22.dbo.User_has_Subtitle' does not have a
             <End Role="Request" EntitySet="Request" />
             <End Role="Request_has_Artist" EntitySet="Request_has_Artist" />
           </AssociationSet>
+          <AssociationSet Name="FK_dbo_Request_has_Genre_dbo_Genre_GenreId" Association="Self.FK_dbo_Request_has_Genre_dbo_Genre_GenreId">
+            <End Role="Genre" EntitySet="Genre" />
+            <End Role="Request_has_Genre" EntitySet="Request_has_Genre" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Request_has_Genre_dbo_Request_RequestId" Association="Self.FK_dbo_Request_has_Genre_dbo_Request_RequestId">
+            <End Role="Request" EntitySet="Request" />
+            <End Role="Request_has_Genre" EntitySet="Request_has_Genre" />
+          </AssociationSet>
           <AssociationSet Name="FK_dbo_Request_has_Vote_dbo_Request_RequestId" Association="Self.FK_dbo_Request_has_Vote_dbo_Request_RequestId">
             <End Role="Request" EntitySet="Request" />
             <End Role="Request_has_Vote" EntitySet="Request_has_Vote" />
@@ -658,7 +715,7 @@ warning 6002: The table/view 'VERK014_H22.dbo.User_has_Subtitle' does not have a
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="SkermDatabase" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="VERK014_H22Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="C__MigrationHistory">
           <Key>
             <PropertyRef Name="MigrationId" />
@@ -738,6 +795,7 @@ warning 6002: The table/view 'VERK014_H22.dbo.User_has_Subtitle' does not have a
           </Key>
           <Property Name="IdGenre" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Requests" Relationship="Self.Request_has_Genre" FromRole="Genre" ToRole="Request" />
           <NavigationProperty Name="Subtitles" Relationship="Self.Subtitle_has_Genre" FromRole="Genre" ToRole="Subtitle" />
         </EntityType>
         <EntityType Name="Language">
@@ -760,8 +818,11 @@ warning 6002: The table/view 'VERK014_H22.dbo.User_has_Subtitle' does not have a
           <Property Name="Description" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="YearCreated" Type="Int32" />
           <Property Name="DateAdded" Type="DateTime" Precision="3" />
+          <Property Name="Director" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Link" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Language" Relationship="Self.FK_dbo_Request_dbo_Language_LanguageId" FromRole="Request" ToRole="Language" />
           <NavigationProperty Name="Artists" Relationship="Self.Request_has_Artist" FromRole="Request" ToRole="Artist" />
+          <NavigationProperty Name="Genres" Relationship="Self.Request_has_Genre" FromRole="Request" ToRole="Genre" />
           <NavigationProperty Name="Votes" Relationship="Self.Request_has_Vote" FromRole="Request" ToRole="Vote" />
         </EntityType>
         <EntityType Name="Subtitle">
@@ -774,7 +835,10 @@ warning 6002: The table/view 'VERK014_H22.dbo.User_has_Subtitle' does not have a
           <Property Name="Description" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="YearCreated" Type="Int32" />
           <Property Name="Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="EditContent" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="DateAdded" Type="DateTime" Precision="3" />
+          <Property Name="Director" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Link" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Language" Relationship="Self.FK_dbo_Subtitle_dbo_Language_LanguageId" FromRole="Subtitle" ToRole="Language" />
           <NavigationProperty Name="Artists" Relationship="Self.Subtitle_has_Artist" FromRole="Subtitle" ToRole="Artist" />
           <NavigationProperty Name="Comments" Relationship="Self.Subtitle_has_Comment" FromRole="Subtitle" ToRole="Comment" />
@@ -855,6 +919,10 @@ warning 6002: The table/view 'VERK014_H22.dbo.User_has_Subtitle' does not have a
           <End Role="Artist" Type="Self.Artist" Multiplicity="*" />
           <End Role="Request" Type="Self.Request" Multiplicity="*" />
         </Association>
+        <Association Name="Request_has_Genre">
+          <End Role="Genre" Type="Self.Genre" Multiplicity="*" />
+          <End Role="Request" Type="Self.Request" Multiplicity="*" />
+        </Association>
         <Association Name="Request_has_Vote">
           <End Role="Request" Type="Self.Request" Multiplicity="*" />
           <End Role="Vote" Type="Self.Vote" Multiplicity="*" />
@@ -883,7 +951,7 @@ warning 6002: The table/view 'VERK014_H22.dbo.User_has_Subtitle' does not have a
           <End Role="Subtitle" Type="Self.Subtitle" Multiplicity="*" />
           <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="*" />
         </Association>
-        <EntityContainer Name="SkermData" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="SkermDatabase2" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="C__MigrationHistory" EntityType="Self.C__MigrationHistory" />
           <EntitySet Name="Artists" EntityType="Self.Artist" />
           <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRole" />
@@ -920,6 +988,10 @@ warning 6002: The table/view 'VERK014_H22.dbo.User_has_Subtitle' does not have a
             <End Role="Artist" EntitySet="Artists" />
             <End Role="Request" EntitySet="Requests" />
           </AssociationSet>
+          <AssociationSet Name="Request_has_Genre" Association="Self.Request_has_Genre">
+            <End Role="Genre" EntitySet="Genres" />
+            <End Role="Request" EntitySet="Requests" />
+          </AssociationSet>
           <AssociationSet Name="Request_has_Vote" Association="Self.Request_has_Vote">
             <End Role="Request" EntitySet="Requests" />
             <End Role="Vote" EntitySet="Votes" />
@@ -954,9 +1026,9 @@ warning 6002: The table/view 'VERK014_H22.dbo.User_has_Subtitle' does not have a
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="SkermDatabaseStoreContainer" CdmEntityContainer="SkermData">
+        <EntityContainerMapping StorageEntityContainer="VERK014_H22ModelStoreContainer" CdmEntityContainer="SkermDatabase2">
           <EntitySetMapping Name="C__MigrationHistory">
-            <EntityTypeMapping TypeName="SkermDatabase.C__MigrationHistory">
+            <EntityTypeMapping TypeName="VERK014_H22Model.C__MigrationHistory">
               <MappingFragment StoreEntitySet="__MigrationHistory">
                 <ScalarProperty Name="MigrationId" ColumnName="MigrationId" />
                 <ScalarProperty Name="ContextKey" ColumnName="ContextKey" />
@@ -966,7 +1038,7 @@ warning 6002: The table/view 'VERK014_H22.dbo.User_has_Subtitle' does not have a
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Artists">
-            <EntityTypeMapping TypeName="SkermDatabase.Artist">
+            <EntityTypeMapping TypeName="VERK014_H22Model.Artist">
               <MappingFragment StoreEntitySet="Artist">
                 <ScalarProperty Name="IdArtist" ColumnName="IdArtist" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -974,7 +1046,7 @@ warning 6002: The table/view 'VERK014_H22.dbo.User_has_Subtitle' does not have a
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="AspNetRoles">
-            <EntityTypeMapping TypeName="SkermDatabase.AspNetRole">
+            <EntityTypeMapping TypeName="VERK014_H22Model.AspNetRole">
               <MappingFragment StoreEntitySet="AspNetRoles">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -982,7 +1054,7 @@ warning 6002: The table/view 'VERK014_H22.dbo.User_has_Subtitle' does not have a
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="AspNetUserClaims">
-            <EntityTypeMapping TypeName="SkermDatabase.AspNetUserClaim">
+            <EntityTypeMapping TypeName="VERK014_H22Model.AspNetUserClaim">
               <MappingFragment StoreEntitySet="AspNetUserClaims">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="ClaimType" ColumnName="ClaimType" />
@@ -992,7 +1064,7 @@ warning 6002: The table/view 'VERK014_H22.dbo.User_has_Subtitle' does not have a
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="AspNetUserLogins">
-            <EntityTypeMapping TypeName="SkermDatabase.AspNetUserLogin">
+            <EntityTypeMapping TypeName="VERK014_H22Model.AspNetUserLogin">
               <MappingFragment StoreEntitySet="AspNetUserLogins">
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
                 <ScalarProperty Name="LoginProvider" ColumnName="LoginProvider" />
@@ -1001,7 +1073,7 @@ warning 6002: The table/view 'VERK014_H22.dbo.User_has_Subtitle' does not have a
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="AspNetUsers">
-            <EntityTypeMapping TypeName="SkermDatabase.AspNetUser">
+            <EntityTypeMapping TypeName="VERK014_H22Model.AspNetUser">
               <MappingFragment StoreEntitySet="AspNetUsers">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="UserName" ColumnName="UserName" />
@@ -1012,7 +1084,7 @@ warning 6002: The table/view 'VERK014_H22.dbo.User_has_Subtitle' does not have a
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Comments">
-            <EntityTypeMapping TypeName="SkermDatabase.Comment">
+            <EntityTypeMapping TypeName="VERK014_H22Model.Comment">
               <MappingFragment StoreEntitySet="Comment">
                 <ScalarProperty Name="IdComment" ColumnName="IdComment" />
                 <ScalarProperty Name="Content" ColumnName="Content" />
@@ -1021,7 +1093,7 @@ warning 6002: The table/view 'VERK014_H22.dbo.User_has_Subtitle' does not have a
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Genres">
-            <EntityTypeMapping TypeName="SkermDatabase.Genre">
+            <EntityTypeMapping TypeName="VERK014_H22Model.Genre">
               <MappingFragment StoreEntitySet="Genre">
                 <ScalarProperty Name="IdGenre" ColumnName="IdGenre" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -1029,7 +1101,7 @@ warning 6002: The table/view 'VERK014_H22.dbo.User_has_Subtitle' does not have a
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Languages">
-            <EntityTypeMapping TypeName="SkermDatabase.Language">
+            <EntityTypeMapping TypeName="VERK014_H22Model.Language">
               <MappingFragment StoreEntitySet="Language">
                 <ScalarProperty Name="IdLanguage" ColumnName="IdLanguage" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -1037,7 +1109,7 @@ warning 6002: The table/view 'VERK014_H22.dbo.User_has_Subtitle' does not have a
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Requests">
-            <EntityTypeMapping TypeName="SkermDatabase.Request">
+            <EntityTypeMapping TypeName="VERK014_H22Model.Request">
               <MappingFragment StoreEntitySet="Request">
                 <ScalarProperty Name="IdRequest" ColumnName="IdRequest" />
                 <ScalarProperty Name="LanguageId" ColumnName="LanguageId" />
@@ -1046,11 +1118,13 @@ warning 6002: The table/view 'VERK014_H22.dbo.User_has_Subtitle' does not have a
                 <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="YearCreated" ColumnName="YearCreated" />
                 <ScalarProperty Name="DateAdded" ColumnName="DateAdded" />
+                <ScalarProperty Name="Director" ColumnName="Director" />
+                <ScalarProperty Name="Link" ColumnName="Link" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Subtitles">
-            <EntityTypeMapping TypeName="SkermDatabase.Subtitle">
+            <EntityTypeMapping TypeName="VERK014_H22Model.Subtitle">
               <MappingFragment StoreEntitySet="Subtitle">
                 <ScalarProperty Name="IdSubtitle" ColumnName="IdSubtitle" />
                 <ScalarProperty Name="LanguageId" ColumnName="LanguageId" />
@@ -1058,19 +1132,22 @@ warning 6002: The table/view 'VERK014_H22.dbo.User_has_Subtitle' does not have a
                 <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="YearCreated" ColumnName="YearCreated" />
                 <ScalarProperty Name="Content" ColumnName="Content" />
+                <ScalarProperty Name="EditContent" ColumnName="EditContent" />
                 <ScalarProperty Name="DateAdded" ColumnName="DateAdded" />
+                <ScalarProperty Name="Director" ColumnName="Director" />
+                <ScalarProperty Name="Link" ColumnName="Link" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Votes">
-            <EntityTypeMapping TypeName="SkermDatabase.Vote">
+            <EntityTypeMapping TypeName="VERK014_H22Model.Vote">
               <MappingFragment StoreEntitySet="Vote">
                 <ScalarProperty Name="IdVote" ColumnName="IdVote" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <AssociationSetMapping Name="AspNetUserRoles" TypeName="SkermDatabase.AspNetUserRoles" StoreEntitySet="AspNetUserRoles">
+          <AssociationSetMapping Name="AspNetUserRoles" TypeName="VERK014_H22Model.AspNetUserRoles" StoreEntitySet="AspNetUserRoles">
             <EndProperty Name="AspNetRoles">
               <ScalarProperty Name="Id" ColumnName="RoleId" />
             </EndProperty>
@@ -1078,7 +1155,7 @@ warning 6002: The table/view 'VERK014_H22.dbo.User_has_Subtitle' does not have a
               <ScalarProperty Name="Id" ColumnName="UserId" />
             </EndProperty>
           </AssociationSetMapping>
-          <AssociationSetMapping Name="Request_has_Artist" TypeName="SkermDatabase.Request_has_Artist" StoreEntitySet="Request_has_Artist">
+          <AssociationSetMapping Name="Request_has_Artist" TypeName="VERK014_H22Model.Request_has_Artist" StoreEntitySet="Request_has_Artist">
             <EndProperty Name="Artist">
               <ScalarProperty Name="IdArtist" ColumnName="ArtistId" />
             </EndProperty>
@@ -1086,7 +1163,15 @@ warning 6002: The table/view 'VERK014_H22.dbo.User_has_Subtitle' does not have a
               <ScalarProperty Name="IdRequest" ColumnName="RequestId" />
             </EndProperty>
           </AssociationSetMapping>
-          <AssociationSetMapping Name="Request_has_Vote" TypeName="SkermDatabase.Request_has_Vote" StoreEntitySet="Request_has_Vote">
+          <AssociationSetMapping Name="Request_has_Genre" TypeName="VERK014_H22Model.Request_has_Genre" StoreEntitySet="Request_has_Genre">
+            <EndProperty Name="Genre">
+              <ScalarProperty Name="IdGenre" ColumnName="GenreId" />
+            </EndProperty>
+            <EndProperty Name="Request">
+              <ScalarProperty Name="IdRequest" ColumnName="RequestId" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="Request_has_Vote" TypeName="VERK014_H22Model.Request_has_Vote" StoreEntitySet="Request_has_Vote">
             <EndProperty Name="Request">
               <ScalarProperty Name="IdRequest" ColumnName="RequestId" />
             </EndProperty>
@@ -1094,7 +1179,7 @@ warning 6002: The table/view 'VERK014_H22.dbo.User_has_Subtitle' does not have a
               <ScalarProperty Name="IdVote" ColumnName="VoteId" />
             </EndProperty>
           </AssociationSetMapping>
-          <AssociationSetMapping Name="Subtitle_has_Artist" TypeName="SkermDatabase.Subtitle_has_Artist" StoreEntitySet="Subtitle_has_Artist">
+          <AssociationSetMapping Name="Subtitle_has_Artist" TypeName="VERK014_H22Model.Subtitle_has_Artist" StoreEntitySet="Subtitle_has_Artist">
             <EndProperty Name="Artist">
               <ScalarProperty Name="IdArtist" ColumnName="ArtistId" />
             </EndProperty>
@@ -1102,7 +1187,7 @@ warning 6002: The table/view 'VERK014_H22.dbo.User_has_Subtitle' does not have a
               <ScalarProperty Name="IdSubtitle" ColumnName="SubtitleId" />
             </EndProperty>
           </AssociationSetMapping>
-          <AssociationSetMapping Name="Subtitle_has_Comment" TypeName="SkermDatabase.Subtitle_has_Comment" StoreEntitySet="Subtitle_has_Comment">
+          <AssociationSetMapping Name="Subtitle_has_Comment" TypeName="VERK014_H22Model.Subtitle_has_Comment" StoreEntitySet="Subtitle_has_Comment">
             <EndProperty Name="Comment">
               <ScalarProperty Name="IdComment" ColumnName="CommentId" />
             </EndProperty>
@@ -1110,7 +1195,7 @@ warning 6002: The table/view 'VERK014_H22.dbo.User_has_Subtitle' does not have a
               <ScalarProperty Name="IdSubtitle" ColumnName="SubtitleId" />
             </EndProperty>
           </AssociationSetMapping>
-          <AssociationSetMapping Name="Subtitle_has_Genre" TypeName="SkermDatabase.Subtitle_has_Genre" StoreEntitySet="Subtitle_has_Genre">
+          <AssociationSetMapping Name="Subtitle_has_Genre" TypeName="VERK014_H22Model.Subtitle_has_Genre" StoreEntitySet="Subtitle_has_Genre">
             <EndProperty Name="Genre">
               <ScalarProperty Name="IdGenre" ColumnName="GenreId" />
             </EndProperty>
@@ -1118,7 +1203,7 @@ warning 6002: The table/view 'VERK014_H22.dbo.User_has_Subtitle' does not have a
               <ScalarProperty Name="IdSubtitle" ColumnName="SubtitleId" />
             </EndProperty>
           </AssociationSetMapping>
-          <AssociationSetMapping Name="Subtitle_has_Vote" TypeName="SkermDatabase.Subtitle_has_Vote" StoreEntitySet="Subtitle_has_Vote">
+          <AssociationSetMapping Name="Subtitle_has_Vote" TypeName="VERK014_H22Model.Subtitle_has_Vote" StoreEntitySet="Subtitle_has_Vote">
             <EndProperty Name="Subtitle">
               <ScalarProperty Name="IdSubtitle" ColumnName="SubtitleId" />
             </EndProperty>
@@ -1126,7 +1211,7 @@ warning 6002: The table/view 'VERK014_H22.dbo.User_has_Subtitle' does not have a
               <ScalarProperty Name="IdVote" ColumnName="VoteId" />
             </EndProperty>
           </AssociationSetMapping>
-          <AssociationSetMapping Name="User_has_Comment" TypeName="SkermDatabase.User_has_Comment" StoreEntitySet="User_has_Comment">
+          <AssociationSetMapping Name="User_has_Comment" TypeName="VERK014_H22Model.User_has_Comment" StoreEntitySet="User_has_Comment">
             <EndProperty Name="Comment">
               <ScalarProperty Name="IdComment" ColumnName="CommentId" />
             </EndProperty>
@@ -1134,7 +1219,7 @@ warning 6002: The table/view 'VERK014_H22.dbo.User_has_Subtitle' does not have a
               <ScalarProperty Name="Id" ColumnName="UserId" />
             </EndProperty>
           </AssociationSetMapping>
-          <AssociationSetMapping Name="User_has_Subtitle" TypeName="SkermDatabase.User_has_Subtitle" StoreEntitySet="User_has_Subtitle">
+          <AssociationSetMapping Name="User_has_Subtitle" TypeName="VERK014_H22Model.User_has_Subtitle" StoreEntitySet="User_has_Subtitle">
             <EndProperty Name="Subtitle">
               <ScalarProperty Name="IdSubtitle" ColumnName="SubtitleId" />
             </EndProperty>
