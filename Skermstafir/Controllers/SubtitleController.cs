@@ -45,19 +45,30 @@ namespace Skermstafir.Controllers
 		{
 			SubtitleModel sModel = new SubtitleModel();
 			RequestRepository rr = new RequestRepository();
-			RequestModel rmodel = new RequestModel();
+			RequestModel rModel = new RequestModel();
 			int idValue = id.Value;
-			rmodel = rr.GetRequestByID(idValue);
+			rModel = rr.GetRequestByID(idValue);
 			DateTime dt = new DateTime();
 			sModel.subtitle.DateAdded = dt.Date+dt.TimeOfDay;
-			// VANTAR GENRES Í REQUEST
-			sModel.subtitle.Artists     = rmodel.request.Artists;
-			sModel.subtitle.YearCreated = rmodel.request.YearCreated;
-			sModel.subtitle.Name        = rmodel.request.Name;
-			sModel.subtitle.Language    = rmodel.request.Language;
-			sModel.subtitle.Description = rmodel.request.Description;
+			sModel.subtitle.Genres      = rModel.request.Genres;
+			sModel.subtitle.Artists     = rModel.request.Artists;
+			sModel.subtitle.YearCreated = rModel.request.YearCreated;
+			sModel.subtitle.Name        = rModel.request.Name;
+			sModel.subtitle.Language    = rModel.request.Language;
+			sModel.subtitle.Description = rModel.request.Description;
 			// Put genres in a bool array
 			FillModel(sModel);
+
+			foreach (var item in rModel.request.Genres)
+			{
+				for (int i = 0; i < 8; i++)
+				{
+					if (item.IdGenre == i + 1) {
+						rModel.genreValue[i] = true;
+					}
+				}
+			}
+
 			return View("CreateSubtitle", sModel);
 		}
 

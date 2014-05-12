@@ -25,6 +25,16 @@ namespace Skermstafir.Controllers
 				RequestRepository sr = new RequestRepository();
 				int idValue = id.Value;
 				RequestModel result = sr.GetRequestByID(idValue);
+				foreach (var item in result.request.Genres)
+				{
+					for (int i = 0; i < 8; i++)
+					{
+						if (item.IdGenre == i + 1)
+						{
+							result.genreValue[i] = true;
+						}
+					}
+				}
 				return View(result);
 			}
 			catch (NoRequestFoundException)

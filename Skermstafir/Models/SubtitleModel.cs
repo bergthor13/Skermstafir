@@ -9,7 +9,6 @@ namespace Skermstafir.Models
     {
         public Subtitle subtitle { get; set; }
 		public bool[] genreValue = new bool[8];
-		public char[] charArr = new char[8];
 		public string artistsForView;
 		public SubtitleModel()
 		{
