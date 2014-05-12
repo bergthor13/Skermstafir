@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using Skermstafir.Models;
+using Skermstafir.Interfaces;
 
 namespace Skermstafir.Repositories
 {
-    public class RequestRepository
+    public class RequestRepository : IRequestRepository
     {
         // adds new request to database
         public void AddRequest(RequestModel newRequest)
