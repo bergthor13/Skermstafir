@@ -30,11 +30,8 @@
 	</div>
 
 	<span id="description">
-		<label for="description">Lýsing:</label>
-		<textarea id="description-text"
-				  name="description"
-				  cols="65"
-				  rows="10" disabled>@Model.subtitle.Description</textarea>
+		<p class="make-me-bold">Lýsing:</p>
+        @Model.subtitle.Description
 	</span>
 
 	@if (true)
@@ -58,23 +55,23 @@
 	</p>
 
 	<p class="info">
-		<label for="actors" class="col-md-2">Aðalleikarar:</label>
-		<input type="text" name="actors" value="@Model.artistsForView" disabled />
+        <span class="col-md-2">Aðalleikarar:</span>
+        @Model.artistsForView
 	</p>
 
 	<p class="info">
-		<label for="director" class="col-md-2">Leikstjóri:</label>
-		<input type="text" name="director" value="NOT IMPL" disabled />
+        <span class="col-md-2">Leikstjóri:</span>
+        NOT IMPL
 	</p>
 
 	<p class="info">
-		<label for="year" class="col-md-2">Útgáfuár:</label>
-		<input type="text" name="year" value="@Model.subtitle.YearCreated" disabled />
+        <span class="col-md-2">Útgáfuár:</span>
+        @Model.subtitle.YearCreated
 	</p>
 
 	<p class="info">
-		<label for="link" class="col-md-2">Linkur á myndband:</label>
-		<input type="text" name="link" value="NOT IMPL" disabled />
+        <span class="col-md-2">Linkur á myndband:</span>
+        NOT IMPL
 	</p>
 </div>
 

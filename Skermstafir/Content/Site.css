@@ -502,8 +502,8 @@ fieldset {
 .request-box #description, .subtitle-box #description {
 	position:absolute;
 	top:55px;
-	right:15px;
-	width:400px
+	right:45px;
+	width:400px;
 }
 
 .subtitle-box {
@@ -520,7 +520,7 @@ fieldset {
 	border: solid 1px grey;
 	margin-top: 11px;
     padding: 0px;
-	height:250px;
+	height:333px;
     width: 100%;
     background: #333;
 	position:relative;
@@ -583,4 +583,8 @@ fieldset {
 .green-letters {
     color: #65E17B;
     font-size: 14px;
+}
+
+.make-me-bold {
+    font-weight: bold;
 }
