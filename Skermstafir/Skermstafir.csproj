@@ -156,13 +156,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Actor.cs">
+      <DependentUpon>SkermDatabase.tt</DependentUpon>
+    </Compile>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
-    <Compile Include="Artist.cs">
-      <DependentUpon>SkermDatabase.tt</DependentUpon>
-    </Compile>
     <Compile Include="AspNetRole.cs">
       <DependentUpon>SkermDatabase.tt</DependentUpon>
     </Compile>
@@ -186,17 +186,24 @@
     <Compile Include="C__MigrationHistory.cs">
       <DependentUpon>SkermDatabase.tt</DependentUpon>
     </Compile>
+    <Compile Include="Director.cs">
+      <DependentUpon>SkermDatabase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Exceptions\NoRequestFoundException.cs" />
+    <Compile Include="Exceptions\NoSubtitleFoundException.cs" />
     <Compile Include="Genre.cs">
       <DependentUpon>SkermDatabase.tt</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Interfaces\ISearchRepository.cs" />
     <Compile Include="Language.cs">
       <DependentUpon>SkermDatabase.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\ManageModelList.cs" />
     <Compile Include="Models\MultipleModelLists.cs" />
     <Compile Include="Models\RequestModel.cs" />
     <Compile Include="Models\RequestModelList.cs" />
@@ -235,6 +242,14 @@
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Pictures\skref1.jpg" />
+    <Content Include="Content\Pictures\skref2.jpg" />
+    <Content Include="Content\Pictures\skref2.png" />
+    <Content Include="Content\Pictures\skref3.jpg" />
+    <Content Include="Content\Pictures\skref4.jpg" />
+    <Content Include="Content\Pictures\skref5.jpg" />
+    <Content Include="Content\Pictures\skref6.jpg" />
+    <Content Include="Content\Pictures\StLogo.png" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -281,6 +296,14 @@
     <Content Include="Views\Home\Requests.cshtml" />
     <Content Include="Views\Home\Subtitles.cshtml" />
     <Content Include="Views\Shared\_Search.cshtml" />
+    <Content Include="Views\Request\ShowRequest.cshtml" />
+    <Content Include="Views\Shared\_FrontPageTableCellReq.cshtml" />
+    <Content Include="Views\Shared\_FrontPageTableCellTrans.cshtml" />
+    <Content Include="Views\Shared\_SearchRequests.cshtml" />
+    <Content Include="Views\Shared\_SearchResult.cshtml" />
+    <Content Include="Views\Shared\_SearchResultRequests.cshtml" />
+    <Content Include="Views\Subtitle\ShowSubtitle.cshtml" />
+    <Content Include="Views\Subtitle\EditSubtitle.cshtml" />
     <EntityDeploy Include="SkermDatabase.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>SkermDatabase.Designer.cs</LastGenOutput>
@@ -298,14 +321,6 @@
       <DependentUpon>SkermDatabase.edmx</DependentUpon>
       <LastGenOutput>SkermDatabase.cs</LastGenOutput>
     </Content>
-    <Content Include="Views\Request\ShowRequest.cshtml" />
-    <Content Include="Views\Shared\_FrontPageTableCellReq.cshtml" />
-    <Content Include="Views\Shared\_FrontPageTableCellTrans.cshtml" />
-    <Content Include="Views\Shared\_SearchRequests.cshtml" />
-    <Content Include="Views\Shared\_SearchResult.cshtml" />
-    <Content Include="Views\Shared\_SearchResultRequests.cshtml" />
-    <Content Include="Views\Subtitle\ShowSubtitle.cshtml" />
-    <Content Include="Views\Subtitle\EditSubtitle.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
