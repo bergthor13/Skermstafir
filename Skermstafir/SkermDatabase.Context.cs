@@ -16,7 +16,7 @@ namespace Skermstafir
     public partial class SkermData : DbContext
     {
         public SkermData()
-            : base("name=SkermData")
+            : base("name=SkermDatabase")
         {
         }
     
