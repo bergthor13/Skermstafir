@@ -8,7 +8,6 @@ using Skermstafir.Repositories;
 
 namespace Skermstafir.Controllers
 {
-    [RequireHttps]
 	public class HomeController : Controller
 	{
 		public ActionResult Index()

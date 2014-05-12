@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using Skermstafir.Models;
+using Skermstafir.Interfaces;
 
 namespace Skermstafir.Repositories
 {
-    public class SubtitleRepository
+    public class SubtitleRepository : ISubtitleRepository
     {
         // Add a subtitlemodel object to database
         public void AddSubtitle(SubtitleModel model)

@@ -22,7 +22,9 @@
                 <p id="year">Útgáfuár: @item.YearCreated</p>
 
                 <div class="third-column">
-                    <input type="button" name="download" onclick="location.href='@Url.Action("Download", "Subtitle", new { id = item.IdSubtitle })'" value="Niðurhala" />
+                    <button type="button" class="btn btn-default downloadbtn" onclick="location.href='@Url.Action("Download", "Subtitle", new { id = item.IdSubtitle })'">
+                        <p>Niðurhala</p>
+                    </button>
                 </div>
                 <p id="creator">Stofnandi: @item.AspNetUsers.FirstOrDefault().UserName</p>
             </div>
@@ -44,7 +46,9 @@
                 <p id="year">Útgáfuár: @item.YearCreated</p>
 
                 <div class="third-column">
-                    <input type="button" name="download" onclick="location.href='@Url.Action("CreateSubtitleFromRequest", "Subtitle", new { id = item.IdRequest })'" value="Stofna þýðingu" />
+                    <button type="button" class="btn btn-default downloadbtn" onclick="location.href='@Url.Action("CreateSubtitleFromRequest", "Subtitle", new { id = item.IdRequest })'">
+                        <p>Stofna þýðingu</p>
+                    </button>
                 </div>
                 <p id="creator">Stofnandi: @item.Username</p>
             </div>
@@ -66,7 +70,9 @@
                 <p id="year">Útgáfuár: @item.YearCreated</p>
 
                 <div class="third-column">
-                    <input type="button" name="download" onclick="location.href='@Url.Action("Download", "Subtitle", new { id = item.IdSubtitle })'" value="Niðurhala" />
+                    <button type="button" class="btn btn-default downloadbtn" onclick="location.href='@Url.Action("Download", "Subtitle", new { id = item.IdSubtitle })'">
+                        <p>Niðurhala</p>
+                    </button>
                 </div>
                 <p id="creator">Stofnandi: @item.AspNetUsers.FirstOrDefault().UserName</p>
             </div>
@@ -88,7 +94,9 @@
                 <p id="year">Útgáfuár: @item.YearCreated</p>
 
                 <div class="third-column">
-                    <input type="button" name="download" onclick="location.href='@Url.Action("CreateSubtitleFromRequest", "Subtitle", new { id = item.IdRequest })'" value="Stofna þýðingu" />
+                    <button type="button" class="btn btn-default downloadbtn" onclick="location.href='@Url.Action("CreateSubtitleFromRequest", "Subtitle", new { id = item.IdRequest })'">
+                        <p>Stofna þýðingu</p>
+                    </button>
                 </div>
                 <p id="creator">Stofnandi: @item.Username</p>
             </div>
