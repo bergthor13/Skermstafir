@@ -4,6 +4,74 @@
     ViewBag.Title = "Stofna þýðingu";
 }
 
+@using (Html.BeginForm())
+{
+    <div class="subtitle-box" id="create-subtitle">
+        <div class="box-title make-me-green">
+            Stofna þýðingu
+        </div>
+        <div class="flokkar-view-edit">
+            <input type="checkbox" id="genre1" />
+            <label for="genre1">Kvikmyndir</label>
+            <input type="checkbox" id="genre2" />
+            <label for="genre2">Þættir</label>
+            <input type="checkbox" id="genre3" />
+            <label for="genre3">Barnaefni</label>
+            <input type="checkbox" id="genre4" />
+            <label for="genre4">Heimildir</label> <br />
+            <input type="checkbox" id="genre5" />
+            <label for="genre5">Gaman</label>
+            <input type="checkbox" id="genre6" />
+            <label for="genre6">Spenna</label>
+            <input type="checkbox" id="genre7" />
+            <label for="genre7">Drama</label>
+            <input type="checkbox" id="genre8" />
+            <label for="genre8">Ævintýri</label>
+        </div>
+        <span id="description">
+            <label for="description">Lýsing:</label>
+            <textarea id="description-text"
+                      name="description"
+                      cols="65"
+                      rows="10"
+                      placeholder="Stutt lýsing og söguþráður."></textarea>
+        </span>
+        <input id="download" type="submit" name="createSubtitle" value="Vista þýðingu" />
+        <p class="info">
+            <label for="title" class="col-md-2">Titill:</label>
+            <input type="text" name="title" placeholder="t.d. Anchorman 2, The Legend Continues" />
+        </p>
+        <p class="info">
+            <span class="col-md-2">Tungumál:</span>
+            <select class="grey-area">
+                <option class="option-text" value="Islenska">Íslenska</option>
+                <option class="option-text" value="Enska">Enska</option>
+            </select>
+        </p>
+        <p class="info">
+            <label for="director" class="col-md-2">Leikstjóri:</label>
+            <input type="text" name="director" placeholder="t.d. Woody Allen" />
+        </p>
+        <p class="info">
+            <label for="actors" class="col-md-2">Aðalleikarar:</label>
+            <input type="text" name="actors" placeholder="Komma aðskilur leikara t.d. Paul Rudd, Philip Seymour Hoffman" />
+        </p>
+        <p class="info">
+            <label for="year" class="col-md-2">Útgáfuár:</label>
+            <input type="text" name="year" placeholder="t.d. 2014" />
+        </p>
+        <p class="info">
+            <label for="link" class="col-md-2">Hlekkur á myndskeið:</label>
+            <input type="text" name="link" placeholder="t.d. af YouTube, Vimeo o.þ.h." />
+        </p>
+        <div class="info">
+            <label for="originalText" class="col-md-2">Texti sem á að þýða:</label>
+            <textarea id="original-text" name="originalText" placeholder="Afritaðu textann úr upprunalegu .srt skránni hingað."></textarea>
+        </div>
+    </div>
+}
+
+<!--
 <h3>Stofna þýðingu</h3>
 <form action="#" method="get">
     <fieldset>
@@ -56,3 +124,4 @@
         <input type="submit" value="Vista þýðingu" class="vista-beidni" />
     </fieldset>
 </form>
+    -->

@@ -462,9 +462,8 @@ fieldset {
 }
 
 #original-text {
-    width: 660px;
-    height: 300px;
-    margin-left: 3px;
+    width: 37%;
+    height: 200px;
 }
 
 .Upprunaleg-thyding {
@@ -510,7 +509,7 @@ fieldset {
 	border: solid 1px grey;
 	margin-top: 11px;
     padding: 0px;
-	height:333px;
+	height:363px;
     width: 100%;
     background: #333;
 	position:relative;
@@ -520,7 +519,17 @@ fieldset {
 	border: solid 1px grey;
 	margin-top: 11px;
     padding: 0px;
-	height:333px;
+	height:363px;
+    width: 100%;
+    background: #333;
+	position:relative;
+}
+
+#create-subtitle {
+    border: solid 1px grey;
+	margin-top: 11px;
+    padding: 0px;
+	height:563px;
     width: 100%;
     background: #333;
 	position:relative;
@@ -570,10 +579,11 @@ fieldset {
 	bottom:15px;
 }
 
+.subtitle-box .info [name=title],
 .subtitle-box .info [name=actors],
 .subtitle-box .info [name=director],
 .subtitle-box .info [name=link] {
-	width: 30%
+	width: 37%
 }
 
 .subtitle-box .info [name=year] {
@@ -587,4 +597,8 @@ fieldset {
 
 .make-me-bold {
     font-weight: bold;
+}
+
+.make-me-green {
+    color: #65E17B;
 }
