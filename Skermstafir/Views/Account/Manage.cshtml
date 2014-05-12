@@ -7,31 +7,32 @@
 <h2>@ViewBag.Title</h2>
 
 <p class="text-success">@ViewBag.StatusMessage</p>
-
-<div id="mySettings" class="col-md-3 tranreq-list leftSection">
-    <p class="box-title">Stillingar</p>
-    <div class="col-md-12">
-        @if (ViewBag.HasLocalPassword)
-        {
-            @Html.Partial("_ChangePasswordPartial")
-        }
-        else
-        {
-            @Html.Partial("_SetPasswordPartial")
-        }
+<div class="row">
+    <div id="mySettings" class="col-md-3 tranreq-list leftSection">
+        <p class="box-title">Stillingar</p>
+        <div class="col-md-12">
+            @if (ViewBag.HasLocalPassword)
+            {
+                @Html.Partial("_ChangePasswordPartial")
+            }
+            else
+            {
+                @Html.Partial("_SetPasswordPartial")
+            }
+        </div>
     </div>
+    @{
+        string userID = User.Identity.GetUserId();
+        string userName = User.Identity.GetUserName();
+        Skermstafir.Repositories.SearchRepository sRep = new Skermstafir.Repositories.SearchRepository();
+        Skermstafir.Repositories.SubtitleRepository subRep = new Skermstafir.Repositories.SubtitleRepository();
+        Skermstafir.Repositories.RequestRepository reqRep = new Skermstafir.Repositories.RequestRepository();
+        ManageModelList model = new ManageModelList();
+        model.subList = sRep.GetSubtitlesByUserID(userID);
+        model.reqList = reqRep.GetRequestsByUser(userName);
+    }
+    @Html.Partial("_ManagePartial", model)
 </div>
-@{
-    string userID = User.Identity.GetUserId();
-    string userName = User.Identity.GetUserName();
-    Skermstafir.Repositories.SearchRepository sRep = new Skermstafir.Repositories.SearchRepository();
-    Skermstafir.Repositories.SubtitleRepository subRep = new Skermstafir.Repositories.SubtitleRepository();
-    Skermstafir.Repositories.RequestRepository reqRep = new Skermstafir.Repositories.RequestRepository();
-    ManageModelList model = new ManageModelList();
-    model.subList = sRep.GetSubtitlesByUserID(userID);
-    model.reqList = reqRep.GetRequestsByUser(userName);
-}
-@Html.Partial("_ManagePartial", model)
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
