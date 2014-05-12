@@ -3,7 +3,9 @@ using Skermstafir.Models;
 using Skermstafir.Repositories;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Text;
 using System.Web;
 using System.Web.Mvc;
 
@@ -39,8 +41,6 @@ namespace Skermstafir.Controllers
 		///</summary>
         public ActionResult ShowSubtitle(int? id) // THIS ONE IS READY (I think).
         {
-			SearchRepository sr = new SearchRepository();
-
 			if (id == null)
 			{
 				return View("Errors/NoSubFound");
@@ -52,6 +52,7 @@ namespace Skermstafir.Controllers
 				int idValue = id.Value;
 
 				// Get the desired item.
+				SearchRepository sr = new SearchRepository();
 				SubtitleModel result;
 				result = sr.GetSubtitleByID(idValue);
 
@@ -64,7 +65,6 @@ namespace Skermstafir.Controllers
 			{
 				return View("Errors/NoSubFound");
 			}
-			
         }
 
 		/// <summary>
@@ -133,7 +133,30 @@ namespace Skermstafir.Controllers
 			return this.RedirectToAction("ShowSubtitle", new { id = idValue });
 		}
 
+		public FileResult Download(int? id)
+		{
+			if (id == null)
+			{
+				return null;
+			}
 
+			// Convert ID from Nullable int to int.
+			int idValue = id.Value;
+
+			SearchRepository sr = new SearchRepository();
+			SubtitleModel result;
+			try
+			{
+				// Get the desired subtitle.
+				result = sr.GetSubtitleByID(idValue);
+			}
+			catch (NoSubtitleFoundException)
+			{
+				return null;
+			}
+
+			return File(Encoding.UTF8.GetBytes(result.subtitle.Content), "text/plain", result.subtitle.Name + ".srt");
+		}
 		/// <summary>
 		/// Helper Function. 
 		/// <para>Fills in the rest of the model (genreValue[] and artistsForView)</para>

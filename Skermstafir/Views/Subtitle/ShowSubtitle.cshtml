@@ -42,7 +42,7 @@
 		<input id="edit-subtitle" type="button" name="createSubtitle" value="Breyta þýðingu" onclick="location.href='@Url.Action("EditSubtitle", "Subtitle", new { id = Model.subtitle.IdSubtitle })'" />
 	}
 
-	<input id="download" type="button" name="createSubtitle" value="Niðurhala" />
+	<input id="download" type="button" name="createSubtitle" onclick="location.href='@Url.Action("Download", "Subtitle", new { id = Model.subtitle.IdSubtitle })'" value="Niðurhala" />
 
 	<p class="info">
 		<span class="col-md-2">Stofnandi þýðingar:</span>
