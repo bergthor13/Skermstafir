@@ -49,14 +49,13 @@ namespace Skermstafir.Repositories
         }
 
         // queries database and gets all requests from a specific user starting at index start and ending at index end both inclusive
-        public RequestModelList GetRequestByUser(String username, int start, int end)
+        public RequestModelList GetRequestsByUser(String userName)
         {
             RequestModelList model = new RequestModelList();
             SkermData db = new SkermData();
             model.modelList = (from req in db.Requests
-                                where req.Username == username
-                                orderby req.IdRequest
-                                select req).Skip(start).Take(end - start).ToList();
+                               where req.Username == userName
+                               select req).ToList();
             return model;
         }
 

@@ -9,6 +9,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Owin.Security;
 using Skermstafir.Models;
+using Skermstafir.Repositories;
 
 namespace Skermstafir.Controllers
 {
@@ -126,7 +127,7 @@ namespace Skermstafir.Controllers
                 : "";
             ViewBag.HasLocalPassword = HasPassword();
             ViewBag.ReturnUrl = Url.Action("Manage");
-            return View();
+            return View("Manage");
         }
 
         //

@@ -1,0 +1,36 @@
+﻿@model Skermstafir.Models.ManageModelList
+
+<div id="mySubtitles" class="col-md-6 tranreq-list rightSection">
+    <p class="box-title">Mínar þýðingar</p>
+    <div class="top manage">
+        @foreach (var subtitle in Model.subList.modelList)
+        {
+        <div class="fp-list">
+			<!-- Up button, upvote count, flag-->
+			<div class="first-column">
+                <div class="blueup">▲</div> <div>@subtitle.Votes.Count</div>
+				<img src="http://www.placekitten.com/16/11" alt="Flag" />
+			</div>
+
+			<h4 class="second-column">@Html.ActionLink((string)subtitle.Name, "ShowSubtitle", new { controller = "Subtitle", id = subtitle.IdSubtitle }, "Subtitle")</h4>
+			<p id="year">Útgáfuár: @subtitle.YearCreated</p>
+
+			<div class="third-column">
+				<input type="button" name="download" onclick="location.href='@Url.Action("CreateSubtitleFromRequest", "Subtitle", new { id = subtitle.IdSubtitle })'" value="Stofna þýðingu" />
+			</div>
+			<p id="creator">Stofnandi: @subtitle.AspNetUsers.SingleOrDefault().UserName</p>
+		</div>
+        }
+    </div>
+</div>
+<div id="myRequests" class="col-md-6 tranreq-list rightSection">
+    <p class="box-title">Mínar beiðnir</p>
+    <div class="bottom manage">
+        @foreach (var request in Model.reqList.modelList)
+        {
+            <div class="fp-list">
+                <p>@Html.ActionLink((string)request.Name, "ShowRequest", new { controller = "Request", id = request.IdRequest }, "Request")</p>
+            </div>
+        }
+    </div>
+</div>

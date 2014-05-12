@@ -32,13 +32,13 @@ namespace Skermstafir.Repositories
         }
 
         // queries database and gets subtitles from a specific user starting at index start and ending at index end both inclusice
-        public SubtitleModelList GetSubtitleByUser(String username, int start, int end)
+        public SubtitleModelList GetSubtitlesByUserID(String userID)
         {
             SubtitleModelList model = new SubtitleModelList();
             SkermData db = new SkermData();
             model.modelList = (from sub in db.Subtitles
-                               where sub.AspNetUsers.FirstOrDefault().UserName == username
-                               select sub).Skip(start).Take(end - start).ToList();
+                               where sub.AspNetUsers.FirstOrDefault().Id == userID
+                               select sub).ToList();
             return model;
         }
 
