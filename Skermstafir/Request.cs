@@ -17,6 +17,7 @@ namespace Skermstafir
         public Request()
         {
             this.Artists = new HashSet<Artist>();
+            this.Genres = new HashSet<Genre>();
             this.Votes = new HashSet<Vote>();
         }
     
@@ -27,9 +28,11 @@ namespace Skermstafir
         public string Description { get; set; }
         public Nullable<int> YearCreated { get; set; }
         public Nullable<System.DateTime> DateAdded { get; set; }
+        public string Link { get; set; }
     
         public virtual Language Language { get; set; }
         public virtual ICollection<Artist> Artists { get; set; }
+        public virtual ICollection<Genre> Genres { get; set; }
         public virtual ICollection<Vote> Votes { get; set; }
     }
 }
