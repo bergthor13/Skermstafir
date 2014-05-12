@@ -322,14 +322,14 @@ h4.changepw {
 .top
 {
     height: auto;
-    max-height: 400px;
+    max-height: 350px;
     overflow-y: auto;
 }
 
 .bottom
 {
     height: auto;
-    max-height: 600px;
+    max-height: 350px;
     overflow-y: auto;
 }
 
