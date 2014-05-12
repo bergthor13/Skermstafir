@@ -48,14 +48,13 @@ namespace Skermstafir.Controllers
 			RequestModel rModel = new RequestModel();
 			int idValue = id.Value;
 			rModel = rr.GetRequestByID(idValue);
-			DateTime dt = new DateTime();
-			sModel.subtitle.DateAdded   = dt.Date+dt.TimeOfDay;
 			sModel.subtitle.Genres      = rModel.request.Genres;
 			sModel.subtitle.Actors      = rModel.request.Actors;
 			sModel.subtitle.YearCreated = rModel.request.YearCreated;
 			sModel.subtitle.Name        = rModel.request.Name;
 			sModel.subtitle.Language    = rModel.request.Language;
 			sModel.subtitle.Description = rModel.request.Description;
+			sModel.subtitle.Link		= rModel.request.Link;
 			// Put genres in a bool array
 			FillModel(sModel);
 			
