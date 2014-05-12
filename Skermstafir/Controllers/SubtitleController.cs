@@ -58,7 +58,7 @@ namespace Skermstafir.Controllers
 			sModel.subtitle.Description = rModel.request.Description;
 			// Put genres in a bool array
 			FillModel(sModel);
-
+			
 			foreach (var item in rModel.request.Genres)
 			{
 				for (int i = 0; i < 8; i++)
@@ -68,7 +68,6 @@ namespace Skermstafir.Controllers
 					}
 				}
 			}
-
 			return View("CreateSubtitle", sModel);
 		}
 
@@ -158,16 +157,20 @@ namespace Skermstafir.Controllers
 			editedSub.subtitle.Description = fd["description"];
 			string directorName            = fd["director"];
 
+			// Gets the director specified in the 'director' textbox in the view.
 			Director director = sr.GetDirectorByName(directorName);
-
+			// If the director is not found, we create a new director with that name.
 			if (director == null) {
 				Director newDir = new Director();
 				newDir.Name = directorName;
 				search.AddDirector(newDir);
 				editedSub.subtitle.DirectorId = newDir.IdDirector;
+				// Else we change the director of the subtitle.
 			} else {
 				editedSub.subtitle.DirectorId = director.IdDirector;
 			}
+
+			// Finally we update the subtitle.
 			sr.ChangeExistingSubtitle(idValue, editedSub);
 			
 			// Get the new list
@@ -204,8 +207,7 @@ namespace Skermstafir.Controllers
 			return File(Encoding.UTF8.GetBytes(result.subtitle.Content), "text/plain", result.subtitle.Name + ".srt");
 		}
 		/// <summary>
-		/// Helper Function. 
-		/// <para>Fills in the rest of the model (genreValue[] and artistsForView)</para>
+		/// Helper Function. Fills in the rest of the model (genreValue[] and artistsForView)
 		/// </summary> 
 		public void FillModel(SubtitleModel sm)
 		{
