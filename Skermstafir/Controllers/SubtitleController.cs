@@ -203,7 +203,7 @@ namespace Skermstafir.Controllers
 				return null;
 			}
 
-			return File(Encoding.UTF8.GetBytes(result.subtitle.Content), "text/plain", result.subtitle.Name + ".srt");
+			return File(Encoding.UTF8.GetBytes(result.subtitle.EditContent), "text/plain", result.subtitle.Name + ".srt");
 		}
 		/// <summary>
 		/// Helper Function. Fills in the rest of the model (genreValue[] and artistsForView)
