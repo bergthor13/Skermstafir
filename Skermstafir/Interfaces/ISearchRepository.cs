@@ -15,7 +15,7 @@ namespace Skermstafir.Interfaces {
 		SubtitleModelList GetSubtitleByMostPopular(int start, int end);
 
 		// queries database and gets subtitles from a specific user starting at index start and ending at index end both inclusice
-		SubtitleModelList GetSubtitleByUser(String username, int start, int end);
+		SubtitleModelList GetSubtitlesByUserID(String userID);
 
 
 		// query database to get a specific subtitle
