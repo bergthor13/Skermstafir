@@ -78,6 +78,10 @@ namespace Skermstafir.Repositories
             return model;
         }
 
-        
+		public void AddDirector(Director dir)
+		{
+			db.Directors.Add(dir);
+			db.SaveChanges();
+		}
 	}
 }
