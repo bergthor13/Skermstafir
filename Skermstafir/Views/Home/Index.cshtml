@@ -22,7 +22,7 @@
 			<p id="year">Útgáfuár: @item.YearCreated</p>
 
 			<div class="third-column">
-				<input type="button" name="download" value="Niðurhala" />
+				<input type="button" name="download" onclick="location.href='@Url.Action("Download", "Subtitle", new { id = item.IdSubtitle })'" value="Niðurhala" />
 			</div>
 			<p id="creator">Stofnandi: @item.AspNetUsers.FirstOrDefault().UserName</p>
 		</div>
@@ -69,7 +69,7 @@
 			<p id="year">Útgáfuár: @item.YearCreated</p>
 
 			<div class="third-column">
-				<input type="button" name="download" value="Niðurhala" />
+				<input type="button" name="download" onclick="location.href='@Url.Action("Download", "Subtitle", new { id = item.IdSubtitle })'" value="Niðurhala" />
 			</div>
 			<p id="creator">Stofnandi: @item.AspNetUsers.FirstOrDefault().UserName</p>
 		</div>
