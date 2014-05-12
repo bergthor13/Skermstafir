@@ -191,14 +191,10 @@ namespace Skermstafir.Controllers
 			// Put genres in a bool array
 			foreach (var item in sm.subtitle.Genres)
 			{
-				if (item.Name == "Kvikmyndir") { sm.genreValue[0] = true; }
-				if (item.Name == "Þættir") { sm.genreValue[1] = true; }
-				if (item.Name == "Barnaefni") { sm.genreValue[2] = true; }
-				if (item.Name == "Heimildir") { sm.genreValue[3] = true; }
-				if (item.Name == "Gaman") { sm.genreValue[4] = true; }
-				if (item.Name == "Spenna") { sm.genreValue[5] = true; }
-				if (item.Name == "Drama") { sm.genreValue[6] = true; }
-				if (item.Name == "Ævintýri") { sm.genreValue[7] = true; }
+				for (int i = 0; i < 8; i++)
+				{
+					if (item.IdGenre == i + 1) { sm.genreValue[i] = true; }
+				}
 			}
 
 			// Put artists in a string
