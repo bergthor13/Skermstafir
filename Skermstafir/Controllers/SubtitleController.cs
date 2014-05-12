@@ -36,6 +36,30 @@ namespace Skermstafir.Controllers
 			return View(model);
 		}
 
+		/// <summary>
+		/// Creates a subtitle from the request with the ID 'id'.
+		/// </summary>
+		/// <param name="id"></param>
+		/// <returns></returns>
+		public ActionResult CreateSubtitleFromRequest(int? id)
+		{
+			SubtitleModel sModel = new SubtitleModel();
+			RequestRepository rr = new RequestRepository();
+			RequestModel rmodel = new RequestModel();
+			int idValue = id.Value;
+			rmodel = rr.GetRequestByID(idValue);
+			DateTime dt = new DateTime();
+			sModel.subtitle.DateAdded = dt.Date+dt.TimeOfDay;
+			// VANTAR GENRES Í REQUEST
+			sModel.subtitle.Artists = rmodel.request.Artists;
+			sModel.subtitle.YearCreated = rmodel.request.YearCreated;
+			sModel.subtitle.Name = rmodel.request.Name;
+			sModel.subtitle.Language = rmodel.request.Language;
+			sModel.subtitle.Description = rmodel.request.Description;
+			FillModel(sModel);
+			return View("CreateSubtitle", sModel);
+		}
+
 		///<summary>
         /// Gets the translation to be edited with the ID 'id'
 		///</summary>
