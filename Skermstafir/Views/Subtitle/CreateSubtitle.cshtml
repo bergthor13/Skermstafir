@@ -6,6 +6,7 @@
 
 @using (Html.BeginForm())
 {
+    @Html.AntiForgeryToken()
     <div class="subtitle-box" id="create-subtitle">
         <div class="box-title make-me-green">
             Stofna þýðingu
@@ -36,7 +37,9 @@
                       rows="10"
                       placeholder="Stutt lýsing og söguþráður.">@Model.subtitle.Description</textarea>
         </span>
+
         <input id="download" type="submit" name="createSubtitle" value="Vista þýðingu" />
+        
         <p class="info">
             <label for="title" class="col-md-2">Titill:</label>
             <input type="text" name="title" value="@Model.subtitle.Name" placeholder="t.d. Anchorman 2, The Legend Continues" />
