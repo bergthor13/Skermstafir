@@ -53,9 +53,9 @@ namespace Skermstafir.Controllers
 				}
 			}
 
-			foreach (var art in rm.request.Artists)
+			foreach (var art in rm.request.Actors)
 			{
-				if (art != rm.request.Artists.Last())
+				if (art != rm.request.Actors.Last())
 				{
 					rm.artistsForView += art.Name + ", ";
 				}

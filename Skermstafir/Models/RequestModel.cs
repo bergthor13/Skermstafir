@@ -8,15 +8,9 @@ namespace Skermstafir.Models
     public class RequestModel
     {
         public Request request { get; set; }
-        public List<Artist> artists { get; set;}
         public int votes { get; set; }
 
 		public bool[] genreValue = new bool[8];
 		public string artistsForView;
-
-        public RequestModel()
-        {
-            artists = new List<Artist>();
-        }
 	}
 }

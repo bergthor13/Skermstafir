@@ -51,7 +51,7 @@ namespace Skermstafir.Controllers
 			DateTime dt = new DateTime();
 			sModel.subtitle.DateAdded = dt.Date+dt.TimeOfDay;
 			sModel.subtitle.Genres      = rModel.request.Genres;
-			sModel.subtitle.Artists     = rModel.request.Artists;
+			sModel.subtitle.Actors = rModel.request.Actors;
 			sModel.subtitle.YearCreated = rModel.request.YearCreated;
 			sModel.subtitle.Name        = rModel.request.Name;
 			sModel.subtitle.Language    = rModel.request.Language;
@@ -209,9 +209,9 @@ namespace Skermstafir.Controllers
 			}
 
 			// Put artists in a string
-			foreach (var art in sm.subtitle.Artists)
+			foreach (var art in sm.subtitle.Actors)
 			{
-				if (art != sm.subtitle.Artists.Last())
+				if (art != sm.subtitle.Actors.Last())
 				{
 					sm.artistsForView += art.Name + ", ";
 				}
