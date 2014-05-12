@@ -18,7 +18,7 @@
 				<td>@Html.ActionLink((string)subtitle.Name, "ShowSubtitle", new { controller = "Subtitle", id = subtitle.IdSubtitle }, "Subtitle")</td>
 				<td>@subtitle.YearCreated</td>
 				<td>@subtitle.Language.Name</td>
-				<td>UserName</td> <!--subtitle.AspNetUsers.FirstOrDefault().UserName virkar ekki!-->
+				<td>UserName</td>
 				<td>Niðurhöl</td>
 				<td align="right"><input type="button" name="stofna" onclick="location.href='@Url.Action("Download", "Subtitle", new { id = subtitle.IdSubtitle })'" value="Niðurhala" /></td>
 			</tr>

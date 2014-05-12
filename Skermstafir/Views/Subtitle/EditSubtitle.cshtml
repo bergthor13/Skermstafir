@@ -62,7 +62,7 @@
 
 			<p class="info">
 				<label for="director" class="col-md-2">Leikstjóri:</label>
-				<input type="text" name="director" value="NOT IMPL"  />
+				<input type="text" name="director" value="@Model.subtitle.Director"  />
 			</p>
 
 			<p class="info">
@@ -72,14 +72,13 @@
 
 			<p class="info">
 				<label for="link" class="col-md-2">Linkur á myndband:</label>
-				<input type="text" name="link" value="NOT IMPL"  />
+				<input type="text" name="link" value="@Model.subtitle.Link"  />
 			</p>
 		</div>
 
-
 		<div class="col-md-6">
 			<h3 align="center">Upprunalegur texti</h3>
-			<textarea id="originalText" name="originalText" cols="900" rows="40" ></textarea>
+			<textarea id="originalText" name="originalText" cols="900" rows="40">@Model.subtitle.EditContent</textarea>
 		</div>
 
 		<div class="col-md-6">
