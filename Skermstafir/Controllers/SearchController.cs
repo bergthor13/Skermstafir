@@ -17,8 +17,10 @@ namespace Skermstafir.Controllers
         {
             SubtitleModelList result = new SubtitleModelList();
   			SearchRepository sc = new SearchRepository();
-			List<Subtitle> stringResult = sc.GetSubtitleByString(form["SearchValue"]).modelList;
-
+			List<Subtitle> stringResult = new List<Subtitle>();
+			if (form["SearchValue"] != "") {
+				stringResult = sc.GetSubtitleByString(form["SearchValue"]).modelList;
+			}
 			int start, end;
 			if (form["StartYear"] != "") {
 				start = Convert.ToInt32(form["StartYear"]);
