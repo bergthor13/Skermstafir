@@ -9,10 +9,10 @@ namespace Skermstafir.Repositories
 {
     public class RequestRepository : IRequestRepository
     {
+		SkermData db = new SkermData();
         // adds new request to database
         public void AddRequest(RequestModel newRequest)
         {
-            SkermData db = new SkermData();
             db.Requests.Add(newRequest.request);
             db.SaveChanges();
         }
@@ -20,7 +20,6 @@ namespace Skermstafir.Repositories
         //deletes a request with a specific id
         public void DeleteRequest(int id)
         {
-            SkermData db = new SkermData();
             Request discardRequest = (from req in db.Requests
                                       where req.IdRequest == id
                                       select req).Single();
@@ -32,7 +31,6 @@ namespace Skermstafir.Repositories
         public RequestModelList GetRequestByNewest(int start, int end)
         {
             RequestModelList model = new RequestModelList();
-            SkermData db = new SkermData();
             model.modelList = (from req in db.Requests
                                orderby req.DateAdded
                                select req).Skip(start).Take(end - start).ToList();
@@ -43,7 +41,6 @@ namespace Skermstafir.Repositories
         public RequestModelList GetByMostPopular(int start, int end)
         {
             RequestModelList model = new RequestModelList();
-            SkermData db = new SkermData();
             model.modelList = (from req in db.Requests
                                orderby req.Votes.Count
                                select req).Skip(start).Take(end - start).ToList();
@@ -54,7 +51,6 @@ namespace Skermstafir.Repositories
         public RequestModelList GetRequestsByUser(String userName)
         {
             RequestModelList model = new RequestModelList();
-            SkermData db = new SkermData();
             model.modelList = (from req in db.Requests
                                where req.Username == userName
                                select req).ToList();
@@ -65,7 +61,6 @@ namespace Skermstafir.Repositories
         public RequestModel GetRequestByID(int id)
         {
             RequestModel model = new RequestModel();
-            SkermData db = new SkermData();
             model.request = (from req in db.Requests
                                 where req.IdRequest == id
                                 select req).Single();
@@ -81,7 +76,6 @@ namespace Skermstafir.Repositories
         public RequestModelList GetRequestByLanguage(String language, int start, int end)
         {
             RequestModelList modelList = new RequestModelList();
-            SkermData db = new SkermData();
             modelList.modelList = (from req in db.Requests
                                     where req.Language.Name == language
                                     orderby req.IdRequest
@@ -91,7 +85,6 @@ namespace Skermstafir.Repositories
 
 		public RequestModelList GetRequestsByString(String str) {
 			RequestModelList model = new RequestModelList();
-			SkermData db = new SkermData();
 			model.modelList = (from req in db.Requests
 							   where req.Name.Contains(str)
 							   select req).ToList();
@@ -100,7 +93,6 @@ namespace Skermstafir.Repositories
 
 		public RequestModelList GetRequestsByYear(int start, int end) {
 			RequestModelList model = new RequestModelList();
-			SkermData db = new SkermData();
 			model.modelList = (from req in db.Requests
 							   where req.YearCreated >= start && req.YearCreated <= end
 							   select req).ToList();
@@ -110,7 +102,6 @@ namespace Skermstafir.Repositories
 		public RequestModelList GetRequestsByGenre(string genre) {
 			RequestModelList model = new RequestModelList();
 			model.modelList = new List<Request>();
-			SkermData db = new SkermData();
 			List<Request> ls = (from req in db.Requests
 								select req).ToList();
 			for (int i = 0; i < ls.Count; i++) {

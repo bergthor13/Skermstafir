@@ -15,10 +15,17 @@ namespace Skermstafir.Controllers
 		// FormData PARAMETER
         public ActionResult Search(FormCollection form)
         {
+			// SETUP
             SubtitleModelList result = new SubtitleModelList();
+			result.modelList = new List<Subtitle>();
   			SearchRepository sc = new SearchRepository();
-			List<Subtitle> stringResult = sc.GetSubtitleByString(form["SearchValue"]).modelList;
+			// search by string
+			List<Subtitle> stringResult = new List<Subtitle>();
+			if (form["SearchValue"] != "") {
+				stringResult = sc.GetSubtitleByString(form["SearchValue"]).modelList;
+			}
 
+			//Search by creation year
 			int start, end;
 			if (form["StartYear"] != "") {
 				start = Convert.ToInt32(form["StartYear"]);
@@ -31,6 +38,8 @@ namespace Skermstafir.Controllers
 				end = 0;
 			}
 			List<Subtitle> yearResult = sc.GetSubtitleByCreationDate(start, end, 0, 10).modelList;
+
+			// search by genre
 			List<Subtitle> genreResult = new List<Subtitle>();
 			if (form["Kvikmyndir"] == "on") {
 				genreResult = genreResult.Union(sc.GetSubtitleByGenre("Kvikmyndir").modelList).ToList();
@@ -56,6 +65,8 @@ namespace Skermstafir.Controllers
 			if (form["Ævintýri"] == "on") {
 				genreResult = genreResult.Union(sc.GetSubtitleByGenre("Ævintýri").modelList).ToList();
 			}
+
+			// setup lists to merge results
 			List<List<Subtitle>> lists = new List<List<Subtitle>>();
 			lists.Add(stringResult);
 			lists.Add(yearResult);
@@ -72,11 +83,11 @@ namespace Skermstafir.Controllers
 					}
 				}
 			}
-
+			// canceled becouse it made results confusing
 			// get the rest of the results
-			foreach (var item in lists) {
-				result.modelList = result.modelList.Union(item).ToList();
-			}
+			//foreach (var item in lists) {
+			//	result.modelList = result.modelList.Union(item).ToList();
+			//}
 			return View(result);
         }
 	}

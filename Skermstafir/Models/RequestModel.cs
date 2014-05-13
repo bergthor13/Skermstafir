@@ -17,7 +17,6 @@ namespace Skermstafir.Models
 		{
 			request = new Request();
             request.Director = new Director();
-            request.Language = new Language();
 		}
 	}
 }

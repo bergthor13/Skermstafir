@@ -43,6 +43,7 @@ namespace Skermstafir.Controllers
         
             model.request.Name = fc["title"];
             model.request.Director.Name = fc["director"];
+            model.request.Description = fc["description"];
 
             if (User.Identity.Name != null)
             {
@@ -53,7 +54,14 @@ namespace Skermstafir.Controllers
                 model.request.Username = "Anonymous";
             }
 
-            model.request.Description = fc["description"];
+            if (fc["language"] == "Islenska")
+            {
+                model.request.LanguageId = 1;
+            }
+            else
+            {
+                model.request.LanguageId = 2;
+            }
 
             int year = Convert.ToInt32(fc["year"]);
             model.request.YearCreated = year;
@@ -61,27 +69,32 @@ namespace Skermstafir.Controllers
             model.request.DateAdded = DateTime.Now;
             model.request.Link = fc["link"];
 
+            
+
             string actors = fc["actors"];
             String[] actorers = actors.Split(',');
+            rr.AddRequest(model);
+            SkermData db = new SkermData();
 
-            foreach (var item in model.request.Actors)
+            foreach (var item in actorers)
             {
-                if(sr.GetActorByName(item.Name) == null)
+                Actor temp = new Actor();
+                if(sr.GetActorByName(item) == null)
                 {
-                    foreach (var item2 in actorers)
-                    {
-                        Actor temp = new Actor();
-                        temp.Name = item2;
-                        model.request.Actors.Add(temp);
-                    }
+                    temp.Name = item;
+                    db.Actors.Add(temp);
+                    db.SaveChanges();
                 }
-                else 
+                else
                 {
-                    model.request.Actors.Add(sr.GetActorByID(item.IdActor));
+                    temp = sr.GetActorByName(item);
                 }
+                temp.Requests.Add(model.request);
+                model.request.Actors.Add(temp);
             }
 
-            for (int i = 1; i < 8; i++)
+
+            for (int i = 1; i < 9; i++)
             {
                 if (fc["genre" + i.ToString()] == "on")
                 {
@@ -89,18 +102,8 @@ namespace Skermstafir.Controllers
                 }
             }
 
-            if (fc["languages"] == "Íslenska")
-            {
-                model.request.LanguageId = 1;
-            }
-            else if (fc["languages"] == "Enska")
-            {
-                model.request.LanguageId = 2;
-            }
 
-            rr.AddRequest(model);
-
-            return this.RedirectToAction("ShowRequest", new { id = model.request.IdRequest });
+            return RedirectToAction("ShowRequest", new { id = model.request.IdRequest });
 		}
 
         [HttpGet]
@@ -194,20 +197,18 @@ namespace Skermstafir.Controllers
 				}
 			}
 			// add union for edge results
-			foreach (var list in ls) {
-				model.modelList = model.modelList.Union(list).ToList();
-			}
+			//foreach (var list in ls) {
+			//	model.modelList = model.modelList.Union(list).ToList();
+			//}
 			return View(model);
 		}
         //Delete request
         public ActionResult DeleteRequest(int? id)
         {
-            RequestModel reqModel = new RequestModel();
+            
             RequestRepository reqRepo = new RequestRepository();
             int idValue = id.Value;
-            reqModel = reqRepo.GetRequestByID(idValue);
-            int idToDelete = reqModel.request.IdRequest;
-            reqRepo.DeleteRequest(idToDelete);
+            reqRepo.DeleteRequest(idValue);
             return RedirectToAction("Manage", "Account");
         }
 	}

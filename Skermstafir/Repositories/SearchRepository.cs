@@ -5,7 +5,6 @@ using System.Web;
 using Skermstafir.Models;
 using Skermstafir.Interfaces;
 using Skermstafir.Exceptions;
-using Microsoft.AspNet.Identity;
 
 namespace Skermstafir.Repositories {
 	public class SearchRepository : ISearchRepository {
@@ -79,13 +78,11 @@ namespace Skermstafir.Repositories {
 			return model;
 		}
 
+
+		// Query database and get a subtitles of a specified genre
 		public SubtitleModelList GetSubtitleByGenre(String genreName) {
 			SubtitleModelList model = new SubtitleModelList();
 			model.modelList = new List<Subtitle>();
-			Genre tmp = (from genre in db.Genres
-						 where genre.Name == genreName
-						 select genre).SingleOrDefault();
-
 			List<Subtitle> ls = (from sub in db.Subtitles
 								 select sub).ToList();
 
@@ -99,11 +96,13 @@ namespace Skermstafir.Repositories {
 			return model;
 		}
 
+		// Add Director to database
 		public void AddDirector(Director dir) {
 			db.Directors.Add(dir);
 			db.SaveChanges();
 		}
 
+		// query database and get a genre by id
 		public Genre GetGenreByID(int id) {
 			Genre gen = (from item in db.Genres
 						 where item.IdGenre == id
@@ -111,6 +110,7 @@ namespace Skermstafir.Repositories {
 			return gen;
 		}
 
+		// Query database and get an Actor by his id
         public Actor GetActorByID(int id)
         {
             Actor act = (from item in db.Actors
@@ -119,6 +119,7 @@ namespace Skermstafir.Repositories {
             return act;
         }
 
+		//Query database and get an Actor by his name
         public Actor GetActorByName(string name)
         {
             Actor act = (from item in db.Actors
@@ -126,7 +127,7 @@ namespace Skermstafir.Repositories {
                          select item).SingleOrDefault();
             return act;
         }
-
+		// query database and get a director by name
         public Director GetDirectorByName(string name)
         {
             Director dir = (from item in db.Directors
@@ -135,28 +136,13 @@ namespace Skermstafir.Repositories {
             return dir;
         }
 
-		public Vote GetVoteByUserID(string id)
-		{
-			SkermData db = new SkermData();
-
-			Vote vote = (from item in db.Votes
-						 where item.UserId == id
-						 select item).SingleOrDefault();
-			return vote;
-
-
-		}
-
-		public bool VoteContainsSubtitle(Vote vote, Subtitle sub)
-		{
-			if (vote.Subtitles.Contains(sub))
-			{
-				return true;
-			}
-			else
-			{
-				return false;
-			}
-		}
+		// Query database and get a language by its name
+        public Language GetLanguageByName(string name)
+        {
+            Language lang = (from item in db.Languages
+                             where item.Name == name
+                             select item).SingleOrDefault();
+            return lang;
+        }
 	}
 }

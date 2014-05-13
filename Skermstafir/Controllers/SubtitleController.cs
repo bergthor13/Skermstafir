@@ -350,6 +350,13 @@ namespace Skermstafir.Controllers
 
 			}
 		}
+        public ActionResult DeleteSubtitle(int? id)
+        {
+            SubtitleRepository subRepo = new SubtitleRepository();
+            int idValue = id.Value;
+            subRepo.DeleteSubtitle(idValue);
+            return RedirectToAction("Manage", "Account");
+        }
 	}
 
 }
