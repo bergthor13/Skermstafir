@@ -1,0 +1,10 @@
+﻿@model Skermstafir.Models.RequestModelList
+@{
+    ViewBag.Title = "Beiðnir";
+}
+
+@Html.Partial("_SearchRequests")
+<button type="button" class="btn btn-default downloadbtn" onclick="location.href='@Url.Action("CreateRequest", "Request")'">
+    <p>Stofna beiðni</p>
+</button>
+@Html.Partial("_SearchResultRequests")
