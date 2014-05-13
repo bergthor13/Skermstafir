@@ -30,6 +30,7 @@ namespace Skermstafir.Controllers
 			} else {
 				end = 0;
 			}
+			List<Subtitle> yearResult = sc.GetSubtitleByCreationDate(start, end, 0, 10).modelList;
 			List<Subtitle> genreResult = new List<Subtitle>();
 			if (form["Kvikmyndir"] == "on") {
 				genreResult = genreResult.Union(sc.GetSubtitleByGenre("Kvikmyndir").modelList).ToList();
@@ -55,10 +56,27 @@ namespace Skermstafir.Controllers
 			if (form["Ævintýri"] == "on") {
 				genreResult = genreResult.Union(sc.GetSubtitleByGenre("Ævintýri").modelList).ToList();
 			}
-			result.modelList = stringResult.Union(genreResult).ToList();
-			result.modelList = (from item in result.modelList
-								where item.YearCreated >= start && item.YearCreated <= end
-								select item).ToList();
+			List<List<Subtitle>> lists = new List<List<Subtitle>>();
+			lists.Add(stringResult);
+			lists.Add(yearResult);
+			lists.Add(genreResult);
+			bool first = true;
+			// get intersection of all lists
+			foreach (var ls in lists) {
+				if (ls.Count != 0) {
+					if (first) {
+						result.modelList = ls;
+						first = false;
+					} else {
+						result.modelList = result.modelList.Intersect(ls).ToList();
+					}
+				}
+			}
+
+			// get the rest of the results
+			foreach (var item in lists) {
+				result.modelList = result.modelList.Union(item).ToList();
+			}
 			return View(result);
         }
 	}
