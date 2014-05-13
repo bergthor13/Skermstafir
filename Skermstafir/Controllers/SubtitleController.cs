@@ -44,7 +44,6 @@ namespace Skermstafir.Controllers
             // Set info to the new subtitle
             model.subtitle.Name = fc["title"];
             model.subtitle.YearCreated = Convert.ToInt32(fc["year"]);
-            model.subtitle.Content = fc["editedText"];
             model.subtitle.Description = fc["description"];
             model.subtitle.Director.Name = fc["director"];
             model.subtitle.Link = fc["link"];
