@@ -57,16 +57,13 @@ namespace Skermstafir.Controllers
 			sModel.subtitle.Link		= rModel.request.Link;
 			// Put genres in a bool array
 			FillModel(sModel);
-			
+
+			// Put genres in a bool array
 			foreach (var item in rModel.request.Genres)
 			{
-				for (int i = 0; i < 8; i++)
-				{
-					if (item.IdGenre == i + 1) {
-						rModel.genreValue[i] = true;
-					}
-				}
+				rModel.genreValue[item.IdGenre - 1] = true;
 			}
+
 			return View("CreateSubtitle", sModel);
 		}
 
@@ -210,13 +207,11 @@ namespace Skermstafir.Controllers
 		/// </summary> 
 		public void FillModel(SubtitleModel sm)
 		{
+
 			// Put genres in a bool array
 			foreach (var item in sm.subtitle.Genres)
 			{
-				for (int i = 0; i < 8; i++)
-				{
-					if (item.IdGenre == i + 1) { sm.genreValue[i] = true; }
-				}
+				 sm.genreValue[item.IdGenre-1] = true;
 			}
 
 			// Put artists in a string
