@@ -215,12 +215,19 @@ namespace Skermstafir.Controllers
 				if (fd["genre" + i.ToString()] == "on")
 				{
 					Genre gen = seaR.GetGenreByID(i);
-					subR.AddGenreToSubtitle(gen, editedSub.subtitle);
+					if (gen != null)
+					{
+						subR.AddGenreToSubtitle(gen, editedSub.subtitle);
+					}
 				}
 				else
 				{
 					Genre gen = seaR.GetGenreByID(i);
-					subR.RemoveGenreToSubtitle(gen, editedSub.subtitle);
+					if (gen != null)
+					{
+						subR.RemoveGenreToSubtitle(gen, editedSub.subtitle);
+
+					}
 				}
 			}
 
@@ -259,6 +266,37 @@ namespace Skermstafir.Controllers
 			subR.ChangeExistingSubtitle(idValue, editedSub);
 			
 			return RedirectToAction("ShowSubtitle", new { id = idValue });
+		}
+
+		public ActionResult UpvoteSubtitle(int subid)
+		{
+			string userName = User.Identity.GetUserName();
+			string userId = User.Identity.GetUserId();
+
+			if (userName == "")
+			{
+				// User is not logged in.
+				object ob = new { Exists = 2 };
+				return View(Json(ob, JsonRequestBehavior.AllowGet));
+			}
+
+			SearchRepository sr = new SearchRepository();
+			Vote vote = sr.GetVoteByUserID(userId);
+			SubtitleModel sub = sr.GetSubtitleByID(subid);
+			Subtitle subtitle = sub.subtitle;
+
+			if (sr.VoteContainsSubtitle(vote, subtitle))
+			{
+				object ob = new { Exists = 1 };
+				return View(Json(ob, JsonRequestBehavior.AllowGet));
+			}
+			else
+			{
+				subtitle.Votes.Add(vote);
+			}
+		
+			object ob2 = new { id2 = 0 };
+			return View(Json(ob2, JsonRequestBehavior.AllowGet));
 		}
 
 		// Downloads the srt file.

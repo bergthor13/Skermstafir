@@ -5,6 +5,7 @@ using System.Web;
 using Skermstafir.Models;
 using Skermstafir.Interfaces;
 using Skermstafir.Exceptions;
+using Microsoft.AspNet.Identity;
 
 namespace Skermstafir.Repositories {
 	public class SearchRepository : ISearchRepository {
@@ -133,5 +134,29 @@ namespace Skermstafir.Repositories {
                             select item).SingleOrDefault();
             return dir;
         }
+
+		public Vote GetVoteByUserID(string id)
+		{
+			SkermData db = new SkermData();
+
+			Vote vote = (from item in db.Votes
+						 where item.UserId == id
+						 select item).SingleOrDefault();
+			return vote;
+
+
+		}
+
+		public bool VoteContainsSubtitle(Vote vote, Subtitle sub)
+		{
+			if (vote.Subtitles.Contains(sub))
+			{
+				return true;
+			}
+			else
+			{
+				return false;
+			}
+		}
 	}
 }

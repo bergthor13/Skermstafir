@@ -7,11 +7,11 @@
 <div class="subtitle-box">
 	<div class="box-title">
 		@Model.subtitle.Name (@Model.subtitle.YearCreated)
-		<p class="votes-req-page"><span class="blueup">▲ @Model.subtitle.Votes.Count</span></p>
+		<p class="votes-req-page"><a href="#"><span class="blueup" onclick="PostUpvoteSingle(@Model.subtitle.IdSubtitle);">▲</span></a> <span id="upvotes">@Model.subtitle.Votes.Count</span></p>
 	</div>
 
 	<div class="flokkar-view-edit">
-		<input type="checkbox" checked="@Model.genreValue[0]" id="genre1" disabled/>
+		<input type="checkbox" checked="@Model.genreValue[0]" id="genre1" disabled />
 		<label for="genre1">Kvikmyndir</label>
 		<input type="checkbox" checked="@Model.genreValue[1]" id="genre2" disabled />
 		<label for="genre2">Þættir</label>
