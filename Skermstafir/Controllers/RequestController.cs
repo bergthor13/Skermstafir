@@ -137,9 +137,13 @@ namespace Skermstafir.Controllers
 		}
 
 		public ActionResult Search(FormCollection form) {
+			// SETUP
 			RequestModelList model = new RequestModelList();
 			RequestRepository reqRep = new RequestRepository();
+			// get result from stringSearch
 			List<Request> stringResult = reqRep.GetRequestsByString(form["searchValue"]).modelList;
+
+			// search by year
 			int start, end;
 			if (form["startYear"] != "") {
 				start = Convert.ToInt32(form["startYear"]);
@@ -152,6 +156,8 @@ namespace Skermstafir.Controllers
 				end = 0;
 			}
 			List<Request> yearResult = reqRep.GetRequestsByYear(start, end).modelList;
+
+			// Search by genre
 			List<Request> genreResult = new List<Request>();
 			if (form["Kvikmyndir"] == "on") {
 				genreResult = genreResult.Union(reqRep.GetRequestsByGenre("Kvikmyndir").modelList).ToList();
@@ -177,6 +183,8 @@ namespace Skermstafir.Controllers
 			if (form["Ævintýri"] == "on") {
 				genreResult = genreResult.Union(reqRep.GetRequestsByGenre("Ævintýri").modelList).ToList();
 			}
+
+			// Setup for merging results
 			List<List<Request>> ls = new List<List<Request>>();
 			ls.Add(stringResult);
 			ls.Add(yearResult);
@@ -193,6 +201,7 @@ namespace Skermstafir.Controllers
 					}
 				}
 			}
+			// removed becouse it made results confusing
 			// add union for edge results
 			//foreach (var list in ls) {
 			//	model.modelList = model.modelList.Union(list).ToList();
