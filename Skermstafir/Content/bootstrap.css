@@ -2072,6 +2072,30 @@ fieldset[disabled] .btn {
   border-color: #cccccc;
 }
 
+.deletecancel
+{
+    background-color: red;
+    color: white;
+}
+
+.deleteok
+{
+    background-color: green;
+    color: white;
+}
+
+.btn-default.deletecancel:hover
+{
+    background-color: red;
+    color: gray;
+}
+
+.btn-default.deleteok:hover
+{
+    background-color: green;
+    color: gray;
+}
+
 .btn-default:hover,
 .btn-default:focus,
 .btn-default:active,
