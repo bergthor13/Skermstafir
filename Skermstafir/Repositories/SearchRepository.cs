@@ -109,5 +109,11 @@ namespace Skermstafir.Repositories {
 						 select item).SingleOrDefault();
 			return gen;
 		}
+
+		public void AddActor(Actor newAct)
+		{
+			db.Actors.Add(newAct);
+			db.SaveChanges();
+		}
 	}
 }
