@@ -1,4 +1,5 @@
 ﻿@model Skermstafir.Models.SubtitleModel
+@using Microsoft.AspNet.Identity;
 
 @{
 	ViewBag.Title = @Model.subtitle.Name;
@@ -97,6 +98,6 @@
 </div>
 
 <div id="comments">
-    <p>Notandi: @Model.subtitle.Comments.FirstOrDefault().AspNetUsers.FirstOrDefault()</p>
+    <p>Notandi: @User.Identity.Name</p>
     @Model.subtitle.Comments.FirstOrDefault()
 </div>
