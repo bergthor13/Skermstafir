@@ -9,14 +9,21 @@
 			    <!-- Up button, upvote count, flag-->
 			    <div class="first-column">
                     <div class="blueup">▲</div> <div>@subtitle.Votes.Count</div>
-				    <img src="http://www.placekitten.com/16/11" alt="Flag" />
+				    @if (subtitle.LanguageId == 1)
+                    {
+                        <img src="http://www.senojflags.com/images/national-flag-icons/Iceland-Flag.png" alt="Flag" />
+                    }
+                    else
+                    {
+                        <img src="http://www.senojflags.com/images/national-flag-icons/England-Flag.png" alt="Flag" />
+                    }
 			    </div>
 
 			    <h4 class="second-column">@Html.ActionLink((string)subtitle.Name, "ShowSubtitle", new { controller = "Subtitle", id = subtitle.IdSubtitle }, "Subtitle")</h4>
 			    <p id="year">Útgáfuár: @subtitle.YearCreated</p>
 
 			    <div class="third-column">
-                    <button type="button" class="btn btn-default">
+                    <button type="button" class="btn btn-default" onclick="javascript: return confirm('Ertu viss um að þú viljir eyða þessum skjátexta?');">
                         <span class="glyphicon glyphicon-trash"></span>
                     </button>
 			    </div>
@@ -34,14 +41,21 @@
                 <!-- Up button, upvote count, flag-->
                 <div class="first-column">
                     <div class="blueup">▲</div> <div>@request.Votes.Count</div>
-                    <img src="http://www.placekitten.com/16/11" alt="Flag" />
+                    @if (request.LanguageId == 1)
+                    {
+                        <img src="http://www.senojflags.com/images/national-flag-icons/Iceland-Flag.png" alt="Flag" />
+                    }
+                    else
+                    {
+                        <img src="http://www.senojflags.com/images/national-flag-icons/England-Flag.png" alt="Flag" />
+                    }
                 </div>
 
                 <h4 class="second-column">@Html.ActionLink((string)request.Name, "ShowRequest", new { controller = "Request", id = request.IdRequest }, "Request")</h4>
                 <p id="year">Útgáfuár: @request.YearCreated</p>
 
                 <div class="third-column">
-                    <button type="button" class="btn btn-default">
+                    <button type="button" class="btn btn-default" onclick="javascript: return confirm('ertu viss um að þú viljir eyða þessum skjátexta?');">
                         <span class="glyphicon glyphicon-trash"></span>
                     </button>
                 </div>

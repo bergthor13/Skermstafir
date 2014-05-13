@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 
 namespace Skermstafir.Controllers
 {
@@ -33,7 +34,52 @@ namespace Skermstafir.Controllers
 		public ActionResult CreateSubtitle(FormCollection fc)
 		{
 			SubtitleModel model = new SubtitleModel();
-			return View(model);
+            SearchRepository search = new SearchRepository();
+            var db = new SkermData();
+
+            SubtitleRepository sr = new SubtitleRepository();
+
+            // Get current logged in user
+            
+            // Set info to the new subtitle
+            model.subtitle.Name = fc["title"];
+            model.subtitle.YearCreated = Convert.ToInt32(fc["year"]);
+            model.subtitle.Content = fc["editedText"];
+            model.subtitle.Description = fc["description"];
+            model.subtitle.Director.Name = fc["director"];
+            model.subtitle.Link = fc["link"];
+            model.subtitle.Content = fc["original-text"];
+
+            string actors = fc["actors"];
+            String[] actorers = actors.Split(',');
+            foreach(var item in actorers)
+            {
+                Actor temp = new Actor();
+                temp.Name = item;
+                model.subtitle.Actors.Add(temp);
+            }
+
+            for (int i = 0; i < 8; i++)
+            {
+                if (fc["genre" + i.ToString()] == "on")
+                {
+                    Genre temp = new Genre();
+                    model.subtitle.Genres.Add(temp);
+                }
+            }
+
+            if (fc["languages"] == "Íslenska")
+            {
+                model.subtitle.Language.Name = "Íslenska";
+            }
+            if (fc["languages"] == "Enska")
+            {
+                model.subtitle.Language.Name = "Enska";
+            }
+
+            sr.AddSubtitle(model);
+
+            return this.RedirectToAction("ShowSubtitle", new { id = model.subtitle.IdSubtitle });
 		}
 
 		/// <summary>

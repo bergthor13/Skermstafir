@@ -20,7 +20,11 @@
 				<td>@subtitle.Language.Name</td>
 				<td>NOTPML</td>
 				<td>Niðurhöl</td>
-				<td align="right"><input type="button" name="stofna" onclick="location.href='@Url.Action("Download", "Subtitle", new { id = subtitle.IdSubtitle })'" value="Niðurhala" /></td>
+				<td align="right">
+                    <button type="button" class="btn btn-default downloadbtn" onclick="location.href='@Url.Action("Download", "Subtitle", new { id = subtitle.IdSubtitle })'">
+                        <p>Niðurhala</p>
+                    </button>
+                </td>
 			</tr>
 		}
 	</tbody>
