@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using Microsoft.AspNet.Identity;
 
 namespace Skermstafir.Controllers
 {
@@ -40,14 +39,14 @@ namespace Skermstafir.Controllers
 		{
 			RequestModel model = new RequestModel();
             RequestRepository rr = new RequestRepository();
+            SearchRepository sr = new SearchRepository();
         
             model.request.Name = fc["title"];
-            model.request.Language.Name = fc["language"];
             model.request.Director.Name = fc["director"];
 
-            if(User.Identity != null)
+            if (User.Identity.Name != null)
             {
-                model.request.Username = User.Identity.GetUserName();
+                model.request.Username = User.Identity.Name;
             }
             else
             {
@@ -65,29 +64,38 @@ namespace Skermstafir.Controllers
             string actors = fc["actors"];
             String[] actorers = actors.Split(',');
 
-            foreach (var item in actorers)
+            foreach (var item in model.request.Actors)
             {
-                Actor temp = new Actor();
-                temp.Name = item;
-                model.request.Actors.Add(temp);
+                if(sr.GetActorByName(item.Name) == null)
+                {
+                    foreach (var item2 in actorers)
+                    {
+                        Actor temp = new Actor();
+                        temp.Name = item2;
+                        model.request.Actors.Add(temp);
+                    }
+                }
+                else 
+                {
+                    model.request.Actors.Add(sr.GetActorByID(item.IdActor));
+                }
             }
 
-            for (int i = 0; i < 8; i++)
+            for (int i = 1; i < 8; i++)
             {
                 if (fc["genre" + i.ToString()] == "on")
                 {
-                    Genre temp = new Genre();
-                    model.request.Genres.Add(temp);
+                    model.request.Genres.Add(sr.GetGenreByID(i));
                 }
             }
 
             if (fc["languages"] == "Íslenska")
             {
-                model.request.Language.Name = "Íslenska";
+                model.request.LanguageId = 1;
             }
             else if (fc["languages"] == "Enska")
             {
-                model.request.Language.Name = "Enska";
+                model.request.LanguageId = 2;
             }
 
             rr.AddRequest(model);
@@ -174,8 +182,8 @@ namespace Skermstafir.Controllers
             int idValue = id.Value;
             reqModel = reqRepo.GetRequestByID(idValue);
             int idToDelete = reqModel.request.IdRequest;
-            DeleteRequest(idToDelete);
-            return RedirectToAction("Manage");
+            reqRepo.DeleteRequest(idToDelete);
+            return RedirectToAction("Manage", "Account");
         }
 	}
 }
