@@ -7,28 +7,28 @@
                    placeholder="Leita að þýðingum" />
             <input type="submit" class="btn btn-default downloadbtn" name="searchButton" value="Leita" />
             <div class="flokkar">
-                <input type="checkbox" id="genre1" />
+                <input type="checkbox" id="genre1" name="Kvikmyndir" />
                 <label for="genre1">Kvikmyndir</label>
 
-                <input type="checkbox" id="genre2" />
+                <input type="checkbox" id="genre2" name="Þættir"/>
                 <label for="genre2">Þættir</label>
 
-                <input type="checkbox" id="genre3" />
+                <input type="checkbox" id="genre3" name="Barnaefni"/>
                 <label for="genre3">Barnaefni</label>
 
-                <input type="checkbox" id="genre4" />
+                <input type="checkbox" id="genre4" name="Heimildir"/>
                 <label for="genre4">Heimildir</label><br />
 
-                <input type="checkbox" id="genre5" />
+                <input type="checkbox" id="genre5" name="Gaman"/>
                 <label for="genre5">Gaman</label>
 
-                <input type="checkbox" id="genre6" />
+                <input type="checkbox" id="genre6" name="Spenna"/>
                 <label for="genre6">Spenna</label>
 
-                <input type="checkbox" id="genre7" />
+                <input type="checkbox" id="genre7" name="Drama"/>
                 <label for="genre7">Drama</label>
 
-                <input type="checkbox" id="genre8" />
+                <input type="checkbox" id="genre8" name="Ævintýri"/>
                 <label for="genre8">Ævintýri</label>
             </div>
         </div>
@@ -37,12 +37,14 @@
             <label for="yearFrom">Frá:</label>
             <input type="text" id="yearFrom"
                    placeholder="Ár"
-                   maxlength="4" />
+                   maxlength="4"
+                   name="StartYear" />
 
             <label for="yearTil">Til:</label>
             <input type="text" id="yearTo"
                    placeholder="Ár"
-                   maxlength="4" />
+                   maxlength="4"
+                   name="EndYear" />
         </div>
     }
 </div>
