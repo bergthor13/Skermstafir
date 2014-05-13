@@ -91,13 +91,11 @@ namespace Skermstafir.Controllers
 
             if (fc["language"] == "Islenska")
             {
-                Language lang = sr.GetLanguageByName("Íslenska");
-                model.request.Language = lang;
+                model.request.LanguageId = 1;
             }
             else
             {
-                Language lang = sr.GetLanguageByName("Enska");
-                model.request.Language = lang;
+                model.request.LanguageId = 2;
             }
 
             rr.AddRequest(model);
