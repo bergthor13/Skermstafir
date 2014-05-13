@@ -194,9 +194,9 @@ namespace Skermstafir.Controllers
 				}
 			}
 			// add union for edge results
-			foreach (var list in ls) {
-				model.modelList = model.modelList.Union(list).ToList();
-			}
+			//foreach (var list in ls) {
+			//	model.modelList = model.modelList.Union(list).ToList();
+			//}
 			return View(model);
 		}
         //Delete request
