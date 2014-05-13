@@ -62,6 +62,24 @@ namespace Skermstafir.Controllers
                 model.request.Actors.Add(temp);
             }
 
+            for (int i = 0; i < 8; i++)
+            {
+                if (fc["genre" + i.ToString()] == "on")
+                {
+                    Genre temp = new Genre();
+                    model.request.Genres.Add(temp);
+                }
+            }
+
+            if (fc["languages"] == "Íslenska")
+            {
+                model.request.Language.Name = "Íslenska";
+            }
+            if (fc["languages"] == "Enska")
+            {
+                model.request.Language.Name = "Enska";
+            }
+
             rr.AddRequest(model);
 
             return this.RedirectToAction("ShowRequest", new { id = model.request.IdRequest });
