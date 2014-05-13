@@ -184,46 +184,51 @@ namespace Skermstafir.Controllers
 		{
 			int idValue = id.Value;
 			SubtitleModel editedSub = new SubtitleModel();
-			SearchRepository search = new SearchRepository();
-			var db = new SkermData();
-			
-			SubtitleRepository sr = new SubtitleRepository();
+			SearchRepository seaR = new SearchRepository();
+			SubtitleRepository subR = new SubtitleRepository();
 				
-			editedSub = search.GetSubtitleByID(idValue);
+			editedSub = seaR.GetSubtitleByID(idValue);
 
 			// Change the subtitle
-			string test = fd["genre1"];
 			editedSub.subtitle.YearCreated = Convert.ToInt32(fd["year"]);
 			editedSub.subtitle.Content     = fd["originalText"];
 			editedSub.subtitle.EditContent = fd["editedText"];
 			editedSub.subtitle.Description = fd["description"];
-			string directorName            = fd["director"];
 
-			// Gets the director specified in the 'director' textbox in the view.
-			Director director = sr.GetDirectorByName(directorName);
+			// Gets the director object specified in the 'director' textbox in the view.
+			string directorName = fd["director"];
+			Director director = subR.GetDirectorByName(directorName);
 			// If the director is not found, we create a new director with that name.
 			if (director == null) {
 				Director newDir = new Director();
 				newDir.Name = directorName;
-				search.AddDirector(newDir);
+				seaR.AddDirector(newDir);
 				editedSub.subtitle.DirectorId = newDir.IdDirector;
 				// Else we change the director of the subtitle.
 			} else {
 				editedSub.subtitle.DirectorId = director.IdDirector;
 			}
 
+			for (int i = 1; i <= 8; i++)
+			{
+				if (fd["genre" + i.ToString()] == "on")
+				{
+					Genre gen = seaR.GetGenreByID(i);
+					subR.AddGenreToSubtitle(gen, editedSub.subtitle);
+				}
+				else
+				{
+					Genre gen = seaR.GetGenreByID(i);
+					subR.RemoveGenreToSubtitle(gen, editedSub.subtitle);
+				}
+			}
 			// Finally we update the subtitle.
-			sr.ChangeExistingSubtitle(idValue, editedSub);
-			
-			// Get the new list
-			editedSub = search.GetSubtitleByID(idValue);
-			
-			// Fill the empty model variables.
-			FillModel(editedSub);
+			subR.ChangeExistingSubtitle(idValue, editedSub);
 
-			return this.RedirectToAction("ShowSubtitle", new { id = idValue });
+			return RedirectToAction("ShowSubtitle", new { id = idValue });
 		}
 
+		// Downloads the srt file.
 		public FileResult Download(int? id)
 		{
 			if (id == null)

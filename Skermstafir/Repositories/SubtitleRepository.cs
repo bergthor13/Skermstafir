@@ -44,17 +44,16 @@ namespace Skermstafir.Repositories
 			toBeChanged.EditContent = editSub.subtitle.EditContent;
 			toBeChanged.DateAdded   = editSub.subtitle.DateAdded;
 			toBeChanged.Link		= editSub.subtitle.Link;
-			
-			db.SaveChanges();
-			
+
+			db.SaveChanges();	
         }
 
 		public Director GetDirectorByName(string dir)
 		{
 			SkermData db = new SkermData();
 			Director check = (from item in db.Directors
-								 where item.Name == dir
-							     select item).SingleOrDefault();
+							  where item.Name == dir
+							  select item).SingleOrDefault();
 
 			if (check == null)
 			{
@@ -65,5 +64,19 @@ namespace Skermstafir.Repositories
 				return check;
 			}
 		}
-    }
+
+		public void AddGenreToSubtitle(Genre gen, Subtitle sub)
+		{
+			SkermData db = new SkermData();
+			sub.Genres.Add(gen);
+			db.SaveChanges();
+		}
+
+		public void RemoveGenreToSubtitle(Genre gen, Subtitle subtitle)
+		{
+			SkermData db = new SkermData();
+			subtitle.Genres.Remove(gen);
+			db.SaveChanges();
+		}
+	}
 }
