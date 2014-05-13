@@ -34,11 +34,45 @@ namespace Skermstafir.Controllers
 			}
 		}
 		// Adds a new request.
-		public ActionResult CreateRequest()
+        [HttpPost]
+		public ActionResult CreateRequest(FormCollection fc)
 		{
 			RequestModel model = new RequestModel();
-			return View(model);
+            RequestRepository rr = new RequestRepository();
+        
+            model.request.Name = fc["title"];
+            model.request.Language.Name = fc["language"];
+            model.request.Director.Name = fc["director"];
+            model.request.Username = "NOTIMPL";
+            model.request.Description = fc["description"];
+
+            int year = Convert.ToInt32(fc["year"]);
+            model.request.YearCreated = year;
+
+            model.request.DateAdded = DateTime.Now;
+            model.request.Link = fc["link"];
+
+            string actors = fc["actors"];
+            String[] actorers = actors.Split(',');
+
+            foreach (var item in actorers)
+            {
+                Actor temp = new Actor();
+                temp.Name = item;
+                model.request.Actors.Add(temp);
+            }
+
+            rr.AddRequest(model);
+
+            return this.RedirectToAction("ShowRequest", new { id = model.request.IdRequest });
 		}
+
+        [HttpGet]
+        public ActionResult CreateRequest()
+        {
+            RequestModel model = new RequestModel();
+            return View(model);
+        }
 
 		public void FillModel(RequestModel rm)
 		{
