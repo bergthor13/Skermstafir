@@ -95,3 +95,8 @@
 	<h3 align="center">Þýðing:</h3>
 	<textarea id="editedText" cols="900" rows="40" disabled>@Model.subtitle.EditContent</textarea>
 </div>
+
+<div id="comments">
+    <p>Notandi: @Model.subtitle.Comments.FirstOrDefault().AspNetUsers.FirstOrDefault()</p>
+    @Model.subtitle.Comments.FirstOrDefault()
+</div>

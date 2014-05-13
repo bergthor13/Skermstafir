@@ -9,6 +9,7 @@ using System.Text;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
+using Microsoft.AspNet.Identity;
 
 namespace Skermstafir.Controllers
 {
@@ -40,11 +41,11 @@ namespace Skermstafir.Controllers
             SubtitleRepository sr = new SubtitleRepository();
 
             // Get current logged in user
+            var logUser = User.Identity.GetUserName();
             
             // Set info to the new subtitle
             model.subtitle.Name = fc["title"];
             model.subtitle.YearCreated = Convert.ToInt32(fc["year"]);
-            model.subtitle.Content = fc["editedText"];
             model.subtitle.Description = fc["description"];
             model.subtitle.Director.Name = fc["director"];
             model.subtitle.Link = fc["link"];

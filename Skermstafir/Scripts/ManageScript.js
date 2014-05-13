@@ -1,0 +1,4 @@
+﻿function Delete()
+{
+    $("button").hide();
+}
