@@ -9,10 +9,10 @@ namespace Skermstafir.Repositories
 {
     public class SubtitleRepository : ISubtitleRepository
     {
+		public SkermData db = new SkermData();
         // Add a subtitlemodel object to database
         public void AddSubtitle(SubtitleModel model)
         {
-            SkermData db = new SkermData();
             db.Subtitles.Add(model.subtitle);
             db.SaveChanges();
         }
@@ -20,7 +20,6 @@ namespace Skermstafir.Repositories
         // Delete a specific subtitle from database
         public void DeleteSubtitle(int id)
         {
-            SkermData db = new SkermData();
             Subtitle toBeDeleted = (from item in db.Subtitles
                                     where item.IdSubtitle == id
                                     select item).Single();
@@ -31,7 +30,6 @@ namespace Skermstafir.Repositories
         // Change an existing subtitle entry in the database
         public void ChangeExistingSubtitle(int id, SubtitleModel editSub)
         {
-			SkermData db = new SkermData();
 			Subtitle toBeChanged = (from item in db.Subtitles
 									where item.IdSubtitle == id
 									select item).Single();
@@ -51,7 +49,6 @@ namespace Skermstafir.Repositories
 
 		public Director GetDirectorByName(string dir)
 		{
-			SkermData db = new SkermData();
 			Director check = (from item in db.Directors
 							  where item.Name == dir
 							  select item).SingleOrDefault();
@@ -68,21 +65,18 @@ namespace Skermstafir.Repositories
 
 		public void AddGenreToSubtitle(Genre gen, Subtitle sub)
 		{
-			SkermData db = new SkermData();
 			sub.Genres.Add(gen);
 			db.SaveChanges();
 		}
 
 		public void RemoveGenreToSubtitle(Genre gen, Subtitle sub)
 		{
-			SkermData db = new SkermData();
 			sub.Genres.Remove(gen);
 			db.SaveChanges();
 		}
 
 		public Actor GetActorByName(string actorName)
 		{
-			SkermData db = new SkermData();
 			Actor act = (from item in db.Actors
 						   where item.Name == actorName
 						   select item).SingleOrDefault();
