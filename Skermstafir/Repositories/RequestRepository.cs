@@ -87,5 +87,38 @@ namespace Skermstafir.Repositories
                                     select req).Skip(start).Take(end - start).ToList();
             return modelList;
         }
+
+		public RequestModelList GetRequestsByString(String str) {
+			RequestModelList model = new RequestModelList();
+			SkermData db = new SkermData();
+			model.modelList = (from req in db.Requests
+							   where req.Name.Contains(str)
+							   select req).ToList();
+			return model;
+		}
+
+		public RequestModelList GetRequestsByYear(int start, int end) {
+			RequestModelList model = new RequestModelList();
+			SkermData db = new SkermData();
+			model.modelList = (from req in db.Requests
+							   where req.YearCreated >= start && req.YearCreated <= end
+							   select req).ToList();
+			return model;
+		}
+
+		public RequestModelList GetRequestsByGenre(string genre) {
+			RequestModelList model = new RequestModelList();
+			SkermData db = new SkermData();
+			List<Request> ls = (from req in db.Requests
+								select req).ToList();
+			for (int i = 0; i < ls.Count; i++) {
+				foreach (var item in ls[i].Genres) {
+					if (item.Name == genre) {
+						model.modelList.Add(ls[i]);
+					}
+				}
+			}
+			return model;
+		}
     }
 }
