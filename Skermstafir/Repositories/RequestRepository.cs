@@ -24,7 +24,8 @@ namespace Skermstafir.Repositories
             Request discardRequest = (from req in db.Requests
                                       where req.IdRequest == id
                                       select req).Single();
-                db.Requests.Remove(discardRequest);
+            db.Requests.Remove(discardRequest);
+            db.SaveChanges();
         }
 
         // queries and gets requests starting from index start and ending at index end

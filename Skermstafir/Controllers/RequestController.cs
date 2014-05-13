@@ -135,8 +135,8 @@ namespace Skermstafir.Controllers
             int idValue = id.Value;
             reqModel = reqRepo.GetRequestByID(idValue);
             int idToDelete = reqModel.request.IdRequest;
-            DeleteRequest(idToDelete);
-            return RedirectToAction("Manage");
+            reqRepo.DeleteRequest(idToDelete);
+            return RedirectToAction("Manage", "Account");
         }
 	}
 }
