@@ -11,6 +11,6 @@ namespace Skermstafir.Models
         public int votes { get; set; }
 
 		public bool[] genreValue = new bool[8];
-		public string artistsForView;
+		public string actorsForView;
 	}
 }

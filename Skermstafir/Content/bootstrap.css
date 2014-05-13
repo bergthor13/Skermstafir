@@ -2010,6 +2010,11 @@ textarea.input-lg {
   }
 }
 
+.btn.downloadbtn
+{
+    padding: 3px 6px;
+}
+
 .btn {
   display: inline-block;
   padding: 6px 12px;

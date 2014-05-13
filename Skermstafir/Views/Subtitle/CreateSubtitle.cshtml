@@ -38,7 +38,7 @@
                       placeholder="Stutt lýsing og söguþráður.">@Model.subtitle.Description</textarea>
         </span>
 
-        <input id="download" type="submit" name="createSubtitle" value="Vista þýðingu" />
+        <input id="download" class="btn btn-default downloadbtn" type="submit" name="createSubtitle" value="Vista þýðingu" />
         
         <p class="info">
             <label for="title" class="col-md-2">Titill:</label>
@@ -46,9 +46,15 @@
         </p>
         <p class="info">
             <span class="col-md-2">Tungumál:</span>
+<<<<<<< HEAD
             <select name="language">
 					<option value="Íslenska" selected>Íslenska</option>
 					<option value="Enska">Enska</option>
+=======
+            <select name="icelandic">
+					<option value="Íslensa" selected>Íslenska</option>
+					<option value="Enskla">Enska</option>
+>>>>>>> 8eaaf1e833c8a83dc4d343867ae2ca8bec816261
             </select>
         </p>
         <p class="info">
@@ -57,7 +63,7 @@
         </p>
         <p class="info">
             <label for="actors" class="col-md-2">Aðalleikarar:</label>
-            <input type="text" name="actors" value="@Model.artistsForView" placeholder="Komma aðskilur leikara t.d. Paul Rudd, Philip Seymour Hoffman" />
+            <input type="text" name="actors" value="@Model.actorsForView" placeholder="Komma aðskilur leikara t.d. Paul Rudd, Philip Seymour Hoffman" />
         </p>
         <p class="info">
             <label for="year" class="col-md-2">Útgáfuár:</label>
@@ -65,7 +71,11 @@
         </p>
         <p class="info">
             <label for="link" class="col-md-2">Hlekkur á myndskeið:</label>
+<<<<<<< HEAD
             <input type="text" name="link" value="@Model.subtitle.Link" placeholder="t.d. af YouTube, Vimeo o.þ.h." />
+=======
+            <input type="text" value="@Model.subtitle.Link"name="link" placeholder="t.d. af YouTube, Vimeo o.þ.h." />
+>>>>>>> 8eaaf1e833c8a83dc4d343867ae2ca8bec816261
         </p>
         <div class="info">
             <label for="originalText" class="col-md-2">Texti sem á að þýða:</label>

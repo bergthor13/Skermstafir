@@ -16,13 +16,22 @@
                 <!-- Up button, upvote count, flag-->
                 <div class="first-column">
                     <div class="blueup">▲</div> <div>@item.Votes.Count</div>
-                    <img src="http://www.placekitten.com/16/11" alt="Flag" />
+                    @if (item.LanguageId == 1)
+                    {
+                        <img src="http://www.senojflags.com/images/national-flag-icons/Iceland-Flag.png" alt="Flag" />
+                    }
+                    else
+                    {
+                        <img src="http://www.senojflags.com/images/national-flag-icons/England-Flag.png" alt="Flag" />  
+                    }
                 </div>
                 <h4 class="second-column">@Html.ActionLink((string)item.Name, "ShowSubtitle", new { controller = "Subtitle", id = item.IdSubtitle }, "Subtitle")</h4>
                 <p id="year">Útgáfuár: @item.YearCreated</p>
 
                 <div class="third-column">
-                    <input type="button" name="download" onclick="location.href='@Url.Action("Download", "Subtitle", new { id = item.IdSubtitle })'" value="Niðurhala" />
+                    <button type="button" class="btn btn-default downloadbtn" onclick="location.href='@Url.Action("Download", "Subtitle", new { id = item.IdSubtitle })'">
+                        <p>Niðurhala</p>
+                    </button>
                 </div>
                 <p id="creator">Stofnandi: @item.AspNetUsers.FirstOrDefault().UserName</p>
             </div>
@@ -37,14 +46,23 @@
                 <!-- Up button, upvote count, flag-->
                 <div class="first-column">
                     <div class="blueup">▲</div> <div>@item.Votes.Count</div>
-                    <img src="http://www.placekitten.com/16/11" alt="Flag" />
+                    @if (item.LanguageId == 1)
+                    {
+                        <img src="http://www.senojflags.com/images/national-flag-icons/Iceland-Flag.png" alt="Flag" />
+                    }
+                    else
+                    {
+                        <img src="http://www.senojflags.com/images/national-flag-icons/England-Flag.png" alt="Flag" />
+                    }
                 </div>
 
                 <h4 class="second-column">@Html.ActionLink((string)item.Name, "ShowRequest", new { controller = "Request", id = item.IdRequest }, "Request")</h4>
                 <p id="year">Útgáfuár: @item.YearCreated</p>
 
                 <div class="third-column">
-                    <input type="button" name="download" onclick="location.href='@Url.Action("CreateSubtitleFromRequest", "Subtitle", new { id = item.IdRequest })'" value="Stofna þýðingu" />
+                    <button type="button" class="btn btn-default downloadbtn" onclick="location.href='@Url.Action("CreateSubtitleFromRequest", "Subtitle", new { id = item.IdRequest })'">
+                        <p>Stofna þýðingu</p>
+                    </button>
                 </div>
                 <p id="creator">Stofnandi: @item.Username</p>
             </div>
@@ -59,14 +77,23 @@
                 <!-- Up button, upvote count, flag-->
                 <div class="first-column">
                     <div class="blueup">▲</div> <div>@item.Votes.Count </div>
-                    <img src="http://www.placekitten.com/16/11" alt="Flag" />
+                    @if (item.LanguageId == 1)
+                    {
+                        <img src="http://www.senojflags.com/images/national-flag-icons/Iceland-Flag.png" alt="Flag" />
+                    }
+                    else
+                    {
+                        <img src="http://www.senojflags.com/images/national-flag-icons/England-Flag.png" alt="Flag" />
+                    }
                 </div>
 
                 <h4 class="second-column">@Html.ActionLink((string)item.Name, "ShowSubtitle", new { controller = "Subtitle", id = item.IdSubtitle }, "Subtitle")</h4>
                 <p id="year">Útgáfuár: @item.YearCreated</p>
 
                 <div class="third-column">
-                    <input type="button" name="download" onclick="location.href='@Url.Action("Download", "Subtitle", new { id = item.IdSubtitle })'" value="Niðurhala" />
+                    <button type="button" class="btn btn-default downloadbtn" onclick="location.href='@Url.Action("Download", "Subtitle", new { id = item.IdSubtitle })'">
+                        <p>Niðurhala</p>
+                    </button>
                 </div>
                 <p id="creator">Stofnandi: @item.AspNetUsers.FirstOrDefault().UserName</p>
             </div>
@@ -81,14 +108,23 @@
                 <!-- Up button, upvote count, flag-->
                 <div class="first-column">
                     <div class="blueup">▲</div> <div>@item.Votes.Count </div>
-                    <img src="http://www.placekitten.com/16/11" alt="Flag" />
+                    @if (item.LanguageId == 1)
+                    {
+                        <img src="http://www.senojflags.com/images/national-flag-icons/Iceland-Flag.png" alt="Flag" />
+                    }
+                    else
+                    {
+                        <img src="http://www.senojflags.com/images/national-flag-icons/England-Flag.png" alt="Flag" />
+                    }
                 </div>
 
                 <h4 class="second-column">@Html.ActionLink((string)item.Name, "ShowRequest", new { controller = "Request", id = item.IdRequest }, "Request")</h4>
                 <p id="year">Útgáfuár: @item.YearCreated</p>
 
                 <div class="third-column">
-                    <input type="button" name="download" onclick="location.href='@Url.Action("CreateSubtitleFromRequest", "Subtitle", new { id = item.IdRequest })'" value="Stofna þýðingu" />
+                    <button type="button" class="btn btn-default downloadbtn" onclick="location.href='@Url.Action("CreateSubtitleFromRequest", "Subtitle", new { id = item.IdRequest })'">
+                        <p>Stofna þýðingu</p>
+                    </button>
                 </div>
                 <p id="creator">Stofnandi: @item.Username</p>
             </div>

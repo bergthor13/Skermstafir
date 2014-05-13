@@ -94,17 +94,16 @@ namespace Skermstafir.Controllers
 			RequestModel rModel = new RequestModel();
 			int idValue = id.Value;
 			rModel = rr.GetRequestByID(idValue);
-			DateTime dt = new DateTime();
-			sModel.subtitle.DateAdded = dt.Date+dt.TimeOfDay;
 			sModel.subtitle.Genres      = rModel.request.Genres;
-			sModel.subtitle.Actors = rModel.request.Actors;
+			sModel.subtitle.Actors      = rModel.request.Actors;
 			sModel.subtitle.YearCreated = rModel.request.YearCreated;
 			sModel.subtitle.Name        = rModel.request.Name;
 			sModel.subtitle.Language    = rModel.request.Language;
 			sModel.subtitle.Description = rModel.request.Description;
+			sModel.subtitle.Link		= rModel.request.Link;
 			// Put genres in a bool array
 			FillModel(sModel);
-
+			
 			foreach (var item in rModel.request.Genres)
 			{
 				for (int i = 0; i < 8; i++)
@@ -114,7 +113,6 @@ namespace Skermstafir.Controllers
 					}
 				}
 			}
-
 			return View("CreateSubtitle", sModel);
 		}
 
@@ -197,13 +195,27 @@ namespace Skermstafir.Controllers
 			editedSub = search.GetSubtitleByID(idValue);
 
 			// Change the subtitle
+			string test = fd["genre1"];
 			editedSub.subtitle.YearCreated = Convert.ToInt32(fd["year"]);
-			editedSub.subtitle.Content = fd["editedText"];
+			editedSub.subtitle.Content     = fd["originalText"];
+			editedSub.subtitle.EditContent = fd["editedText"];
 			editedSub.subtitle.Description = fd["description"];
+			string directorName            = fd["director"];
 
-			//editedSub.subtitle.Genres = ;
-			//editedSub.subtitle.Artists = ;
+			// Gets the director specified in the 'director' textbox in the view.
+			Director director = sr.GetDirectorByName(directorName);
+			// If the director is not found, we create a new director with that name.
+			if (director == null) {
+				Director newDir = new Director();
+				newDir.Name = directorName;
+				search.AddDirector(newDir);
+				editedSub.subtitle.DirectorId = newDir.IdDirector;
+				// Else we change the director of the subtitle.
+			} else {
+				editedSub.subtitle.DirectorId = director.IdDirector;
+			}
 
+			// Finally we update the subtitle.
 			sr.ChangeExistingSubtitle(idValue, editedSub);
 			
 			// Get the new list
@@ -237,11 +249,10 @@ namespace Skermstafir.Controllers
 				return null;
 			}
 
-			return File(Encoding.UTF8.GetBytes(result.subtitle.Content), "text/plain", result.subtitle.Name + ".srt");
+			return File(Encoding.UTF8.GetBytes(result.subtitle.EditContent), "text/plain", result.subtitle.Name + ".srt");
 		}
 		/// <summary>
-		/// Helper Function. 
-		/// <para>Fills in the rest of the model (genreValue[] and artistsForView)</para>
+		/// Helper Function. Fills in the rest of the model (genreValue[] and artistsForView)
 		/// </summary> 
 		public void FillModel(SubtitleModel sm)
 		{
@@ -255,15 +266,15 @@ namespace Skermstafir.Controllers
 			}
 
 			// Put artists in a string
-			foreach (var art in sm.subtitle.Actors)
+			foreach (var act in sm.subtitle.Actors)
 			{
-				if (art != sm.subtitle.Actors.Last())
+				if (act != sm.subtitle.Actors.Last())
 				{
-					sm.artistsForView += art.Name + ", ";
+					sm.actorsForView += act.Name + ", ";
 				}
 				else
 				{
-					sm.artistsForView += art.Name;
+					sm.actorsForView += act.Name;
 				}
 
 			}

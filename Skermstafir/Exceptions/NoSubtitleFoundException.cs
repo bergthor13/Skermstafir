@@ -5,7 +5,7 @@ using System.Web;
 
 namespace Skermstafir.Exceptions
 {
-	public class NoSubtitleFoundException: Exception
+	public class NoSubtitleFoundException : Exception
 	{
 
 	}

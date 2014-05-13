@@ -5,21 +5,30 @@
     <div class="top manage">
         @foreach (var subtitle in Model.subList.modelList)
         {
-        <div class="fp-list">
-			<!-- Up button, upvote count, flag-->
-			<div class="first-column">
-                <div class="blueup">▲</div> <div>@subtitle.Votes.Count</div>
-				<img src="http://www.placekitten.com/16/11" alt="Flag" />
-			</div>
+            <div class="fp-list">
+			    <!-- Up button, upvote count, flag-->
+			    <div class="first-column">
+                    <div class="blueup">▲</div> <div>@subtitle.Votes.Count</div>
+				    @if (subtitle.LanguageId == 1)
+                    {
+                        <img src="http://www.senojflags.com/images/national-flag-icons/Iceland-Flag.png" alt="Flag" />
+                    }
+                    else
+                    {
+                        <img src="http://www.senojflags.com/images/national-flag-icons/England-Flag.png" alt="Flag" />
+                    }
+			    </div>
 
-			<h4 class="second-column">@Html.ActionLink((string)subtitle.Name, "ShowSubtitle", new { controller = "Subtitle", id = subtitle.IdSubtitle }, "Subtitle")</h4>
-			<p id="year">Útgáfuár: @subtitle.YearCreated</p>
+			    <h4 class="second-column">@Html.ActionLink((string)subtitle.Name, "ShowSubtitle", new { controller = "Subtitle", id = subtitle.IdSubtitle }, "Subtitle")</h4>
+			    <p id="year">Útgáfuár: @subtitle.YearCreated</p>
 
-			<div class="third-column">
-				<input type="button" name="download" onclick="location.href='@Url.Action("CreateSubtitleFromRequest", "Subtitle", new { id = subtitle.IdSubtitle })'" value="Stofna þýðingu" />
-			</div>
-			<p id="creator">Stofnandi: @subtitle.AspNetUsers.SingleOrDefault().UserName</p>
-		</div>
+			    <div class="third-column">
+                    <button type="button" class="btn btn-default">
+                        <span class="glyphicon glyphicon-trash"></span>
+                    </button>
+			    </div>
+			    <p id="creator">Stofnandi: @subtitle.AspNetUsers.SingleOrDefault().UserName</p>
+		    </div>
         }
     </div>
 </div>
@@ -29,7 +38,28 @@
         @foreach (var request in Model.reqList.modelList)
         {
             <div class="fp-list">
-                <p>@Html.ActionLink((string)request.Name, "ShowRequest", new { controller = "Request", id = request.IdRequest }, "Request")</p>
+                <!-- Up button, upvote count, flag-->
+                <div class="first-column">
+                    <div class="blueup">▲</div> <div>@request.Votes.Count</div>
+                    @if (request.LanguageId == 1)
+                    {
+                        <img src="http://www.senojflags.com/images/national-flag-icons/Iceland-Flag.png" alt="Flag" />
+                    }
+                    else
+                    {
+                        <img src="http://www.senojflags.com/images/national-flag-icons/England-Flag.png" alt="Flag" />
+                    }
+                </div>
+
+                <h4 class="second-column">@Html.ActionLink((string)request.Name, "ShowRequest", new { controller = "Request", id = request.IdRequest }, "Request")</h4>
+                <p id="year">Útgáfuár: @request.YearCreated</p>
+
+                <div class="third-column">
+                    <button type="button" class="btn btn-default">
+                        <span class="glyphicon glyphicon-trash"></span>
+                    </button>
+                </div>
+                <p id="creator">Stofnandi: @request.Username</p>
             </div>
         }
     </div>
