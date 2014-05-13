@@ -34,13 +34,17 @@ namespace Skermstafir.Repositories
 			Subtitle toBeChanged = (from item in db.Subtitles
 									where item.IdSubtitle == id
 									select item).Single();
-
+			// Copy all data over
+			toBeChanged.LanguageId  = editSub.subtitle.LanguageId;
+			toBeChanged.DirectorId  = editSub.subtitle.DirectorId;
+			toBeChanged.Name        = editSub.subtitle.Name;
+			toBeChanged.Description = editSub.subtitle.Description;
 			toBeChanged.YearCreated = editSub.subtitle.YearCreated;
 			toBeChanged.Content     = editSub.subtitle.Content;
 			toBeChanged.EditContent = editSub.subtitle.EditContent;
-			toBeChanged.Description = editSub.subtitle.Description;
-			toBeChanged.DirectorId = editSub.subtitle.DirectorId;
-				
+			toBeChanged.DateAdded   = editSub.subtitle.DateAdded;
+			toBeChanged.Link		= editSub.subtitle.Link;
+			
 			db.SaveChanges();
 			
         }
