@@ -43,6 +43,7 @@ namespace Skermstafir.Controllers
         
             model.request.Name = fc["title"];
             model.request.Director.Name = fc["director"];
+            model.request.Description = fc["description"];
 
             if (User.Identity.Name != null)
             {
@@ -51,42 +52,6 @@ namespace Skermstafir.Controllers
             else
             {
                 model.request.Username = "Anonymous";
-            }
-
-            model.request.Description = fc["description"];
-
-            int year = Convert.ToInt32(fc["year"]);
-            model.request.YearCreated = year;
-
-            model.request.DateAdded = DateTime.Now;
-            model.request.Link = fc["link"];
-
-            string actors = fc["actors"];
-            String[] actorers = actors.Split(',');
-
-            foreach (var item in model.request.Actors)
-            {
-                if(sr.GetActorByName(item.Name) == null)
-                {
-                    foreach (var item2 in actorers)
-                    {
-                        Actor temp = new Actor();
-                        temp.Name = item2;
-                        model.request.Actors.Add(temp);
-                    }
-                }
-                else 
-                {
-                    model.request.Actors.Add(sr.GetActorByID(item.IdActor));
-                }
-            }
-
-            for (int i = 1; i < 9; i++)
-            {
-                if (fc["genre" + i.ToString()] == "on")
-                {
-                    model.request.Genres.Add(sr.GetGenreByID(i));
-                }
             }
 
             if (fc["language"] == "Islenska")
@@ -98,9 +63,47 @@ namespace Skermstafir.Controllers
                 model.request.LanguageId = 2;
             }
 
-            rr.AddRequest(model);
+            int year = Convert.ToInt32(fc["year"]);
+            model.request.YearCreated = year;
 
-            return this.RedirectToAction("ShowRequest", new { id = model.request.IdRequest });
+            model.request.DateAdded = DateTime.Now;
+            model.request.Link = fc["link"];
+
+            
+
+            string actors = fc["actors"];
+            String[] actorers = actors.Split(',');
+            rr.AddRequest(model);
+            SkermData db = new SkermData();
+
+            foreach (var item in actorers)
+            {
+                Actor temp = new Actor();
+                if(sr.GetActorByName(item) == null)
+                {
+                    temp.Name = item;
+                    db.Actors.Add(temp);
+                    db.SaveChanges();
+                }
+                else
+                {
+                    temp = sr.GetActorByName(item);
+                }
+                temp.Requests.Add(model.request);
+                model.request.Actors.Add(temp);
+            }
+
+
+            for (int i = 1; i < 9; i++)
+            {
+                if (fc["genre" + i.ToString()] == "on")
+                {
+                    model.request.Genres.Add(sr.GetGenreByID(i));
+                }
+            }
+
+
+            return RedirectToAction("ShowRequest", new { id = model.request.IdRequest });
 		}
 
         [HttpGet]
