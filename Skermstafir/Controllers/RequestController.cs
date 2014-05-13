@@ -81,7 +81,7 @@ namespace Skermstafir.Controllers
                 }
             }
 
-            for (int i = 1; i < 8; i++)
+            for (int i = 1; i < 9; i++)
             {
                 if (fc["genre" + i.ToString()] == "on")
                 {
@@ -89,13 +89,15 @@ namespace Skermstafir.Controllers
                 }
             }
 
-            if (fc["languages"] == "Íslenska")
+            if (fc["language"] == "Islenska")
             {
-                model.request.LanguageId = 1;
+                Language lang = sr.GetLanguageByName("Íslenska");
+                model.request.Language = lang;
             }
-            else if (fc["languages"] == "Enska")
+            else
             {
-                model.request.LanguageId = 2;
+                Language lang = sr.GetLanguageByName("Enska");
+                model.request.Language = lang;
             }
 
             rr.AddRequest(model);
