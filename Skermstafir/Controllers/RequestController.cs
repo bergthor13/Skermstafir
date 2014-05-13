@@ -202,12 +202,10 @@ namespace Skermstafir.Controllers
         //Delete request
         public ActionResult DeleteRequest(int? id)
         {
-            RequestModel reqModel = new RequestModel();
+            
             RequestRepository reqRepo = new RequestRepository();
             int idValue = id.Value;
-            reqModel = reqRepo.GetRequestByID(idValue);
-            int idToDelete = reqModel.request.IdRequest;
-            reqRepo.DeleteRequest(idToDelete);
+            reqRepo.DeleteRequest(idValue);
             return RedirectToAction("Manage", "Account");
         }
 	}
