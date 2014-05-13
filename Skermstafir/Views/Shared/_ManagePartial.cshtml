@@ -23,7 +23,7 @@
 			    <p id="year">Útgáfuár: @subtitle.YearCreated</p>
 
 			    <div class="third-column">
-                    <button type="button" class="btn btn-default" onclick="javascript: Delete();">
+                    <button type="button" id="req @subtitle.IdSubtitle" class="btn btn-default deletebtn" onclick="DeleteSub($(this), $(this).attr('id'));">
                         <span class="glyphicon glyphicon-trash"></span>
                     </button>
 			    </div>
