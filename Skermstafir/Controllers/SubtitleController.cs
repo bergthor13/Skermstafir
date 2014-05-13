@@ -276,8 +276,8 @@ namespace Skermstafir.Controllers
 			if (userName == "")
 			{
 				// User is not logged in.
-				object ob = new { Exists = 2 };
-				return View(Json(ob, JsonRequestBehavior.AllowGet));
+				object noUser = new { Exists = 3 };
+				return View(Json(noUser, JsonRequestBehavior.AllowGet));
 			}
 
 			SearchRepository sr = new SearchRepository();
@@ -287,12 +287,12 @@ namespace Skermstafir.Controllers
 
 			if (sr.VoteContainsSubtitle(vote, subtitle))
 			{
-				object ob = new { Exists = 1 };
-				return View(Json(ob, JsonRequestBehavior.AllowGet));
+				object existsYes = new { Exists = 1 };
+				return View(Json(existsYes, JsonRequestBehavior.AllowGet));
 			}
 			else
 			{
-				subtitle.Votes.Add(vote);
+				sr.AddVoteToSubtite(vote, subtitle);
 			}
 		
 			object ob2 = new { id2 = 0 };

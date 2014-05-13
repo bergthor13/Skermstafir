@@ -144,5 +144,36 @@ namespace Skermstafir.Repositories {
                              select item).SingleOrDefault();
             return lang;
         }
+
+		public Vote GetVoteByUserID(string userId)
+		{
+			Vote vote = (from item in db.Votes
+						 where item.UserId == userId
+						 select item).SingleOrDefault();
+			return vote;
+		}
+
+		public bool VoteContainsSubtitle(Vote vote, Subtitle subtitle)
+		{
+			if (subtitle.Votes.Contains(vote))
+			{
+				return true;
+			}
+			return false;
+		}
+
+		public void AddVoteToSubtite(Vote vote, Subtitle subtitle)
+		{
+			Vote v = (from item in db.Votes
+					  where item.IdVote == vote.IdVote
+					  select item).SingleOrDefault();
+
+			Subtitle s = (from item in db.Subtitles
+						  where item.IdSubtitle == subtitle.IdSubtitle
+						  select item).SingleOrDefault();
+
+			v.Subtitles.Add(s);
+			db.SaveChanges();
+		}
 	}
 }
