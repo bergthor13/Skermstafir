@@ -24,7 +24,8 @@ namespace Skermstafir.Repositories
             Request discardRequest = (from req in db.Requests
                                       where req.IdRequest == id
                                       select req).Single();
-                db.Requests.Remove(discardRequest);
+            db.Requests.Remove(discardRequest);
+            db.SaveChanges();
         }
 
         // queries and gets requests starting from index start and ending at index end
@@ -108,6 +109,7 @@ namespace Skermstafir.Repositories
 
 		public RequestModelList GetRequestsByGenre(string genre) {
 			RequestModelList model = new RequestModelList();
+			model.modelList = new List<Request>();
 			SkermData db = new SkermData();
 			List<Request> ls = (from req in db.Requests
 								select req).ToList();

@@ -36,8 +36,6 @@ namespace Skermstafir.Controllers
 		{
 			SubtitleModel model = new SubtitleModel();
             SearchRepository search = new SearchRepository();
-            var db = new SkermData();
-
             SubtitleRepository sr = new SubtitleRepository();
 
             // Get current logged in user
@@ -187,7 +185,8 @@ namespace Skermstafir.Controllers
 			SubtitleModel editedSub = new SubtitleModel();
 			SearchRepository seaR = new SearchRepository();
 			SubtitleRepository subR = new SubtitleRepository();
-				
+			
+			// Get the subtitle
 			editedSub = seaR.GetSubtitleByID(idValue);
 
 			// Change the subtitle
@@ -210,6 +209,7 @@ namespace Skermstafir.Controllers
 				editedSub.subtitle.DirectorId = director.IdDirector;
 			}
 
+			// Add the genres selected to the subtitle.
 			for (int i = 1; i <= 8; i++)
 			{
 				if (fd["genre" + i.ToString()] == "on")
@@ -223,9 +223,41 @@ namespace Skermstafir.Controllers
 					subR.RemoveGenreToSubtitle(gen, editedSub.subtitle);
 				}
 			}
+
+			/*
+			string actors = fd["actors"];
+			string actorName = "";
+			String[] actorers = actors.Split(',');
+
+			/*foreach (var item in actorers)
+			{
+				if (item[0] == ' ')
+				{
+					actorName = item.Substring(1, item.Length-1);
+				}
+				Actor temp = new Actor();
+				temp.Name = actorName;
+
+				Actor actor = subR.GetActorByName(actorName);
+				// If the director is not found, we create a new director with that name.
+				if (actor == null)
+				{
+					Actor newAct = new Actor();
+					newAct.Name = actorName;
+					seaR.AddActor(newAct);
+					//editedSub.subtitle.DirectorId = newAct.IdActor;
+					// Else we change the director of the subtitle.
+				}
+				else
+				{
+					//editedSub.subtitle.Actor = director.IdActor;
+				}
+
+			}*/
+
 			// Finally we update the subtitle.
 			subR.ChangeExistingSubtitle(idValue, editedSub);
-
+			
 			return RedirectToAction("ShowSubtitle", new { id = idValue });
 		}
 
@@ -280,6 +312,13 @@ namespace Skermstafir.Controllers
 
 			}
 		}
+        public ActionResult DeleteSubtitle(int? id)
+        {
+            SubtitleRepository subRepo = new SubtitleRepository();
+            int idValue = id.Value;
+            subRepo.DeleteSubtitle(idValue);
+            return RedirectToAction("Manage", "Account");
+        }
 	}
 
 }

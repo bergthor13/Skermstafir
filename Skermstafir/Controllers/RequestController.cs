@@ -158,19 +158,57 @@ namespace Skermstafir.Controllers
 			if (form["Kvikmyndir"] == "on") {
 				genreResult = genreResult.Union(reqRep.GetRequestsByGenre("Kvikmyndir").modelList).ToList();
 			}
-			model.modelList = yearResult;
+			if (form["Þættir"] == "on") {
+				genreResult = genreResult.Union(reqRep.GetRequestsByGenre("Þættir").modelList).ToList();
+			}
+			if (form["Barnaefni"] == "on") {
+				genreResult = genreResult.Union(reqRep.GetRequestsByGenre("Barnaefni").modelList).ToList();
+			}
+			if (form["Heimildir"] == "on") {
+				genreResult = genreResult.Union(reqRep.GetRequestsByGenre("Heimildir").modelList).ToList();
+			}
+			if (form["Gaman"] == "on") {
+				genreResult = genreResult.Union(reqRep.GetRequestsByGenre("Gaman").modelList).ToList();
+			}
+			if (form["Spenna"] == "on") {
+				genreResult = genreResult.Union(reqRep.GetRequestsByGenre("Spenna").modelList).ToList();
+			}
+			if (form["Drama"] == "on") {
+				genreResult = genreResult.Union(reqRep.GetRequestsByGenre("Drama").modelList).ToList();
+			}
+			if (form["Ævintýri"] == "on") {
+				genreResult = genreResult.Union(reqRep.GetRequestsByGenre("Ævintýri").modelList).ToList();
+			}
+			List<List<Request>> ls = new List<List<Request>>();
+			ls.Add(stringResult);
+			ls.Add(yearResult);
+			ls.Add(genreResult);
+			bool first = true;
+			// get intersection
+			foreach (var list in ls) { 
+				if (list.Count != 0) {
+					if (first) {
+						model.modelList = list;
+						first = false;
+					} else {
+						model.modelList = model.modelList.Intersect(list).ToList();
+					}
+				}
+			}
+			// add union for edge results
+			foreach (var list in ls) {
+				model.modelList = model.modelList.Union(list).ToList();
+			}
 			return View(model);
 		}
         //Delete request
         public ActionResult DeleteRequest(int? id)
         {
-            RequestModel reqModel = new RequestModel();
+            
             RequestRepository reqRepo = new RequestRepository();
             int idValue = id.Value;
-            reqModel = reqRepo.GetRequestByID(idValue);
-            int idToDelete = reqModel.request.IdRequest;
-            DeleteRequest(idToDelete);
-            return RedirectToAction("Manage");
+            reqRepo.DeleteRequest(idValue);
+            return RedirectToAction("Manage", "Account");
         }
 	}
 }

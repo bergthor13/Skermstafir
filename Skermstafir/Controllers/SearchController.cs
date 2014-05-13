@@ -16,9 +16,12 @@ namespace Skermstafir.Controllers
         public ActionResult Search(FormCollection form)
         {
             SubtitleModelList result = new SubtitleModelList();
+			result.modelList = new List<Subtitle>();
   			SearchRepository sc = new SearchRepository();
-			List<Subtitle> stringResult = sc.GetSubtitleByString(form["SearchValue"]).modelList;
-
+			List<Subtitle> stringResult = new List<Subtitle>();
+			if (form["SearchValue"] != "") {
+				stringResult = sc.GetSubtitleByString(form["SearchValue"]).modelList;
+			}
 			int start, end;
 			if (form["StartYear"] != "") {
 				start = Convert.ToInt32(form["StartYear"]);
@@ -74,9 +77,9 @@ namespace Skermstafir.Controllers
 			}
 
 			// get the rest of the results
-			foreach (var item in lists) {
-				result.modelList = result.modelList.Union(item).ToList();
-			}
+			//foreach (var item in lists) {
+			//	result.modelList = result.modelList.Union(item).ToList();
+			//}
 			return View(result);
         }
 	}

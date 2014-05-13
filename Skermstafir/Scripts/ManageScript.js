@@ -2,14 +2,16 @@
 
 function DeleteSub(theElement, theID) {
     if (stillOpen == false) {
-        $(theElement).replaceWith("<button type=\"button\" id=\"" + theID + "\" class=\"btn btn-default deleteok\" onclick=\"location.href='@Url.Action(\"DeleteRequest\", \"Request\", new { id = " + theID + " })'\"><span class=\"glyphicon glyphicon-ok\"></span></button> <button type=\"button\" class=\"btn btn-default deletecancel\" onclick=\"DeleteSubCancel();\"><span class=\"glyphicon glyphicon-remove\"></span></button>");
+        var realID = theID.substring(4);
+        $(theElement).replaceWith("<button type=\"button\" id=\"" + theID + "\" class=\"btn btn-default deleteok\" onclick=\"location.href=\'/Subtitle/DeleteSubtitle/" + realID + "\'\"><span class=\"glyphicon glyphicon-ok\"></span></button> <button type=\"button\" class=\"btn btn-default deletecancel\" onclick=\"DeleteSubCancel();\"><span class=\"glyphicon glyphicon-remove\"></span></button>");
         stillOpen = true;
     }
 };
 
 function DeleteReq(theElement, theID) {
     if (stillOpen == false) {
-        $(theElement).replaceWith("<button type=\"button\" id=\"" + theID + "\" class=\"btn btn-default deleteok\ onclick=\"location.href='@Url.Action(\"DeleteRequest\", \"Request\", new { id = " + theID + " })'\"><span class=\"glyphicon glyphicon-ok\"></span></button> <button type=\"button\" class=\"btn btn-default deletecancel\" onclick=\"DeleteReqCancel();\"><span class=\"glyphicon glyphicon-remove\"></span></button>");
+        var realID = theID.substring(4);
+        $(theElement).replaceWith("<button type=\"button\" id=\"" + theID + "\" class=\"btn btn-default deleteok\" onclick=\"location.href=\'/Request/DeleteRequest/" + realID + "\'\"><span class=\"glyphicon glyphicon-ok\"></span></button> <button type=\"button\" class=\"btn btn-default deletecancel\" onclick=\"DeleteReqCancel();\"><span class=\"glyphicon glyphicon-remove\"></span></button>");
         stillOpen = true;
     }
 };

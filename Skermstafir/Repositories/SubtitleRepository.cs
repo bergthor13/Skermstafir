@@ -16,6 +16,7 @@ namespace Skermstafir.Repositories
             db.Subtitles.Add(model.subtitle);
             db.SaveChanges();
         }
+
         // Delete a specific subtitle from database
         public void DeleteSubtitle(int id)
         {
@@ -72,11 +73,20 @@ namespace Skermstafir.Repositories
 			db.SaveChanges();
 		}
 
-		public void RemoveGenreToSubtitle(Genre gen, Subtitle subtitle)
+		public void RemoveGenreToSubtitle(Genre gen, Subtitle sub)
 		{
 			SkermData db = new SkermData();
-			subtitle.Genres.Remove(gen);
+			sub.Genres.Remove(gen);
 			db.SaveChanges();
+		}
+
+		public Actor GetActorByName(string actorName)
+		{
+			SkermData db = new SkermData();
+			Actor act = (from item in db.Actors
+						   where item.Name == actorName
+						   select item).SingleOrDefault();
+			return act;
 		}
 	}
 }
