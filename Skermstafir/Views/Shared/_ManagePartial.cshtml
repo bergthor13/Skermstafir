@@ -55,7 +55,7 @@
                 <p id="year">Útgáfuár: @request.YearCreated</p>
 
                 <div class="third-column">
-                    <button type="button" class="btn btn-default" onclick="location.href='@Url.Action("DeleteRequest", "Request", new { id = request.IdRequest })'">
+                    <button type="button" id="req @request.IdRequest" class="btn btn-default deletebtn" onclick="DeleteReq($(this), $(this).attr('id'));">
                         <span class="glyphicon glyphicon-trash"></span>
                     </button>
                 </div>
