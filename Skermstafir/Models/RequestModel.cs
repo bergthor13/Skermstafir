@@ -12,5 +12,12 @@ namespace Skermstafir.Models
 
 		public bool[] genreValue = new bool[8];
 		public string actorsForView;
+
+        public RequestModel()
+		{
+			request = new Request();
+            request.Director = new Director();
+            request.Language = new Language();
+		}
 	}
 }
