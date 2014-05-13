@@ -168,10 +168,35 @@ namespace Skermstafir.Controllers
 			if (form["Gaman"] == "on") {
 				genreResult = genreResult.Union(reqRep.GetRequestsByGenre("Gaman").modelList).ToList();
 			}
-			if (form["Kvikmyndir"] == "on") {
-				genreResult = genreResult.Union(reqRep.GetRequestsByGenre("Kvikmyndir").modelList).ToList();
+			if (form["Spenna"] == "on") {
+				genreResult = genreResult.Union(reqRep.GetRequestsByGenre("Spenna").modelList).ToList();
 			}
-			model.modelList = genreResult;
+			if (form["Drama"] == "on") {
+				genreResult = genreResult.Union(reqRep.GetRequestsByGenre("Drama").modelList).ToList();
+			}
+			if (form["Ævintýri"] == "on") {
+				genreResult = genreResult.Union(reqRep.GetRequestsByGenre("Ævintýri").modelList).ToList();
+			}
+			List<List<Request>> ls = new List<List<Request>>();
+			ls.Add(stringResult);
+			ls.Add(yearResult);
+			ls.Add(genreResult);
+			bool first = true;
+			// get intersection
+			foreach (var list in ls) { 
+				if (list.Count != 0) {
+					if (first) {
+						model.modelList = list;
+						first = false;
+					} else {
+						model.modelList = model.modelList.Intersect(list).ToList();
+					}
+				}
+			}
+			// add union for edge results
+			foreach (var list in ls) {
+				model.modelList = model.modelList.Union(list).ToList();
+			}
 			return View(model);
 		}
         //Delete request
