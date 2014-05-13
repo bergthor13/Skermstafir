@@ -110,10 +110,28 @@ namespace Skermstafir.Repositories {
 			return gen;
 		}
 
-		public void AddActor(Actor newAct)
-		{
-			db.Actors.Add(newAct);
-			db.SaveChanges();
-		}
+        public Actor GetActorByID(int id)
+        {
+            Actor act = (from item in db.Actors
+                         where item.IdActor == id
+                         select item).SingleOrDefault();
+            return act;
+        }
+
+        public Actor GetActorByName(string name)
+        {
+            Actor act = (from item in db.Actors
+                         where item.Name == name
+                         select item).SingleOrDefault();
+            return act;
+        }
+
+        public Director GetDirectorByName(string name)
+        {
+            Director dir = (from item in db.Directors
+                            where item.Name == name
+                            select item).SingleOrDefault();
+            return dir;
+        }
 	}
 }

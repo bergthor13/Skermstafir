@@ -24,7 +24,8 @@ namespace Skermstafir.Repositories
             Request discardRequest = (from req in db.Requests
                                       where req.IdRequest == id
                                       select req).Single();
-                db.Requests.Remove(discardRequest);
+            db.Requests.Remove(discardRequest);
+            db.SaveChanges();
         }
 
         // queries and gets requests starting from index start and ending at index end
@@ -94,6 +95,31 @@ namespace Skermstafir.Repositories
 			model.modelList = (from req in db.Requests
 							   where req.Name.Contains(str)
 							   select req).ToList();
+			return model;
+		}
+
+		public RequestModelList GetRequestsByYear(int start, int end) {
+			RequestModelList model = new RequestModelList();
+			SkermData db = new SkermData();
+			model.modelList = (from req in db.Requests
+							   where req.YearCreated >= start && req.YearCreated <= end
+							   select req).ToList();
+			return model;
+		}
+
+		public RequestModelList GetRequestsByGenre(string genre) {
+			RequestModelList model = new RequestModelList();
+			model.modelList = new List<Request>();
+			SkermData db = new SkermData();
+			List<Request> ls = (from req in db.Requests
+								select req).ToList();
+			for (int i = 0; i < ls.Count; i++) {
+				foreach (var item in ls[i].Genres) {
+					if (item.Name == genre) {
+						model.modelList.Add(ls[i]);
+					}
+				}
+			}
 			return model;
 		}
     }

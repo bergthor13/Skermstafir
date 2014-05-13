@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using Microsoft.AspNet.Identity;
 
 namespace Skermstafir.Controllers
 {
@@ -40,14 +39,14 @@ namespace Skermstafir.Controllers
 		{
 			RequestModel model = new RequestModel();
             RequestRepository rr = new RequestRepository();
+            SearchRepository sr = new SearchRepository();
         
             model.request.Name = fc["title"];
-            model.request.Language.Name = fc["language"];
             model.request.Director.Name = fc["director"];
 
-            if(User.Identity != null)
+            if (User.Identity.Name != null)
             {
-                model.request.Username = User.Identity.GetUserName();
+                model.request.Username = User.Identity.Name;
             }
             else
             {
@@ -65,29 +64,38 @@ namespace Skermstafir.Controllers
             string actors = fc["actors"];
             String[] actorers = actors.Split(',');
 
-            foreach (var item in actorers)
+            foreach (var item in model.request.Actors)
             {
-                Actor temp = new Actor();
-                temp.Name = item;
-                model.request.Actors.Add(temp);
+                if(sr.GetActorByName(item.Name) == null)
+                {
+                    foreach (var item2 in actorers)
+                    {
+                        Actor temp = new Actor();
+                        temp.Name = item2;
+                        model.request.Actors.Add(temp);
+                    }
+                }
+                else 
+                {
+                    model.request.Actors.Add(sr.GetActorByID(item.IdActor));
+                }
             }
 
-            for (int i = 0; i < 8; i++)
+            for (int i = 1; i < 8; i++)
             {
                 if (fc["genre" + i.ToString()] == "on")
                 {
-                    Genre temp = new Genre();
-                    model.request.Genres.Add(temp);
+                    model.request.Genres.Add(sr.GetGenreByID(i));
                 }
             }
 
             if (fc["languages"] == "Íslenska")
             {
-                model.request.Language.Name = "Íslenska";
+                model.request.LanguageId = 1;
             }
             else if (fc["languages"] == "Enska")
             {
-                model.request.Language.Name = "Enska";
+                model.request.LanguageId = 2;
             }
 
             rr.AddRequest(model);
@@ -127,5 +135,55 @@ namespace Skermstafir.Controllers
 				}
 			}
 		}
+
+		public ActionResult Search(FormCollection form) {
+			RequestModelList model = new RequestModelList();
+			RequestRepository reqRep = new RequestRepository();
+			List<Request> stringResult = reqRep.GetRequestsByString(form["searchValue"]).modelList;
+			int start, end;
+			if (form["startYear"] != "") {
+				start = Convert.ToInt32(form["startYear"]);
+			} else {
+				start = 0;
+			}
+			if (form["endYear"] != "") {
+				end = Convert.ToInt32(form["endYear"]);
+			} else {
+				end = 0;
+			}
+			List<Request> yearResult = reqRep.GetRequestsByYear(start, end).modelList;
+			List<Request> genreResult = new List<Request>();
+			if (form["Kvikmyndir"] == "on") {
+				genreResult = genreResult.Union(reqRep.GetRequestsByGenre("Kvikmyndir").modelList).ToList();
+			}
+			if (form["Þættir"] == "on") {
+				genreResult = genreResult.Union(reqRep.GetRequestsByGenre("Þættir").modelList).ToList();
+			}
+			if (form["Barnaefni"] == "on") {
+				genreResult = genreResult.Union(reqRep.GetRequestsByGenre("Barnaefni").modelList).ToList();
+			}
+			if (form["Heimildir"] == "on") {
+				genreResult = genreResult.Union(reqRep.GetRequestsByGenre("Heimildir").modelList).ToList();
+			}
+			if (form["Gaman"] == "on") {
+				genreResult = genreResult.Union(reqRep.GetRequestsByGenre("Gaman").modelList).ToList();
+			}
+			if (form["Kvikmyndir"] == "on") {
+				genreResult = genreResult.Union(reqRep.GetRequestsByGenre("Kvikmyndir").modelList).ToList();
+			}
+			model.modelList = genreResult;
+			return View(model);
+		}
+        //Delete request
+        public ActionResult DeleteRequest(int? id)
+        {
+            RequestModel reqModel = new RequestModel();
+            RequestRepository reqRepo = new RequestRepository();
+            int idValue = id.Value;
+            reqModel = reqRepo.GetRequestByID(idValue);
+            int idToDelete = reqModel.request.IdRequest;
+            reqRepo.DeleteRequest(idToDelete);
+            return RedirectToAction("Manage", "Account");
+        }
 	}
 }
