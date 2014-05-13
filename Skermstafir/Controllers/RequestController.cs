@@ -100,7 +100,7 @@ namespace Skermstafir.Controllers
 
             rr.AddRequest(model);
 
-            return this.RedirectToAction("ShowRequest", new { id = model.request.IdRequest });
+            return RedirectToAction("ShowRequest", new { id = model.request.IdRequest });
 		}
 
         [HttpGet]
