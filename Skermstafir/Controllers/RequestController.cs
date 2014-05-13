@@ -183,7 +183,7 @@ namespace Skermstafir.Controllers
 			ls.Add(genreResult);
 			bool first = true;
 			// get intersection
-			foreach (var list in ls) {
+			foreach (var list in ls) { 
 				if (list.Count != 0) {
 					if (first) {
 						model.modelList = list;
