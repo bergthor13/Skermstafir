@@ -108,6 +108,7 @@ namespace Skermstafir.Repositories
 
 		public RequestModelList GetRequestsByGenre(string genre) {
 			RequestModelList model = new RequestModelList();
+			model.modelList = new List<Request>();
 			SkermData db = new SkermData();
 			List<Request> ls = (from req in db.Requests
 								select req).ToList();

@@ -148,7 +148,22 @@ namespace Skermstafir.Controllers
 			if (form["Kvikmyndir"] == "on") {
 				genreResult = genreResult.Union(reqRep.GetRequestsByGenre("Kvikmyndir").modelList).ToList();
 			}
-			model.modelList = yearResult;
+			if (form["Þættir"] == "on") {
+				genreResult = genreResult.Union(reqRep.GetRequestsByGenre("Þættir").modelList).ToList();
+			}
+			if (form["Barnaefni"] == "on") {
+				genreResult = genreResult.Union(reqRep.GetRequestsByGenre("Barnaefni").modelList).ToList();
+			}
+			if (form["Heimildir"] == "on") {
+				genreResult = genreResult.Union(reqRep.GetRequestsByGenre("Heimildir").modelList).ToList();
+			}
+			if (form["Gaman"] == "on") {
+				genreResult = genreResult.Union(reqRep.GetRequestsByGenre("Gaman").modelList).ToList();
+			}
+			if (form["Kvikmyndir"] == "on") {
+				genreResult = genreResult.Union(reqRep.GetRequestsByGenre("Kvikmyndir").modelList).ToList();
+			}
+			model.modelList = genreResult;
 			return View(model);
 		}
         //Delete request
