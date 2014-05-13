@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Microsoft.AspNet.Identity;
 
 namespace Skermstafir.Controllers
 {
@@ -43,7 +44,16 @@ namespace Skermstafir.Controllers
             model.request.Name = fc["title"];
             model.request.Language.Name = fc["language"];
             model.request.Director.Name = fc["director"];
-            model.request.Username = "NOTIMPL";
+
+            if(User.Identity != null)
+            {
+                model.request.Username = User.Identity.GetUserName();
+            }
+            else
+            {
+                model.request.Username = "Anonymous";
+            }
+
             model.request.Description = fc["description"];
 
             int year = Convert.ToInt32(fc["year"]);
@@ -75,7 +85,7 @@ namespace Skermstafir.Controllers
             {
                 model.request.Language.Name = "Íslenska";
             }
-            if (fc["languages"] == "Enska")
+            else if (fc["languages"] == "Enska")
             {
                 model.request.Language.Name = "Enska";
             }
