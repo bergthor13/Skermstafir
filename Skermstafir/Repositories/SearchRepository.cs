@@ -133,5 +133,13 @@ namespace Skermstafir.Repositories {
                             select item).SingleOrDefault();
             return dir;
         }
+
+        public Language GetLanguageByName(string name)
+        {
+            Language lang = (from item in db.Languages
+                             where item.Name == name
+                             select item).SingleOrDefault();
+            return lang;
+        }
 	}
 }
