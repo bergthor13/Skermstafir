@@ -151,5 +151,16 @@ namespace Skermstafir.Controllers
 			model.modelList = yearResult;
 			return View(model);
 		}
+        //Delete request
+        public ActionResult DeleteRequest(int? id)
+        {
+            RequestModel reqModel = new RequestModel();
+            RequestRepository reqRepo = new RequestRepository();
+            int idValue = id.Value;
+            reqModel = reqRepo.GetRequestByID(idValue);
+            int idToDelete = reqModel.request.IdRequest;
+            DeleteRequest(idToDelete);
+            return RedirectToAction("Manage");
+        }
 	}
 }

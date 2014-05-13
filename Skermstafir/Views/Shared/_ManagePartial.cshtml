@@ -23,7 +23,7 @@
 			    <p id="year">Útgáfuár: @subtitle.YearCreated</p>
 
 			    <div class="third-column">
-                    <button type="button" id="sub @subtitle.IdSubtitle" class="btn btn-default deletebtn" onclick="DeleteSub($(this), $(this).attr('id'));">
+                    <button type="button" class="btn btn-default" onclick="javascript: Delete();">
                         <span class="glyphicon glyphicon-trash"></span>
                     </button>
 			    </div>
@@ -32,15 +32,6 @@
         }
     </div>
 </div>
-
-<script type="text/javascript">
-    // Will add an event handler to all a elements,
-    // which hides it as soon as it is clicked!
-    $(".deletebtn").click(function (e) {
-        $(this).hide();
-    });
-</script>
-
 <div id="myRequests" class="col-md-6 tranreq-list rightSection">
     <p class="box-title">Mínar beiðnir</p>
     <div class="bottom manage">
@@ -64,7 +55,7 @@
                 <p id="year">Útgáfuár: @request.YearCreated</p>
 
                 <div class="third-column">
-                    <button type="button" id="req @request.IdRequest" class="btn btn-default deletebtn" onclick="location.href = '@Url.Action("CreateRequest", "Request")'">
+                    <button type="button" class="btn btn-default" onclick="location.href='@Url.Action("DeleteRequest", "Request", new { id = request.IdRequest })'">
                         <span class="glyphicon glyphicon-trash"></span>
                     </button>
                 </div>
