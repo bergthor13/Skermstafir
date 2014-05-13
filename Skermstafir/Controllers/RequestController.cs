@@ -127,5 +127,29 @@ namespace Skermstafir.Controllers
 				}
 			}
 		}
+
+		public ActionResult Search(FormCollection form) {
+			RequestModelList model = new RequestModelList();
+			RequestRepository reqRep = new RequestRepository();
+			List<Request> stringResult = reqRep.GetRequestsByString(form["searchValue"]).modelList;
+			int start, end;
+			if (form["startYear"] != "") {
+				start = Convert.ToInt32(form["startYear"]);
+			} else {
+				start = 0;
+			}
+			if (form["endYear"] != "") {
+				end = Convert.ToInt32(form["endYear"]);
+			} else {
+				end = 0;
+			}
+			List<Request> yearResult = reqRep.GetRequestsByYear(start, end).modelList;
+			List<Request> genreResult = new List<Request>();
+			if (form["Kvikmyndir"] == "on") {
+				genreResult = genreResult.Union(reqRep.GetRequestsByGenre("Kvikmyndir").modelList).ToList();
+			}
+			model.modelList = yearResult;
+			return View(model);
+		}
 	}
 }
