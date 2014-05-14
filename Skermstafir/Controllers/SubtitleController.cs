@@ -53,15 +53,7 @@ namespace Skermstafir.Controllers
             model.subtitle.Content = fc["originalText"];
 
             // Set director to the model and add it to the database if required
-            string dirName = fc["director"];
-            Director tempDir = new Director();
-            if (sr.GetDirectorByName(dirName) == null)
-            {
-                tempDir.Name = dirName;
-                search.AddDirector(tempDir);
-            }
-            tempDir = search.GetDirectorByName(dirName);
-            model.subtitle.Director = tempDir;
+            model.subtitle.Director = fc["director"];
 
             // Set language of Subtitle model
             if (fc["language"] == "Íslenska")
@@ -221,18 +213,7 @@ namespace Skermstafir.Controllers
 			editedSub.subtitle.Description = fd["description"];
 
 			// Gets the director object specified in the 'director' textbox in the view.
-			string directorName = fd["director"];
-			Director director = subR.GetDirectorByName(directorName);
-			// If the director is not found, we create a new director with that name.
-			if (director == null) {
-				Director newDir = new Director();
-				newDir.Name = directorName;
-				seaR.AddDirector(newDir);
-				editedSub.subtitle.DirectorId = newDir.IdDirector;
-				// Else we change the director of the subtitle.
-			} else {
-				editedSub.subtitle.DirectorId = director.IdDirector;
-			}
+            editedSub.subtitle.Director = fd["director"];
 
 			// Add the genres selected to the subtitle.
 			for (int i = 1; i <= 8; i++)
