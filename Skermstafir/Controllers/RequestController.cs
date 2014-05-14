@@ -48,20 +48,8 @@ namespace Skermstafir.Controllers
             reqModel.request.Description = fc["description"];
 
             // Gets the director object specified in the 'director' textbox in the view.
-            Director director = searchRepo.GetDirectorByName(fc["director"]);
-            // If the director is not found, we create a new director with that name.
-            if (director == null)
-            {
-                Director newDir = new Director();
-                newDir.Name = fc["director"];
-                searchRepo.AddDirector(newDir);
-                reqModel.request.DirectorId = newDir.IdDirector;
-                // Else we change the director of the request.
-            }
-            else
-            {
-                reqModel.request.DirectorId = director.IdDirector;
-            }
+            reqModel.request.Director.Name = fc["director"];
+                // TODO: Implement
 
             // Set the username of the creator to either "Anonymous" (if not authenticated)
             // or (if authenticated) to the user's username.
@@ -95,11 +83,12 @@ namespace Skermstafir.Controllers
             reqModel.request.Link = fc["link"];
 
             // Get the actors, written into the 'actors' field, and connect them to the request.
-            string actors = fc["actors"];
+            /*string actors = fc["actors"];
             String[] actorers = actors.Split(',');
             for (int i = 0; i < actorers.Length; i++)
             {
-                if (i > 0)
+                string currActor = actorers[i];
+                if (i > 0 && currActor[0] == ' ')
                 {
                     actorers[i] = actorers[i].Substring(1);
                 }
@@ -120,10 +109,6 @@ namespace Skermstafir.Controllers
                 }
             }
 
-            // Here the request has all the info it needs and we add it to our Request table.
-            reqRepo.AddRequest(reqModel);
-
-            /*
             // Adding the genres
             for (int i = 1; i < 9; i++)
             {
@@ -131,7 +116,11 @@ namespace Skermstafir.Controllers
                 {
                     reqModel.request.Genres.Add(searchRepo.GetGenreByID(i));
                 }
-            }*/
+            }
+            */
+            // Here the request has all the info it needs and we add it to our Request table.
+            reqRepo.AddRequest(reqModel);
+
 
             return RedirectToAction("ShowRequest", new { id = reqModel.request.IdRequest });
 		}

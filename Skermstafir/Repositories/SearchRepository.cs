@@ -112,7 +112,8 @@ namespace Skermstafir.Repositories {
         }
 
 		// query database and get a genre by id
-		public Genre GetGenreByID(int id) {
+		public Genre GetGenreByID(int id) 
+        {
 			Genre gen = (from item in db.Genres
 						 where item.IdGenre == id
                          select item).FirstOrDefault();
