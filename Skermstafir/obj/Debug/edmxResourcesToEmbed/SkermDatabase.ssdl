@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Schema Namespace="SkermData.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2005" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+<Schema Namespace="SkermData2.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2005" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
   <EntityType Name="__MigrationHistory">
     <Key>
       <PropertyRef Name="MigrationId" />
@@ -70,13 +70,6 @@
     <Property Name="Content" Type="nvarchar" MaxLength="255" />
     <Property Name="DateCreated" Type="datetime" />
   </EntityType>
-  <EntityType Name="Director">
-    <Key>
-      <PropertyRef Name="IdDirector" />
-    </Key>
-    <Property Name="IdDirector" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Name" Type="nvarchar" MaxLength="50" />
-  </EntityType>
   <EntityType Name="Genre">
     <Key>
       <PropertyRef Name="IdGenre" />
@@ -97,9 +90,9 @@
     </Key>
     <Property Name="IdRequest" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="LanguageId" Type="int" Nullable="false" />
-    <Property Name="DirectorId" Type="int" Nullable="false" />
     <Property Name="Username" Type="nvarchar" MaxLength="50" />
     <Property Name="Name" Type="nvarchar" MaxLength="50" />
+    <Property Name="Director" Type="nvarchar" MaxLength="50" />
     <Property Name="Description" Type="nvarchar" MaxLength="255" />
     <Property Name="YearCreated" Type="int" />
     <Property Name="DateAdded" Type="datetime" />
@@ -135,9 +128,9 @@
     </Key>
     <Property Name="IdSubtitle" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="LanguageId" Type="int" Nullable="false" />
-    <Property Name="DirectorId" Type="int" Nullable="false" />
     <Property Name="Username" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="Name" Type="nvarchar" MaxLength="50" />
+    <Property Name="Director" Type="nvarchar" MaxLength="50" />
     <Property Name="Description" Type="nvarchar" MaxLength="255" />
     <Property Name="YearCreated" Type="int" />
     <Property Name="Content" Type="nvarchar(max)" />
@@ -241,20 +234,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_dbo_Request_dbo_Director_DirectorId">
-    <End Role="Director" Type="Self.Director" Multiplicity="1">
-      <OnDelete Action="Cascade" />
-    </End>
-    <End Role="Request" Type="Self.Request" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Director">
-        <PropertyRef Name="IdDirector" />
-      </Principal>
-      <Dependent Role="Request">
-        <PropertyRef Name="DirectorId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_dbo_Request_dbo_Language_LanguageId">
     <End Role="Language" Type="Self.Language" Multiplicity="1">
       <OnDelete Action="Cascade" />
@@ -350,20 +329,6 @@
       </Principal>
       <Dependent Role="Request_has_Vote">
         <PropertyRef Name="VoteId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_dbo_Subtitle_dbo_Director_DirectorId">
-    <End Role="Director" Type="Self.Director" Multiplicity="1">
-      <OnDelete Action="Cascade" />
-    </End>
-    <End Role="Subtitle" Type="Self.Subtitle" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Director">
-        <PropertyRef Name="IdDirector" />
-      </Principal>
-      <Dependent Role="Subtitle">
-        <PropertyRef Name="DirectorId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -493,7 +458,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <EntityContainer Name="SkermDataStoreContainer">
+  <EntityContainer Name="SkermData2StoreContainer">
     <EntitySet Name="__MigrationHistory" EntityType="Self.__MigrationHistory" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Actor" EntityType="Self.Actor" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" Schema="dbo" store:Type="Tables" />
@@ -502,7 +467,6 @@
     <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Comment" EntityType="Self.Comment" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="Director" EntityType="Self.Director" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Genre" EntityType="Self.Genre" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Language" EntityType="Self.Language" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Request" EntityType="Self.Request" Schema="dbo" store:Type="Tables" />
@@ -531,10 +495,6 @@
       <End Role="AspNetUsers" EntitySet="AspNetUsers" />
       <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
     </AssociationSet>
-    <AssociationSet Name="FK_dbo_Request_dbo_Director_DirectorId" Association="Self.FK_dbo_Request_dbo_Director_DirectorId">
-      <End Role="Director" EntitySet="Director" />
-      <End Role="Request" EntitySet="Request" />
-    </AssociationSet>
     <AssociationSet Name="FK_dbo_Request_dbo_Language_LanguageId" Association="Self.FK_dbo_Request_dbo_Language_LanguageId">
       <End Role="Language" EntitySet="Language" />
       <End Role="Request" EntitySet="Request" />
@@ -562,10 +522,6 @@
     <AssociationSet Name="FK_dbo_Request_has_Vote_dbo_Vote_VoteId" Association="Self.FK_dbo_Request_has_Vote_dbo_Vote_VoteId">
       <End Role="Vote" EntitySet="Vote" />
       <End Role="Request_has_Vote" EntitySet="Request_has_Vote" />
-    </AssociationSet>
-    <AssociationSet Name="FK_dbo_Subtitle_dbo_Director_DirectorId" Association="Self.FK_dbo_Subtitle_dbo_Director_DirectorId">
-      <End Role="Director" EntitySet="Director" />
-      <End Role="Subtitle" EntitySet="Subtitle" />
     </AssociationSet>
     <AssociationSet Name="FK_dbo_Subtitle_dbo_Language_LanguageId" Association="Self.FK_dbo_Subtitle_dbo_Language_LanguageId">
       <End Role="Language" EntitySet="Language" />

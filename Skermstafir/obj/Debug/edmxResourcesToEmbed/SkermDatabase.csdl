@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Schema Namespace="SkermData" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+<Schema Namespace="SkermData2" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
   <EntityType Name="C__MigrationHistory">
     <Key>
       <PropertyRef Name="MigrationId" />
@@ -71,15 +71,6 @@
     <Property Name="DateCreated" Type="DateTime" Precision="3" />
     <NavigationProperty Name="Subtitles" Relationship="Self.Subtitle_has_Comment" FromRole="Comment" ToRole="Subtitle" />
   </EntityType>
-  <EntityType Name="Director">
-    <Key>
-      <PropertyRef Name="IdDirector" />
-    </Key>
-    <Property Name="IdDirector" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <NavigationProperty Name="Requests" Relationship="Self.FK_dbo_Request_dbo_Director_DirectorId" FromRole="Director" ToRole="Request" />
-    <NavigationProperty Name="Subtitles" Relationship="Self.FK_dbo_Subtitle_dbo_Director_DirectorId" FromRole="Director" ToRole="Subtitle" />
-  </EntityType>
   <EntityType Name="Genre">
     <Key>
       <PropertyRef Name="IdGenre" />
@@ -104,14 +95,13 @@
     </Key>
     <Property Name="IdRequest" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="LanguageId" Type="Int32" Nullable="false" />
-    <Property Name="DirectorId" Type="Int32" Nullable="false" />
     <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Director" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="Description" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
     <Property Name="YearCreated" Type="Int32" />
     <Property Name="DateAdded" Type="DateTime" Precision="3" />
     <Property Name="Link" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-    <NavigationProperty Name="Director" Relationship="Self.FK_dbo_Request_dbo_Director_DirectorId" FromRole="Request" ToRole="Director" />
     <NavigationProperty Name="Language" Relationship="Self.FK_dbo_Request_dbo_Language_LanguageId" FromRole="Request" ToRole="Language" />
     <NavigationProperty Name="Actors" Relationship="Self.Request_has_Actor" FromRole="Request" ToRole="Actor" />
     <NavigationProperty Name="Genres" Relationship="Self.Request_has_Genre" FromRole="Request" ToRole="Genre" />
@@ -123,9 +113,9 @@
     </Key>
     <Property Name="IdSubtitle" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="LanguageId" Type="Int32" Nullable="false" />
-    <Property Name="DirectorId" Type="Int32" Nullable="false" />
     <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Director" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="Description" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
     <Property Name="YearCreated" Type="Int32" />
     <Property Name="Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
@@ -133,7 +123,6 @@
     <Property Name="DateAdded" Type="DateTime" Precision="3" />
     <Property Name="Link" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
     <Property Name="Download" Type="Int32" />
-    <NavigationProperty Name="Director" Relationship="Self.FK_dbo_Subtitle_dbo_Director_DirectorId" FromRole="Subtitle" ToRole="Director" />
     <NavigationProperty Name="Language" Relationship="Self.FK_dbo_Subtitle_dbo_Language_LanguageId" FromRole="Subtitle" ToRole="Language" />
     <NavigationProperty Name="Actors" Relationship="Self.Subtitle_has_Actor" FromRole="Subtitle" ToRole="Actor" />
     <NavigationProperty Name="Comments" Relationship="Self.Subtitle_has_Comment" FromRole="Subtitle" ToRole="Comment" />
@@ -174,34 +163,6 @@
       </Principal>
       <Dependent Role="AspNetUserLogins">
         <PropertyRef Name="UserId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_dbo_Request_dbo_Director_DirectorId">
-    <End Role="Director" Type="Self.Director" Multiplicity="1">
-      <OnDelete Action="Cascade" />
-    </End>
-    <End Role="Request" Type="Self.Request" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Director">
-        <PropertyRef Name="IdDirector" />
-      </Principal>
-      <Dependent Role="Request">
-        <PropertyRef Name="DirectorId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_dbo_Subtitle_dbo_Director_DirectorId">
-    <End Role="Director" Type="Self.Director" Multiplicity="1">
-      <OnDelete Action="Cascade" />
-    </End>
-    <End Role="Subtitle" Type="Self.Subtitle" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Director">
-        <PropertyRef Name="IdDirector" />
-      </Principal>
-      <Dependent Role="Subtitle">
-        <PropertyRef Name="DirectorId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -265,7 +226,7 @@
     <End Role="Subtitle" Type="Self.Subtitle" Multiplicity="*" />
     <End Role="Vote" Type="Self.Vote" Multiplicity="*" />
   </Association>
-  <EntityContainer Name="SkermDataConnection" annotation:LazyLoadingEnabled="true">
+  <EntityContainer Name="SkermData" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="C__MigrationHistory" EntityType="Self.C__MigrationHistory" />
     <EntitySet Name="Actors" EntityType="Self.Actor" />
     <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRole" />
@@ -273,7 +234,6 @@
     <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogin" />
     <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUser" />
     <EntitySet Name="Comments" EntityType="Self.Comment" />
-    <EntitySet Name="Directors" EntityType="Self.Director" />
     <EntitySet Name="Genres" EntityType="Self.Genre" />
     <EntitySet Name="Languages" EntityType="Self.Language" />
     <EntitySet Name="Requests" EntityType="Self.Request" />
@@ -286,14 +246,6 @@
     <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
       <End Role="AspNetUsers" EntitySet="AspNetUsers" />
       <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
-    </AssociationSet>
-    <AssociationSet Name="FK_dbo_Request_dbo_Director_DirectorId" Association="Self.FK_dbo_Request_dbo_Director_DirectorId">
-      <End Role="Director" EntitySet="Directors" />
-      <End Role="Request" EntitySet="Requests" />
-    </AssociationSet>
-    <AssociationSet Name="FK_dbo_Subtitle_dbo_Director_DirectorId" Association="Self.FK_dbo_Subtitle_dbo_Director_DirectorId">
-      <End Role="Director" EntitySet="Directors" />
-      <End Role="Subtitle" EntitySet="Subtitles" />
     </AssociationSet>
     <AssociationSet Name="FK_dbo_Request_dbo_Language_LanguageId" Association="Self.FK_dbo_Request_dbo_Language_LanguageId">
       <End Role="Language" EntitySet="Languages" />

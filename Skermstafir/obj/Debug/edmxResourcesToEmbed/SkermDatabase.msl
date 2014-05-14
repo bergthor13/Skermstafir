@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="SkermDataStoreContainer" CdmEntityContainer="SkermDataConnection">
+  <EntityContainerMapping StorageEntityContainer="SkermData2StoreContainer" CdmEntityContainer="SkermData">
     <EntitySetMapping Name="C__MigrationHistory">
-      <EntityTypeMapping TypeName="SkermData.C__MigrationHistory">
+      <EntityTypeMapping TypeName="SkermData2.C__MigrationHistory">
         <MappingFragment StoreEntitySet="__MigrationHistory">
           <ScalarProperty Name="MigrationId" ColumnName="MigrationId" />
           <ScalarProperty Name="ContextKey" ColumnName="ContextKey" />
@@ -12,7 +12,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Actors">
-      <EntityTypeMapping TypeName="SkermData.Actor">
+      <EntityTypeMapping TypeName="SkermData2.Actor">
         <MappingFragment StoreEntitySet="Actor">
           <ScalarProperty Name="IdActor" ColumnName="IdActor" />
           <ScalarProperty Name="Name" ColumnName="Name" />
@@ -20,7 +20,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="AspNetRoles">
-      <EntityTypeMapping TypeName="SkermData.AspNetRole">
+      <EntityTypeMapping TypeName="SkermData2.AspNetRole">
         <MappingFragment StoreEntitySet="AspNetRoles">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Name" ColumnName="Name" />
@@ -28,7 +28,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="AspNetUserClaims">
-      <EntityTypeMapping TypeName="SkermData.AspNetUserClaim">
+      <EntityTypeMapping TypeName="SkermData2.AspNetUserClaim">
         <MappingFragment StoreEntitySet="AspNetUserClaims">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="ClaimType" ColumnName="ClaimType" />
@@ -38,7 +38,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="AspNetUserLogins">
-      <EntityTypeMapping TypeName="SkermData.AspNetUserLogin">
+      <EntityTypeMapping TypeName="SkermData2.AspNetUserLogin">
         <MappingFragment StoreEntitySet="AspNetUserLogins">
           <ScalarProperty Name="UserId" ColumnName="UserId" />
           <ScalarProperty Name="LoginProvider" ColumnName="LoginProvider" />
@@ -47,7 +47,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="AspNetUsers">
-      <EntityTypeMapping TypeName="SkermData.AspNetUser">
+      <EntityTypeMapping TypeName="SkermData2.AspNetUser">
         <MappingFragment StoreEntitySet="AspNetUsers">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="UserName" ColumnName="UserName" />
@@ -58,7 +58,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Comments">
-      <EntityTypeMapping TypeName="SkermData.Comment">
+      <EntityTypeMapping TypeName="SkermData2.Comment">
         <MappingFragment StoreEntitySet="Comment">
           <ScalarProperty Name="IdComment" ColumnName="IdComment" />
           <ScalarProperty Name="Username" ColumnName="Username" />
@@ -67,16 +67,8 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Directors">
-      <EntityTypeMapping TypeName="SkermData.Director">
-        <MappingFragment StoreEntitySet="Director">
-          <ScalarProperty Name="IdDirector" ColumnName="IdDirector" />
-          <ScalarProperty Name="Name" ColumnName="Name" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="Genres">
-      <EntityTypeMapping TypeName="SkermData.Genre">
+      <EntityTypeMapping TypeName="SkermData2.Genre">
         <MappingFragment StoreEntitySet="Genre">
           <ScalarProperty Name="IdGenre" ColumnName="IdGenre" />
           <ScalarProperty Name="Name" ColumnName="Name" />
@@ -84,7 +76,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Languages">
-      <EntityTypeMapping TypeName="SkermData.Language">
+      <EntityTypeMapping TypeName="SkermData2.Language">
         <MappingFragment StoreEntitySet="Language">
           <ScalarProperty Name="IdLanguage" ColumnName="IdLanguage" />
           <ScalarProperty Name="Name" ColumnName="Name" />
@@ -92,13 +84,13 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Requests">
-      <EntityTypeMapping TypeName="SkermData.Request">
+      <EntityTypeMapping TypeName="SkermData2.Request">
         <MappingFragment StoreEntitySet="Request">
           <ScalarProperty Name="IdRequest" ColumnName="IdRequest" />
           <ScalarProperty Name="LanguageId" ColumnName="LanguageId" />
-          <ScalarProperty Name="DirectorId" ColumnName="DirectorId" />
           <ScalarProperty Name="Username" ColumnName="Username" />
           <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Director" ColumnName="Director" />
           <ScalarProperty Name="Description" ColumnName="Description" />
           <ScalarProperty Name="YearCreated" ColumnName="YearCreated" />
           <ScalarProperty Name="DateAdded" ColumnName="DateAdded" />
@@ -107,13 +99,13 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Subtitles">
-      <EntityTypeMapping TypeName="SkermData.Subtitle">
+      <EntityTypeMapping TypeName="SkermData2.Subtitle">
         <MappingFragment StoreEntitySet="Subtitle">
           <ScalarProperty Name="IdSubtitle" ColumnName="IdSubtitle" />
           <ScalarProperty Name="LanguageId" ColumnName="LanguageId" />
-          <ScalarProperty Name="DirectorId" ColumnName="DirectorId" />
           <ScalarProperty Name="Username" ColumnName="Username" />
           <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Director" ColumnName="Director" />
           <ScalarProperty Name="Description" ColumnName="Description" />
           <ScalarProperty Name="YearCreated" ColumnName="YearCreated" />
           <ScalarProperty Name="Content" ColumnName="Content" />
@@ -125,14 +117,14 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Votes">
-      <EntityTypeMapping TypeName="SkermData.Vote">
+      <EntityTypeMapping TypeName="SkermData2.Vote">
         <MappingFragment StoreEntitySet="Vote">
           <ScalarProperty Name="IdVote" ColumnName="IdVote" />
           <ScalarProperty Name="UserId" ColumnName="UserId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <AssociationSetMapping Name="AspNetUserRoles" TypeName="SkermData.AspNetUserRoles" StoreEntitySet="AspNetUserRoles">
+    <AssociationSetMapping Name="AspNetUserRoles" TypeName="SkermData2.AspNetUserRoles" StoreEntitySet="AspNetUserRoles">
       <EndProperty Name="AspNetRoles">
         <ScalarProperty Name="Id" ColumnName="RoleId" />
       </EndProperty>
@@ -140,7 +132,7 @@
         <ScalarProperty Name="Id" ColumnName="UserId" />
       </EndProperty>
     </AssociationSetMapping>
-    <AssociationSetMapping Name="Request_has_Actor" TypeName="SkermData.Request_has_Actor" StoreEntitySet="Request_has_Actor">
+    <AssociationSetMapping Name="Request_has_Actor" TypeName="SkermData2.Request_has_Actor" StoreEntitySet="Request_has_Actor">
       <EndProperty Name="Actor">
         <ScalarProperty Name="IdActor" ColumnName="ActorId" />
       </EndProperty>
@@ -148,7 +140,7 @@
         <ScalarProperty Name="IdRequest" ColumnName="RequestId" />
       </EndProperty>
     </AssociationSetMapping>
-    <AssociationSetMapping Name="Request_has_Genre" TypeName="SkermData.Request_has_Genre" StoreEntitySet="Request_has_Genre">
+    <AssociationSetMapping Name="Request_has_Genre" TypeName="SkermData2.Request_has_Genre" StoreEntitySet="Request_has_Genre">
       <EndProperty Name="Genre">
         <ScalarProperty Name="IdGenre" ColumnName="GenreId" />
       </EndProperty>
@@ -156,7 +148,7 @@
         <ScalarProperty Name="IdRequest" ColumnName="RequestId" />
       </EndProperty>
     </AssociationSetMapping>
-    <AssociationSetMapping Name="Request_has_Vote" TypeName="SkermData.Request_has_Vote" StoreEntitySet="Request_has_Vote">
+    <AssociationSetMapping Name="Request_has_Vote" TypeName="SkermData2.Request_has_Vote" StoreEntitySet="Request_has_Vote">
       <EndProperty Name="Request">
         <ScalarProperty Name="IdRequest" ColumnName="RequestId" />
       </EndProperty>
@@ -164,7 +156,7 @@
         <ScalarProperty Name="IdVote" ColumnName="VoteId" />
       </EndProperty>
     </AssociationSetMapping>
-    <AssociationSetMapping Name="Subtitle_has_Actor" TypeName="SkermData.Subtitle_has_Actor" StoreEntitySet="Subtitle_has_Actor">
+    <AssociationSetMapping Name="Subtitle_has_Actor" TypeName="SkermData2.Subtitle_has_Actor" StoreEntitySet="Subtitle_has_Actor">
       <EndProperty Name="Actor">
         <ScalarProperty Name="IdActor" ColumnName="ActorId" />
       </EndProperty>
@@ -172,7 +164,7 @@
         <ScalarProperty Name="IdSubtitle" ColumnName="SubtitleId" />
       </EndProperty>
     </AssociationSetMapping>
-    <AssociationSetMapping Name="Subtitle_has_Comment" TypeName="SkermData.Subtitle_has_Comment" StoreEntitySet="Subtitle_has_Comment">
+    <AssociationSetMapping Name="Subtitle_has_Comment" TypeName="SkermData2.Subtitle_has_Comment" StoreEntitySet="Subtitle_has_Comment">
       <EndProperty Name="Comment">
         <ScalarProperty Name="IdComment" ColumnName="CommentId" />
       </EndProperty>
@@ -180,7 +172,7 @@
         <ScalarProperty Name="IdSubtitle" ColumnName="SubtitleId" />
       </EndProperty>
     </AssociationSetMapping>
-    <AssociationSetMapping Name="Subtitle_has_Genre" TypeName="SkermData.Subtitle_has_Genre" StoreEntitySet="Subtitle_has_Genre">
+    <AssociationSetMapping Name="Subtitle_has_Genre" TypeName="SkermData2.Subtitle_has_Genre" StoreEntitySet="Subtitle_has_Genre">
       <EndProperty Name="Genre">
         <ScalarProperty Name="IdGenre" ColumnName="GenreId" />
       </EndProperty>
@@ -188,7 +180,7 @@
         <ScalarProperty Name="IdSubtitle" ColumnName="SubtitleId" />
       </EndProperty>
     </AssociationSetMapping>
-    <AssociationSetMapping Name="Subtitle_has_Vote" TypeName="SkermData.Subtitle_has_Vote" StoreEntitySet="Subtitle_has_Vote">
+    <AssociationSetMapping Name="Subtitle_has_Vote" TypeName="SkermData2.Subtitle_has_Vote" StoreEntitySet="Subtitle_has_Vote">
       <EndProperty Name="Subtitle">
         <ScalarProperty Name="IdSubtitle" ColumnName="SubtitleId" />
       </EndProperty>
