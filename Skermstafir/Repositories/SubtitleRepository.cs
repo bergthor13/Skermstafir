@@ -6,8 +6,6 @@ using Skermstafir.Models;
 using Skermstafir.Interfaces;
 
 namespace Skermstafir.Repositories
-
-	
 {
     public class SubtitleRepository : ISubtitleRepository
     {
@@ -45,7 +43,7 @@ namespace Skermstafir.Repositories
 			toBeChanged.DateAdded   = editSub.subtitle.DateAdded;
 			toBeChanged.Link		= editSub.subtitle.Link;
             toBeChanged.Director    = editSub.subtitle.Director;
-
+            toBeChanged.Actors      = editSub.subtitle.Actors;
             
 			//toBeChanged.Genres = editSub.subtitle.Genres;
             
