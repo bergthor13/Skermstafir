@@ -37,71 +37,104 @@ namespace Skermstafir.Controllers
         [HttpPost]
 		public ActionResult CreateRequest(FormCollection fc)
 		{
-			RequestModel model = new RequestModel();
-            RequestRepository rr = new RequestRepository();
-            SearchRepository sr = new SearchRepository();
+			RequestModel reqModel = new RequestModel();
+            RequestRepository reqRepo = new RequestRepository();
+            SearchRepository searchRepo = new SearchRepository();
         
-            model.request.Name = fc["title"];
-            model.request.Director.Name = fc["director"];
-            model.request.Description = fc["description"];
+            // Start adding data into the request model to be added into the database.
+            //      Get the name from the title box and make it the reqModel's name.
+            reqModel.request.Name = fc["title"];
+            //      Get the description from the description box and make it the reqModel's description.
+            reqModel.request.Description = fc["description"];
 
+            // Gets the director object specified in the 'director' textbox in the view.
+            string directorName = fc["director"];
+            Director director = searchRepo.GetDirectorByName(directorName);
+            // If the director is not found, we create a new director with that name.
+            if (director == null)
+            {
+                Director newDir = new Director();
+                newDir.Name = directorName;
+                searchRepo.AddDirector(newDir);
+                reqModel.request.DirectorId = newDir.IdDirector;
+                // Else we change the director of the request.
+            }
+            else
+            {
+                reqModel.request.DirectorId = director.IdDirector;
+            }
+
+            // Set the username of the creator to either "Anonymous" (if not authenticated)
+            // or (if authenticated) to the user's username.
             if (User.Identity.Name != null)
             {
-                model.request.Username = User.Identity.Name;
+                reqModel.request.Username = User.Identity.Name;
             }
             else
             {
-                model.request.Username = "Anonymous";
+                reqModel.request.Username = "Anonymous";
             }
 
+            // Find and set which language the request has.
             if (fc["language"] == "Islenska")
             {
-                model.request.LanguageId = 1;
+                reqModel.request.LanguageId = 1;
             }
             else
             {
-                model.request.LanguageId = 2;
+                reqModel.request.LanguageId = 2;
             }
 
+            // Set the publish date of the film/show.
             int year = Convert.ToInt32(fc["year"]);
-            model.request.YearCreated = year;
+            reqModel.request.YearCreated = year;
 
-            model.request.DateAdded = DateTime.Now;
-            model.request.Link = fc["link"];
+            // Set the date this request was made.
+            reqModel.request.DateAdded = DateTime.Now;
 
+            // Set the link of this requirement.
+            reqModel.request.Link = fc["link"];
+
+            // Get the actors, written into the 'actors' field, and connect them to the request.
             string actors = fc["actors"];
             String[] actorers = actors.Split(',');
-            rr.AddRequest(model);
-            SkermData db = new SkermData();
-
-            foreach (var item in actorers)
+            for (int i = 0; i < actorers.Length; i++)
             {
-                Actor temp = new Actor();
-                if(sr.GetActorByName(item) == null)
+                if (i > 0)
                 {
-                    temp.Name = item;
-                    db.Actors.Add(temp);
-                    db.SaveChanges();
+                    actorers[i] = actorers[i].Substring(1);
+                }
+                // Check if he already exists in database.
+                Actor actorToCheck = searchRepo.GetActorByName(actorers[i]);
+                // if he doesn't, we add him and connect him to the request.
+                if (actorToCheck == null)
+                {
+                    Actor newActor = new Actor();
+                    newActor.Name = actorers[i];
+                    searchRepo.AddActor(newActor);
+                    reqModel.request.Actors.Add(newActor);
                 }
                 else
+                // Else we just connect him to the request.
                 {
-                    temp = sr.GetActorByName(item);
+                    reqModel.request.Actors.Add(actorToCheck);
                 }
-                temp.Requests.Add(model.request);
-                model.request.Actors.Add(temp);
             }
 
+            // Here the request has all the info it needs and we add it to our Request table.
+            reqRepo.AddRequest(reqModel);
 
+            /*
+            // Adding the genres
             for (int i = 1; i < 9; i++)
             {
                 if (fc["genre" + i.ToString()] == "on")
                 {
-                    model.request.Genres.Add(sr.GetGenreByID(i));
+                    reqModel.request.Genres.Add(searchRepo.GetGenreByID(i));
                 }
-            }
+            }*/
 
-
-            return RedirectToAction("ShowRequest", new { id = model.request.IdRequest });
+            return RedirectToAction("ShowRequest", new { id = reqModel.request.IdRequest });
 		}
 
         [HttpGet]
