@@ -85,5 +85,10 @@ namespace Skermstafir.Repositories
 						   select item).SingleOrDefault();
 			return act;
 		}
+
+		public void AddCommentToSub(Comment com, Subtitle sub) {
+			sub.Comments.Add(com);
+			db.SaveChanges();
+		}
 	}
 }

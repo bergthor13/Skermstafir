@@ -392,6 +392,14 @@ namespace Skermstafir.Controllers
             subRepo.DeleteSubtitle(idValue);
             return RedirectToAction("Manage", "Account");
         }
-	}
 
+		// <summary>
+		// posts a comment and returns all comments from that subtitle as JSON
+		// </summary>
+		public ActionResult PostComment() {
+			SearchRepository searchRep = new SearchRepository();
+			List<Comment> model = searchRep.GetSubtitleByID(2).subtitle.Comments.ToList();
+			return Json(model, JsonRequestBehavior.AllowGet);
+		}
+	}
 }

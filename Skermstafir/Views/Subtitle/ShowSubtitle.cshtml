@@ -97,7 +97,26 @@
 	<textarea id="editedText" cols="900" rows="40" disabled>@Model.subtitle.EditContent</textarea>
 </div>
 
-<div id="comments">
-    <p>Notandi: @User.Identity.Name</p>
-    @Model.subtitle.Comments.FirstOrDefault()
+<div id="comments" class="col-md-8">
+    @if(User.Identity.IsAuthenticated) {
+        @Html.BeginForm("Comment", "Subtitle"){
+
+            <ul class="list-group" id="comment" style="max-width: 560px;">
+            <li class="list-group-item">
+                <div class="form-horizontal">
+                    <label class="sr-only" for="CommentText">Comment</label>
+                    <textarea class="form-control" rows="3" id="CommentText1" name="CommentText1"></textarea><br />
+                    <button type="submit" id="btnSave1" value="Save" class="btn btn-primary" onclick="">Send</button>
+                </div>
+            </li>
+        </ul>
+        }      
+    }
+    <div id="usercomments">
+    @foreach (var item in Model.subtitle.Comments) {
+        <span class="glyphicon glyphicon-user"></span>
+        <span>@item.Username</span>
+        <p>@item.Content </p>
+    }
+    </div>
 </div>
