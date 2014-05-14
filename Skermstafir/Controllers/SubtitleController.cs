@@ -90,15 +90,6 @@ namespace Skermstafir.Controllers
                 model.subtitle.Director = fc["director"];
             }
 
-            if (fc["actors"] == "")
-            {
-                model.subtitle.Actors = "Ekki skráð.";
-            }
-            else
-            {
-                model.subtitle.Actors = fc["actors"];
-            }
-
             // Set language of Subtitle model
             if (fc["language"] == "Íslenska")
             {
@@ -116,7 +107,7 @@ namespace Skermstafir.Controllers
                     model.subtitle.Genres.Add(search.GetGenreByID(i));
                 }
             }
-
+			model.subtitle.DateAdded = DateTime.Now;
             subRepo.AddSubtitle(model);
 
             return this.RedirectToAction("ShowSubtitle", new { id = model.subtitle.IdSubtitle });
@@ -127,12 +118,13 @@ namespace Skermstafir.Controllers
 		/// </summary>
 		/// <param name="id"></param>
 		/// <returns></returns>
+		[HttpGet]
+		[Authorize]
 		public ActionResult CreateSubtitleFromRequest(int? id)
 		{
 			SubtitleModel sModel = new SubtitleModel();
 			RequestRepository rr = new RequestRepository();
 			RequestModel rModel = new RequestModel();
-
 			int idValue = id.Value;
 			rModel = rr.GetRequestByID(idValue);
 			sModel.subtitle.Genres      = rModel.request.Genres;
@@ -141,10 +133,10 @@ namespace Skermstafir.Controllers
 			sModel.subtitle.Language    = rModel.request.Language;
 			sModel.subtitle.Description = rModel.request.Description;
 			sModel.subtitle.Link		= rModel.request.Link;
-            sModel.subtitle.Director    = rModel.request.Director;
-            sModel.subtitle.Actors      = rModel.request.Actors;
+			sModel.subtitle.Director    = rModel.request.Director;
+			sModel.subtitle.Actors      = rModel.request.Actors;
 			// Put genres in a bool array
-			//FillModel(sModel);
+			FillModel(sModel);
 
 			// Put genres in a bool array
 			foreach (var item in rModel.request.Genres)
@@ -154,6 +146,18 @@ namespace Skermstafir.Controllers
 
 			return View("CreateSubtitle", sModel);
 		}
+
+		[HttpPost]
+		[Authorize]
+		public ActionResult CreateSubtitleFromRequest(int? id, FormCollection fc)
+		{
+			RequestRepository reqRepo = new RequestRepository();
+			int idValue = id.Value;
+			reqRepo.DeleteRequest(idValue);
+			return CreateSubtitle(fc);
+		}
+
+
 
 		///<summary>
         /// Gets the translation to be edited with the ID 'id'
@@ -242,43 +246,14 @@ namespace Skermstafir.Controllers
             {
                 editedSub.subtitle.YearCreated = Convert.ToInt32(fd["year"]);
             }
-
-            if (fd["originalText"] == "")
-            {
-                editedSub.subtitle.Content = "Ekki skráð";
-            }
-            else
-            {
-                editedSub.subtitle.Content = fd["originalText"];
-            }
-
-            if (fd["editedText"] == "")
-            {
-                editedSub.subtitle.EditContent = "Ekki skráð";
-            }
-            else
-            {
-                editedSub.subtitle.EditContent = fd["editedText"];
-            }
-
-            if (fd["description"] == "")
-            {
-                editedSub.subtitle.Description = "Ekki skráð";
-            }
-            else
-            {
-                editedSub.subtitle.Description = fd["description"];
-            }
-
-            if (fd["director"] == "")
-            {
-                editedSub.subtitle.Director = "Ekki skráð";
-            }
-            else
-            {
-                editedSub.subtitle.Director = fd["director"];
-            }
 			
+			editedSub.subtitle.Content     = fd["originalText"];
+			editedSub.subtitle.EditContent = fd["editedText"];
+			editedSub.subtitle.Description = fd["description"];
+
+			// Gets the director object specified in the 'director' textbox in the view.
+			editedSub.subtitle.Director = fd["director"];
+
 			// Add the genres selected to the subtitle.
 			for (int i = 1; i <= 8; i++)
 			{
@@ -389,6 +364,7 @@ namespace Skermstafir.Controllers
 				 sm.genreValue[item.IdGenre-1] = true;
 			}
 		}
+		[Authorize]
         public ActionResult DeleteSubtitle(int? id)
         {
             SubtitleRepository subRepo = new SubtitleRepository();
@@ -400,6 +376,7 @@ namespace Skermstafir.Controllers
 		// <summary>
 		// posts a comment and returns all comments from that subtitle as JSON
 		// </summary>
+		[Authorize]
 		public ActionResult Comment(FormCollection form) {
 			SearchRepository searchRep = new SearchRepository();
 			Subtitle sub = searchRep.GetSubtitleByID(Convert.ToInt32(form["id"])).subtitle;

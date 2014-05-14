@@ -32,7 +32,7 @@ namespace Skermstafir.Repositories
         {
             RequestModelList model = new RequestModelList();
 			model.modelList = (from req in db.Requests
-							   orderby req.DateAdded
+							   orderby req.DateAdded descending
 							   select req).Skip(start).Take(end - start).ToList();
             return model;
         }
