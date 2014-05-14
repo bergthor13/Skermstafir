@@ -83,12 +83,12 @@ namespace Skermstafir.Controllers
             reqModel.request.Link = fc["link"];
 
             // Get the actors, written into the 'actors' field, and connect them to the request.
-            /*string actors = fc["actors"];
+            string actors = fc["actors"];
             String[] actorers = actors.Split(',');
             for (int i = 0; i < actorers.Length; i++)
             {
                 string currActor = actorers[i];
-                if (i > 0 && currActor[0] == ' ')
+                if (currActor[0] == ' ')
                 {
                     actorers[i] = actorers[i].Substring(1);
                 }
@@ -108,7 +108,7 @@ namespace Skermstafir.Controllers
                     reqModel.request.Actors.Add(actorToCheck);
                 }
             }
-
+            /*
             // Adding the genres
             for (int i = 1; i < 9; i++)
             {
@@ -116,8 +116,8 @@ namespace Skermstafir.Controllers
                 {
                     reqModel.request.Genres.Add(searchRepo.GetGenreByID(i));
                 }
-            }
-            */
+            }*/
+            
             // Here the request has all the info it needs and we add it to our Request table.
             reqRepo.AddRequest(reqModel);
 
