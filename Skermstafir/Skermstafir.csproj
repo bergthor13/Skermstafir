@@ -186,9 +186,6 @@
     <Compile Include="C__MigrationHistory.cs">
       <DependentUpon>SkermDatabase.tt</DependentUpon>
     </Compile>
-    <Compile Include="Director.cs">
-      <DependentUpon>SkermDatabase.tt</DependentUpon>
-    </Compile>
     <Compile Include="Exceptions\NoRequestFoundException.cs" />
     <Compile Include="Exceptions\NoSubtitleFoundException.cs" />
     <Compile Include="Genre.cs">
@@ -259,6 +256,7 @@
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\CommentSystem.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
@@ -266,9 +264,11 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\ManageScript.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\Upvote.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -311,6 +311,7 @@
     <Content Include="Views\Shared\_SearchSubtitles.cshtml" />
     <Content Include="Views\Search\Search.cshtml" />
     <Content Include="Views\Request\Search.cshtml" />
+    <Content Include="Views\Subtitle\CreateSubtitle.cshtml" />
     <EntityDeploy Include="SkermDatabase.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>SkermDatabase.Designer.cs</LastGenOutput>

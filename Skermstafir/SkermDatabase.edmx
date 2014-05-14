@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="SkermData.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2005" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="SkermData2.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2005" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="__MigrationHistory">
           <Key>
             <PropertyRef Name="MigrationId" />
@@ -75,13 +75,6 @@
           <Property Name="Content" Type="nvarchar" MaxLength="255" />
           <Property Name="DateCreated" Type="datetime" />
         </EntityType>
-        <EntityType Name="Director">
-          <Key>
-            <PropertyRef Name="IdDirector" />
-          </Key>
-          <Property Name="IdDirector" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Name" Type="nvarchar" MaxLength="50" />
-        </EntityType>
         <EntityType Name="Genre">
           <Key>
             <PropertyRef Name="IdGenre" />
@@ -102,9 +95,9 @@
           </Key>
           <Property Name="IdRequest" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="LanguageId" Type="int" Nullable="false" />
-          <Property Name="DirectorId" Type="int" Nullable="false" />
           <Property Name="Username" Type="nvarchar" MaxLength="50" />
           <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Director" Type="nvarchar" MaxLength="50" />
           <Property Name="Description" Type="nvarchar" MaxLength="255" />
           <Property Name="YearCreated" Type="int" />
           <Property Name="DateAdded" Type="datetime" />
@@ -140,9 +133,9 @@
           </Key>
           <Property Name="IdSubtitle" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="LanguageId" Type="int" Nullable="false" />
-          <Property Name="DirectorId" Type="int" Nullable="false" />
           <Property Name="Username" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Director" Type="nvarchar" MaxLength="50" />
           <Property Name="Description" Type="nvarchar" MaxLength="255" />
           <Property Name="YearCreated" Type="int" />
           <Property Name="Content" Type="nvarchar(max)" />
@@ -246,20 +239,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_dbo_Request_dbo_Director_DirectorId">
-          <End Role="Director" Type="Self.Director" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="Request" Type="Self.Request" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Director">
-              <PropertyRef Name="IdDirector" />
-            </Principal>
-            <Dependent Role="Request">
-              <PropertyRef Name="DirectorId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_dbo_Request_dbo_Language_LanguageId">
           <End Role="Language" Type="Self.Language" Multiplicity="1">
             <OnDelete Action="Cascade" />
@@ -355,20 +334,6 @@
             </Principal>
             <Dependent Role="Request_has_Vote">
               <PropertyRef Name="VoteId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_dbo_Subtitle_dbo_Director_DirectorId">
-          <End Role="Director" Type="Self.Director" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="Subtitle" Type="Self.Subtitle" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Director">
-              <PropertyRef Name="IdDirector" />
-            </Principal>
-            <Dependent Role="Subtitle">
-              <PropertyRef Name="DirectorId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -498,7 +463,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="SkermDataStoreContainer">
+        <EntityContainer Name="SkermData2StoreContainer">
           <EntitySet Name="__MigrationHistory" EntityType="Self.__MigrationHistory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Actor" EntityType="Self.Actor" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" Schema="dbo" store:Type="Tables" />
@@ -507,7 +472,6 @@
           <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Comment" EntityType="Self.Comment" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Director" EntityType="Self.Director" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Genre" EntityType="Self.Genre" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Language" EntityType="Self.Language" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Request" EntityType="Self.Request" Schema="dbo" store:Type="Tables" />
@@ -536,10 +500,6 @@
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
             <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
           </AssociationSet>
-          <AssociationSet Name="FK_dbo_Request_dbo_Director_DirectorId" Association="Self.FK_dbo_Request_dbo_Director_DirectorId">
-            <End Role="Director" EntitySet="Director" />
-            <End Role="Request" EntitySet="Request" />
-          </AssociationSet>
           <AssociationSet Name="FK_dbo_Request_dbo_Language_LanguageId" Association="Self.FK_dbo_Request_dbo_Language_LanguageId">
             <End Role="Language" EntitySet="Language" />
             <End Role="Request" EntitySet="Request" />
@@ -567,10 +527,6 @@
           <AssociationSet Name="FK_dbo_Request_has_Vote_dbo_Vote_VoteId" Association="Self.FK_dbo_Request_has_Vote_dbo_Vote_VoteId">
             <End Role="Vote" EntitySet="Vote" />
             <End Role="Request_has_Vote" EntitySet="Request_has_Vote" />
-          </AssociationSet>
-          <AssociationSet Name="FK_dbo_Subtitle_dbo_Director_DirectorId" Association="Self.FK_dbo_Subtitle_dbo_Director_DirectorId">
-            <End Role="Director" EntitySet="Director" />
-            <End Role="Subtitle" EntitySet="Subtitle" />
           </AssociationSet>
           <AssociationSet Name="FK_dbo_Subtitle_dbo_Language_LanguageId" Association="Self.FK_dbo_Subtitle_dbo_Language_LanguageId">
             <End Role="Language" EntitySet="Language" />
@@ -613,7 +569,7 @@
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="SkermData" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="SkermData2" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="C__MigrationHistory">
           <Key>
             <PropertyRef Name="MigrationId" />
@@ -685,15 +641,6 @@
           <Property Name="DateCreated" Type="DateTime" Precision="3" />
           <NavigationProperty Name="Subtitles" Relationship="Self.Subtitle_has_Comment" FromRole="Comment" ToRole="Subtitle" />
         </EntityType>
-        <EntityType Name="Director">
-          <Key>
-            <PropertyRef Name="IdDirector" />
-          </Key>
-          <Property Name="IdDirector" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Requests" Relationship="Self.FK_dbo_Request_dbo_Director_DirectorId" FromRole="Director" ToRole="Request" />
-          <NavigationProperty Name="Subtitles" Relationship="Self.FK_dbo_Subtitle_dbo_Director_DirectorId" FromRole="Director" ToRole="Subtitle" />
-        </EntityType>
         <EntityType Name="Genre">
           <Key>
             <PropertyRef Name="IdGenre" />
@@ -718,14 +665,13 @@
           </Key>
           <Property Name="IdRequest" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="LanguageId" Type="Int32" Nullable="false" />
-          <Property Name="DirectorId" Type="Int32" Nullable="false" />
           <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Director" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Description" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="YearCreated" Type="Int32" />
           <Property Name="DateAdded" Type="DateTime" Precision="3" />
           <Property Name="Link" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Director" Relationship="Self.FK_dbo_Request_dbo_Director_DirectorId" FromRole="Request" ToRole="Director" />
           <NavigationProperty Name="Language" Relationship="Self.FK_dbo_Request_dbo_Language_LanguageId" FromRole="Request" ToRole="Language" />
           <NavigationProperty Name="Actors" Relationship="Self.Request_has_Actor" FromRole="Request" ToRole="Actor" />
           <NavigationProperty Name="Genres" Relationship="Self.Request_has_Genre" FromRole="Request" ToRole="Genre" />
@@ -737,9 +683,9 @@
           </Key>
           <Property Name="IdSubtitle" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="LanguageId" Type="Int32" Nullable="false" />
-          <Property Name="DirectorId" Type="Int32" Nullable="false" />
           <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Director" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Description" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="YearCreated" Type="Int32" />
           <Property Name="Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
@@ -747,7 +693,6 @@
           <Property Name="DateAdded" Type="DateTime" Precision="3" />
           <Property Name="Link" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="Download" Type="Int32" />
-          <NavigationProperty Name="Director" Relationship="Self.FK_dbo_Subtitle_dbo_Director_DirectorId" FromRole="Subtitle" ToRole="Director" />
           <NavigationProperty Name="Language" Relationship="Self.FK_dbo_Subtitle_dbo_Language_LanguageId" FromRole="Subtitle" ToRole="Language" />
           <NavigationProperty Name="Actors" Relationship="Self.Subtitle_has_Actor" FromRole="Subtitle" ToRole="Actor" />
           <NavigationProperty Name="Comments" Relationship="Self.Subtitle_has_Comment" FromRole="Subtitle" ToRole="Comment" />
@@ -788,34 +733,6 @@
             </Principal>
             <Dependent Role="AspNetUserLogins">
               <PropertyRef Name="UserId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_dbo_Request_dbo_Director_DirectorId">
-          <End Role="Director" Type="Self.Director" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="Request" Type="Self.Request" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Director">
-              <PropertyRef Name="IdDirector" />
-            </Principal>
-            <Dependent Role="Request">
-              <PropertyRef Name="DirectorId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_dbo_Subtitle_dbo_Director_DirectorId">
-          <End Role="Director" Type="Self.Director" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="Subtitle" Type="Self.Subtitle" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Director">
-              <PropertyRef Name="IdDirector" />
-            </Principal>
-            <Dependent Role="Subtitle">
-              <PropertyRef Name="DirectorId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -879,7 +796,7 @@
           <End Role="Subtitle" Type="Self.Subtitle" Multiplicity="*" />
           <End Role="Vote" Type="Self.Vote" Multiplicity="*" />
         </Association>
-        <EntityContainer Name="SkermDataConnection" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="SkermData" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="C__MigrationHistory" EntityType="Self.C__MigrationHistory" />
           <EntitySet Name="Actors" EntityType="Self.Actor" />
           <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRole" />
@@ -887,7 +804,6 @@
           <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogin" />
           <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUser" />
           <EntitySet Name="Comments" EntityType="Self.Comment" />
-          <EntitySet Name="Directors" EntityType="Self.Director" />
           <EntitySet Name="Genres" EntityType="Self.Genre" />
           <EntitySet Name="Languages" EntityType="Self.Language" />
           <EntitySet Name="Requests" EntityType="Self.Request" />
@@ -900,14 +816,6 @@
           <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
             <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
-          </AssociationSet>
-          <AssociationSet Name="FK_dbo_Request_dbo_Director_DirectorId" Association="Self.FK_dbo_Request_dbo_Director_DirectorId">
-            <End Role="Director" EntitySet="Directors" />
-            <End Role="Request" EntitySet="Requests" />
-          </AssociationSet>
-          <AssociationSet Name="FK_dbo_Subtitle_dbo_Director_DirectorId" Association="Self.FK_dbo_Subtitle_dbo_Director_DirectorId">
-            <End Role="Director" EntitySet="Directors" />
-            <End Role="Subtitle" EntitySet="Subtitles" />
           </AssociationSet>
           <AssociationSet Name="FK_dbo_Request_dbo_Language_LanguageId" Association="Self.FK_dbo_Request_dbo_Language_LanguageId">
             <End Role="Language" EntitySet="Languages" />
@@ -955,9 +863,9 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="SkermDataStoreContainer" CdmEntityContainer="SkermDataConnection">
+        <EntityContainerMapping StorageEntityContainer="SkermData2StoreContainer" CdmEntityContainer="SkermData">
           <EntitySetMapping Name="C__MigrationHistory">
-            <EntityTypeMapping TypeName="SkermData.C__MigrationHistory">
+            <EntityTypeMapping TypeName="SkermData2.C__MigrationHistory">
               <MappingFragment StoreEntitySet="__MigrationHistory">
                 <ScalarProperty Name="MigrationId" ColumnName="MigrationId" />
                 <ScalarProperty Name="ContextKey" ColumnName="ContextKey" />
@@ -967,7 +875,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Actors">
-            <EntityTypeMapping TypeName="SkermData.Actor">
+            <EntityTypeMapping TypeName="SkermData2.Actor">
               <MappingFragment StoreEntitySet="Actor">
                 <ScalarProperty Name="IdActor" ColumnName="IdActor" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -975,7 +883,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="AspNetRoles">
-            <EntityTypeMapping TypeName="SkermData.AspNetRole">
+            <EntityTypeMapping TypeName="SkermData2.AspNetRole">
               <MappingFragment StoreEntitySet="AspNetRoles">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -983,7 +891,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="AspNetUserClaims">
-            <EntityTypeMapping TypeName="SkermData.AspNetUserClaim">
+            <EntityTypeMapping TypeName="SkermData2.AspNetUserClaim">
               <MappingFragment StoreEntitySet="AspNetUserClaims">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="ClaimType" ColumnName="ClaimType" />
@@ -993,7 +901,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="AspNetUserLogins">
-            <EntityTypeMapping TypeName="SkermData.AspNetUserLogin">
+            <EntityTypeMapping TypeName="SkermData2.AspNetUserLogin">
               <MappingFragment StoreEntitySet="AspNetUserLogins">
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
                 <ScalarProperty Name="LoginProvider" ColumnName="LoginProvider" />
@@ -1002,7 +910,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="AspNetUsers">
-            <EntityTypeMapping TypeName="SkermData.AspNetUser">
+            <EntityTypeMapping TypeName="SkermData2.AspNetUser">
               <MappingFragment StoreEntitySet="AspNetUsers">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="UserName" ColumnName="UserName" />
@@ -1013,7 +921,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Comments">
-            <EntityTypeMapping TypeName="SkermData.Comment">
+            <EntityTypeMapping TypeName="SkermData2.Comment">
               <MappingFragment StoreEntitySet="Comment">
                 <ScalarProperty Name="IdComment" ColumnName="IdComment" />
                 <ScalarProperty Name="Username" ColumnName="Username" />
@@ -1022,16 +930,8 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Directors">
-            <EntityTypeMapping TypeName="SkermData.Director">
-              <MappingFragment StoreEntitySet="Director">
-                <ScalarProperty Name="IdDirector" ColumnName="IdDirector" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Genres">
-            <EntityTypeMapping TypeName="SkermData.Genre">
+            <EntityTypeMapping TypeName="SkermData2.Genre">
               <MappingFragment StoreEntitySet="Genre">
                 <ScalarProperty Name="IdGenre" ColumnName="IdGenre" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -1039,7 +939,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Languages">
-            <EntityTypeMapping TypeName="SkermData.Language">
+            <EntityTypeMapping TypeName="SkermData2.Language">
               <MappingFragment StoreEntitySet="Language">
                 <ScalarProperty Name="IdLanguage" ColumnName="IdLanguage" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -1047,13 +947,13 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Requests">
-            <EntityTypeMapping TypeName="SkermData.Request">
+            <EntityTypeMapping TypeName="SkermData2.Request">
               <MappingFragment StoreEntitySet="Request">
                 <ScalarProperty Name="IdRequest" ColumnName="IdRequest" />
                 <ScalarProperty Name="LanguageId" ColumnName="LanguageId" />
-                <ScalarProperty Name="DirectorId" ColumnName="DirectorId" />
                 <ScalarProperty Name="Username" ColumnName="Username" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Director" ColumnName="Director" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="YearCreated" ColumnName="YearCreated" />
                 <ScalarProperty Name="DateAdded" ColumnName="DateAdded" />
@@ -1062,13 +962,13 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Subtitles">
-            <EntityTypeMapping TypeName="SkermData.Subtitle">
+            <EntityTypeMapping TypeName="SkermData2.Subtitle">
               <MappingFragment StoreEntitySet="Subtitle">
                 <ScalarProperty Name="IdSubtitle" ColumnName="IdSubtitle" />
                 <ScalarProperty Name="LanguageId" ColumnName="LanguageId" />
-                <ScalarProperty Name="DirectorId" ColumnName="DirectorId" />
                 <ScalarProperty Name="Username" ColumnName="Username" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Director" ColumnName="Director" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="YearCreated" ColumnName="YearCreated" />
                 <ScalarProperty Name="Content" ColumnName="Content" />
@@ -1080,14 +980,14 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Votes">
-            <EntityTypeMapping TypeName="SkermData.Vote">
+            <EntityTypeMapping TypeName="SkermData2.Vote">
               <MappingFragment StoreEntitySet="Vote">
                 <ScalarProperty Name="IdVote" ColumnName="IdVote" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <AssociationSetMapping Name="AspNetUserRoles" TypeName="SkermData.AspNetUserRoles" StoreEntitySet="AspNetUserRoles">
+          <AssociationSetMapping Name="AspNetUserRoles" TypeName="SkermData2.AspNetUserRoles" StoreEntitySet="AspNetUserRoles">
             <EndProperty Name="AspNetRoles">
               <ScalarProperty Name="Id" ColumnName="RoleId" />
             </EndProperty>
@@ -1095,7 +995,7 @@
               <ScalarProperty Name="Id" ColumnName="UserId" />
             </EndProperty>
           </AssociationSetMapping>
-          <AssociationSetMapping Name="Request_has_Actor" TypeName="SkermData.Request_has_Actor" StoreEntitySet="Request_has_Actor">
+          <AssociationSetMapping Name="Request_has_Actor" TypeName="SkermData2.Request_has_Actor" StoreEntitySet="Request_has_Actor">
             <EndProperty Name="Actor">
               <ScalarProperty Name="IdActor" ColumnName="ActorId" />
             </EndProperty>
@@ -1103,7 +1003,7 @@
               <ScalarProperty Name="IdRequest" ColumnName="RequestId" />
             </EndProperty>
           </AssociationSetMapping>
-          <AssociationSetMapping Name="Request_has_Genre" TypeName="SkermData.Request_has_Genre" StoreEntitySet="Request_has_Genre">
+          <AssociationSetMapping Name="Request_has_Genre" TypeName="SkermData2.Request_has_Genre" StoreEntitySet="Request_has_Genre">
             <EndProperty Name="Genre">
               <ScalarProperty Name="IdGenre" ColumnName="GenreId" />
             </EndProperty>
@@ -1111,7 +1011,7 @@
               <ScalarProperty Name="IdRequest" ColumnName="RequestId" />
             </EndProperty>
           </AssociationSetMapping>
-          <AssociationSetMapping Name="Request_has_Vote" TypeName="SkermData.Request_has_Vote" StoreEntitySet="Request_has_Vote">
+          <AssociationSetMapping Name="Request_has_Vote" TypeName="SkermData2.Request_has_Vote" StoreEntitySet="Request_has_Vote">
             <EndProperty Name="Request">
               <ScalarProperty Name="IdRequest" ColumnName="RequestId" />
             </EndProperty>
@@ -1119,7 +1019,7 @@
               <ScalarProperty Name="IdVote" ColumnName="VoteId" />
             </EndProperty>
           </AssociationSetMapping>
-          <AssociationSetMapping Name="Subtitle_has_Actor" TypeName="SkermData.Subtitle_has_Actor" StoreEntitySet="Subtitle_has_Actor">
+          <AssociationSetMapping Name="Subtitle_has_Actor" TypeName="SkermData2.Subtitle_has_Actor" StoreEntitySet="Subtitle_has_Actor">
             <EndProperty Name="Actor">
               <ScalarProperty Name="IdActor" ColumnName="ActorId" />
             </EndProperty>
@@ -1127,7 +1027,7 @@
               <ScalarProperty Name="IdSubtitle" ColumnName="SubtitleId" />
             </EndProperty>
           </AssociationSetMapping>
-          <AssociationSetMapping Name="Subtitle_has_Comment" TypeName="SkermData.Subtitle_has_Comment" StoreEntitySet="Subtitle_has_Comment">
+          <AssociationSetMapping Name="Subtitle_has_Comment" TypeName="SkermData2.Subtitle_has_Comment" StoreEntitySet="Subtitle_has_Comment">
             <EndProperty Name="Comment">
               <ScalarProperty Name="IdComment" ColumnName="CommentId" />
             </EndProperty>
@@ -1135,7 +1035,7 @@
               <ScalarProperty Name="IdSubtitle" ColumnName="SubtitleId" />
             </EndProperty>
           </AssociationSetMapping>
-          <AssociationSetMapping Name="Subtitle_has_Genre" TypeName="SkermData.Subtitle_has_Genre" StoreEntitySet="Subtitle_has_Genre">
+          <AssociationSetMapping Name="Subtitle_has_Genre" TypeName="SkermData2.Subtitle_has_Genre" StoreEntitySet="Subtitle_has_Genre">
             <EndProperty Name="Genre">
               <ScalarProperty Name="IdGenre" ColumnName="GenreId" />
             </EndProperty>
@@ -1143,7 +1043,7 @@
               <ScalarProperty Name="IdSubtitle" ColumnName="SubtitleId" />
             </EndProperty>
           </AssociationSetMapping>
-          <AssociationSetMapping Name="Subtitle_has_Vote" TypeName="SkermData.Subtitle_has_Vote" StoreEntitySet="Subtitle_has_Vote">
+          <AssociationSetMapping Name="Subtitle_has_Vote" TypeName="SkermData2.Subtitle_has_Vote" StoreEntitySet="Subtitle_has_Vote">
             <EndProperty Name="Subtitle">
               <ScalarProperty Name="IdSubtitle" ColumnName="SubtitleId" />
             </EndProperty>

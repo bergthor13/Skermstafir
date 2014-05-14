@@ -24,9 +24,9 @@ namespace Skermstafir
     
         public int IdSubtitle { get; set; }
         public int LanguageId { get; set; }
-        public int DirectorId { get; set; }
         public string Username { get; set; }
         public string Name { get; set; }
+        public string Director { get; set; }
         public string Description { get; set; }
         public Nullable<int> YearCreated { get; set; }
         public string Content { get; set; }
@@ -35,7 +35,6 @@ namespace Skermstafir
         public string Link { get; set; }
         public Nullable<int> Download { get; set; }
     
-        public virtual Director Director { get; set; }
         public virtual Language Language { get; set; }
         public virtual ICollection<Actor> Actors { get; set; }
         public virtual ICollection<Comment> Comments { get; set; }

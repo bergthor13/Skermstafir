@@ -16,7 +16,7 @@ namespace Skermstafir
     public partial class SkermData : DbContext
     {
         public SkermData()
-            : base("name=SkermDataConnection")
+            : base("name=SkermData")
         {
         }
     
@@ -32,7 +32,6 @@ namespace Skermstafir
         public virtual DbSet<AspNetUserLogin> AspNetUserLogins { get; set; }
         public virtual DbSet<AspNetUser> AspNetUsers { get; set; }
         public virtual DbSet<Comment> Comments { get; set; }
-        public virtual DbSet<Director> Directors { get; set; }
         public virtual DbSet<Genre> Genres { get; set; }
         public virtual DbSet<Language> Languages { get; set; }
         public virtual DbSet<Request> Requests { get; set; }

@@ -23,15 +23,14 @@ namespace Skermstafir
     
         public int IdRequest { get; set; }
         public int LanguageId { get; set; }
-        public int DirectorId { get; set; }
         public string Username { get; set; }
         public string Name { get; set; }
+        public string Director { get; set; }
         public string Description { get; set; }
         public Nullable<int> YearCreated { get; set; }
         public Nullable<System.DateTime> DateAdded { get; set; }
         public string Link { get; set; }
     
-        public virtual Director Director { get; set; }
         public virtual Language Language { get; set; }
         public virtual ICollection<Actor> Actors { get; set; }
         public virtual ICollection<Genre> Genres { get; set; }
