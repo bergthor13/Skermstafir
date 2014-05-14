@@ -99,12 +99,6 @@ namespace Skermstafir.Repositories {
 			return model;
 		}
 
-		// Add Director to database
-		public void AddDirector(Director dir) {
-			db.Directors.Add(dir);
-			db.SaveChanges();
-		}
-
         // Add Actor to database
         public void AddActor(Actor act)
         {
@@ -137,15 +131,6 @@ namespace Skermstafir.Repositories {
                          where item.Name == name
                          select item).FirstOrDefault();
             return act;
-        }
-
-		// query database and get a director by name
-        public Director GetDirectorByName(string name)
-        {
-            Director dir = (from item in db.Directors
-                            where item.Name == name
-                            select item).FirstOrDefault();
-            return dir;
         }
 
 		// Query database and get a language by its name

@@ -37,7 +37,6 @@ namespace Skermstafir.Repositories
 									select item).Single();
 			// Copy all data over
 			toBeChanged.LanguageId  = editSub.subtitle.LanguageId;
-			toBeChanged.DirectorId  = editSub.subtitle.DirectorId;
 			toBeChanged.Name        = editSub.subtitle.Name;
 			toBeChanged.Description = editSub.subtitle.Description;
 			toBeChanged.YearCreated = editSub.subtitle.YearCreated;
@@ -49,22 +48,6 @@ namespace Skermstafir.Repositories
 
 			int i = db.SaveChanges();	
         }
-
-		public Director GetDirectorByName(string dir)
-		{
-			Director check = (from item in db.Directors
-							  where item.Name == dir
-							  select item).SingleOrDefault();
-
-			if (check == null)
-			{
-				return null;
-			}
-			else
-			{
-				return check;
-			}
-		}
 
 		public void AddGenreToSubtitle(Genre gen, Subtitle sub)
 		{

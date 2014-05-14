@@ -16,7 +16,6 @@ namespace Skermstafir.Models
         public RequestModel()
 		{
 			request = new Request();
-            request.Director = new Director();
 		}
 	}
 }
