@@ -5,6 +5,8 @@ using System.Web;
 using Skermstafir.Models;
 using Skermstafir.Interfaces;
 using Skermstafir.Exceptions;
+using System.Web.Security;
+using Microsoft.AspNet.Identity;
 
 namespace Skermstafir.Repositories {
 	public class SearchRepository : ISearchRepository {
@@ -102,6 +104,13 @@ namespace Skermstafir.Repositories {
 			db.SaveChanges();
 		}
 
+        // Add Actor to database
+        public void AddActor(Actor act)
+        {
+            db.Actors.Add(act);
+            db.SaveChanges();
+        }
+
 		// query database and get a genre by id
 		public Genre GetGenreByID(int id) {
 			Genre gen = (from item in db.Genres
@@ -127,6 +136,7 @@ namespace Skermstafir.Repositories {
                          select item).SingleOrDefault();
             return act;
         }
+
 		// query database and get a director by name
         public Director GetDirectorByName(string name)
         {
