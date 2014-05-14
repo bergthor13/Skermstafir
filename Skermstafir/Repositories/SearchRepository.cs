@@ -32,6 +32,7 @@ namespace Skermstafir.Repositories {
 		public SubtitleModelList GetSubtitleByMostPopular(int start, int end) {
 			SubtitleModelList model = new SubtitleModelList();
 			model.modelList = (from sub in db.Subtitles
+							   orderby sub.Download.Value descending
 							   orderby sub.Votes.Count descending
 							   select sub).Skip(start).Take(end - start).ToList();
 			return model;
