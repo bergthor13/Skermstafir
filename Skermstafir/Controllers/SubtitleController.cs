@@ -133,6 +133,8 @@ namespace Skermstafir.Controllers
 			sModel.subtitle.Language    = rModel.request.Language;
 			sModel.subtitle.Description = rModel.request.Description;
 			sModel.subtitle.Link		= rModel.request.Link;
+			sModel.subtitle.Director    = rModel.request.Director;
+			sModel.subtitle.Actors      = rModel.request.Actors;
 			// Put genres in a bool array
 			FillModel(sModel);
 
@@ -144,6 +146,18 @@ namespace Skermstafir.Controllers
 
 			return View("CreateSubtitle", sModel);
 		}
+
+		[HttpPost]
+		[Authorize]
+		public ActionResult CreateSubtitleFromRequest(int? id, FormCollection fc)
+		{
+			RequestRepository reqRepo = new RequestRepository();
+			int idValue = id.Value;
+			reqRepo.DeleteRequest(idValue);
+			return CreateSubtitle(fc);
+		}
+
+
 
 		///<summary>
         /// Gets the translation to be edited with the ID 'id'
