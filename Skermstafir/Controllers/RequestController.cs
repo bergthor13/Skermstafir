@@ -69,8 +69,6 @@ namespace Skermstafir.Controllers
             model.request.DateAdded = DateTime.Now;
             model.request.Link = fc["link"];
 
-            
-
             string actors = fc["actors"];
             String[] actorers = actors.Split(',');
             rr.AddRequest(model);
