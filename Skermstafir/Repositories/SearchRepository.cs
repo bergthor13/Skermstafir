@@ -66,6 +66,7 @@ namespace Skermstafir.Repositories {
 			SubtitleModelList model = new SubtitleModelList();
 			model.modelList = (from sub in db.Subtitles
 							   where sub.Language.Name == language
+							   orderby sub.DateAdded
 							   select sub).Skip(start).Take(end - start).ToList();
 			return model;
 		}
