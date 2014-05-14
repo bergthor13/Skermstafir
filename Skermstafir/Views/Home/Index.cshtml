@@ -12,10 +12,11 @@
         <p class="box-title">Vinsælar þýðingar</p>
         @foreach (var item in Model.popularSubtitleList.modelList)
         {
-            <div class="fp-list" data-id="">
+            <div class="fp-list">
                 <!-- Up button, upvote count, flag-->
                 <div class="first-column">
-                    <div class="blueup">▲</div> <div>@item.Votes.Count</div>
+					<a href="#"><div class="blueup" onclick="PostSubtitleUpvote(@item.IdSubtitle)">▲</div></a>
+					<div id="voteCount-@item.IdSubtitle">@item.Votes.Count</div>
                     @if (item.LanguageId == 1)
                     {
                         <img src="http://www.senojflags.com/images/national-flag-icons/Iceland-Flag.png" alt="Flag" />
@@ -76,7 +77,8 @@
             <div class="fp-list" data-id="">
                 <!-- Up button, upvote count, flag-->
                 <div class="first-column">
-                    <div class="blueup">▲</div> <div>@item.Votes.Count </div>
+					<a href="#"><div class="blueup" onclick="PostSubtitleUpvote(@item.IdSubtitle)">▲</div></a>
+					<div id="voteCount-@item.IdSubtitle">@item.Votes.Count</div>
                     @if (item.LanguageId == 1)
                     {
                         <img src="http://www.senojflags.com/images/national-flag-icons/Iceland-Flag.png" alt="Flag" />

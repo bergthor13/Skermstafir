@@ -179,5 +179,19 @@ namespace Skermstafir.Repositories {
 			subtitle.Votes.Add(vote);
 			db.SaveChanges();
 		}
+
+		public void RemoveVoteFromSubtite(Vote vote, Subtitle subtitle)
+		{
+			vote.Subtitles.Remove(subtitle);
+			subtitle.Votes.Remove(vote);
+			db.SaveChanges();
+		}
+
+		public List<Vote> GetVotes()
+		{
+			List<Vote> voteList = (from item in db.Votes
+									   select item).ToList();
+			return voteList;
+		}
 	}
 }

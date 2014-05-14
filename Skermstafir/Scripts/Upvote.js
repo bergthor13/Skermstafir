@@ -1,55 +1,40 @@
 ﻿$(document).ready(function myfunction() {
-	//getUpvotes(id);
+	getUpvotes();
 })
 
 function PostSubtitleUpvote(id) {
 	// The object to send to server.
 	var upvote = { "subid": id }
-	
 	var selector = "#voteCount-" + id;
-	
+
 	$.post("/Subtitle/UpvoteSubtitle", upvote, function success(response) {
-		if (response.Exists === 1) {
-			// Downvote
-			var voteValue = $(selector).text();
-			voteValue--;
-			$(selector).text(voteValue)
-		} else if (response.Exists === 3) {
-			$(selector).notify("Þú verður að vera innskráð/ur", { className: "info", elementPosition: 'left' });
-		} else if (response.Exists === 2) {
-			// Notandi á þýðinguna
-			$(selector).notify("Þú getur ekki upvote-að þína þýðingu", { className: "info", elementPosition: 'left' });
-		} else if (response.Exists === 0) {
+		if (response.Exists === 0) {
 			// Upvote
 			var voteValue = $(selector).text();
 			voteValue++;
 			$(selector).text(voteValue)
+		} else if (response.Exists === 1) {
+			// Downvote
+			var voteValue = $(selector).text();
+			voteValue--;
+			$(selector).text(voteValue)
+		} else if (response.Exists === 2) {
+			// Notandi á þýðinguna
+				$(selector).notify("Þú getur ekki upvote-að þína þýðingu", { className: "info", elementPosition: 'right'});
+		} else if (response.Exists === 3) {
+			$(selector).notify("Þú verður að vera innskráð/ur", { className: "info", elementPosition: 'right' });
 		}
-	}).always(function () {
+	}).fail(function fail(bla1, bla2) {
+		$(selector).notify("Villa kom upp. Afsakið." + bla2, { className: "error", elementPosition: 'right'});
 	});
 
 }
 
-function GetUpvoteSingle(id) {
-	// Check if the username is empty.
-	if ($("#UserName").val() === "") {
-		$("#UsernameError").text("Username can not be empty!");
-		return;
-	} else {
-		$("#UsernameError").text("");
-	}
-	// The object to send to server.
-	var like = { "CommentID": id, "Username": $("#UserName").val() }
+function getUpvotes() {
 
-	// Send the like to server.
-	// Alerts if the username exists for this comment.
-	// Server checks for that.
-	// Then we always refresh the comments.
-	$.post("/Home/LikeComment", like, function success(response) {
-		if (response.Exists === 1) {
-			alert("You have liked this comment.")
+	$.get("/Subtitle/GetUpvotes", function success(response) {
+		for (var i = 0; i < response.length; i++) {
+			response[i].Subtitles.IdSubtitle;
 		}
-	}).always(function () {
 	});
-
 }
