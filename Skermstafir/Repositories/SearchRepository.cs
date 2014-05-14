@@ -164,15 +164,9 @@ namespace Skermstafir.Repositories {
 
 		public void AddVoteToSubtite(Vote vote, Subtitle subtitle)
 		{
-			Vote v = (from item in db.Votes
-					  where item.IdVote == vote.IdVote
-					  select item).SingleOrDefault();
 
-			Subtitle s = (from item in db.Subtitles
-						  where item.IdSubtitle == subtitle.IdSubtitle
-						  select item).SingleOrDefault();
-
-			v.Subtitles.Add(s);
+			vote.Subtitles.Add(subtitle);
+			subtitle.Votes.Add(vote);
 			db.SaveChanges();
 		}
 	}

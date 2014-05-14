@@ -14,7 +14,6 @@
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 
-</head>
 <body>
     <div class="shared-header">
 
@@ -30,7 +29,7 @@
         </ul>
     </div>
     <div class="container body-content">
-        
+		<div class='notifications top-left'></div>
         @RenderBody()
         <hr />
         <footer>
@@ -42,5 +41,6 @@
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
 	<script src="~/Scripts/Upvote.js"></script>
+	<script src="~/Scripts/notify.min.js"></script>
 </body>
 </html>

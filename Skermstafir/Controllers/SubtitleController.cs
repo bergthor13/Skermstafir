@@ -272,12 +272,11 @@ namespace Skermstafir.Controllers
 		{
 			string userName = User.Identity.GetUserName();
 			string userId = User.Identity.GetUserId();
-
 			if (userName == "")
 			{
 				// User is not logged in.
-				object noUser = new { Exists = 3 };
-				return View(Json(noUser, JsonRequestBehavior.AllowGet));
+				var noUser = new { Exists = 3 };
+				return Json(noUser, JsonRequestBehavior.AllowGet);
 			}
 
 			SearchRepository sr = new SearchRepository();
@@ -287,8 +286,13 @@ namespace Skermstafir.Controllers
 
 			if (sr.VoteContainsSubtitle(vote, subtitle))
 			{
-				object existsYes = new { Exists = 1 };
-				return View(Json(existsYes, JsonRequestBehavior.AllowGet));
+				var existsYes = new { Exists = 1 };
+				return Json(existsYes, JsonRequestBehavior.AllowGet);
+			}
+			else if (userName == subtitle.AspNetUsers.SingleOrDefault().UserName)
+			{
+				var subOwner = new { Exists = 2 };
+				return Json(subOwner, JsonRequestBehavior.AllowGet);
 			}
 			else
 			{
@@ -296,7 +300,7 @@ namespace Skermstafir.Controllers
 			}
 		
 			object ob2 = new { id2 = 0 };
-			return View(Json(ob2, JsonRequestBehavior.AllowGet));
+			return Json(ob2, JsonRequestBehavior.AllowGet);
 		}
 
 		// Downloads the srt file.

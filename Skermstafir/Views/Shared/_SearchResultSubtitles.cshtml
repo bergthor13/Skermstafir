@@ -19,7 +19,7 @@
         <tbody>
             @foreach (var subtitle in Model.modelList) {
                 <tr>
-                    <td align="center"><p class="blueup">▲</p> @subtitle.Votes.Count</td>
+                    <td align="center"><a href="#"><p onclick="PostSubtitleUpvote(@subtitle.IdSubtitle);" class="blueup">▲</p></a> @subtitle.Votes.Count</td>
                     <td>@Html.ActionLink((string)subtitle.Name, "ShowSubtitle", new { controller = "Subtitle", id = subtitle.IdSubtitle }, "Subtitle")</td>
                     <td>@subtitle.YearCreated</td>
                     <td>@subtitle.Language.Name</td>

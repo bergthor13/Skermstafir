@@ -2,18 +2,32 @@
 	//getUpvotes(id);
 })
 
-function PostUpvoteSingle(id) {
+function PostSubtitleUpvote(id) {
 	// The object to send to server.
 	var upvote = { "subid": id }
 	
+	var selector = "#voteCount-" + id;
+	
 	$.post("/Subtitle/UpvoteSubtitle", upvote, function success(response) {
 		if (response.Exists === 1) {
-			alert("You have liked this comment.")
+			// Downvote
+			var voteValue = $(selector).text();
+			voteValue--;
+			$(selector).text(voteValue)
+		} else if (response.Exists === 3) {
+			$(selector).notify("Þú verður að vera innskráð/ur", { className: "info", elementPosition: 'left' });
+		} else if (response.Exists === 2) {
+			// Notandi á þýðinguna
+			$(selector).notify("Þú getur ekki upvote-að þína þýðingu", { className: "info", elementPosition: 'left' });
+		} else if (response.Exists === 0) {
+			// Upvote
+			var voteValue = $(selector).text();
+			voteValue++;
+			$(selector).text(voteValue)
 		}
 	}).always(function () {
-
 	});
-	
+
 }
 
 function GetUpvoteSingle(id) {
