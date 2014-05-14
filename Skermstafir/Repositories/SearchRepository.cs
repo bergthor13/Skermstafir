@@ -180,5 +180,12 @@ namespace Skermstafir.Repositories {
 									   select item).ToList();
 			return voteList;
 		}
+
+		public void AddCommentToSub(Comment com, Subtitle sub) {
+			db.Comments.Add(com);
+			sub.Comments.Add(com);
+			com.Subtitles.Add(sub);
+			db.SaveChanges();
+		}
 	}
 }
