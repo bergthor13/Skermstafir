@@ -21,7 +21,7 @@
             <div class="fp-list">
                 <!-- Up button, upvote count, flag-->
                 <div class="first-column">
-					<a href="#"><div class="blueup" onclick="PostSubtitleUpvote(@item.IdSubtitle)">▲</div></a>
+					<a href="javascript:void(0);"><div class="blueup" onclick="PostSubtitleUpvote(@item.IdSubtitle)">▲</div></a>
 					<div id="voteCount-@item.IdSubtitle">@item.Votes.Count</div>
                     @if (item.LanguageId == 1)
                     {
@@ -82,7 +82,7 @@
             <div class="fp-list" data-id="">
                 <!-- Up button, upvote count, flag-->
                 <div class="first-column">
-					<a href="#"><div class="blueup" onclick="PostSubtitleUpvote(@item.IdSubtitle)">▲</div></a>
+					<a href="javascript:void(0);"><div class="blueup" onclick="PostSubtitleUpvote(@item.IdSubtitle)">▲</div></a>
 					<div id="voteCount-@item.IdSubtitle">@item.Votes.Count</div>
                     @if (item.LanguageId == 1)
                     {
