@@ -66,7 +66,7 @@ namespace Skermstafir.Controllers
 
             // Set the username of the creator to either "Anonymous" (if not authenticated)
             // or (if authenticated) to the user's username.
-            if (User.Identity.Name != null)
+            if (User.Identity.Name != "")
             {
                 reqModel.request.Username = User.Identity.Name;
             }
