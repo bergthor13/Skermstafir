@@ -66,6 +66,7 @@ namespace Skermstafir.Repositories {
 			SubtitleModelList model = new SubtitleModelList();
 			model.modelList = (from sub in db.Subtitles
 							   where sub.Language.Name == language
+							   orderby sub.DateAdded
 							   select sub).Skip(start).Take(end - start).ToList();
 			return model;
 		}
@@ -179,6 +180,20 @@ namespace Skermstafir.Repositories {
 			vote.Subtitles.Add(subtitle);
 			subtitle.Votes.Add(vote);
 			db.SaveChanges();
+		}
+
+		public void RemoveVoteFromSubtite(Vote vote, Subtitle subtitle)
+		{
+			vote.Subtitles.Remove(subtitle);
+			subtitle.Votes.Remove(vote);
+			db.SaveChanges();
+		}
+
+		public List<Vote> GetVotes()
+		{
+			List<Vote> voteList = (from item in db.Votes
+									   select item).ToList();
+			return voteList;
 		}
 	}
 }

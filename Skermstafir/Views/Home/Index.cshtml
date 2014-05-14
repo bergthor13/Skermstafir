@@ -7,15 +7,22 @@
 
 <h3 align="middle">Velkominn á skermstafir.is þar sem fólkið í landinu sameinast í að skiptast á skjátextum. </h3>
 <h5 align="middle">Hér getur þú halað niður skjátexta fyrir myndefni sem þú hyggst horfa á í tölvutæku formi, fengið leiðbeiningar um hvernig hægt er að tengja skjátextann við myndefnið, lagt inn beiðni um að tiltekið myndefni sé þýtt og tekið þátt í að þýða myndefni. Allt er ókeypis og frjálst!</h5>
+    <button type="button" class="btn btn-default downloadbtn stofnaþ" onclick="location.href='@Url.Action("CreateSubtitle", "Subtitle")'">
+        <p>Stofna þýðingu</p>
+    </button>
+    <button type="button" class="btn btn-default downloadbtn stofnab" onclick="location.href='@Url.Action("CreateRequest", "Request")'">
+        <p>Stofna beiðni</p>
+    </button>
 <div class="row">
     <div id="popular-translations" class="col-md-6 tranreq-list tranList">
         <p class="box-title">Vinsælar þýðingar</p>
         @foreach (var item in Model.popularSubtitleList.modelList)
         {
-            <div class="fp-list" data-id="">
+            <div class="fp-list">
                 <!-- Up button, upvote count, flag-->
                 <div class="first-column">
-                    <div class="blueup">▲</div> <div>@item.Votes.Count</div>
+					<a href="#"><div class="blueup" onclick="PostSubtitleUpvote(@item.IdSubtitle)">▲</div></a>
+					<div id="voteCount-@item.IdSubtitle">@item.Votes.Count</div>
                     @if (item.LanguageId == 1)
                     {
                         <img src="http://www.senojflags.com/images/national-flag-icons/Iceland-Flag.png" alt="Flag" />
@@ -37,7 +44,6 @@
             </div>
         }
     </div>
-
     <div id="popular-requests" class="col-md-6 tranreq-list reqList">
         <p class="box-title">Vinsælar beiðnir</p>
         @foreach (var item in Model.popularRequestList.modelList)
@@ -76,7 +82,8 @@
             <div class="fp-list" data-id="">
                 <!-- Up button, upvote count, flag-->
                 <div class="first-column">
-                    <div class="blueup">▲</div> <div>@item.Votes.Count </div>
+					<a href="#"><div class="blueup" onclick="PostSubtitleUpvote(@item.IdSubtitle)">▲</div></a>
+					<div id="voteCount-@item.IdSubtitle">@item.Votes.Count</div>
                     @if (item.LanguageId == 1)
                     {
                         <img src="http://www.senojflags.com/images/national-flag-icons/Iceland-Flag.png" alt="Flag" />

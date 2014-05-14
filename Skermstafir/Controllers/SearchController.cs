@@ -25,6 +25,10 @@ namespace Skermstafir.Controllers
 				stringResult = sc.GetSubtitleByString(form["SearchValue"]).modelList;
 			}
 
+			// Search by language
+			List<Subtitle> langResult = new List<Subtitle>();
+			langResult = sc.GetSubtitleByLanguage(form["language"], 0, 5).modelList;
+
 			//Search by creation year
 			int start, end;
 			if (form["StartYear"] != "") {
@@ -71,6 +75,7 @@ namespace Skermstafir.Controllers
 			lists.Add(stringResult);
 			lists.Add(yearResult);
 			lists.Add(genreResult);
+			lists.Add(langResult);
 			bool first = true;
 			// get intersection of all lists
 			foreach (var ls in lists) {

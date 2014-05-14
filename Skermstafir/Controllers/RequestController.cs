@@ -161,7 +161,15 @@ namespace Skermstafir.Controllers
 		public ActionResult Search(FormCollection form) {
 			RequestModelList model = new RequestModelList();
 			RequestRepository reqRep = new RequestRepository();
+
+			// get by string
 			List<Request> stringResult = reqRep.GetRequestsByString(form["searchValue"]).modelList;
+
+			// get by language
+			List<Request> langResult = new List<Request>();
+			langResult = reqRep.GetRequestByLanguage(form["language"], 0, 5).modelList;
+
+			// get by year
 			int start, end;
 			if (form["startYear"] != "") {
 				start = Convert.ToInt32(form["startYear"]);
@@ -203,6 +211,7 @@ namespace Skermstafir.Controllers
 			ls.Add(stringResult);
 			ls.Add(yearResult);
 			ls.Add(genreResult);
+			ls.Add(langResult);
 			bool first = true;
 			// get intersection
 			foreach (var list in ls) { 
