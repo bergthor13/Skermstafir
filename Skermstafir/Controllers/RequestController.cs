@@ -48,13 +48,12 @@ namespace Skermstafir.Controllers
             reqModel.request.Description = fc["description"];
 
             // Gets the director object specified in the 'director' textbox in the view.
-            string directorName = fc["director"];
-            Director director = searchRepo.GetDirectorByName(directorName);
+            Director director = searchRepo.GetDirectorByName(fc["director"]);
             // If the director is not found, we create a new director with that name.
             if (director == null)
             {
                 Director newDir = new Director();
-                newDir.Name = directorName;
+                newDir.Name = fc["director"];
                 searchRepo.AddDirector(newDir);
                 reqModel.request.DirectorId = newDir.IdDirector;
                 // Else we change the director of the request.
@@ -173,7 +172,15 @@ namespace Skermstafir.Controllers
 		public ActionResult Search(FormCollection form) {
 			RequestModelList model = new RequestModelList();
 			RequestRepository reqRep = new RequestRepository();
+
+			// get by string
 			List<Request> stringResult = reqRep.GetRequestsByString(form["searchValue"]).modelList;
+
+			// get by language
+			List<Request> langResult = new List<Request>();
+			langResult = reqRep.GetRequestByLanguage(form["language"], 0, 5).modelList;
+
+			// get by year
 			int start, end;
 			if (form["startYear"] != "") {
 				start = Convert.ToInt32(form["startYear"]);
@@ -215,6 +222,7 @@ namespace Skermstafir.Controllers
 			ls.Add(stringResult);
 			ls.Add(yearResult);
 			ls.Add(genreResult);
+			ls.Add(langResult);
 			bool first = true;
 			// get intersection
 			foreach (var list in ls) { 
