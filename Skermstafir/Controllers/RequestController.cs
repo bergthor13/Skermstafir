@@ -73,6 +73,13 @@ namespace Skermstafir.Controllers
 
             string actors = fc["actors"];
             String[] actorers = actors.Split(',');
+            for (int i = 0; i < actorers.Length; i++)
+            {
+                if (i > 0)
+                {
+                    actorers[i] = actorers[i].Substring(1);
+                }
+            }
             rr.AddRequest(model);
             SkermData db = new SkermData();
 
@@ -101,7 +108,6 @@ namespace Skermstafir.Controllers
                     model.request.Genres.Add(sr.GetGenreByID(i));
                 }
             }
-
 
             return RedirectToAction("ShowRequest", new { id = model.request.IdRequest });
 		}
