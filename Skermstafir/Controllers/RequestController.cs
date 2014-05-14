@@ -66,6 +66,15 @@ namespace Skermstafir.Controllers
                 reqModel.request.Director = fc["director"];
             }
 
+			if (fc["actors"] == "")
+			{
+				reqModel.request.Actors = "Ekki skráð.";
+			}
+			else
+			{
+				reqModel.request.Actors = fc["director"];
+			}
+
             // Set the username of the creator to either "Anonymous" (if not authenticated)
             // or (if authenticated) to the user's username.
             if (User.Identity.Name != "")
@@ -119,6 +128,10 @@ namespace Skermstafir.Controllers
                     reqModel.request.Genres.Add(searchRepo.GetGenreByID(i));
                     reqModel.genreValue[i - 1] = true;
                 }
+				else
+				{
+					
+				}
             }
             
             // Here the request has all the info it needs and we add it to our Request table.
