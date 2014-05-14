@@ -12,18 +12,13 @@ namespace Skermstafir
     using System;
     using System.Collections.Generic;
     
-    public partial class Genre
+    public partial class Request_has_Vote
     {
-        public Genre()
-        {
-            this.Request_has_Genre = new HashSet<Request_has_Genre>();
-            this.Subtitle_has_Genre = new HashSet<Subtitle_has_Genre>();
-        }
+        public int IdRequest_has_Vote { get; set; }
+        public int RequestId { get; set; }
+        public int VoteId { get; set; }
     
-        public int IdGenre { get; set; }
-        public string Name { get; set; }
-    
-        public virtual ICollection<Request_has_Genre> Request_has_Genre { get; set; }
-        public virtual ICollection<Subtitle_has_Genre> Subtitle_has_Genre { get; set; }
+        public virtual Request Request { get; set; }
+        public virtual Vote Vote { get; set; }
     }
 }

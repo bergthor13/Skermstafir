@@ -16,15 +16,14 @@ namespace Skermstafir
     {
         public Comment()
         {
-            this.Subtitles = new HashSet<Subtitle>();
-            this.AspNetUsers = new HashSet<AspNetUser>();
+            this.Subtitle_has_Comment = new HashSet<Subtitle_has_Comment>();
         }
     
         public int IdComment { get; set; }
+        public string Username { get; set; }
         public string Content { get; set; }
         public Nullable<System.DateTime> DateCreated { get; set; }
     
-        public virtual ICollection<Subtitle> Subtitles { get; set; }
-        public virtual ICollection<AspNetUser> AspNetUsers { get; set; }
+        public virtual ICollection<Subtitle_has_Comment> Subtitle_has_Comment { get; set; }
     }
 }

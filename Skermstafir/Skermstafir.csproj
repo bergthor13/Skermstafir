@@ -197,7 +197,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Interfaces\IRequestRepository.cs" />
     <Compile Include="Interfaces\ISearchRepository.cs" />
+    <Compile Include="Interfaces\ISubtitleRepository.cs" />
     <Compile Include="Language.cs">
       <DependentUpon>SkermDatabase.tt</DependentUpon>
     </Compile>
@@ -214,6 +216,15 @@
     <Compile Include="Repositories\SearchRepository.cs" />
     <Compile Include="Repositories\SubtitleRepository.cs" />
     <Compile Include="Request.cs">
+      <DependentUpon>SkermDatabase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Request_has_Actor.cs">
+      <DependentUpon>SkermDatabase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Request_has_Genre.cs">
+      <DependentUpon>SkermDatabase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Request_has_Vote.cs">
       <DependentUpon>SkermDatabase.tt</DependentUpon>
     </Compile>
     <Compile Include="SkermDatabase.Context.cs">
@@ -233,6 +244,18 @@
     </Compile>
     <Compile Include="Startup.cs" />
     <Compile Include="Subtitle.cs">
+      <DependentUpon>SkermDatabase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Subtitle_has_Actor.cs">
+      <DependentUpon>SkermDatabase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Subtitle_has_Comment.cs">
+      <DependentUpon>SkermDatabase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Subtitle_has_Genre.cs">
+      <DependentUpon>SkermDatabase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Subtitle_has_Vote.cs">
       <DependentUpon>SkermDatabase.tt</DependentUpon>
     </Compile>
     <Compile Include="Vote.cs">
@@ -256,7 +279,6 @@
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <Content Include="ClassDiagram1.cd" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -295,7 +317,6 @@
     <Content Include="Views\Home\Instructions.cshtml" />
     <Content Include="Views\Home\Requests.cshtml" />
     <Content Include="Views\Home\Subtitles.cshtml" />
-    <Content Include="Views\Shared\_Search.cshtml" />
     <Content Include="Views\Request\ShowRequest.cshtml" />
     <Content Include="Views\Shared\_FrontPageTableCellReq.cshtml" />
     <Content Include="Views\Shared\_FrontPageTableCellTrans.cshtml" />
@@ -304,6 +325,13 @@
     <Content Include="Views\Shared\_SearchResultRequests.cshtml" />
     <Content Include="Views\Subtitle\ShowSubtitle.cshtml" />
     <Content Include="Views\Subtitle\EditSubtitle.cshtml" />
+    <Content Include="Views\Shared\Errors\Error.cshtml" />
+    <Content Include="Views\Shared\Errors\NoSubFound.cshtml" />
+    <Content Include="Views\Shared\_ManagePartial.cshtml" />
+    <Content Include="Views\Shared\_SearchResultSubtitles.cshtml" />
+    <Content Include="Views\Shared\_SearchSubtitles.cshtml" />
+    <Content Include="Views\Search\Search.cshtml" />
+    <Content Include="Views\Request\Search.cshtml" />
     <EntityDeploy Include="SkermDatabase.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>SkermDatabase.Designer.cs</LastGenOutput>
@@ -324,7 +352,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Search\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

@@ -4,36 +4,48 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="3e943c24d46547a49d125bd53d156914" Name="Diagram1">
-        <EntityTypeShape EntityType="SkermData.C__MigrationHistory" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="SkermData.Actor" Width="1.5" PointX="0.75" PointY="4.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="SkermData.AspNetRole" Width="1.5" PointX="9" PointY="2" IsExpanded="true" />
-        <EntityTypeShape EntityType="SkermData.AspNetUserClaim" Width="1.5" PointX="13.5" PointY="3.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="SkermData.AspNetUserLogin" Width="1.5" PointX="13.5" PointY="6.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="SkermData.AspNetUser" Width="1.5" PointX="11.25" PointY="4.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="SkermData.Comment" Width="1.5" PointX="3.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="SkermData.Director" Width="1.5" PointX="0.75" PointY="2.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="SkermData.Genre" Width="1.5" PointX="0.75" PointY="7.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="SkermData.Language" Width="1.5" PointX="0.75" PointY="10.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="SkermData.Request" Width="1.5" PointX="3" PointY="3.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="SkermData.Subtitle" Width="1.5" PointX="6" PointY="3.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="SkermData.Vote" Width="1.5" PointX="8.25" PointY="4.875" IsExpanded="true" />
-        <AssociationConnector Association="SkermData.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_User_Id" ManuallyRouted="false" />
-        <AssociationConnector Association="SkermData.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
-        <AssociationConnector Association="SkermData.FK_dbo_Request_dbo_Director_DirectorId" ManuallyRouted="false" />
-        <AssociationConnector Association="SkermData.FK_dbo_Subtitle_dbo_Director_DirectorId" ManuallyRouted="false" />
-        <AssociationConnector Association="SkermData.FK_dbo_Request_dbo_Language_LanguageId" ManuallyRouted="false" />
-        <AssociationConnector Association="SkermData.FK_dbo_Subtitle_dbo_Language_LanguageId" ManuallyRouted="false" />
-        <AssociationConnector Association="SkermData.AspNetUserRoles" ManuallyRouted="false" />
-        <AssociationConnector Association="SkermData.Request_has_Actor" ManuallyRouted="false" />
-        <AssociationConnector Association="SkermData.Request_has_Genre" ManuallyRouted="false" />
-        <AssociationConnector Association="SkermData.Request_has_Vote" ManuallyRouted="false" />
-        <AssociationConnector Association="SkermData.Subtitle_has_Actor" ManuallyRouted="false" />
-        <AssociationConnector Association="SkermData.Subtitle_has_Comment" ManuallyRouted="false" />
-        <AssociationConnector Association="SkermData.Subtitle_has_Genre" ManuallyRouted="false" />
-        <AssociationConnector Association="SkermData.Subtitle_has_Vote" ManuallyRouted="false" />
-        <AssociationConnector Association="SkermData.User_has_Comment" ManuallyRouted="false" />
-        <AssociationConnector Association="SkermData.User_has_Subtitle" ManuallyRouted="false" />
+      <Diagram DiagramId="c6913a57bde245d6a3860496c734edab" Name="Diagram1">
+        <EntityTypeShape EntityType="VERK014_H22Model.C__MigrationHistory" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="VERK014_H22Model.Actor" Width="1.5" PointX="6" PointY="14" IsExpanded="true" />
+        <EntityTypeShape EntityType="VERK014_H22Model.AspNetRole" Width="1.5" PointX="11.75" PointY="2.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="VERK014_H22Model.AspNetUserClaim" Width="1.5" PointX="16.25" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="VERK014_H22Model.AspNetUserLogin" Width="1.5" PointX="16.25" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="VERK014_H22Model.AspNetUser" Width="1.5" PointX="14" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="VERK014_H22Model.Comment" Width="1.5" PointX="9" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="VERK014_H22Model.Director" Width="1.5" PointX="0.75" PointY="10" IsExpanded="true" />
+        <EntityTypeShape EntityType="VERK014_H22Model.Genre" Width="1.5" PointX="6" PointY="6" IsExpanded="true" />
+        <EntityTypeShape EntityType="VERK014_H22Model.Language" Width="1.5" PointX="0.75" PointY="7" IsExpanded="true" />
+        <EntityTypeShape EntityType="VERK014_H22Model.Request" Width="1.5" PointX="3" PointY="9.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="VERK014_H22Model.Request_has_Actor" Width="1.5" PointX="8.25" PointY="9.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="VERK014_H22Model.Request_has_Genre" Width="1.5" PointX="8.25" PointY="6.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="VERK014_H22Model.Request_has_Vote" Width="1.5" PointX="8.25" PointY="12.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="VERK014_H22Model.Subtitle" Width="1.5" PointX="6" PointY="8.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="VERK014_H22Model.Subtitle_has_Actor" Width="1.5" PointX="11.25" PointY="9.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="VERK014_H22Model.Subtitle_has_Comment" Width="1.5" PointX="11.25" PointY="6.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="VERK014_H22Model.Subtitle_has_Genre" Width="1.5" PointX="11.25" PointY="12.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="VERK014_H22Model.Subtitle_has_Vote" Width="1.5" PointX="8.25" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="VERK014_H22Model.Vote" Width="1.5" PointX="6" PointY="17" IsExpanded="true" />
+        <AssociationConnector Association="VERK014_H22Model.FK_dbo_Request_has_Actor_dbo_Actor_ActorId" ManuallyRouted="false" />
+        <AssociationConnector Association="VERK014_H22Model.FK_dbo_Subtitle_has_Actor_dbo_Actor_ActorId" ManuallyRouted="false" />
+        <AssociationConnector Association="VERK014_H22Model.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_User_Id" ManuallyRouted="false" />
+        <AssociationConnector Association="VERK014_H22Model.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="VERK014_H22Model.FK_dbo_Subtitle_has_Comment_dbo_Subtitle_CommentId" ManuallyRouted="false" />
+        <AssociationConnector Association="VERK014_H22Model.FK_dbo_Request_dbo_Director_DirectorId" ManuallyRouted="false" />
+        <AssociationConnector Association="VERK014_H22Model.FK_dbo_Subtitle_dbo_Director_DirectorId" ManuallyRouted="false" />
+        <AssociationConnector Association="VERK014_H22Model.FK_dbo_Request_has_Genre_dbo_Genre_GenreId" ManuallyRouted="false" />
+        <AssociationConnector Association="VERK014_H22Model.FK_dbo_Subtitle_has_Genre_dbo_Genre_GenreId" ManuallyRouted="false" />
+        <AssociationConnector Association="VERK014_H22Model.FK_dbo_Request_dbo_Language_LanguageId" ManuallyRouted="false" />
+        <AssociationConnector Association="VERK014_H22Model.FK_dbo_Subtitle_dbo_Language_LanguageId" ManuallyRouted="false" />
+        <AssociationConnector Association="VERK014_H22Model.FK_dbo_Request_has_Actor_dbo_Request_RequestId" ManuallyRouted="false" />
+        <AssociationConnector Association="VERK014_H22Model.FK_dbo_Request_has_Genre_dbo_Request_RequestId" ManuallyRouted="false" />
+        <AssociationConnector Association="VERK014_H22Model.FK_dbo_Request_has_Vote_dbo_Request_RequestId" ManuallyRouted="false" />
+        <AssociationConnector Association="VERK014_H22Model.FK_dbo_Request_has_Vote_dbo_Vote_VoteId" ManuallyRouted="false" />
+        <AssociationConnector Association="VERK014_H22Model.FK_dbo_Subtitle_has_Actor_dbo_Subtitle_SubtitleId" ManuallyRouted="false" />
+        <AssociationConnector Association="VERK014_H22Model.FK_dbo_Subtitle_has_Comment_dbo_Subtitle_SubtitleId" ManuallyRouted="false" />
+        <AssociationConnector Association="VERK014_H22Model.FK_dbo_Subtitle_has_Genre_dbo_Subtitle_SubtitleId" ManuallyRouted="false" />
+        <AssociationConnector Association="VERK014_H22Model.FK_dbo_Subtitle_has_Vote_dbo_Subtitle_SubtitleId" ManuallyRouted="false" />
+        <AssociationConnector Association="VERK014_H22Model.FK_dbo_Subtitle_has_Vote_dbo_Vote_VoteId" ManuallyRouted="false" />
+        <AssociationConnector Association="VERK014_H22Model.AspNetUserRoles" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

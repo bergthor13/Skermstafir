@@ -16,16 +16,16 @@ namespace Skermstafir
     {
         public Subtitle()
         {
-            this.Actors = new HashSet<Actor>();
-            this.Comments = new HashSet<Comment>();
-            this.Genres = new HashSet<Genre>();
-            this.Votes = new HashSet<Vote>();
-            this.AspNetUsers = new HashSet<AspNetUser>();
+            this.Subtitle_has_Actor = new HashSet<Subtitle_has_Actor>();
+            this.Subtitle_has_Comment = new HashSet<Subtitle_has_Comment>();
+            this.Subtitle_has_Genre = new HashSet<Subtitle_has_Genre>();
+            this.Subtitle_has_Vote = new HashSet<Subtitle_has_Vote>();
         }
     
         public int IdSubtitle { get; set; }
         public int LanguageId { get; set; }
         public int DirectorId { get; set; }
+        public string Username { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
         public Nullable<int> YearCreated { get; set; }
@@ -33,13 +33,13 @@ namespace Skermstafir
         public string EditContent { get; set; }
         public Nullable<System.DateTime> DateAdded { get; set; }
         public string Link { get; set; }
+        public Nullable<int> Download { get; set; }
     
         public virtual Director Director { get; set; }
         public virtual Language Language { get; set; }
-        public virtual ICollection<Actor> Actors { get; set; }
-        public virtual ICollection<Comment> Comments { get; set; }
-        public virtual ICollection<Genre> Genres { get; set; }
-        public virtual ICollection<Vote> Votes { get; set; }
-        public virtual ICollection<AspNetUser> AspNetUsers { get; set; }
+        public virtual ICollection<Subtitle_has_Actor> Subtitle_has_Actor { get; set; }
+        public virtual ICollection<Subtitle_has_Comment> Subtitle_has_Comment { get; set; }
+        public virtual ICollection<Subtitle_has_Genre> Subtitle_has_Genre { get; set; }
+        public virtual ICollection<Subtitle_has_Vote> Subtitle_has_Vote { get; set; }
     }
 }

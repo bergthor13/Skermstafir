@@ -36,7 +36,14 @@ namespace Skermstafir
         public virtual DbSet<Genre> Genres { get; set; }
         public virtual DbSet<Language> Languages { get; set; }
         public virtual DbSet<Request> Requests { get; set; }
+        public virtual DbSet<Request_has_Actor> Request_has_Actor { get; set; }
+        public virtual DbSet<Request_has_Genre> Request_has_Genre { get; set; }
+        public virtual DbSet<Request_has_Vote> Request_has_Vote { get; set; }
         public virtual DbSet<Subtitle> Subtitles { get; set; }
+        public virtual DbSet<Subtitle_has_Actor> Subtitle_has_Actor { get; set; }
+        public virtual DbSet<Subtitle_has_Comment> Subtitle_has_Comment { get; set; }
+        public virtual DbSet<Subtitle_has_Genre> Subtitle_has_Genre { get; set; }
+        public virtual DbSet<Subtitle_has_Vote> Subtitle_has_Vote { get; set; }
         public virtual DbSet<Vote> Votes { get; set; }
     }
 }
