@@ -15,7 +15,7 @@ namespace Skermstafir.Repositories {
 		public SubtitleModelList GetSubtitleByNewest(int start, int end) {
 			SubtitleModelList model = new SubtitleModelList();
 			model.modelList = (from sub in db.Subtitles
-							   orderby sub.DateAdded
+							   orderby sub.DateAdded descending
 							   select sub).Skip(start).Take(end - start).ToList();
 			return model;
 		}

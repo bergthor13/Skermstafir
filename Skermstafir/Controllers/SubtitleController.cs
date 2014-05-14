@@ -107,7 +107,7 @@ namespace Skermstafir.Controllers
                     model.subtitle.Genres.Add(search.GetGenreByID(i));
                 }
             }
-
+			model.subtitle.DateAdded = DateTime.Now;
             subRepo.AddSubtitle(model);
 
             return this.RedirectToAction("ShowSubtitle", new { id = model.subtitle.IdSubtitle });
