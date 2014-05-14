@@ -113,5 +113,32 @@ namespace Skermstafir.Repositories
 			}
 			return model;
 		}
-    }
+
+		public bool VoteContainsRequest(Vote vote, Request request)
+		{
+			return request.Votes.Contains(vote);
+		}
+
+		public void AddVoteToRequest(Vote vote, Request request)
+		{
+			vote.Requests.Add(request);
+			request.Votes.Add(vote);
+			db.SaveChanges();
+		}
+
+		public void RemoveVoteFromRequest(Vote vote, Request request)
+		{
+			vote.Requests.Remove(request);
+			request.Votes.Remove(vote);
+			db.SaveChanges();
+		}
+
+		public Vote GetVoteByUserID(string userId)
+		{
+			Vote vote = (from item in db.Votes
+						 where item.UserId == userId
+						 select item).SingleOrDefault();
+			return vote;
+		}
+	}
 }

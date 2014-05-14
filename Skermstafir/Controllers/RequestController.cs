@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Microsoft.AspNet.Identity;
 
 namespace Skermstafir.Controllers
 {
@@ -265,5 +266,44 @@ namespace Skermstafir.Controllers
             reqRepo.DeleteRequest(idValue);
             return RedirectToAction("Manage", "Account");
         }
+
+		public ActionResult UpvoteRequest(int reqid)
+		{
+			string userName = User.Identity.GetUserName();
+			string userId = User.Identity.GetUserId();
+
+			RequestRepository reqRepo = new RequestRepository();
+			Vote vote = reqRepo.GetVoteByUserID(userId);
+			RequestModel req = reqRepo.GetRequestByID(reqid);
+			Request request = req.request;
+
+			// Check for user.
+			if (userName == "")
+			{
+				// User is not logged in.
+				var noUser = new { Exists = 3 };
+				return Json(noUser, JsonRequestBehavior.AllowGet);
+			}
+			else if (userName == request.Username)
+			{
+				var subOwner = new { Exists = 2 };
+				return Json(subOwner, JsonRequestBehavior.AllowGet);
+			}
+			//------------------------------------------------------
+			// Check for vote.
+			if (reqRepo.VoteContainsRequest(vote, request))
+			{
+				reqRepo.RemoveVoteFromRequest(vote, request);
+				var existsYes = new { Exists = 1 };
+				return Json(existsYes, JsonRequestBehavior.AllowGet);
+			}
+			else
+			{
+				reqRepo.AddVoteToRequest(vote, request);
+				var existsNo = new { Exists = 0 };
+				return Json(existsNo, JsonRequestBehavior.AllowGet);
+			}
+		}
+
 	}
 }

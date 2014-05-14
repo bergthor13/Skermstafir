@@ -1,8 +1,4 @@
-﻿$(document).ready(function myfunction() {
-	getUpvotes();
-})
-
-function PostSubtitleUpvote(id) {
+﻿function PostSubtitleUpvote(id) {
 	// The object to send to server.
 	var upvote = { "subid": id }
 	var selector = "#voteCount-" + id;
@@ -20,7 +16,7 @@ function PostSubtitleUpvote(id) {
 			$(selector).text(voteValue)
 		} else if (response.Exists === 2) {
 			// Notandi á þýðinguna
-				$(selector).notify("Þú getur ekki upvote-að þína þýðingu", { className: "info", elementPosition: 'right'});
+			$(selector).notify("Þú getur ekki upvote-að þína þýðingu", { className: "info", elementPosition: 'right'});
 		} else if (response.Exists === 3) {
 			$(selector).notify("Þú verður að vera innskráð/ur", { className: "info", elementPosition: 'right' });
 		}
@@ -28,13 +24,4 @@ function PostSubtitleUpvote(id) {
 		$(selector).notify("Villa kom upp. Afsakið." + bla2, { className: "error", elementPosition: 'right'});
 	});
 
-}
-
-function getUpvotes() {
-
-	$.get("/Subtitle/GetUpvotes", function success(response) {
-		for (var i = 0; i < response.length; i++) {
-			response[i].Subtitles.IdSubtitle;
-		}
-	});
 }

@@ -10,6 +10,8 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
 using Microsoft.AspNet.Identity;
+using System.Web.Script.Serialization;
+
 
 namespace Skermstafir.Controllers
 {
@@ -355,16 +357,6 @@ namespace Skermstafir.Controllers
 				return Json(existsNo, JsonRequestBehavior.AllowGet);
 			}
 
-		}
-
-		public ActionResult GetUpvotes(int subid)
-		{
-			SearchRepository searchRepo = new SearchRepository();
-			List<Vote> voteList = (from item in searchRepo.GetVotes()
-								   where item.UserId == User.Identity.GetUserName()
-							       select item).ToList();
-
-			return Json(voteList, JsonRequestBehavior.AllowGet);
 		}
 
 		//<summary>
