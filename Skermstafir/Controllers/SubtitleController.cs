@@ -39,41 +39,65 @@ namespace Skermstafir.Controllers
             SubtitleRepository sr = new SubtitleRepository();
 
             // Get current logged in user
-            var logUser = User.Identity.GetUserName();
+            var tempUserId = User.Identity.GetUserId();
+            var logUser = (from item in search.db.AspNetUsers
+                           where item.Id == tempUserId
+                           select item).SingleOrDefault();
+            model.subtitle.AspNetUsers.Add(logUser);
             
-            // Set info to the new subtitle
+            // Set basic info to the new subtitle model
             model.subtitle.Name = fc["title"];
             model.subtitle.YearCreated = Convert.ToInt32(fc["year"]);
             model.subtitle.Description = fc["description"];
-            model.subtitle.Director.Name = fc["director"];
             model.subtitle.Link = fc["link"];
-            model.subtitle.Content = fc["original-text"];
+            model.subtitle.Content = fc["originalText"];
 
+            // Set director to the model and add it to the database if required
+            string dirName = fc["director"];
+            Director tempDir = new Director();
+            if (sr.GetDirectorByName(dirName) == null)
+            {
+                tempDir.Name = dirName;
+                search.AddDirector(tempDir);
+            }
+            tempDir = search.GetDirectorByName(dirName);
+            model.subtitle.Director = tempDir;
+
+            // Set language of Subtitle model
+            if (fc["language"] == "Íslenska")
+            {
+                model.subtitle.LanguageId = 1;
+            }
+            if (fc["language"] == "Enska")
+            {
+                model.subtitle.LanguageId = 2;
+            }
+
+            // Set actors of Subtitle Model and add them to database if required
             string actors = fc["actors"];
             String[] actorers = actors.Split(',');
             foreach(var item in actorers)
             {
-                Actor temp = new Actor();
-                temp.Name = item;
-                model.subtitle.Actors.Add(temp);
+                Actor tempActor = new Actor();
+                if (sr.GetActorByName(item) == null)
+                {
+                    tempActor.Name = item;
+                    search.AddActor(tempActor);
+                }
+                else
+                {
+                    tempActor = search.GetActorByName(item);
+                }
+                model.subtitle.Actors.Add(tempActor);
             }
 
-            for (int i = 0; i < 8; i++)
+            // Set genres of Subtitle model
+            for (int i = 1; i < 9; i++)
             {
                 if (fc["genre" + i.ToString()] == "on")
                 {
-                    Genre temp = new Genre();
-                    model.subtitle.Genres.Add(temp);
+                    model.subtitle.Genres.Add(search.GetGenreByID(i));
                 }
-            }
-
-            if (fc["languages"] == "Íslenska")
-            {
-                model.subtitle.Language.Name = "Íslenska";
-            }
-            if (fc["languages"] == "Enska")
-            {
-                model.subtitle.Language.Name = "Enska";
             }
 
             sr.AddSubtitle(model);
@@ -175,8 +199,9 @@ namespace Skermstafir.Controllers
                 return View("Errors/NoSubFound");
             }
 		}
-
+		//<summary>
 		// Takes the form data submitted and sends it to the repository.
+		//</ summary>
 		[Authorize]
 		[HttpPost]
 		public ActionResult EditSubtitle(int? id, FormCollection fd, Subtitle sub)
@@ -268,6 +293,9 @@ namespace Skermstafir.Controllers
 			return RedirectToAction("ShowSubtitle", new { id = idValue });
 		}
 
+		//<summary>
+		// Add upvote to subtitle
+		//</summary>
 		public ActionResult UpvoteSubtitle(int subid)
 		{
 			string userName = User.Identity.GetUserName();
@@ -303,7 +331,9 @@ namespace Skermstafir.Controllers
 			return Json(ob2, JsonRequestBehavior.AllowGet);
 		}
 
+		//<summary>
 		// Downloads the srt file.
+		//</summary>
 		public FileResult Download(int? id)
 		{
 			if (id == null)
@@ -328,6 +358,7 @@ namespace Skermstafir.Controllers
 
 			return File(Encoding.UTF8.GetBytes(result.subtitle.EditContent), "text/plain", result.subtitle.Name + ".srt");
 		}
+
 		/// <summary>
 		/// Helper Function. Fills in the rest of the model (genreValue[] and artistsForView)
 		/// </summary> 

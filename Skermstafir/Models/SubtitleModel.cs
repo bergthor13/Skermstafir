@@ -14,7 +14,6 @@ namespace Skermstafir.Models
 		public SubtitleModel()
 		{
 			subtitle = new Subtitle();
-            subtitle.Director = new Director();
 			subtitle.Language = new Language();
 		}
 	}
