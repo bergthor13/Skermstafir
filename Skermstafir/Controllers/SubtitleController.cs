@@ -300,39 +300,53 @@ namespace Skermstafir.Controllers
 		{
 			string userName = User.Identity.GetUserName();
 			string userId = User.Identity.GetUserId();
-			if (userName == "")
-			{
-				// User is not logged in.
-				var noUser = new { Exists = 3 };
-				return Json(noUser, JsonRequestBehavior.AllowGet);
-			}
 
 			SearchRepository sr = new SearchRepository();
 			Vote vote = sr.GetVoteByUserID(userId);
 			SubtitleModel sub = sr.GetSubtitleByID(subid);
 			Subtitle subtitle = sub.subtitle;
 
-			if (sr.VoteContainsSubtitle(vote, subtitle))
+			// Check for user.
+			if (userName == "")
 			{
-				var existsYes = new { Exists = 1 };
-				return Json(existsYes, JsonRequestBehavior.AllowGet);
+				// User is not logged in.
+				var noUser = new { Exists = 3 };
+				return Json(noUser, JsonRequestBehavior.AllowGet);
 			}
 			else if (userName == subtitle.Username)
 			{
 				var subOwner = new { Exists = 2 };
 				return Json(subOwner, JsonRequestBehavior.AllowGet);
 			}
+			//------------------------------------------------------
+			// Check for vote.
+			if (sr.VoteContainsSubtitle(vote, subtitle))
+			{
+				sr.RemoveVoteFromSubtite(vote, subtitle);
+				var existsYes = new { Exists = 1 };
+				return Json(existsYes, JsonRequestBehavior.AllowGet);
+			}
 			else
 			{
 				sr.AddVoteToSubtite(vote, subtitle);
+				var existsNo = new { Exists = 0 };
+				return Json(existsNo, JsonRequestBehavior.AllowGet);
 			}
-		
-			object ob2 = new { id2 = 0 };
-			return Json(ob2, JsonRequestBehavior.AllowGet);
+
+		}
+
+		public ActionResult GetUpvotes(int subid)
+		{
+			SearchRepository searchRepo = new SearchRepository();
+			List<Vote> voteList = (from item in searchRepo.GetVotes()
+								   where item.UserId == User.Identity.GetUserName()
+							       select item).ToList();
+
+			return Json(voteList, JsonRequestBehavior.AllowGet);
 		}
 
 		//<summary>
-		// Downloads the srt file.
+		// Downloads the .srt file.
 		//</summary>
 		public FileResult Download(int? id)
 		{

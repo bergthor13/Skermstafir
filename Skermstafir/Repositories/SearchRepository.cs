@@ -113,7 +113,8 @@ namespace Skermstafir.Repositories {
         }
 
 		// query database and get a genre by id
-		public Genre GetGenreByID(int id) {
+		public Genre GetGenreByID(int id) 
+        {
 			Genre gen = (from item in db.Genres
 						 where item.IdGenre == id
                          select item).FirstOrDefault();
@@ -179,6 +180,20 @@ namespace Skermstafir.Repositories {
 			vote.Subtitles.Add(subtitle);
 			subtitle.Votes.Add(vote);
 			db.SaveChanges();
+		}
+
+		public void RemoveVoteFromSubtite(Vote vote, Subtitle subtitle)
+		{
+			vote.Subtitles.Remove(subtitle);
+			subtitle.Votes.Remove(vote);
+			db.SaveChanges();
+		}
+
+		public List<Vote> GetVotes()
+		{
+			List<Vote> voteList = (from item in db.Votes
+									   select item).ToList();
+			return voteList;
 		}
 	}
 }
