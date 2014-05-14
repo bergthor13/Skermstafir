@@ -623,3 +623,20 @@ fieldset {
 {
     margin-top:1%;
 }
+
+/*Search subtitle and search request buttons*/
+
+.searchsub
+{
+    padding-left:5%;
+    margin-left:10px;
+}
+
+.searchreq
+{
+    padding-left:5%;
+    margin-left:10px;
+}
+
+
+
