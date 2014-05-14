@@ -113,7 +113,13 @@ namespace Skermstafir.Controllers
                 String[] actorers = actors.Split(',');
                 foreach (var item in actorers)
                 {
-                    tempActor.Name = item;
+                    string currActor = item;
+                    if (currActor[0] == ' ')
+                    {
+                        
+                        currActor = currActor.Substring(1);
+                    }
+                    tempActor.Name = currActor;
                     model.subtitle.Actors.Add(tempActor);
                 }
             }
@@ -242,7 +248,15 @@ namespace Skermstafir.Controllers
 			editedSub = seaR.GetSubtitleByID(idValue);
 
 			// Change the subtitle
-			editedSub.subtitle.YearCreated = Convert.ToInt32(fd["year"]);
+            if (fd["year"] == "")
+            {
+                editedSub.subtitle.YearCreated = 0;
+            }
+            else
+            {
+                editedSub.subtitle.YearCreated = Convert.ToInt32(fd["year"]);
+            }
+			
 			editedSub.subtitle.Content     = fd["originalText"];
 			editedSub.subtitle.EditContent = fd["editedText"];
 			editedSub.subtitle.Description = fd["description"];
@@ -272,36 +286,30 @@ namespace Skermstafir.Controllers
 				}
 			}
 
-			/*
+			
 			string actors = fd["actors"];
-			string actorName = "";
-			String[] actorers = actors.Split(',');
+            Actor tempAct = new Actor();
+            if (actors == "")
+            {
+                tempAct.Name = "Ekki skráð.";
+                editedSub.subtitle.Actors.Add(tempAct);
+            }
+            else
+            {
+                String[] actorers = actors.Split(',');
+                foreach (var item in actorers)
+                {
+                    string currActor = item;
+                    if (currActor[0] == ' ')
+                    {
 
-			/*foreach (var item in actorers)
-			{
-				if (item[0] == ' ')
-				{
-					actorName = item.Substring(1, item.Length-1);
-				}
-				Actor temp = new Actor();
-				temp.Name = actorName;
-
-				Actor actor = subR.GetActorByName(actorName);
-				// If the director is not found, we create a new director with that name.
-				if (actor == null)
-				{
-					Actor newAct = new Actor();
-					newAct.Name = actorName;
-					seaR.AddActor(newAct);
-					//editedSub.subtitle.DirectorId = newAct.IdActor;
-					// Else we change the director of the subtitle.
-				}
-				else
-				{
-					//editedSub.subtitle.Actor = director.IdActor;
-				}
-
-			}*/
+                        currActor = currActor.Substring(1);
+                    }
+                    tempAct.Name = currActor;
+                    editedSub.subtitle.Actors.Add(tempAct);
+                }
+            }
+			
 
 			// Finally we update the subtitle.
 			subR.ChangeExistingSubtitle(idValue, editedSub);

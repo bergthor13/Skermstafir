@@ -46,11 +46,24 @@ namespace Skermstafir.Controllers
             //      Get the name from the title box and make it the reqModel's name.
             reqModel.request.Name = fc["title"];
             //      Get the description from the description box and make it the reqModel's description.
-            reqModel.request.Description = fc["description"];
+            if (fc["description"] == "")
+            {
+                reqModel.request.Description = "Ekki skráð.";
+            }
+            else
+            {
+                reqModel.request.Description = fc["description"];
+            }
 
             // Gets the director object specified in the 'director' textbox in the view.
-            reqModel.request.Director = fc["director"];
-                // TODO: Implement
+            if (fc["director"] == "")
+            {
+                reqModel.request.Director = "Ekki skráð.";
+            }
+            else
+            {
+                reqModel.request.Director = fc["director"];
+            }
 
             // Set the username of the creator to either "Anonymous" (if not authenticated)
             // or (if authenticated) to the user's username.
@@ -74,30 +87,53 @@ namespace Skermstafir.Controllers
             }
 
             // Set the publish date of the film/show.
-            int year = Convert.ToInt32(fc["year"]);
-            reqModel.request.YearCreated = year;
+            if (fc["year"] == "")
+            {
+                reqModel.request.YearCreated = 0;
+            }
+            else
+            {
+                reqModel.request.YearCreated = Convert.ToInt32(fc["year"]);
+            }
 
             // Set the date this request was made.
             reqModel.request.DateAdded = DateTime.Now;
 
             // Set the link of this requirement.
-            reqModel.request.Link = fc["link"];
+            if (fc["link"] == "")
+            {
+                reqModel.request.Link = "Ekki skráð.";
+            }
+            else
+            {
+                reqModel.request.Link = fc["link"];
+            }
 
             // Get the actors, written into the 'actors' field, and connect them to the request.
             string actors = fc["actors"];
-            String[] actorers = actors.Split(',');
-            for (int i = 0; i < actorers.Length; i++)
+            Actor newActor = new Actor();
+            if (actors == "")
             {
-                string currActor = actorers[i];
-                if (currActor[0] == ' ')
-                {
-                    actorers[i] = actorers[i].Substring(1);
-                }
-                // They are sorted so now add them to database.
-                Actor newActor = new Actor();
-                newActor.Name = actorers[i];
+                newActor.Name = "Ekki skráð.";
                 reqModel.request.Actors.Add(newActor);
             }
+            else
+            {
+                String[] actorers = actors.Split(',');
+                for (int i = 0; i < actorers.Length; i++)
+                {
+                    string currActor = actorers[i];
+                    if (currActor[0] == ' ')
+                    {
+                        actorers[i] = actorers[i].Substring(1);
+                    }
+                    // They are sorted so now add them to database.
+
+                    newActor.Name = actorers[i];
+                    reqModel.request.Actors.Add(newActor);
+                }
+            }
+            
             
             // Adding the genres
             for (int i = 1; i < 9; i++)
