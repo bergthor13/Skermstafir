@@ -351,20 +351,6 @@ namespace Skermstafir.Controllers
 
 		}
 
-		public ActionResult GetUpvotes(int subid)
-		{
-			SearchRepository searchRepo = new SearchRepository();
-			Vote           vote    = (from item in searchRepo.GetVotes()
-								      where item.UserId == User.Identity.GetUserName()
-							          select item).SingleOrDefault();
-			List<Subtitle> subList = (from item in vote.Subtitles
-								      select item).ToList();
-
-			var jsonSerializer = new JavaScriptSerializer();
-			var json = jsonSerializer.Serialize(subList);
-			return Json(subList, JsonRequestBehavior.AllowGet);
-		}
-
 		//<summary>
 		// Downloads the .srt file.
 		//</summary>
