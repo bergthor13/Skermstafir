@@ -31,9 +31,9 @@ namespace Skermstafir.Repositories
         public RequestModelList GetRequestByNewest(int start, int end)
         {
             RequestModelList model = new RequestModelList();
-            model.modelList = (from req in db.Requests
-                               orderby req.DateAdded
-                               select req).Skip(start).Take(end - start).ToList();
+			model.modelList = (from req in db.Requests
+							   orderby req.DateAdded
+							   select req).Skip(start).Take(end - start).ToList();
             return model;
         }
 

@@ -16,7 +16,7 @@ namespace Skermstafir
     {
         public Comment()
         {
-            this.Subtitle_has_Comment = new HashSet<Subtitle_has_Comment>();
+            this.Subtitles = new HashSet<Subtitle>();
         }
     
         public int IdComment { get; set; }
@@ -24,6 +24,6 @@ namespace Skermstafir
         public string Content { get; set; }
         public Nullable<System.DateTime> DateCreated { get; set; }
     
-        public virtual ICollection<Subtitle_has_Comment> Subtitle_has_Comment { get; set; }
+        public virtual ICollection<Subtitle> Subtitles { get; set; }
     }
 }

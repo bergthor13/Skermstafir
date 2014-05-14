@@ -157,26 +157,26 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Actor.cs">
-      <DependentUpon>SkermDatabase.tt</DependentUpon>
+      <DependentUpon>SkermData.tt</DependentUpon>
     </Compile>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="AspNetRole.cs">
-      <DependentUpon>SkermDatabase.tt</DependentUpon>
+      <DependentUpon>SkermData.tt</DependentUpon>
     </Compile>
     <Compile Include="AspNetUser.cs">
-      <DependentUpon>SkermDatabase.tt</DependentUpon>
+      <DependentUpon>SkermData.tt</DependentUpon>
     </Compile>
     <Compile Include="AspNetUserClaim.cs">
-      <DependentUpon>SkermDatabase.tt</DependentUpon>
+      <DependentUpon>SkermData.tt</DependentUpon>
     </Compile>
     <Compile Include="AspNetUserLogin.cs">
-      <DependentUpon>SkermDatabase.tt</DependentUpon>
+      <DependentUpon>SkermData.tt</DependentUpon>
     </Compile>
     <Compile Include="Comment.cs">
-      <DependentUpon>SkermDatabase.tt</DependentUpon>
+      <DependentUpon>SkermData.tt</DependentUpon>
     </Compile>
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -184,15 +184,15 @@
     <Compile Include="Controllers\SearchController.cs" />
     <Compile Include="Controllers\SubtitleController.cs" />
     <Compile Include="C__MigrationHistory.cs">
-      <DependentUpon>SkermDatabase.tt</DependentUpon>
+      <DependentUpon>SkermData.tt</DependentUpon>
     </Compile>
     <Compile Include="Director.cs">
-      <DependentUpon>SkermDatabase.tt</DependentUpon>
+      <DependentUpon>SkermData.tt</DependentUpon>
     </Compile>
     <Compile Include="Exceptions\NoRequestFoundException.cs" />
     <Compile Include="Exceptions\NoSubtitleFoundException.cs" />
     <Compile Include="Genre.cs">
-      <DependentUpon>SkermDatabase.tt</DependentUpon>
+      <DependentUpon>SkermData.tt</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -201,7 +201,7 @@
     <Compile Include="Interfaces\ISearchRepository.cs" />
     <Compile Include="Interfaces\ISubtitleRepository.cs" />
     <Compile Include="Language.cs">
-      <DependentUpon>SkermDatabase.tt</DependentUpon>
+      <DependentUpon>SkermData.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -216,50 +216,29 @@
     <Compile Include="Repositories\SearchRepository.cs" />
     <Compile Include="Repositories\SubtitleRepository.cs" />
     <Compile Include="Request.cs">
-      <DependentUpon>SkermDatabase.tt</DependentUpon>
+      <DependentUpon>SkermData.tt</DependentUpon>
     </Compile>
-    <Compile Include="Request_has_Actor.cs">
-      <DependentUpon>SkermDatabase.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Request_has_Genre.cs">
-      <DependentUpon>SkermDatabase.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Request_has_Vote.cs">
-      <DependentUpon>SkermDatabase.tt</DependentUpon>
-    </Compile>
-    <Compile Include="SkermDatabase.Context.cs">
+    <Compile Include="SkermData.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>SkermDatabase.Context.tt</DependentUpon>
+      <DependentUpon>SkermData.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="SkermDatabase.cs">
+    <Compile Include="SkermData.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>SkermDatabase.tt</DependentUpon>
+      <DependentUpon>SkermData.tt</DependentUpon>
     </Compile>
-    <Compile Include="SkermDatabase.Designer.cs">
+    <Compile Include="SkermData.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>SkermDatabase.edmx</DependentUpon>
+      <DependentUpon>SkermData.edmx</DependentUpon>
     </Compile>
     <Compile Include="Startup.cs" />
     <Compile Include="Subtitle.cs">
-      <DependentUpon>SkermDatabase.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Subtitle_has_Actor.cs">
-      <DependentUpon>SkermDatabase.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Subtitle_has_Comment.cs">
-      <DependentUpon>SkermDatabase.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Subtitle_has_Genre.cs">
-      <DependentUpon>SkermDatabase.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Subtitle_has_Vote.cs">
-      <DependentUpon>SkermDatabase.tt</DependentUpon>
+      <DependentUpon>SkermData.tt</DependentUpon>
     </Compile>
     <Compile Include="Vote.cs">
-      <DependentUpon>SkermDatabase.tt</DependentUpon>
+      <DependentUpon>SkermData.tt</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -332,22 +311,22 @@
     <Content Include="Views\Shared\_SearchSubtitles.cshtml" />
     <Content Include="Views\Search\Search.cshtml" />
     <Content Include="Views\Request\Search.cshtml" />
-    <EntityDeploy Include="SkermDatabase.edmx">
+    <EntityDeploy Include="SkermData.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>SkermDatabase.Designer.cs</LastGenOutput>
+      <LastGenOutput>SkermData.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="SkermDatabase.Context.tt">
+    <Content Include="SkermData.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>SkermDatabase.edmx</DependentUpon>
-      <LastGenOutput>SkermDatabase.Context.cs</LastGenOutput>
+      <DependentUpon>SkermData.edmx</DependentUpon>
+      <LastGenOutput>SkermData.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="SkermDatabase.edmx.diagram">
-      <DependentUpon>SkermDatabase.edmx</DependentUpon>
+    <Content Include="SkermData.edmx.diagram">
+      <DependentUpon>SkermData.edmx</DependentUpon>
     </Content>
-    <Content Include="SkermDatabase.tt">
+    <Content Include="SkermData.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>SkermDatabase.edmx</DependentUpon>
-      <LastGenOutput>SkermDatabase.cs</LastGenOutput>
+      <DependentUpon>SkermData.edmx</DependentUpon>
+      <LastGenOutput>SkermData.cs</LastGenOutput>
     </Content>
   </ItemGroup>
   <ItemGroup>

@@ -16,9 +16,9 @@ namespace Skermstafir
     {
         public Request()
         {
-            this.Request_has_Actor = new HashSet<Request_has_Actor>();
-            this.Request_has_Genre = new HashSet<Request_has_Genre>();
-            this.Request_has_Vote = new HashSet<Request_has_Vote>();
+            this.Actors = new HashSet<Actor>();
+            this.Genres = new HashSet<Genre>();
+            this.Votes = new HashSet<Vote>();
         }
     
         public int IdRequest { get; set; }
@@ -33,8 +33,8 @@ namespace Skermstafir
     
         public virtual Director Director { get; set; }
         public virtual Language Language { get; set; }
-        public virtual ICollection<Request_has_Actor> Request_has_Actor { get; set; }
-        public virtual ICollection<Request_has_Genre> Request_has_Genre { get; set; }
-        public virtual ICollection<Request_has_Vote> Request_has_Vote { get; set; }
+        public virtual ICollection<Actor> Actors { get; set; }
+        public virtual ICollection<Genre> Genres { get; set; }
+        public virtual ICollection<Vote> Votes { get; set; }
     }
 }

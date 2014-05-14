@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Schema Namespace="SkermData.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2005" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+<Schema Namespace="VERK014_H22Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2005" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
   <EntityType Name="__MigrationHistory">
     <Key>
       <PropertyRef Name="MigrationId" />
@@ -66,6 +66,7 @@
       <PropertyRef Name="IdComment" />
     </Key>
     <Property Name="IdComment" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Username" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="Content" Type="nvarchar" MaxLength="255" />
     <Property Name="DateCreated" Type="datetime" />
   </EntityType>
@@ -104,33 +105,27 @@
     <Property Name="DateAdded" Type="datetime" />
     <Property Name="Link" Type="nvarchar" MaxLength="100" />
   </EntityType>
-  <!--Errors Found During Generation:
-warning 6002: The table/view 'VERK014_H22.dbo.Request_has_Actor' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="Request_has_Actor">
     <Key>
-      <PropertyRef Name="RequestId" />
-      <PropertyRef Name="ActorId" />
+      <PropertyRef Name="IdRequest_has_Actor" />
     </Key>
+    <Property Name="IdRequest_has_Actor" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="RequestId" Type="int" Nullable="false" />
     <Property Name="ActorId" Type="int" Nullable="false" />
   </EntityType>
-  <!--Errors Found During Generation:
-warning 6002: The table/view 'VERK014_H22.dbo.Request_has_Genre' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="Request_has_Genre">
     <Key>
-      <PropertyRef Name="RequestId" />
-      <PropertyRef Name="GenreId" />
+      <PropertyRef Name="IdRequest_has_Genre" />
     </Key>
+    <Property Name="IdRequest_has_Genre" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="RequestId" Type="int" Nullable="false" />
     <Property Name="GenreId" Type="int" Nullable="false" />
   </EntityType>
-  <!--Errors Found During Generation:
-warning 6002: The table/view 'VERK014_H22.dbo.Request_has_Vote' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="Request_has_Vote">
     <Key>
-      <PropertyRef Name="RequestId" />
-      <PropertyRef Name="VoteId" />
+      <PropertyRef Name="IdRequest_has_Vote" />
     </Key>
+    <Property Name="IdRequest_has_Vote" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="RequestId" Type="int" Nullable="false" />
     <Property Name="VoteId" Type="int" Nullable="false" />
   </EntityType>
@@ -141,6 +136,7 @@ warning 6002: The table/view 'VERK014_H22.dbo.Request_has_Vote' does not have a 
     <Property Name="IdSubtitle" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="LanguageId" Type="int" Nullable="false" />
     <Property Name="DirectorId" Type="int" Nullable="false" />
+    <Property Name="Username" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="Name" Type="nvarchar" MaxLength="50" />
     <Property Name="Description" Type="nvarchar" MaxLength="255" />
     <Property Name="YearCreated" Type="int" />
@@ -148,66 +144,39 @@ warning 6002: The table/view 'VERK014_H22.dbo.Request_has_Vote' does not have a 
     <Property Name="EditContent" Type="nvarchar(max)" />
     <Property Name="DateAdded" Type="datetime" />
     <Property Name="Link" Type="nvarchar" MaxLength="100" />
+    <Property Name="Download" Type="int" />
   </EntityType>
-  <!--Errors Found During Generation:
-warning 6002: The table/view 'VERK014_H22.dbo.Subtitle_has_Actor' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="Subtitle_has_Actor">
     <Key>
-      <PropertyRef Name="SubtitleId" />
-      <PropertyRef Name="ActorId" />
+      <PropertyRef Name="IdSubtitle_has_Actor" />
     </Key>
+    <Property Name="IdSubtitle_has_Actor" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="SubtitleId" Type="int" Nullable="false" />
     <Property Name="ActorId" Type="int" Nullable="false" />
   </EntityType>
-  <!--Errors Found During Generation:
-warning 6002: The table/view 'VERK014_H22.dbo.Subtitle_has_Comment' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="Subtitle_has_Comment">
     <Key>
-      <PropertyRef Name="SubtitleId" />
-      <PropertyRef Name="CommentId" />
+      <PropertyRef Name="IdSubtitle_has_Comment" />
     </Key>
+    <Property Name="IdSubtitle_has_Comment" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="SubtitleId" Type="int" Nullable="false" />
     <Property Name="CommentId" Type="int" Nullable="false" />
   </EntityType>
-  <!--Errors Found During Generation:
-warning 6002: The table/view 'VERK014_H22.dbo.Subtitle_has_Genre' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="Subtitle_has_Genre">
     <Key>
-      <PropertyRef Name="SubtitleId" />
-      <PropertyRef Name="GenreId" />
+      <PropertyRef Name="IdSubtitle_has_Genre" />
     </Key>
+    <Property Name="IdSubtitle_has_Genre" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="SubtitleId" Type="int" Nullable="false" />
     <Property Name="GenreId" Type="int" Nullable="false" />
   </EntityType>
-  <!--Errors Found During Generation:
-warning 6002: The table/view 'VERK014_H22.dbo.Subtitle_has_Vote' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="Subtitle_has_Vote">
     <Key>
-      <PropertyRef Name="SubtitleId" />
-      <PropertyRef Name="VoteId" />
+      <PropertyRef Name="IdSubtitle_has_Vote" />
     </Key>
+    <Property Name="IdSubtitle_has_Vote" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="SubtitleId" Type="int" Nullable="false" />
     <Property Name="VoteId" Type="int" Nullable="false" />
-  </EntityType>
-  <!--Errors Found During Generation:
-warning 6002: The table/view 'VERK014_H22.dbo.User_has_Comment' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
-  <EntityType Name="User_has_Comment">
-    <Key>
-      <PropertyRef Name="UserId" />
-      <PropertyRef Name="CommentId" />
-    </Key>
-    <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
-    <Property Name="CommentId" Type="int" Nullable="false" />
-  </EntityType>
-  <!--Errors Found During Generation:
-warning 6002: The table/view 'VERK014_H22.dbo.User_has_Subtitle' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
-  <EntityType Name="User_has_Subtitle">
-    <Key>
-      <PropertyRef Name="UserId" />
-      <PropertyRef Name="SubtitleId" />
-    </Key>
-    <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
-    <Property Name="SubtitleId" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Vote">
     <Key>
@@ -440,7 +409,7 @@ warning 6002: The table/view 'VERK014_H22.dbo.User_has_Subtitle' does not have a
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_dbo_Subtitle_has_Comment_dbo_Comment_CommentId">
+  <Association Name="FK_dbo_Subtitle_has_Comment_dbo_Subtitle_CommentId">
     <End Role="Comment" Type="Self.Comment" Multiplicity="1">
       <OnDelete Action="Cascade" />
     </End>
@@ -524,63 +493,7 @@ warning 6002: The table/view 'VERK014_H22.dbo.User_has_Subtitle' does not have a
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_dbo_User_has_Comment_dbo_Comment_CommentId">
-    <End Role="Comment" Type="Self.Comment" Multiplicity="1">
-      <OnDelete Action="Cascade" />
-    </End>
-    <End Role="User_has_Comment" Type="Self.User_has_Comment" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Comment">
-        <PropertyRef Name="IdComment" />
-      </Principal>
-      <Dependent Role="User_has_Comment">
-        <PropertyRef Name="CommentId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_dbo_User_has_Comment_dbo_User_Id">
-    <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
-      <OnDelete Action="Cascade" />
-    </End>
-    <End Role="User_has_Comment" Type="Self.User_has_Comment" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="AspNetUsers">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="User_has_Comment">
-        <PropertyRef Name="UserId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_dbo_User_has_Subtitle_dbo_Subtitle_SubtitleId">
-    <End Role="Subtitle" Type="Self.Subtitle" Multiplicity="1">
-      <OnDelete Action="Cascade" />
-    </End>
-    <End Role="User_has_Subtitle" Type="Self.User_has_Subtitle" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Subtitle">
-        <PropertyRef Name="IdSubtitle" />
-      </Principal>
-      <Dependent Role="User_has_Subtitle">
-        <PropertyRef Name="SubtitleId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_dbo_User_has_Subtitle_dbo_User_Id">
-    <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
-      <OnDelete Action="Cascade" />
-    </End>
-    <End Role="User_has_Subtitle" Type="Self.User_has_Subtitle" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="AspNetUsers">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="User_has_Subtitle">
-        <PropertyRef Name="UserId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <EntityContainer Name="SkermDataStoreContainer">
+  <EntityContainer Name="VERK014_H22ModelStoreContainer">
     <EntitySet Name="__MigrationHistory" EntityType="Self.__MigrationHistory" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Actor" EntityType="Self.Actor" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" Schema="dbo" store:Type="Tables" />
@@ -593,62 +506,15 @@ warning 6002: The table/view 'VERK014_H22.dbo.User_has_Subtitle' does not have a
     <EntitySet Name="Genre" EntityType="Self.Genre" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Language" EntityType="Self.Language" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Request" EntityType="Self.Request" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Request_has_Actor" EntityType="Self.Request_has_Actor" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Request_has_Genre" EntityType="Self.Request_has_Genre" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Request_has_Vote" EntityType="Self.Request_has_Vote" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Subtitle" EntityType="Self.Subtitle" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Subtitle_has_Actor" EntityType="Self.Subtitle_has_Actor" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Subtitle_has_Comment" EntityType="Self.Subtitle_has_Comment" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Subtitle_has_Genre" EntityType="Self.Subtitle_has_Genre" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Subtitle_has_Vote" EntityType="Self.Subtitle_has_Vote" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Vote" EntityType="Self.Vote" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="Request_has_Actor" EntityType="Self.Request_has_Actor" store:Type="Tables" store:Schema="dbo">
-      <DefiningQuery>SELECT 
-    [Request_has_Actor].[RequestId] AS [RequestId], 
-    [Request_has_Actor].[ActorId] AS [ActorId]
-    FROM [dbo].[Request_has_Actor] AS [Request_has_Actor]</DefiningQuery>
-    </EntitySet>
-    <EntitySet Name="Request_has_Genre" EntityType="Self.Request_has_Genre" store:Type="Tables" store:Schema="dbo">
-      <DefiningQuery>SELECT 
-    [Request_has_Genre].[RequestId] AS [RequestId], 
-    [Request_has_Genre].[GenreId] AS [GenreId]
-    FROM [dbo].[Request_has_Genre] AS [Request_has_Genre]</DefiningQuery>
-    </EntitySet>
-    <EntitySet Name="Request_has_Vote" EntityType="Self.Request_has_Vote" store:Type="Tables" store:Schema="dbo">
-      <DefiningQuery>SELECT 
-    [Request_has_Vote].[RequestId] AS [RequestId], 
-    [Request_has_Vote].[VoteId] AS [VoteId]
-    FROM [dbo].[Request_has_Vote] AS [Request_has_Vote]</DefiningQuery>
-    </EntitySet>
-    <EntitySet Name="Subtitle_has_Actor" EntityType="Self.Subtitle_has_Actor" store:Type="Tables" store:Schema="dbo">
-      <DefiningQuery>SELECT 
-    [Subtitle_has_Actor].[SubtitleId] AS [SubtitleId], 
-    [Subtitle_has_Actor].[ActorId] AS [ActorId]
-    FROM [dbo].[Subtitle_has_Actor] AS [Subtitle_has_Actor]</DefiningQuery>
-    </EntitySet>
-    <EntitySet Name="Subtitle_has_Comment" EntityType="Self.Subtitle_has_Comment" store:Type="Tables" store:Schema="dbo">
-      <DefiningQuery>SELECT 
-    [Subtitle_has_Comment].[SubtitleId] AS [SubtitleId], 
-    [Subtitle_has_Comment].[CommentId] AS [CommentId]
-    FROM [dbo].[Subtitle_has_Comment] AS [Subtitle_has_Comment]</DefiningQuery>
-    </EntitySet>
-    <EntitySet Name="Subtitle_has_Genre" EntityType="Self.Subtitle_has_Genre" store:Type="Tables" store:Schema="dbo">
-      <DefiningQuery>SELECT 
-    [Subtitle_has_Genre].[SubtitleId] AS [SubtitleId], 
-    [Subtitle_has_Genre].[GenreId] AS [GenreId]
-    FROM [dbo].[Subtitle_has_Genre] AS [Subtitle_has_Genre]</DefiningQuery>
-    </EntitySet>
-    <EntitySet Name="Subtitle_has_Vote" EntityType="Self.Subtitle_has_Vote" store:Type="Tables" store:Schema="dbo">
-      <DefiningQuery>SELECT 
-    [Subtitle_has_Vote].[SubtitleId] AS [SubtitleId], 
-    [Subtitle_has_Vote].[VoteId] AS [VoteId]
-    FROM [dbo].[Subtitle_has_Vote] AS [Subtitle_has_Vote]</DefiningQuery>
-    </EntitySet>
-    <EntitySet Name="User_has_Comment" EntityType="Self.User_has_Comment" store:Type="Tables" store:Schema="dbo">
-      <DefiningQuery>SELECT 
-    [User_has_Comment].[UserId] AS [UserId], 
-    [User_has_Comment].[CommentId] AS [CommentId]
-    FROM [dbo].[User_has_Comment] AS [User_has_Comment]</DefiningQuery>
-    </EntitySet>
-    <EntitySet Name="User_has_Subtitle" EntityType="Self.User_has_Subtitle" store:Type="Tables" store:Schema="dbo">
-      <DefiningQuery>SELECT 
-    [User_has_Subtitle].[UserId] AS [UserId], 
-    [User_has_Subtitle].[SubtitleId] AS [SubtitleId]
-    FROM [dbo].[User_has_Subtitle] AS [User_has_Subtitle]</DefiningQuery>
-    </EntitySet>
     <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_User_Id" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_User_Id">
       <End Role="AspNetUsers" EntitySet="AspNetUsers" />
       <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
@@ -713,7 +579,7 @@ warning 6002: The table/view 'VERK014_H22.dbo.User_has_Subtitle' does not have a
       <End Role="Subtitle" EntitySet="Subtitle" />
       <End Role="Subtitle_has_Actor" EntitySet="Subtitle_has_Actor" />
     </AssociationSet>
-    <AssociationSet Name="FK_dbo_Subtitle_has_Comment_dbo_Comment_CommentId" Association="Self.FK_dbo_Subtitle_has_Comment_dbo_Comment_CommentId">
+    <AssociationSet Name="FK_dbo_Subtitle_has_Comment_dbo_Subtitle_CommentId" Association="Self.FK_dbo_Subtitle_has_Comment_dbo_Subtitle_CommentId">
       <End Role="Comment" EntitySet="Comment" />
       <End Role="Subtitle_has_Comment" EntitySet="Subtitle_has_Comment" />
     </AssociationSet>
@@ -736,22 +602,6 @@ warning 6002: The table/view 'VERK014_H22.dbo.User_has_Subtitle' does not have a
     <AssociationSet Name="FK_dbo_Subtitle_has_Vote_dbo_Vote_VoteId" Association="Self.FK_dbo_Subtitle_has_Vote_dbo_Vote_VoteId">
       <End Role="Vote" EntitySet="Vote" />
       <End Role="Subtitle_has_Vote" EntitySet="Subtitle_has_Vote" />
-    </AssociationSet>
-    <AssociationSet Name="FK_dbo_User_has_Comment_dbo_Comment_CommentId" Association="Self.FK_dbo_User_has_Comment_dbo_Comment_CommentId">
-      <End Role="Comment" EntitySet="Comment" />
-      <End Role="User_has_Comment" EntitySet="User_has_Comment" />
-    </AssociationSet>
-    <AssociationSet Name="FK_dbo_User_has_Comment_dbo_User_Id" Association="Self.FK_dbo_User_has_Comment_dbo_User_Id">
-      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
-      <End Role="User_has_Comment" EntitySet="User_has_Comment" />
-    </AssociationSet>
-    <AssociationSet Name="FK_dbo_User_has_Subtitle_dbo_Subtitle_SubtitleId" Association="Self.FK_dbo_User_has_Subtitle_dbo_Subtitle_SubtitleId">
-      <End Role="Subtitle" EntitySet="Subtitle" />
-      <End Role="User_has_Subtitle" EntitySet="User_has_Subtitle" />
-    </AssociationSet>
-    <AssociationSet Name="FK_dbo_User_has_Subtitle_dbo_User_Id" Association="Self.FK_dbo_User_has_Subtitle_dbo_User_Id">
-      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
-      <End Role="User_has_Subtitle" EntitySet="User_has_Subtitle" />
     </AssociationSet>
   </EntityContainer>
 </Schema>

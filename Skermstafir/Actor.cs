@@ -16,14 +16,14 @@ namespace Skermstafir
     {
         public Actor()
         {
-            this.Request_has_Actor = new HashSet<Request_has_Actor>();
-            this.Subtitle_has_Actor = new HashSet<Subtitle_has_Actor>();
+            this.Requests = new HashSet<Request>();
+            this.Subtitles = new HashSet<Subtitle>();
         }
     
         public int IdActor { get; set; }
         public string Name { get; set; }
     
-        public virtual ICollection<Request_has_Actor> Request_has_Actor { get; set; }
-        public virtual ICollection<Subtitle_has_Actor> Subtitle_has_Actor { get; set; }
+        public virtual ICollection<Request> Requests { get; set; }
+        public virtual ICollection<Subtitle> Subtitles { get; set; }
     }
 }

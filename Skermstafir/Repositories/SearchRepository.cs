@@ -41,7 +41,7 @@ namespace Skermstafir.Repositories {
 		public SubtitleModelList GetSubtitlesByUserID(String userID) {
 			SubtitleModelList model = new SubtitleModelList();
 			model.modelList = (from sub in db.Subtitles
-							   where sub.AspNetUsers.FirstOrDefault().Id == userID
+							   where sub.Username == userID
 							   select sub).ToList();
 			return model;
 		}

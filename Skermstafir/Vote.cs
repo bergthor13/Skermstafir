@@ -16,14 +16,14 @@ namespace Skermstafir
     {
         public Vote()
         {
-            this.Request_has_Vote = new HashSet<Request_has_Vote>();
-            this.Subtitle_has_Vote = new HashSet<Subtitle_has_Vote>();
+            this.Requests = new HashSet<Request>();
+            this.Subtitles = new HashSet<Subtitle>();
         }
     
         public int IdVote { get; set; }
         public string UserId { get; set; }
     
-        public virtual ICollection<Request_has_Vote> Request_has_Vote { get; set; }
-        public virtual ICollection<Subtitle_has_Vote> Subtitle_has_Vote { get; set; }
+        public virtual ICollection<Request> Requests { get; set; }
+        public virtual ICollection<Subtitle> Subtitles { get; set; }
     }
 }

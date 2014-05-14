@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Schema Namespace="SkermData" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+<Schema Namespace="VERK014_H22Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
   <EntityType Name="C__MigrationHistory">
     <Key>
       <PropertyRef Name="MigrationId" />
@@ -16,8 +16,8 @@
     </Key>
     <Property Name="IdActor" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <NavigationProperty Name="Requests" Relationship="Self.Request_has_Actor" FromRole="Actor" ToRole="Request" />
-    <NavigationProperty Name="Subtitles" Relationship="Self.Subtitle_has_Actor" FromRole="Actor" ToRole="Subtitle" />
+    <NavigationProperty Name="Request_has_Actor" Relationship="Self.FK_dbo_Request_has_Actor_dbo_Actor_ActorId" FromRole="Actor" ToRole="Request_has_Actor" />
+    <NavigationProperty Name="Subtitle_has_Actor" Relationship="Self.FK_dbo_Subtitle_has_Actor_dbo_Actor_ActorId" FromRole="Actor" ToRole="Subtitle_has_Actor" />
   </EntityType>
   <EntityType Name="AspNetRole">
     <Key>
@@ -60,18 +60,16 @@
     <NavigationProperty Name="AspNetUserClaims" Relationship="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_User_Id" FromRole="AspNetUsers" ToRole="AspNetUserClaims" />
     <NavigationProperty Name="AspNetUserLogins" Relationship="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserLogins" />
     <NavigationProperty Name="AspNetRoles" Relationship="Self.AspNetUserRoles" FromRole="AspNetUsers" ToRole="AspNetRoles" />
-    <NavigationProperty Name="Comments" Relationship="Self.User_has_Comment" FromRole="AspNetUsers" ToRole="Comment" />
-    <NavigationProperty Name="Subtitles" Relationship="Self.User_has_Subtitle" FromRole="AspNetUsers" ToRole="Subtitle" />
   </EntityType>
   <EntityType Name="Comment">
     <Key>
       <PropertyRef Name="IdComment" />
     </Key>
     <Property Name="IdComment" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="Content" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
     <Property Name="DateCreated" Type="DateTime" Precision="3" />
-    <NavigationProperty Name="Subtitles" Relationship="Self.Subtitle_has_Comment" FromRole="Comment" ToRole="Subtitle" />
-    <NavigationProperty Name="AspNetUsers" Relationship="Self.User_has_Comment" FromRole="Comment" ToRole="AspNetUsers" />
+    <NavigationProperty Name="Subtitle_has_Comment" Relationship="Self.FK_dbo_Subtitle_has_Comment_dbo_Subtitle_CommentId" FromRole="Comment" ToRole="Subtitle_has_Comment" />
   </EntityType>
   <EntityType Name="Director">
     <Key>
@@ -88,8 +86,8 @@
     </Key>
     <Property Name="IdGenre" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-    <NavigationProperty Name="Requests" Relationship="Self.Request_has_Genre" FromRole="Genre" ToRole="Request" />
-    <NavigationProperty Name="Subtitles" Relationship="Self.Subtitle_has_Genre" FromRole="Genre" ToRole="Subtitle" />
+    <NavigationProperty Name="Request_has_Genre" Relationship="Self.FK_dbo_Request_has_Genre_dbo_Genre_GenreId" FromRole="Genre" ToRole="Request_has_Genre" />
+    <NavigationProperty Name="Subtitle_has_Genre" Relationship="Self.FK_dbo_Subtitle_has_Genre_dbo_Genre_GenreId" FromRole="Genre" ToRole="Subtitle_has_Genre" />
   </EntityType>
   <EntityType Name="Language">
     <Key>
@@ -115,9 +113,39 @@
     <Property Name="Link" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="Director" Relationship="Self.FK_dbo_Request_dbo_Director_DirectorId" FromRole="Request" ToRole="Director" />
     <NavigationProperty Name="Language" Relationship="Self.FK_dbo_Request_dbo_Language_LanguageId" FromRole="Request" ToRole="Language" />
-    <NavigationProperty Name="Actors" Relationship="Self.Request_has_Actor" FromRole="Request" ToRole="Actor" />
-    <NavigationProperty Name="Genres" Relationship="Self.Request_has_Genre" FromRole="Request" ToRole="Genre" />
-    <NavigationProperty Name="Votes" Relationship="Self.Request_has_Vote" FromRole="Request" ToRole="Vote" />
+    <NavigationProperty Name="Request_has_Actor" Relationship="Self.FK_dbo_Request_has_Actor_dbo_Request_RequestId" FromRole="Request" ToRole="Request_has_Actor" />
+    <NavigationProperty Name="Request_has_Genre" Relationship="Self.FK_dbo_Request_has_Genre_dbo_Request_RequestId" FromRole="Request" ToRole="Request_has_Genre" />
+    <NavigationProperty Name="Request_has_Vote" Relationship="Self.FK_dbo_Request_has_Vote_dbo_Request_RequestId" FromRole="Request" ToRole="Request_has_Vote" />
+  </EntityType>
+  <EntityType Name="Request_has_Actor">
+    <Key>
+      <PropertyRef Name="IdRequest_has_Actor" />
+    </Key>
+    <Property Name="IdRequest_has_Actor" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="RequestId" Type="Int32" Nullable="false" />
+    <Property Name="ActorId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Actor" Relationship="Self.FK_dbo_Request_has_Actor_dbo_Actor_ActorId" FromRole="Request_has_Actor" ToRole="Actor" />
+    <NavigationProperty Name="Request" Relationship="Self.FK_dbo_Request_has_Actor_dbo_Request_RequestId" FromRole="Request_has_Actor" ToRole="Request" />
+  </EntityType>
+  <EntityType Name="Request_has_Genre">
+    <Key>
+      <PropertyRef Name="IdRequest_has_Genre" />
+    </Key>
+    <Property Name="IdRequest_has_Genre" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="RequestId" Type="Int32" Nullable="false" />
+    <Property Name="GenreId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Genre" Relationship="Self.FK_dbo_Request_has_Genre_dbo_Genre_GenreId" FromRole="Request_has_Genre" ToRole="Genre" />
+    <NavigationProperty Name="Request" Relationship="Self.FK_dbo_Request_has_Genre_dbo_Request_RequestId" FromRole="Request_has_Genre" ToRole="Request" />
+  </EntityType>
+  <EntityType Name="Request_has_Vote">
+    <Key>
+      <PropertyRef Name="IdRequest_has_Vote" />
+    </Key>
+    <Property Name="IdRequest_has_Vote" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="RequestId" Type="Int32" Nullable="false" />
+    <Property Name="VoteId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Request" Relationship="Self.FK_dbo_Request_has_Vote_dbo_Request_RequestId" FromRole="Request_has_Vote" ToRole="Request" />
+    <NavigationProperty Name="Vote" Relationship="Self.FK_dbo_Request_has_Vote_dbo_Vote_VoteId" FromRole="Request_has_Vote" ToRole="Vote" />
   </EntityType>
   <EntityType Name="Subtitle">
     <Key>
@@ -126,6 +154,7 @@
     <Property Name="IdSubtitle" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="LanguageId" Type="Int32" Nullable="false" />
     <Property Name="DirectorId" Type="Int32" Nullable="false" />
+    <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="Description" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
     <Property Name="YearCreated" Type="Int32" />
@@ -133,13 +162,53 @@
     <Property Name="EditContent" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="DateAdded" Type="DateTime" Precision="3" />
     <Property Name="Link" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Download" Type="Int32" />
     <NavigationProperty Name="Director" Relationship="Self.FK_dbo_Subtitle_dbo_Director_DirectorId" FromRole="Subtitle" ToRole="Director" />
     <NavigationProperty Name="Language" Relationship="Self.FK_dbo_Subtitle_dbo_Language_LanguageId" FromRole="Subtitle" ToRole="Language" />
-    <NavigationProperty Name="Actors" Relationship="Self.Subtitle_has_Actor" FromRole="Subtitle" ToRole="Actor" />
-    <NavigationProperty Name="Comments" Relationship="Self.Subtitle_has_Comment" FromRole="Subtitle" ToRole="Comment" />
-    <NavigationProperty Name="Genres" Relationship="Self.Subtitle_has_Genre" FromRole="Subtitle" ToRole="Genre" />
-    <NavigationProperty Name="Votes" Relationship="Self.Subtitle_has_Vote" FromRole="Subtitle" ToRole="Vote" />
-    <NavigationProperty Name="AspNetUsers" Relationship="Self.User_has_Subtitle" FromRole="Subtitle" ToRole="AspNetUsers" />
+    <NavigationProperty Name="Subtitle_has_Actor" Relationship="Self.FK_dbo_Subtitle_has_Actor_dbo_Subtitle_SubtitleId" FromRole="Subtitle" ToRole="Subtitle_has_Actor" />
+    <NavigationProperty Name="Subtitle_has_Comment" Relationship="Self.FK_dbo_Subtitle_has_Comment_dbo_Subtitle_SubtitleId" FromRole="Subtitle" ToRole="Subtitle_has_Comment" />
+    <NavigationProperty Name="Subtitle_has_Genre" Relationship="Self.FK_dbo_Subtitle_has_Genre_dbo_Subtitle_SubtitleId" FromRole="Subtitle" ToRole="Subtitle_has_Genre" />
+    <NavigationProperty Name="Subtitle_has_Vote" Relationship="Self.FK_dbo_Subtitle_has_Vote_dbo_Subtitle_SubtitleId" FromRole="Subtitle" ToRole="Subtitle_has_Vote" />
+  </EntityType>
+  <EntityType Name="Subtitle_has_Actor">
+    <Key>
+      <PropertyRef Name="IdSubtitle_has_Actor" />
+    </Key>
+    <Property Name="IdSubtitle_has_Actor" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SubtitleId" Type="Int32" Nullable="false" />
+    <Property Name="ActorId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Actor" Relationship="Self.FK_dbo_Subtitle_has_Actor_dbo_Actor_ActorId" FromRole="Subtitle_has_Actor" ToRole="Actor" />
+    <NavigationProperty Name="Subtitle" Relationship="Self.FK_dbo_Subtitle_has_Actor_dbo_Subtitle_SubtitleId" FromRole="Subtitle_has_Actor" ToRole="Subtitle" />
+  </EntityType>
+  <EntityType Name="Subtitle_has_Comment">
+    <Key>
+      <PropertyRef Name="IdSubtitle_has_Comment" />
+    </Key>
+    <Property Name="IdSubtitle_has_Comment" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SubtitleId" Type="Int32" Nullable="false" />
+    <Property Name="CommentId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Comment" Relationship="Self.FK_dbo_Subtitle_has_Comment_dbo_Subtitle_CommentId" FromRole="Subtitle_has_Comment" ToRole="Comment" />
+    <NavigationProperty Name="Subtitle" Relationship="Self.FK_dbo_Subtitle_has_Comment_dbo_Subtitle_SubtitleId" FromRole="Subtitle_has_Comment" ToRole="Subtitle" />
+  </EntityType>
+  <EntityType Name="Subtitle_has_Genre">
+    <Key>
+      <PropertyRef Name="IdSubtitle_has_Genre" />
+    </Key>
+    <Property Name="IdSubtitle_has_Genre" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SubtitleId" Type="Int32" Nullable="false" />
+    <Property Name="GenreId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Genre" Relationship="Self.FK_dbo_Subtitle_has_Genre_dbo_Genre_GenreId" FromRole="Subtitle_has_Genre" ToRole="Genre" />
+    <NavigationProperty Name="Subtitle" Relationship="Self.FK_dbo_Subtitle_has_Genre_dbo_Subtitle_SubtitleId" FromRole="Subtitle_has_Genre" ToRole="Subtitle" />
+  </EntityType>
+  <EntityType Name="Subtitle_has_Vote">
+    <Key>
+      <PropertyRef Name="IdSubtitle_has_Vote" />
+    </Key>
+    <Property Name="IdSubtitle_has_Vote" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SubtitleId" Type="Int32" Nullable="false" />
+    <Property Name="VoteId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Subtitle" Relationship="Self.FK_dbo_Subtitle_has_Vote_dbo_Subtitle_SubtitleId" FromRole="Subtitle_has_Vote" ToRole="Subtitle" />
+    <NavigationProperty Name="Vote" Relationship="Self.FK_dbo_Subtitle_has_Vote_dbo_Vote_VoteId" FromRole="Subtitle_has_Vote" ToRole="Vote" />
   </EntityType>
   <EntityType Name="Vote">
     <Key>
@@ -147,9 +216,37 @@
     </Key>
     <Property Name="IdVote" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
-    <NavigationProperty Name="Requests" Relationship="Self.Request_has_Vote" FromRole="Vote" ToRole="Request" />
-    <NavigationProperty Name="Subtitles" Relationship="Self.Subtitle_has_Vote" FromRole="Vote" ToRole="Subtitle" />
+    <NavigationProperty Name="Request_has_Vote" Relationship="Self.FK_dbo_Request_has_Vote_dbo_Vote_VoteId" FromRole="Vote" ToRole="Request_has_Vote" />
+    <NavigationProperty Name="Subtitle_has_Vote" Relationship="Self.FK_dbo_Subtitle_has_Vote_dbo_Vote_VoteId" FromRole="Vote" ToRole="Subtitle_has_Vote" />
   </EntityType>
+  <Association Name="FK_dbo_Request_has_Actor_dbo_Actor_ActorId">
+    <End Role="Actor" Type="Self.Actor" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Request_has_Actor" Type="Self.Request_has_Actor" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Actor">
+        <PropertyRef Name="IdActor" />
+      </Principal>
+      <Dependent Role="Request_has_Actor">
+        <PropertyRef Name="ActorId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_Subtitle_has_Actor_dbo_Actor_ActorId">
+    <End Role="Actor" Type="Self.Actor" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Subtitle_has_Actor" Type="Self.Subtitle_has_Actor" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Actor">
+        <PropertyRef Name="IdActor" />
+      </Principal>
+      <Dependent Role="Subtitle_has_Actor">
+        <PropertyRef Name="ActorId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_User_Id">
     <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1">
       <OnDelete Action="Cascade" />
@@ -175,6 +272,20 @@
       </Principal>
       <Dependent Role="AspNetUserLogins">
         <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_Subtitle_has_Comment_dbo_Subtitle_CommentId">
+    <End Role="Comment" Type="Self.Comment" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Subtitle_has_Comment" Type="Self.Subtitle_has_Comment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Comment">
+        <PropertyRef Name="IdComment" />
+      </Principal>
+      <Dependent Role="Subtitle_has_Comment">
+        <PropertyRef Name="CommentId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -206,6 +317,34 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_dbo_Request_has_Genre_dbo_Genre_GenreId">
+    <End Role="Genre" Type="Self.Genre" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Request_has_Genre" Type="Self.Request_has_Genre" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Genre">
+        <PropertyRef Name="IdGenre" />
+      </Principal>
+      <Dependent Role="Request_has_Genre">
+        <PropertyRef Name="GenreId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_Subtitle_has_Genre_dbo_Genre_GenreId">
+    <End Role="Genre" Type="Self.Genre" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Subtitle_has_Genre" Type="Self.Subtitle_has_Genre" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Genre">
+        <PropertyRef Name="IdGenre" />
+      </Principal>
+      <Dependent Role="Subtitle_has_Genre">
+        <PropertyRef Name="GenreId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_dbo_Request_dbo_Language_LanguageId">
     <End Role="Language" Type="Self.Language" Multiplicity="1">
       <OnDelete Action="Cascade" />
@@ -234,47 +373,137 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_dbo_Request_has_Actor_dbo_Request_RequestId">
+    <End Role="Request" Type="Self.Request" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Request_has_Actor" Type="Self.Request_has_Actor" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Request">
+        <PropertyRef Name="IdRequest" />
+      </Principal>
+      <Dependent Role="Request_has_Actor">
+        <PropertyRef Name="RequestId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_Request_has_Genre_dbo_Request_RequestId">
+    <End Role="Request" Type="Self.Request" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Request_has_Genre" Type="Self.Request_has_Genre" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Request">
+        <PropertyRef Name="IdRequest" />
+      </Principal>
+      <Dependent Role="Request_has_Genre">
+        <PropertyRef Name="RequestId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_Request_has_Vote_dbo_Request_RequestId">
+    <End Role="Request" Type="Self.Request" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Request_has_Vote" Type="Self.Request_has_Vote" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Request">
+        <PropertyRef Name="IdRequest" />
+      </Principal>
+      <Dependent Role="Request_has_Vote">
+        <PropertyRef Name="RequestId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_Request_has_Vote_dbo_Vote_VoteId">
+    <End Role="Vote" Type="Self.Vote" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Request_has_Vote" Type="Self.Request_has_Vote" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Vote">
+        <PropertyRef Name="IdVote" />
+      </Principal>
+      <Dependent Role="Request_has_Vote">
+        <PropertyRef Name="VoteId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_Subtitle_has_Actor_dbo_Subtitle_SubtitleId">
+    <End Role="Subtitle" Type="Self.Subtitle" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Subtitle_has_Actor" Type="Self.Subtitle_has_Actor" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Subtitle">
+        <PropertyRef Name="IdSubtitle" />
+      </Principal>
+      <Dependent Role="Subtitle_has_Actor">
+        <PropertyRef Name="SubtitleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_Subtitle_has_Comment_dbo_Subtitle_SubtitleId">
+    <End Role="Subtitle" Type="Self.Subtitle" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Subtitle_has_Comment" Type="Self.Subtitle_has_Comment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Subtitle">
+        <PropertyRef Name="IdSubtitle" />
+      </Principal>
+      <Dependent Role="Subtitle_has_Comment">
+        <PropertyRef Name="SubtitleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_Subtitle_has_Genre_dbo_Subtitle_SubtitleId">
+    <End Role="Subtitle" Type="Self.Subtitle" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Subtitle_has_Genre" Type="Self.Subtitle_has_Genre" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Subtitle">
+        <PropertyRef Name="IdSubtitle" />
+      </Principal>
+      <Dependent Role="Subtitle_has_Genre">
+        <PropertyRef Name="SubtitleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_Subtitle_has_Vote_dbo_Subtitle_SubtitleId">
+    <End Role="Subtitle" Type="Self.Subtitle" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Subtitle_has_Vote" Type="Self.Subtitle_has_Vote" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Subtitle">
+        <PropertyRef Name="IdSubtitle" />
+      </Principal>
+      <Dependent Role="Subtitle_has_Vote">
+        <PropertyRef Name="SubtitleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_Subtitle_has_Vote_dbo_Vote_VoteId">
+    <End Role="Vote" Type="Self.Vote" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Subtitle_has_Vote" Type="Self.Subtitle_has_Vote" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Vote">
+        <PropertyRef Name="IdVote" />
+      </Principal>
+      <Dependent Role="Subtitle_has_Vote">
+        <PropertyRef Name="VoteId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="AspNetUserRoles">
     <End Role="AspNetRoles" Type="Self.AspNetRole" Multiplicity="*" />
     <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="*" />
   </Association>
-  <Association Name="Request_has_Actor">
-    <End Role="Actor" Type="Self.Actor" Multiplicity="*" />
-    <End Role="Request" Type="Self.Request" Multiplicity="*" />
-  </Association>
-  <Association Name="Request_has_Genre">
-    <End Role="Genre" Type="Self.Genre" Multiplicity="*" />
-    <End Role="Request" Type="Self.Request" Multiplicity="*" />
-  </Association>
-  <Association Name="Request_has_Vote">
-    <End Role="Request" Type="Self.Request" Multiplicity="*" />
-    <End Role="Vote" Type="Self.Vote" Multiplicity="*" />
-  </Association>
-  <Association Name="Subtitle_has_Actor">
-    <End Role="Actor" Type="Self.Actor" Multiplicity="*" />
-    <End Role="Subtitle" Type="Self.Subtitle" Multiplicity="*" />
-  </Association>
-  <Association Name="Subtitle_has_Comment">
-    <End Role="Comment" Type="Self.Comment" Multiplicity="*" />
-    <End Role="Subtitle" Type="Self.Subtitle" Multiplicity="*" />
-  </Association>
-  <Association Name="Subtitle_has_Genre">
-    <End Role="Genre" Type="Self.Genre" Multiplicity="*" />
-    <End Role="Subtitle" Type="Self.Subtitle" Multiplicity="*" />
-  </Association>
-  <Association Name="Subtitle_has_Vote">
-    <End Role="Subtitle" Type="Self.Subtitle" Multiplicity="*" />
-    <End Role="Vote" Type="Self.Vote" Multiplicity="*" />
-  </Association>
-  <Association Name="User_has_Comment">
-    <End Role="Comment" Type="Self.Comment" Multiplicity="*" />
-    <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="*" />
-  </Association>
-  <Association Name="User_has_Subtitle">
-    <End Role="Subtitle" Type="Self.Subtitle" Multiplicity="*" />
-    <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="*" />
-  </Association>
-  <EntityContainer Name="SkermData3" annotation:LazyLoadingEnabled="true">
+  <EntityContainer Name="SkermData4" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="C__MigrationHistory" EntityType="Self.C__MigrationHistory" />
     <EntitySet Name="Actors" EntityType="Self.Actor" />
     <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRole" />
@@ -286,8 +515,23 @@
     <EntitySet Name="Genres" EntityType="Self.Genre" />
     <EntitySet Name="Languages" EntityType="Self.Language" />
     <EntitySet Name="Requests" EntityType="Self.Request" />
+    <EntitySet Name="Request_has_Actor" EntityType="Self.Request_has_Actor" />
+    <EntitySet Name="Request_has_Genre" EntityType="Self.Request_has_Genre" />
+    <EntitySet Name="Request_has_Vote" EntityType="Self.Request_has_Vote" />
     <EntitySet Name="Subtitles" EntityType="Self.Subtitle" />
+    <EntitySet Name="Subtitle_has_Actor" EntityType="Self.Subtitle_has_Actor" />
+    <EntitySet Name="Subtitle_has_Comment" EntityType="Self.Subtitle_has_Comment" />
+    <EntitySet Name="Subtitle_has_Genre" EntityType="Self.Subtitle_has_Genre" />
+    <EntitySet Name="Subtitle_has_Vote" EntityType="Self.Subtitle_has_Vote" />
     <EntitySet Name="Votes" EntityType="Self.Vote" />
+    <AssociationSet Name="FK_dbo_Request_has_Actor_dbo_Actor_ActorId" Association="Self.FK_dbo_Request_has_Actor_dbo_Actor_ActorId">
+      <End Role="Actor" EntitySet="Actors" />
+      <End Role="Request_has_Actor" EntitySet="Request_has_Actor" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_Subtitle_has_Actor_dbo_Actor_ActorId" Association="Self.FK_dbo_Subtitle_has_Actor_dbo_Actor_ActorId">
+      <End Role="Actor" EntitySet="Actors" />
+      <End Role="Subtitle_has_Actor" EntitySet="Subtitle_has_Actor" />
+    </AssociationSet>
     <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_User_Id" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_User_Id">
       <End Role="AspNetUsers" EntitySet="AspNetUsers" />
       <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
@@ -295,6 +539,10 @@
     <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
       <End Role="AspNetUsers" EntitySet="AspNetUsers" />
       <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_Subtitle_has_Comment_dbo_Subtitle_CommentId" Association="Self.FK_dbo_Subtitle_has_Comment_dbo_Subtitle_CommentId">
+      <End Role="Comment" EntitySet="Comments" />
+      <End Role="Subtitle_has_Comment" EntitySet="Subtitle_has_Comment" />
     </AssociationSet>
     <AssociationSet Name="FK_dbo_Request_dbo_Director_DirectorId" Association="Self.FK_dbo_Request_dbo_Director_DirectorId">
       <End Role="Director" EntitySet="Directors" />
@@ -304,6 +552,14 @@
       <End Role="Director" EntitySet="Directors" />
       <End Role="Subtitle" EntitySet="Subtitles" />
     </AssociationSet>
+    <AssociationSet Name="FK_dbo_Request_has_Genre_dbo_Genre_GenreId" Association="Self.FK_dbo_Request_has_Genre_dbo_Genre_GenreId">
+      <End Role="Genre" EntitySet="Genres" />
+      <End Role="Request_has_Genre" EntitySet="Request_has_Genre" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_Subtitle_has_Genre_dbo_Genre_GenreId" Association="Self.FK_dbo_Subtitle_has_Genre_dbo_Genre_GenreId">
+      <End Role="Genre" EntitySet="Genres" />
+      <End Role="Subtitle_has_Genre" EntitySet="Subtitle_has_Genre" />
+    </AssociationSet>
     <AssociationSet Name="FK_dbo_Request_dbo_Language_LanguageId" Association="Self.FK_dbo_Request_dbo_Language_LanguageId">
       <End Role="Language" EntitySet="Languages" />
       <End Role="Request" EntitySet="Requests" />
@@ -312,44 +568,44 @@
       <End Role="Language" EntitySet="Languages" />
       <End Role="Subtitle" EntitySet="Subtitles" />
     </AssociationSet>
+    <AssociationSet Name="FK_dbo_Request_has_Actor_dbo_Request_RequestId" Association="Self.FK_dbo_Request_has_Actor_dbo_Request_RequestId">
+      <End Role="Request" EntitySet="Requests" />
+      <End Role="Request_has_Actor" EntitySet="Request_has_Actor" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_Request_has_Genre_dbo_Request_RequestId" Association="Self.FK_dbo_Request_has_Genre_dbo_Request_RequestId">
+      <End Role="Request" EntitySet="Requests" />
+      <End Role="Request_has_Genre" EntitySet="Request_has_Genre" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_Request_has_Vote_dbo_Request_RequestId" Association="Self.FK_dbo_Request_has_Vote_dbo_Request_RequestId">
+      <End Role="Request" EntitySet="Requests" />
+      <End Role="Request_has_Vote" EntitySet="Request_has_Vote" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_Request_has_Vote_dbo_Vote_VoteId" Association="Self.FK_dbo_Request_has_Vote_dbo_Vote_VoteId">
+      <End Role="Vote" EntitySet="Votes" />
+      <End Role="Request_has_Vote" EntitySet="Request_has_Vote" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_Subtitle_has_Actor_dbo_Subtitle_SubtitleId" Association="Self.FK_dbo_Subtitle_has_Actor_dbo_Subtitle_SubtitleId">
+      <End Role="Subtitle" EntitySet="Subtitles" />
+      <End Role="Subtitle_has_Actor" EntitySet="Subtitle_has_Actor" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_Subtitle_has_Comment_dbo_Subtitle_SubtitleId" Association="Self.FK_dbo_Subtitle_has_Comment_dbo_Subtitle_SubtitleId">
+      <End Role="Subtitle" EntitySet="Subtitles" />
+      <End Role="Subtitle_has_Comment" EntitySet="Subtitle_has_Comment" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_Subtitle_has_Genre_dbo_Subtitle_SubtitleId" Association="Self.FK_dbo_Subtitle_has_Genre_dbo_Subtitle_SubtitleId">
+      <End Role="Subtitle" EntitySet="Subtitles" />
+      <End Role="Subtitle_has_Genre" EntitySet="Subtitle_has_Genre" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_Subtitle_has_Vote_dbo_Subtitle_SubtitleId" Association="Self.FK_dbo_Subtitle_has_Vote_dbo_Subtitle_SubtitleId">
+      <End Role="Subtitle" EntitySet="Subtitles" />
+      <End Role="Subtitle_has_Vote" EntitySet="Subtitle_has_Vote" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_Subtitle_has_Vote_dbo_Vote_VoteId" Association="Self.FK_dbo_Subtitle_has_Vote_dbo_Vote_VoteId">
+      <End Role="Vote" EntitySet="Votes" />
+      <End Role="Subtitle_has_Vote" EntitySet="Subtitle_has_Vote" />
+    </AssociationSet>
     <AssociationSet Name="AspNetUserRoles" Association="Self.AspNetUserRoles">
       <End Role="AspNetRoles" EntitySet="AspNetRoles" />
-      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
-    </AssociationSet>
-    <AssociationSet Name="Request_has_Actor" Association="Self.Request_has_Actor">
-      <End Role="Actor" EntitySet="Actors" />
-      <End Role="Request" EntitySet="Requests" />
-    </AssociationSet>
-    <AssociationSet Name="Request_has_Genre" Association="Self.Request_has_Genre">
-      <End Role="Genre" EntitySet="Genres" />
-      <End Role="Request" EntitySet="Requests" />
-    </AssociationSet>
-    <AssociationSet Name="Request_has_Vote" Association="Self.Request_has_Vote">
-      <End Role="Request" EntitySet="Requests" />
-      <End Role="Vote" EntitySet="Votes" />
-    </AssociationSet>
-    <AssociationSet Name="Subtitle_has_Actor" Association="Self.Subtitle_has_Actor">
-      <End Role="Actor" EntitySet="Actors" />
-      <End Role="Subtitle" EntitySet="Subtitles" />
-    </AssociationSet>
-    <AssociationSet Name="Subtitle_has_Comment" Association="Self.Subtitle_has_Comment">
-      <End Role="Comment" EntitySet="Comments" />
-      <End Role="Subtitle" EntitySet="Subtitles" />
-    </AssociationSet>
-    <AssociationSet Name="Subtitle_has_Genre" Association="Self.Subtitle_has_Genre">
-      <End Role="Genre" EntitySet="Genres" />
-      <End Role="Subtitle" EntitySet="Subtitles" />
-    </AssociationSet>
-    <AssociationSet Name="Subtitle_has_Vote" Association="Self.Subtitle_has_Vote">
-      <End Role="Subtitle" EntitySet="Subtitles" />
-      <End Role="Vote" EntitySet="Votes" />
-    </AssociationSet>
-    <AssociationSet Name="User_has_Comment" Association="Self.User_has_Comment">
-      <End Role="Comment" EntitySet="Comments" />
-      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
-    </AssociationSet>
-    <AssociationSet Name="User_has_Subtitle" Association="Self.User_has_Subtitle">
-      <End Role="Subtitle" EntitySet="Subtitles" />
       <End Role="AspNetUsers" EntitySet="AspNetUsers" />
     </AssociationSet>
   </EntityContainer>

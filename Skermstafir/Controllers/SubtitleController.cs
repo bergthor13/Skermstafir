@@ -43,7 +43,7 @@ namespace Skermstafir.Controllers
             var logUser = (from item in search.db.AspNetUsers
                            where item.Id == tempUserId
                            select item).SingleOrDefault();
-            model.subtitle.AspNetUsers.Add(logUser);
+            model.subtitle.Username = User.Identity.GetUserName();
             
             // Set basic info to the new subtitle model
             model.subtitle.Name = fc["title"];
@@ -317,7 +317,7 @@ namespace Skermstafir.Controllers
 				var existsYes = new { Exists = 1 };
 				return Json(existsYes, JsonRequestBehavior.AllowGet);
 			}
-			else if (userName == subtitle.AspNetUsers.SingleOrDefault().UserName)
+			else if (userName == subtitle.Username)
 			{
 				var subOwner = new { Exists = 2 };
 				return Json(subOwner, JsonRequestBehavior.AllowGet);
