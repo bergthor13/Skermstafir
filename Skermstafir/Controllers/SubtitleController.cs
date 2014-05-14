@@ -89,6 +89,14 @@ namespace Skermstafir.Controllers
             {
                 model.subtitle.Director = fc["director"];
             }
+			if (fc["actors"] == "")
+			{
+				model.subtitle.Actors = "Ekki skráð.";
+			}
+			else
+			{
+				model.subtitle.Actors = fc["actors"];
+			}
 
             // Set language of Subtitle model
             if (fc["language"] == "Íslenska")
