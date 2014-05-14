@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Schema Namespace="VERK014_H22Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2005" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+<Schema Namespace="SkermData.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2005" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
   <EntityType Name="__MigrationHistory">
     <Key>
       <PropertyRef Name="MigrationId" />
@@ -107,25 +107,25 @@
   </EntityType>
   <EntityType Name="Request_has_Actor">
     <Key>
-      <PropertyRef Name="IdRequest_has_Actor" />
+      <PropertyRef Name="RequestId" />
+      <PropertyRef Name="ActorId" />
     </Key>
-    <Property Name="IdRequest_has_Actor" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="RequestId" Type="int" Nullable="false" />
     <Property Name="ActorId" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Request_has_Genre">
     <Key>
-      <PropertyRef Name="IdRequest_has_Genre" />
+      <PropertyRef Name="RequestId" />
+      <PropertyRef Name="GenreId" />
     </Key>
-    <Property Name="IdRequest_has_Genre" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="RequestId" Type="int" Nullable="false" />
     <Property Name="GenreId" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Request_has_Vote">
     <Key>
-      <PropertyRef Name="IdRequest_has_Vote" />
+      <PropertyRef Name="RequestId" />
+      <PropertyRef Name="VoteId" />
     </Key>
-    <Property Name="IdRequest_has_Vote" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="RequestId" Type="int" Nullable="false" />
     <Property Name="VoteId" Type="int" Nullable="false" />
   </EntityType>
@@ -148,33 +148,33 @@
   </EntityType>
   <EntityType Name="Subtitle_has_Actor">
     <Key>
-      <PropertyRef Name="IdSubtitle_has_Actor" />
+      <PropertyRef Name="SubtitleId" />
+      <PropertyRef Name="ActorId" />
     </Key>
-    <Property Name="IdSubtitle_has_Actor" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="SubtitleId" Type="int" Nullable="false" />
     <Property Name="ActorId" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Subtitle_has_Comment">
     <Key>
-      <PropertyRef Name="IdSubtitle_has_Comment" />
+      <PropertyRef Name="SubtitleId" />
+      <PropertyRef Name="CommentId" />
     </Key>
-    <Property Name="IdSubtitle_has_Comment" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="SubtitleId" Type="int" Nullable="false" />
     <Property Name="CommentId" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Subtitle_has_Genre">
     <Key>
-      <PropertyRef Name="IdSubtitle_has_Genre" />
+      <PropertyRef Name="SubtitleId" />
+      <PropertyRef Name="GenreId" />
     </Key>
-    <Property Name="IdSubtitle_has_Genre" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="SubtitleId" Type="int" Nullable="false" />
     <Property Name="GenreId" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Subtitle_has_Vote">
     <Key>
-      <PropertyRef Name="IdSubtitle_has_Vote" />
+      <PropertyRef Name="SubtitleId" />
+      <PropertyRef Name="VoteId" />
     </Key>
-    <Property Name="IdSubtitle_has_Vote" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="SubtitleId" Type="int" Nullable="false" />
     <Property Name="VoteId" Type="int" Nullable="false" />
   </EntityType>
@@ -493,7 +493,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <EntityContainer Name="VERK014_H22ModelStoreContainer">
+  <EntityContainer Name="SkermDataStoreContainer">
     <EntitySet Name="__MigrationHistory" EntityType="Self.__MigrationHistory" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Actor" EntityType="Self.Actor" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" Schema="dbo" store:Type="Tables" />

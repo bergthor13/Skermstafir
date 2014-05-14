@@ -879,7 +879,7 @@
           <End Role="Subtitle" Type="Self.Subtitle" Multiplicity="*" />
           <End Role="Vote" Type="Self.Vote" Multiplicity="*" />
         </Association>
-        <EntityContainer Name="SkermData5" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="SkermDataConnection" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="C__MigrationHistory" EntityType="Self.C__MigrationHistory" />
           <EntitySet Name="Actors" EntityType="Self.Actor" />
           <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRole" />
@@ -955,7 +955,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="SkermDataStoreContainer" CdmEntityContainer="SkermData5">
+        <EntityContainerMapping StorageEntityContainer="SkermDataStoreContainer" CdmEntityContainer="SkermDataConnection">
           <EntitySetMapping Name="C__MigrationHistory">
             <EntityTypeMapping TypeName="SkermData.C__MigrationHistory">
               <MappingFragment StoreEntitySet="__MigrationHistory">
