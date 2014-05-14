@@ -48,7 +48,7 @@ namespace Skermstafir.Controllers
             reqModel.request.Description = fc["description"];
 
             // Gets the director object specified in the 'director' textbox in the view.
-            reqModel.request.Director.Name = fc["director"];
+            reqModel.request.Director = fc["director"];
                 // TODO: Implement
 
             // Set the username of the creator to either "Anonymous" (if not authenticated)
