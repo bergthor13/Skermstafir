@@ -4,31 +4,28 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="6700ff21f9d846b0a54fee1f8e0f369a" Name="Diagram1">
-        <EntityTypeShape EntityType="SkermData2.C__MigrationHistory" Width="1.5" PointX="5.75" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="SkermData2.Actor" Width="1.5" PointX="0.75" PointY="4.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="SkermData2.AspNetRole" Width="1.5" PointX="2.75" PointY="10.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="SkermData2.AspNetUserClaim" Width="1.5" PointX="7.25" PointY="9.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="SkermData2.AspNetUserLogin" Width="1.5" PointX="7.25" PointY="12" IsExpanded="true" />
-        <EntityTypeShape EntityType="SkermData2.AspNetUser" Width="1.5" PointX="5" PointY="10.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="SkermData2.Comment" Width="1.5" PointX="3.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="SkermData2.Genre" Width="1.5" PointX="0.75" PointY="1.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="SkermData2.Language" Width="1.5" PointX="0.75" PointY="8.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="SkermData2.Request" Width="1.5" PointX="3" PointY="4" IsExpanded="true" />
-        <EntityTypeShape EntityType="SkermData2.Subtitle" Width="1.5" PointX="6" PointY="3.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="SkermData2.Vote" Width="1.5" PointX="8.25" PointY="4.875" IsExpanded="true" />
-        <AssociationConnector Association="SkermData2.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_User_Id" ManuallyRouted="false" />
-        <AssociationConnector Association="SkermData2.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
-        <AssociationConnector Association="SkermData2.FK_dbo_Request_dbo_Language_LanguageId" ManuallyRouted="false" />
-        <AssociationConnector Association="SkermData2.FK_dbo_Subtitle_dbo_Language_LanguageId" ManuallyRouted="false" />
-        <AssociationConnector Association="SkermData2.AspNetUserRoles" ManuallyRouted="false" />
-        <AssociationConnector Association="SkermData2.Request_has_Actor" ManuallyRouted="false" />
-        <AssociationConnector Association="SkermData2.Request_has_Genre" ManuallyRouted="false" />
-        <AssociationConnector Association="SkermData2.Request_has_Vote" ManuallyRouted="false" />
-        <AssociationConnector Association="SkermData2.Subtitle_has_Actor" ManuallyRouted="false" />
-        <AssociationConnector Association="SkermData2.Subtitle_has_Comment" ManuallyRouted="false" />
-        <AssociationConnector Association="SkermData2.Subtitle_has_Genre" ManuallyRouted="false" />
-        <AssociationConnector Association="SkermData2.Subtitle_has_Vote" ManuallyRouted="false" />
+      <Diagram DiagramId="f616aff1816f4abfb06837d4cfb4f669" Name="Diagram1">
+        <EntityTypeShape EntityType="SkermData.C__MigrationHistory" Width="1.5" PointX="5.75" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="SkermData.AspNetRole" Width="1.5" PointX="0.75" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SkermData.AspNetUserClaim" Width="1.5" PointX="5.25" PointY="9.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SkermData.AspNetUserLogin" Width="1.5" PointX="5.25" PointY="12" IsExpanded="true" />
+        <EntityTypeShape EntityType="SkermData.AspNetUser" Width="1.5" PointX="3" PointY="10.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SkermData.Comment" Width="1.5" PointX="3.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SkermData.Genre" Width="1.5" PointX="0.75" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SkermData.Language" Width="1.5" PointX="0.75" PointY="1.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SkermData.Request" Width="1.5" PointX="3" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="SkermData.Subtitle" Width="1.5" PointX="6" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="SkermData.Vote" Width="1.5" PointX="8.25" PointY="4.875" IsExpanded="true" />
+        <AssociationConnector Association="SkermData.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_User_Id" ManuallyRouted="false" />
+        <AssociationConnector Association="SkermData.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="SkermData.FK_dbo_Request_dbo_Language_LanguageId" ManuallyRouted="false" />
+        <AssociationConnector Association="SkermData.FK_dbo_Subtitle_dbo_Language_LanguageId" ManuallyRouted="false" />
+        <AssociationConnector Association="SkermData.AspNetUserRoles" ManuallyRouted="false" />
+        <AssociationConnector Association="SkermData.Request_has_Genre" ManuallyRouted="false" />
+        <AssociationConnector Association="SkermData.Request_has_Vote" ManuallyRouted="false" />
+        <AssociationConnector Association="SkermData.Subtitle_has_Comment" ManuallyRouted="false" />
+        <AssociationConnector Association="SkermData.Subtitle_has_Genre" ManuallyRouted="false" />
+        <AssociationConnector Association="SkermData.Subtitle_has_Vote" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

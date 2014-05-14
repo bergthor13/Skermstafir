@@ -45,30 +45,7 @@ namespace Skermstafir.Repositories
 			toBeChanged.DateAdded   = editSub.subtitle.DateAdded;
 			toBeChanged.Link		= editSub.subtitle.Link;
             toBeChanged.Director    = editSub.subtitle.Director;
-            foreach (var item in toBeChanged.Actors)
-            {
-                if (!editSub.subtitle.Actors.Contains(item))
-                {
-                    toBeChanged.Actors.Clear();
-                    foreach (var item2 in editSub.subtitle.Actors)
-                    {
-                        toBeChanged.Actors.Add(item2);
-                    }
-                    break;
-                }
-            }
-            foreach (var item in editSub.subtitle.Actors)
-            {
-                if (!toBeChanged.Actors.Contains(item))
-                {
-                    toBeChanged.Actors.Clear();
-                    foreach (var item2 in editSub.subtitle.Actors)
-                    {
-                        toBeChanged.Actors.Add(item2);
-                    }
-                    break;
-                }
-            }
+
             
 			//toBeChanged.Genres = editSub.subtitle.Genres;
             
@@ -85,14 +62,6 @@ namespace Skermstafir.Repositories
 		{
 			sub.Genres.Remove(gen);
 			db.SaveChanges();
-		}
-
-		public Actor GetActorByName(string actorName)
-		{
-			Actor act = (from item in db.Actors
-						   where item.Name == actorName
-						   select item).SingleOrDefault();
-			return act;
 		}
 
 		public void AddCommentToSub(Comment com, Subtitle sub) {

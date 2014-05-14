@@ -16,7 +16,6 @@ namespace Skermstafir
     {
         public Subtitle()
         {
-            this.Actors = new HashSet<Actor>();
             this.Comments = new HashSet<Comment>();
             this.Genres = new HashSet<Genre>();
             this.Votes = new HashSet<Vote>();
@@ -26,6 +25,7 @@ namespace Skermstafir
         public int LanguageId { get; set; }
         public string Username { get; set; }
         public string Name { get; set; }
+        public string Actors { get; set; }
         public string Director { get; set; }
         public string Description { get; set; }
         public Nullable<int> YearCreated { get; set; }
@@ -36,7 +36,6 @@ namespace Skermstafir
         public Nullable<int> Download { get; set; }
     
         public virtual Language Language { get; set; }
-        public virtual ICollection<Actor> Actors { get; set; }
         public virtual ICollection<Comment> Comments { get; set; }
         public virtual ICollection<Genre> Genres { get; set; }
         public virtual ICollection<Vote> Votes { get; set; }

@@ -99,31 +99,6 @@ namespace Skermstafir.Controllers
             {
                 model.subtitle.LanguageId = 2;
             }
-
-            // Set actors of Subtitle Model
-            string actors = fc["actors"];
-            Actor tempActor = new Actor();
-            if (actors == "")
-            {
-                tempActor.Name = "Ekki skráð.";
-                model.subtitle.Actors.Add(tempActor);
-            }
-            else
-            {
-                String[] actorers = actors.Split(',');
-                foreach (var item in actorers)
-                {
-                    string currActor = item;
-                    if (currActor[0] == ' ')
-                    {
-                        
-                        currActor = currActor.Substring(1);
-                    }
-                    tempActor.Name = currActor;
-                    model.subtitle.Actors.Add(tempActor);
-                }
-            }
-            
             // Set genres of Subtitle model
             for (int i = 1; i < 9; i++)
             {
@@ -151,7 +126,6 @@ namespace Skermstafir.Controllers
 			int idValue = id.Value;
 			rModel = rr.GetRequestByID(idValue);
 			sModel.subtitle.Genres      = rModel.request.Genres;
-			sModel.subtitle.Actors      = rModel.request.Actors;
 			sModel.subtitle.YearCreated = rModel.request.YearCreated;
 			sModel.subtitle.Name        = rModel.request.Name;
 			sModel.subtitle.Language    = rModel.request.Language;
@@ -286,31 +260,6 @@ namespace Skermstafir.Controllers
 				}
 			}
 
-			
-			string actors = fd["actors"];
-            Actor tempAct = new Actor();
-            if (actors == "")
-            {
-                tempAct.Name = "Ekki skráð.";
-                editedSub.subtitle.Actors.Add(tempAct);
-            }
-            else
-            {
-                String[] actorers = actors.Split(',');
-                foreach (var item in actorers)
-                {
-                    string currActor = item;
-                    if (currActor[0] == ' ')
-                    {
-
-                        currActor = currActor.Substring(1);
-                    }
-                    tempAct.Name = currActor;
-                    editedSub.subtitle.Actors.Add(tempAct);
-                }
-            }
-			
-
 			// Finally we update the subtitle.
 			subR.ChangeExistingSubtitle(idValue, editedSub);
 			
@@ -397,20 +346,6 @@ namespace Skermstafir.Controllers
 			foreach (var item in sm.subtitle.Genres)
 			{
 				 sm.genreValue[item.IdGenre-1] = true;
-			}
-
-			// Put artists in a string
-			foreach (var act in sm.subtitle.Actors)
-			{
-				if (act != sm.subtitle.Actors.Last())
-				{
-					sm.actorsForView += act.Name + ", ";
-				}
-				else
-				{
-					sm.actorsForView += act.Name;
-				}
-
 			}
 		}
         public ActionResult DeleteSubtitle(int? id)

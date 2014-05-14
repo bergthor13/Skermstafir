@@ -108,31 +108,6 @@ namespace Skermstafir.Controllers
             {
                 reqModel.request.Link = fc["link"];
             }
-
-            // Get the actors, written into the 'actors' field, and connect them to the request.
-            string actors = fc["actors"];
-            Actor newActor = new Actor();
-            if (actors == "")
-            {
-                newActor.Name = "Ekki skráð.";
-                reqModel.request.Actors.Add(newActor);
-            }
-            else
-            {
-                String[] actorers = actors.Split(',');
-                for (int i = 0; i < actorers.Length; i++)
-                {
-                    string currActor = actorers[i];
-                    if (currActor[0] == ' ')
-                    {
-                        actorers[i] = actorers[i].Substring(1);
-                    }
-                    // They are sorted so now add them to database.
-
-                    newActor.Name = actorers[i];
-                    reqModel.request.Actors.Add(newActor);
-                }
-            }
             
             
             // Adding the genres
@@ -169,18 +144,6 @@ namespace Skermstafir.Controllers
 					{
 						rm.genreValue[i] = true;
 					}
-				}
-			}
-
-			foreach (var art in rm.request.Actors)
-			{
-				if (art != rm.request.Actors.Last())
-				{
-					rm.actorsForView += art.Name + ", ";
-				}
-				else
-				{
-					rm.actorsForView += art.Name;
 				}
 			}
 		}

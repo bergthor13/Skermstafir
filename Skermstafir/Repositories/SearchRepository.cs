@@ -99,13 +99,6 @@ namespace Skermstafir.Repositories {
 			return model;
 		}
 
-        // Add Actor to database
-        public void AddActor(Actor act)
-        {
-            db.Actors.Add(act);
-            db.SaveChanges();
-        }
-
 		// query database and get a genre by id
 		public Genre GetGenreByID(int id) 
         {
@@ -114,24 +107,6 @@ namespace Skermstafir.Repositories {
                          select item).FirstOrDefault();
 			return gen;
 		}
-
-		// Query database and get an Actor by his id
-        public Actor GetActorByID(int id)
-        {
-            Actor act = (from item in db.Actors
-                         where item.IdActor == id
-                         select item).FirstOrDefault();
-            return act;
-        }
-
-		//Query database and get an Actor by his name
-        public Actor GetActorByName(string name)
-        {
-            Actor act = (from item in db.Actors
-                         where item.Name == name
-                         select item).FirstOrDefault();
-            return act;
-        }
 
 		// Query database and get a language by its name
         public Language GetLanguageByName(string name)
