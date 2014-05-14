@@ -199,8 +199,9 @@ namespace Skermstafir.Controllers
                 return View("Errors/NoSubFound");
             }
 		}
-
+		//<summary>
 		// Takes the form data submitted and sends it to the repository.
+		//</ summary>
 		[Authorize]
 		[HttpPost]
 		public ActionResult EditSubtitle(int? id, FormCollection fd, Subtitle sub)
@@ -292,6 +293,9 @@ namespace Skermstafir.Controllers
 			return RedirectToAction("ShowSubtitle", new { id = idValue });
 		}
 
+		//<summary>
+		// Add upvote to subtitle
+		//</summary>
 		public ActionResult UpvoteSubtitle(int subid)
 		{
 			string userName = User.Identity.GetUserName();
@@ -323,7 +327,9 @@ namespace Skermstafir.Controllers
 			return View(Json(ob2, JsonRequestBehavior.AllowGet));
 		}
 
+		//<summary>
 		// Downloads the srt file.
+		//</summary>
 		public FileResult Download(int? id)
 		{
 			if (id == null)
@@ -348,6 +354,7 @@ namespace Skermstafir.Controllers
 
 			return File(Encoding.UTF8.GetBytes(result.subtitle.EditContent), "text/plain", result.subtitle.Name + ".srt");
 		}
+
 		/// <summary>
 		/// Helper Function. Fills in the rest of the model (genreValue[] and artistsForView)
 		/// </summary> 
