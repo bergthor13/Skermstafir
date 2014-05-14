@@ -118,6 +118,8 @@ namespace Skermstafir.Controllers
 		/// </summary>
 		/// <param name="id"></param>
 		/// <returns></returns>
+		[HttpGet]
+		[Authorize]
 		public ActionResult CreateSubtitleFromRequest(int? id)
 		{
 			SubtitleModel sModel = new SubtitleModel();
@@ -348,6 +350,7 @@ namespace Skermstafir.Controllers
 				 sm.genreValue[item.IdGenre-1] = true;
 			}
 		}
+		[Authorize]
         public ActionResult DeleteSubtitle(int? id)
         {
             SubtitleRepository subRepo = new SubtitleRepository();
@@ -359,6 +362,7 @@ namespace Skermstafir.Controllers
 		// <summary>
 		// posts a comment and returns all comments from that subtitle as JSON
 		// </summary>
+		[Authorize]
 		public ActionResult Comment(FormCollection form) {
 			SearchRepository searchRep = new SearchRepository();
 			Subtitle sub = searchRep.GetSubtitleByID(Convert.ToInt32(form["id"])).subtitle;

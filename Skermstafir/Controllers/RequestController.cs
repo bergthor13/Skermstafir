@@ -14,6 +14,7 @@ namespace Skermstafir.Controllers
 	{
 		//
 		// GET: /Request/
+		[HttpGet]
 		public ActionResult ShowRequest(int? id)
 		{
 			if (id == null)
