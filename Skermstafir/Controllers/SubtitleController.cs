@@ -375,7 +375,7 @@ namespace Skermstafir.Controllers
 			{
 				return null;
 			}
-
+			sr.AddDownloadToSubtitle(result.subtitle);
 			return File(Encoding.UTF8.GetBytes(result.subtitle.EditContent), "text/plain", result.subtitle.Name + ".srt");
 		}
 

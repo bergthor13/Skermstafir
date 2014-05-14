@@ -187,5 +187,13 @@ namespace Skermstafir.Repositories {
 			com.Subtitles.Add(sub);
 			db.SaveChanges();
 		}
+
+		public void AddDownloadToSubtitle(Subtitle subtitle)
+		{
+			//int? down = subtitle.Download.Value;
+			//down++;
+			
+			//db.SaveChanges();
+		}
 	}
 }
