@@ -391,10 +391,15 @@ namespace Skermstafir.Controllers
 		// <summary>
 		// posts a comment and returns all comments from that subtitle as JSON
 		// </summary>
-		public ActionResult PostComment() {
+		public ActionResult Comment(FormCollection form) {
 			SearchRepository searchRep = new SearchRepository();
-			List<Comment> model = searchRep.GetSubtitleByID(2).subtitle.Comments.ToList();
-			return Json(model, JsonRequestBehavior.AllowGet);
+			Subtitle sub = searchRep.GetSubtitleByID(Convert.ToInt32(form["id"])).subtitle;
+			Comment com = new Comment();
+			com.Content = form["CommentText1"];
+			com.Username = User.Identity.GetUserName();
+			com.DateCreated = DateTime.Now;
+			searchRep.AddCommentToSub(com, sub);
+			return RedirectToAction("ShowSubtitle", new { id = sub.IdSubtitle });
 		}
 	}
 }
