@@ -48,13 +48,12 @@ namespace Skermstafir.Controllers
             reqModel.request.Description = fc["description"];
 
             // Gets the director object specified in the 'director' textbox in the view.
-            string directorName = fc["director"];
-            Director director = searchRepo.GetDirectorByName(directorName);
+            Director director = searchRepo.GetDirectorByName(fc["director"]);
             // If the director is not found, we create a new director with that name.
             if (director == null)
             {
                 Director newDir = new Director();
-                newDir.Name = directorName;
+                newDir.Name = fc["director"];
                 searchRepo.AddDirector(newDir);
                 reqModel.request.DirectorId = newDir.IdDirector;
                 // Else we change the director of the request.

@@ -115,7 +115,7 @@ namespace Skermstafir.Repositories {
 		public Genre GetGenreByID(int id) {
 			Genre gen = (from item in db.Genres
 						 where item.IdGenre == id
-						 select item).SingleOrDefault();
+                         select item).FirstOrDefault();
 			return gen;
 		}
 
@@ -124,7 +124,7 @@ namespace Skermstafir.Repositories {
         {
             Actor act = (from item in db.Actors
                          where item.IdActor == id
-                         select item).SingleOrDefault();
+                         select item).FirstOrDefault();
             return act;
         }
 
@@ -133,7 +133,7 @@ namespace Skermstafir.Repositories {
         {
             Actor act = (from item in db.Actors
                          where item.Name == name
-                         select item).SingleOrDefault();
+                         select item).FirstOrDefault();
             return act;
         }
 
@@ -142,7 +142,7 @@ namespace Skermstafir.Repositories {
         {
             Director dir = (from item in db.Directors
                             where item.Name == name
-                            select item).SingleOrDefault();
+                            select item).FirstOrDefault();
             return dir;
         }
 
@@ -151,7 +151,7 @@ namespace Skermstafir.Repositories {
         {
             Language lang = (from item in db.Languages
                              where item.Name == name
-                             select item).SingleOrDefault();
+                             select item).FirstOrDefault();
             return lang;
         }
 
