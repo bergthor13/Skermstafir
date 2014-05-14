@@ -44,9 +44,35 @@ namespace Skermstafir.Repositories
 			toBeChanged.EditContent = editSub.subtitle.EditContent;
 			toBeChanged.DateAdded   = editSub.subtitle.DateAdded;
 			toBeChanged.Link		= editSub.subtitle.Link;
+            toBeChanged.Director    = editSub.subtitle.Director;
+            foreach (var item in toBeChanged.Actors)
+            {
+                if (!editSub.subtitle.Actors.Contains(item))
+                {
+                    toBeChanged.Actors.Clear();
+                    foreach (var item2 in editSub.subtitle.Actors)
+                    {
+                        toBeChanged.Actors.Add(item2);
+                    }
+                    break;
+                }
+            }
+            foreach (var item in editSub.subtitle.Actors)
+            {
+                if (!toBeChanged.Actors.Contains(item))
+                {
+                    toBeChanged.Actors.Clear();
+                    foreach (var item2 in editSub.subtitle.Actors)
+                    {
+                        toBeChanged.Actors.Add(item2);
+                    }
+                    break;
+                }
+            }
+            
 			//toBeChanged.Genres = editSub.subtitle.Genres;
-
-			int i = db.SaveChanges();	
+            
+			db.SaveChanges();	
         }
 
 		public void AddGenreToSubtitle(Genre gen, Subtitle sub)
