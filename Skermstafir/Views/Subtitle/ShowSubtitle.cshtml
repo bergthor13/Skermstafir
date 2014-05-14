@@ -68,7 +68,7 @@
 
 	<p class="info">
         <span class="col-md-2">Aðalleikarar:</span>
-        @Model.actorsForView
+        @Model.subtitle.Actors
 	</p>
 
 	<p class="info">
@@ -114,7 +114,6 @@
     
     }
             
-
     <div id="usercomments">
     @foreach (var item in Model.subtitle.Comments) {
         <span class="glyphicon glyphicon-user"></span>
