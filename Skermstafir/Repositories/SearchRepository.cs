@@ -190,10 +190,21 @@ namespace Skermstafir.Repositories {
 
 		public void AddDownloadToSubtitle(Subtitle subtitle)
 		{
-			//int? down = subtitle.Download.Value;
-			//down++;
+			int? down = subtitle.Download;
+			int downloads = 0;
+			if (down == null)
+			{
+				downloads = 0;
+			}
+			else
+			{
+				downloads = down.Value;
+			}
+			downloads++;
+
+			subtitle.Download = downloads;
 			
-			//db.SaveChanges();
+			db.SaveChanges();
 		}
 	}
 }
