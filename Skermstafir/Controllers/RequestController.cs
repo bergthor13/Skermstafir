@@ -83,41 +83,31 @@ namespace Skermstafir.Controllers
             reqModel.request.Link = fc["link"];
 
             // Get the actors, written into the 'actors' field, and connect them to the request.
-            /*string actors = fc["actors"];
+            string actors = fc["actors"];
             String[] actorers = actors.Split(',');
             for (int i = 0; i < actorers.Length; i++)
             {
                 string currActor = actorers[i];
-                if (i > 0 && currActor[0] == ' ')
+                if (currActor[0] == ' ')
                 {
                     actorers[i] = actorers[i].Substring(1);
                 }
-                // Check if he already exists in database.
-                Actor actorToCheck = searchRepo.GetActorByName(actorers[i]);
-                // if he doesn't, we add him and connect him to the request.
-                if (actorToCheck == null)
-                {
-                    Actor newActor = new Actor();
-                    newActor.Name = actorers[i];
-                    searchRepo.AddActor(newActor);
-                    reqModel.request.Actors.Add(newActor);
-                }
-                else
-                // Else we just connect him to the request.
-                {
-                    reqModel.request.Actors.Add(actorToCheck);
-                }
+                // They are sorted so now add them to database.
+                Actor newActor = new Actor();
+                newActor.Name = actorers[i];
+                reqModel.request.Actors.Add(newActor);
             }
-
+            
             // Adding the genres
             for (int i = 1; i < 9; i++)
             {
                 if (fc["genre" + i.ToString()] == "on")
                 {
                     reqModel.request.Genres.Add(searchRepo.GetGenreByID(i));
+                    reqModel.genreValue[i - 1] = true;
                 }
             }
-            */
+            
             // Here the request has all the info it needs and we add it to our Request table.
             reqRepo.AddRequest(reqModel);
 
