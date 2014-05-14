@@ -29,33 +29,66 @@ namespace Skermstafir.Controllers
 			return View(model);
 		}
 
-		/// <summary>
-		/// Creates a new translation.
-		/// </summary>
-		[Authorize]
-		[HttpPost]
-		public ActionResult CreateSubtitle(FormCollection fc)
-		{
-			SubtitleModel model = new SubtitleModel();
+        /// <summary>
+        /// Creates a new translation.
+        /// </summary>
+        [Authorize]
+        [HttpPost]
+        public ActionResult CreateSubtitle(FormCollection fc)
+        {
+            SubtitleModel model = new SubtitleModel();
             SearchRepository search = new SearchRepository();
-            SubtitleRepository sr = new SubtitleRepository();
+            SubtitleRepository subRepo = new SubtitleRepository();
 
-            // Get current logged in user
-            var tempUserId = User.Identity.GetUserId();
-            var logUser = (from item in search.db.AspNetUsers
-                           where item.Id == tempUserId
-                           select item).SingleOrDefault();
-            model.subtitle.Username = User.Identity.GetUserName();
-            
+            model.subtitle.Username = User.Identity.Name;
+
             // Set basic info to the new subtitle model
             model.subtitle.Name = fc["title"];
-            model.subtitle.YearCreated = Convert.ToInt32(fc["year"]);
-            model.subtitle.Description = fc["description"];
-            model.subtitle.Link = fc["link"];
-            model.subtitle.Content = fc["originalText"];
 
-            // Set director to the model and add it to the database if required
-            model.subtitle.Director = fc["director"];
+            if (fc["year"] == "")
+            {
+                model.subtitle.YearCreated = 0;
+            }
+            else
+            {
+                model.subtitle.YearCreated = Convert.ToInt32(fc["year"]);
+            }
+
+            if (fc["description"] == "")
+            {
+                model.subtitle.Description = "Ekki skráð.";
+            }
+            else
+            {
+                model.subtitle.Description = fc["description"];
+            }
+
+            if (fc["link"] == "")
+            {
+                model.subtitle.Link = "Ekki skráð.";
+            }
+            else
+            {
+                model.subtitle.Link = fc["link"];
+            }
+
+            if (fc["originalText"] == "")
+            {
+                model.subtitle.Content = "Ekki skráð.";
+            }
+            else
+            {
+                model.subtitle.Content = fc["originalText"];
+            }
+
+            if (fc["director"] == "")
+            {
+                model.subtitle.Director = "Ekki skráð.";
+            }
+            else
+            {
+                model.subtitle.Director = fc["director"];
+            }
 
             // Set language of Subtitle model
             if (fc["language"] == "Íslenska")
@@ -67,24 +100,24 @@ namespace Skermstafir.Controllers
                 model.subtitle.LanguageId = 2;
             }
 
-            // Set actors of Subtitle Model and add them to database if required
+            // Set actors of Subtitle Model
             string actors = fc["actors"];
-            String[] actorers = actors.Split(',');
-            foreach(var item in actorers)
+            Actor tempActor = new Actor();
+            if (actors == "")
             {
-                Actor tempActor = new Actor();
-                if (sr.GetActorByName(item) == null)
-                {
-                    tempActor.Name = item;
-                    search.AddActor(tempActor);
-                }
-                else
-                {
-                    tempActor = search.GetActorByName(item);
-                }
+                tempActor.Name = "Ekki skráð.";
                 model.subtitle.Actors.Add(tempActor);
             }
-
+            else
+            {
+                String[] actorers = actors.Split(',');
+                foreach (var item in actorers)
+                {
+                    tempActor.Name = item;
+                    model.subtitle.Actors.Add(tempActor);
+                }
+            }
+            
             // Set genres of Subtitle model
             for (int i = 1; i < 9; i++)
             {
@@ -94,10 +127,10 @@ namespace Skermstafir.Controllers
                 }
             }
 
-            sr.AddSubtitle(model);
+            subRepo.AddSubtitle(model);
 
             return this.RedirectToAction("ShowSubtitle", new { id = model.subtitle.IdSubtitle });
-		}
+        }
 
 		/// <summary>
 		/// Creates a subtitle from the request with the ID 'id'.
@@ -397,10 +430,15 @@ namespace Skermstafir.Controllers
 		// <summary>
 		// posts a comment and returns all comments from that subtitle as JSON
 		// </summary>
-		public ActionResult PostComment() {
+		public ActionResult Comment(FormCollection form) {
 			SearchRepository searchRep = new SearchRepository();
-			List<Comment> model = searchRep.GetSubtitleByID(2).subtitle.Comments.ToList();
-			return Json(model, JsonRequestBehavior.AllowGet);
+			Subtitle sub = searchRep.GetSubtitleByID(Convert.ToInt32(form["id"])).subtitle;
+			Comment com = new Comment();
+			com.Content = form["CommentText1"];
+			com.Username = User.Identity.GetUserName();
+			com.DateCreated = DateTime.Now;
+			searchRep.AddCommentToSub(com, sub);
+			return RedirectToAction("ShowSubtitle", new { id = sub.IdSubtitle });
 		}
 	}
 }

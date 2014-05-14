@@ -73,7 +73,7 @@
 
 	<p class="info">
         <span class="col-md-2">Leikstjóri:</span>
-        bla
+        @Model.subtitle.Director
 	</p>
 
 	<p class="info">
@@ -98,20 +98,23 @@
 </div>
 
 <div id="comments" class="col-md-8">
-    @if(User.Identity.IsAuthenticated) {
-        @Html.BeginForm("Comment", "Subtitle"){
-
+    @if (User.Identity.IsAuthenticated) { 
+        using (Html.BeginForm("Comment", "Subtitle")) {
             <ul class="list-group" id="comment" style="max-width: 560px;">
             <li class="list-group-item">
                 <div class="form-horizontal">
                     <label class="sr-only" for="CommentText">Comment</label>
                     <textarea class="form-control" rows="3" id="CommentText1" name="CommentText1"></textarea><br />
                     <button type="submit" id="btnSave1" value="Save" class="btn btn-primary" onclick="">Send</button>
+                    <input hidden="hidden" name="id" value="@Model.subtitle.IdSubtitle" />
                 </div>
             </li>
         </ul>
-        }      
+        }
+    
     }
+            
+
     <div id="usercomments">
     @foreach (var item in Model.subtitle.Comments) {
         <span class="glyphicon glyphicon-user"></span>
