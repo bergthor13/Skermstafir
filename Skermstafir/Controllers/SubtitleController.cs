@@ -90,6 +90,15 @@ namespace Skermstafir.Controllers
                 model.subtitle.Director = fc["director"];
             }
 
+            if (fc["actors"] == "")
+            {
+                model.subtitle.Actors = "Ekki skráð.";
+            }
+            else
+            {
+                model.subtitle.Actors = fc["actors"];
+            }
+
             // Set language of Subtitle model
             if (fc["language"] == "Íslenska")
             {
@@ -136,7 +145,7 @@ namespace Skermstafir.Controllers
 			sModel.subtitle.Director    = rModel.request.Director;
 			sModel.subtitle.Actors      = rModel.request.Actors;
 			// Put genres in a bool array
-			FillModel(sModel);
+			// FillModel(sModel);
 
 			// Put genres in a bool array
 			foreach (var item in rModel.request.Genres)
@@ -246,13 +255,42 @@ namespace Skermstafir.Controllers
             {
                 editedSub.subtitle.YearCreated = Convert.ToInt32(fd["year"]);
             }
-			
-			editedSub.subtitle.Content     = fd["originalText"];
-			editedSub.subtitle.EditContent = fd["editedText"];
-			editedSub.subtitle.Description = fd["description"];
 
-			// Gets the director object specified in the 'director' textbox in the view.
-			editedSub.subtitle.Director = fd["director"];
+            if (fd["originalText"] == "")
+            {
+                editedSub.subtitle.Content = "Ekki skráð";
+            }
+            else
+            {
+                editedSub.subtitle.Content = fd["originalText"];
+            }
+
+            if (fd["editedText"] == "")
+            {
+                editedSub.subtitle.EditContent = "Ekki skráð";
+            }
+            else
+            {
+                editedSub.subtitle.EditContent = fd["editedText"];
+            }
+
+            if (fd["description"] == "")
+            {
+                editedSub.subtitle.Description = "Ekki skráð";
+            }
+            else
+            {
+                editedSub.subtitle.Description = fd["description"];
+            }
+
+            if (fd["director"] == "")
+            {
+                editedSub.subtitle.Director = "Ekki skráð";
+            }
+            else
+            {
+                editedSub.subtitle.Director = fd["director"];
+            }
 
 			// Add the genres selected to the subtitle.
 			for (int i = 1; i <= 8; i++)
