@@ -11,7 +11,8 @@ namespace Skermstafir.Repositories
     {
 		SkermData db = new SkermData();
 
-		public RequestRepository(SkermData connection) {
+		public RequestRepository(SkermData connection) 
+        {
 			db = connection;
 		}
         // adds new request to database
@@ -96,7 +97,8 @@ namespace Skermstafir.Repositories
             return modelList;
         }
 
-		public RequestModelList GetRequestsByString(String str) {
+		public RequestModelList GetRequestsByString(String str) 
+        {
 			RequestModelList model = new RequestModelList();
 			model.modelList = (from req in db.Requests
 							   where req.Name.Contains(str)
@@ -104,7 +106,8 @@ namespace Skermstafir.Repositories
 			return model;
 		}
 
-		public RequestModelList GetRequestsByYear(int start, int end) {
+		public RequestModelList GetRequestsByYear(int start, int end) 
+        {
 			RequestModelList model = new RequestModelList();
 			model.modelList = (from req in db.Requests
 							   where req.YearCreated >= start && req.YearCreated <= end
@@ -112,14 +115,18 @@ namespace Skermstafir.Repositories
 			return model;
 		}
 
-		public RequestModelList GetRequestsByGenre(string genre) {
+		public RequestModelList GetRequestsByGenre(string genre)
+        {
 			RequestModelList model = new RequestModelList();
 			model.modelList = new List<Request>();
 			List<Request> ls = (from req in db.Requests
 								select req).ToList();
-			for (int i = 0; i < ls.Count; i++) {
-				foreach (var item in ls[i].Genres) {
-					if (item.Name == genre) {
+			for (int i = 0; i < ls.Count; i++)
+            {
+				foreach (var item in ls[i].Genres) 
+                {
+					if (item.Name == genre) 
+                    {
 						model.modelList.Add(ls[i]);
 					}
 				}

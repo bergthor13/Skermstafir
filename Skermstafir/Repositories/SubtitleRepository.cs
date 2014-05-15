@@ -11,7 +11,8 @@ namespace Skermstafir.Repositories
     {
 		public SkermData db;
 
-		public SubtitleRepository(SkermData connection) {
+		public SubtitleRepository(SkermData connection) 
+        {
 			db = connection;
 		}
 
@@ -49,9 +50,7 @@ namespace Skermstafir.Repositories
 			toBeChanged.Link		= editSub.subtitle.Link;
             toBeChanged.Director    = editSub.subtitle.Director;
             toBeChanged.Actors      = editSub.subtitle.Actors;
-            
-			//toBeChanged.Genres = editSub.subtitle.Genres;
-            
+
 			db.SaveChanges();	
         }
 
