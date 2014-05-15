@@ -217,6 +217,7 @@ a:hover {
 
 .table {
 	background: #444;
+	margin-top: 20px;
 }
 
 .table-striped > tbody > tr:nth-child(2n+1) > td, .table-striped > tbody > tr:nth-child(2n+1) > th {
