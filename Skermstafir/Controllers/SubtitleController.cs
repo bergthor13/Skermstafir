@@ -197,6 +197,7 @@ namespace Skermstafir.Controllers
 				SkermData db = new SkermData();
 				SearchRepository sr = new SearchRepository(db);
 				SubtitleModel result;
+
 				result = sr.GetSubtitleByID(idValue);
 
 				// Fill the empty model variables (genreValue[] and artistsForView).
@@ -390,6 +391,7 @@ namespace Skermstafir.Controllers
 			SkermData db = new SkermData();
 			SearchRepository sr = new SearchRepository(db);
 			SubtitleModel result;
+
 			try
 			{
 				// Get the desired subtitle.
@@ -399,6 +401,12 @@ namespace Skermstafir.Controllers
 			{
 				return null;
 			}
+
+			if (result.subtitle.EditContent == null)
+			{
+				return File(Encoding.UTF8.GetBytes("Ekki hefur verið byrjað á þýðingunni."), "text/plain", result.subtitle.Name + ".srt");
+			}
+
 			sr.AddDownloadToSubtitle(result.subtitle);
 			return File(Encoding.UTF8.GetBytes(result.subtitle.EditContent), "text/plain", result.subtitle.Name + ".srt");
 		}
@@ -408,13 +416,14 @@ namespace Skermstafir.Controllers
 		/// </summary> 
 		public void FillModel(SubtitleModel sm)
 		{
-
 			// Put genres in a bool array
 			foreach (var item in sm.subtitle.Genres)
 			{
 				 sm.genreValue[item.IdGenre-1] = true;
 			}
 		}
+
+
 		[Authorize]
         public ActionResult DeleteSubtitle(int? id)
         {
