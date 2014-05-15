@@ -311,6 +311,15 @@ namespace Skermstafir.Controllers
                 editedSub.subtitle.Description = fd["description"];
             }
 
+            if (fd["link"] == "")
+            {
+                editedSub.subtitle.Link = "Ekki skráð.";
+            }
+            else
+            {
+                editedSub.subtitle.Link = fd["link"];
+            }
+
             if (fd["director"] == "")
             {
                 editedSub.subtitle.Director = "Ekki skráð";
@@ -318,6 +327,15 @@ namespace Skermstafir.Controllers
             else
             {
                 editedSub.subtitle.Director = fd["director"];
+            }
+
+            if (fd["actor"] == "")
+            {
+                editedSub.subtitle.Actors = "Ekki skráð.";
+            }
+            else
+            {
+                editedSub.subtitle.Actors = fd["actors"];
             }
 
 			// Add the genres selected to the subtitle.
