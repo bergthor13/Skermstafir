@@ -37,18 +37,14 @@
 					  rows="10"
                       placeholder="Stutt lýsing og söguþráður.">@Model.request.Description</textarea>
 			</span>
-
         <input id="download" class="btn btn-default downloadbtn" type="submit" name="createRequest" value="Vista beiðni" onclick="showTitleError();"/>
-
         <p class="info">
             <label for="title" class="col-md-2">*Titill:</label>
             <input id="titleBox" type="text" name="title" value="@Model.request.Name" placeholder="t.d. Anchorman 2, The Legend Continues" />
         </p>
-
         <p id="titleError">
              Þú verður að skrá inn titil myndefnis.
         </p>
-
 		<p class="info">
 			<span class="col-md-2">Tungumál:</span>
             <select name="language">
@@ -56,27 +52,21 @@
                 <option value="Enska">Enska</option>
             </select>
 		</p>
-
         <p class="info">
             <label for="director" class="col-md-2">Leikstjóri:</label>
             <input type="text" name="director" value="@Model.request.Director" placeholder="t.d. Woody Allen" />
         </p>
-
 		<p class="info">
 			<label for="actors" class="col-md-2">Aðalleikarar:</label>
             <input type="text" name="actors" value="@Model.request.Actors" placeholder="Komma aðskilur leikara t.d. Paul Rudd, Philip Seymour Hoffman" />
 		</p>
-
 		<p class="info">
 			<label for="year" class="col-md-2">Útgáfuár:</label>
             <input type="text" name="year" value="@Model.request.YearCreated" placeholder="t.d. 2014" />
 		</p>
-
 		<p class="info">
 			<label for="link" class="col-md-2">Hlekkur á myndskeið:</label>
             <input id="bottom-request" type="text" name="link" value="@Model.request.Link" placeholder="t.d. af YouTube, Vimeo o.þ.h." />
 		</p>
 	</div>
 }
-
-
