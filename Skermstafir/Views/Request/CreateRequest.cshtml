@@ -4,10 +4,10 @@
     ViewBag.Title = "Stofna beiðni";
 }
 
-@using (Html.BeginForm())
+@using (Html.BeginForm("CreateRequest", "Request", FormMethod.Post, new { id = "postNew" }))
 {
     @Html.AntiForgeryToken()
-    <div class="subtitle-box">
+    <div id="create-request" class="subtitle-box">
 		<div class="box-title make-me-green">
 			Stofna beiðni
 		</div>
@@ -38,11 +38,15 @@
                       placeholder="Stutt lýsing og söguþráður.">@Model.request.Description</textarea>
 			</span>
 
-        <input id="download" class="btn btn-default downloadbtn" type="submit" name="createRequest" onclick="location.href='@Url.Action("Download", "Request", new { id = Model.request.IdRequest })'" value="Vista beiðni" />
+        <input id="download" class="btn btn-default downloadbtn" type="submit" name="createRequest" value="Vista beiðni" onclick="showTitleError();"/>
 
         <p class="info">
-            <label for="title" class="col-md-2">Titill:</label>
-            <input type="text" name="title" value="@Model.request.Name" placeholder="t.d. Anchorman 2, The Legend Continues" />
+            <label for="title" class="col-md-2">*Titill:</label>
+            <input id="titleBox" type="text" name="title" value="@Model.request.Name" placeholder="t.d. Anchorman 2, The Legend Continues" />
+        </p>
+
+        <p id="titleError">
+             Þú verður að skrá inn titil myndefnis.
         </p>
 
 		<p class="info">
@@ -70,7 +74,7 @@
 
 		<p class="info">
 			<label for="link" class="col-md-2">Hlekkur á myndskeið:</label>
-            <input type="text" name="link" value="@Model.request.Link" placeholder="t.d. af YouTube, Vimeo o.þ.h." />
+            <input id="bottom-request" type="text" name="link" value="@Model.request.Link" placeholder="t.d. af YouTube, Vimeo o.þ.h." />
 		</p>
 	</div>
 }

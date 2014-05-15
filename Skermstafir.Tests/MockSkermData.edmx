@@ -1,0 +1,933 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="MSkermData.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2005" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="__MigrationHistory">
+          <Key>
+            <PropertyRef Name="MigrationId" />
+            <PropertyRef Name="ContextKey" />
+          </Key>
+          <Property Name="MigrationId" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="ContextKey" Type="nvarchar" MaxLength="300" Nullable="false" />
+          <Property Name="Model" Type="varbinary(max)" Nullable="false" />
+          <Property Name="ProductVersion" Type="nvarchar" MaxLength="32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetRoles">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUserClaims">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ClaimType" Type="nvarchar(max)" />
+          <Property Name="ClaimValue" Type="nvarchar(max)" />
+          <Property Name="User_Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUserLogins">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="LoginProvider" />
+            <PropertyRef Name="ProviderKey" />
+          </Key>
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="LoginProvider" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ProviderKey" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUserRoles">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="RoleId" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUsers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar(max)" />
+          <Property Name="PasswordHash" Type="nvarchar(max)" />
+          <Property Name="SecurityStamp" Type="nvarchar(max)" />
+          <Property Name="Discriminator" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Comment">
+          <Key>
+            <PropertyRef Name="IdComment" />
+          </Key>
+          <Property Name="IdComment" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Username" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Content" Type="nvarchar" MaxLength="255" />
+          <Property Name="DateCreated" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Genre">
+          <Key>
+            <PropertyRef Name="IdGenre" />
+          </Key>
+          <Property Name="IdGenre" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Language">
+          <Key>
+            <PropertyRef Name="IdLanguage" />
+          </Key>
+          <Property Name="IdLanguage" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Request">
+          <Key>
+            <PropertyRef Name="IdRequest" />
+          </Key>
+          <Property Name="IdRequest" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LanguageId" Type="int" Nullable="false" />
+          <Property Name="Username" Type="nvarchar" MaxLength="50" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Actors" Type="nvarchar(max)" />
+          <Property Name="Director" Type="nvarchar" MaxLength="50" />
+          <Property Name="Description" Type="nvarchar" MaxLength="255" />
+          <Property Name="YearCreated" Type="int" />
+          <Property Name="DateAdded" Type="datetime" />
+          <Property Name="Link" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Request_has_Genre">
+          <Key>
+            <PropertyRef Name="RequestId" />
+            <PropertyRef Name="GenreId" />
+          </Key>
+          <Property Name="RequestId" Type="int" Nullable="false" />
+          <Property Name="GenreId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Request_has_Vote">
+          <Key>
+            <PropertyRef Name="RequestId" />
+            <PropertyRef Name="VoteId" />
+          </Key>
+          <Property Name="RequestId" Type="int" Nullable="false" />
+          <Property Name="VoteId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Subtitle">
+          <Key>
+            <PropertyRef Name="IdSubtitle" />
+          </Key>
+          <Property Name="IdSubtitle" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LanguageId" Type="int" Nullable="false" />
+          <Property Name="Username" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Actors" Type="nvarchar(max)" />
+          <Property Name="Director" Type="nvarchar" MaxLength="50" />
+          <Property Name="Description" Type="nvarchar" MaxLength="255" />
+          <Property Name="YearCreated" Type="int" />
+          <Property Name="Content" Type="nvarchar(max)" />
+          <Property Name="EditContent" Type="nvarchar(max)" />
+          <Property Name="DateAdded" Type="datetime" />
+          <Property Name="Link" Type="nvarchar" MaxLength="100" />
+          <Property Name="Download" Type="int" />
+        </EntityType>
+        <EntityType Name="Subtitle_has_Comment">
+          <Key>
+            <PropertyRef Name="SubtitleId" />
+            <PropertyRef Name="CommentId" />
+          </Key>
+          <Property Name="SubtitleId" Type="int" Nullable="false" />
+          <Property Name="CommentId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Subtitle_has_Genre">
+          <Key>
+            <PropertyRef Name="SubtitleId" />
+            <PropertyRef Name="GenreId" />
+          </Key>
+          <Property Name="SubtitleId" Type="int" Nullable="false" />
+          <Property Name="GenreId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Subtitle_has_Vote">
+          <Key>
+            <PropertyRef Name="SubtitleId" />
+            <PropertyRef Name="VoteId" />
+          </Key>
+          <Property Name="SubtitleId" Type="int" Nullable="false" />
+          <Property Name="VoteId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Vote">
+          <Key>
+            <PropertyRef Name="IdVote" />
+          </Key>
+          <Property Name="IdVote" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_User_Id">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserClaims" Type="Self.AspNetUserClaims" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserClaims">
+              <PropertyRef Name="User_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserLogins" Type="Self.AspNetUserLogins" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserLogins">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
+          <End Role="AspNetRoles" Type="Self.AspNetRoles" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetRoles">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserRoles">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserRoles">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Request_dbo_Language_LanguageId">
+          <End Role="Language" Type="Self.Language" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Request" Type="Self.Request" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Language">
+              <PropertyRef Name="IdLanguage" />
+            </Principal>
+            <Dependent Role="Request">
+              <PropertyRef Name="LanguageId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Request_has_Genre_dbo_Genre_GenreId">
+          <End Role="Genre" Type="Self.Genre" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Request_has_Genre" Type="Self.Request_has_Genre" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Genre">
+              <PropertyRef Name="IdGenre" />
+            </Principal>
+            <Dependent Role="Request_has_Genre">
+              <PropertyRef Name="GenreId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Request_has_Genre_dbo_Request_RequestId">
+          <End Role="Request" Type="Self.Request" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Request_has_Genre" Type="Self.Request_has_Genre" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Request">
+              <PropertyRef Name="IdRequest" />
+            </Principal>
+            <Dependent Role="Request_has_Genre">
+              <PropertyRef Name="RequestId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Request_has_Vote_dbo_Request_RequestId">
+          <End Role="Request" Type="Self.Request" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Request_has_Vote" Type="Self.Request_has_Vote" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Request">
+              <PropertyRef Name="IdRequest" />
+            </Principal>
+            <Dependent Role="Request_has_Vote">
+              <PropertyRef Name="RequestId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Request_has_Vote_dbo_Vote_VoteId">
+          <End Role="Vote" Type="Self.Vote" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Request_has_Vote" Type="Self.Request_has_Vote" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Vote">
+              <PropertyRef Name="IdVote" />
+            </Principal>
+            <Dependent Role="Request_has_Vote">
+              <PropertyRef Name="VoteId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Subtitle_dbo_Language_LanguageId">
+          <End Role="Language" Type="Self.Language" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Subtitle" Type="Self.Subtitle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Language">
+              <PropertyRef Name="IdLanguage" />
+            </Principal>
+            <Dependent Role="Subtitle">
+              <PropertyRef Name="LanguageId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Subtitle_has_Comment_dbo_Subtitle_CommentId">
+          <End Role="Comment" Type="Self.Comment" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Subtitle_has_Comment" Type="Self.Subtitle_has_Comment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Comment">
+              <PropertyRef Name="IdComment" />
+            </Principal>
+            <Dependent Role="Subtitle_has_Comment">
+              <PropertyRef Name="CommentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Subtitle_has_Comment_dbo_Subtitle_SubtitleId">
+          <End Role="Subtitle" Type="Self.Subtitle" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Subtitle_has_Comment" Type="Self.Subtitle_has_Comment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Subtitle">
+              <PropertyRef Name="IdSubtitle" />
+            </Principal>
+            <Dependent Role="Subtitle_has_Comment">
+              <PropertyRef Name="SubtitleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Subtitle_has_Genre_dbo_Genre_GenreId">
+          <End Role="Genre" Type="Self.Genre" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Subtitle_has_Genre" Type="Self.Subtitle_has_Genre" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Genre">
+              <PropertyRef Name="IdGenre" />
+            </Principal>
+            <Dependent Role="Subtitle_has_Genre">
+              <PropertyRef Name="GenreId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Subtitle_has_Genre_dbo_Subtitle_SubtitleId">
+          <End Role="Subtitle" Type="Self.Subtitle" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Subtitle_has_Genre" Type="Self.Subtitle_has_Genre" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Subtitle">
+              <PropertyRef Name="IdSubtitle" />
+            </Principal>
+            <Dependent Role="Subtitle_has_Genre">
+              <PropertyRef Name="SubtitleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Subtitle_has_Vote_dbo_Subtitle_SubtitleId">
+          <End Role="Subtitle" Type="Self.Subtitle" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Subtitle_has_Vote" Type="Self.Subtitle_has_Vote" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Subtitle">
+              <PropertyRef Name="IdSubtitle" />
+            </Principal>
+            <Dependent Role="Subtitle_has_Vote">
+              <PropertyRef Name="SubtitleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Subtitle_has_Vote_dbo_Vote_VoteId">
+          <End Role="Vote" Type="Self.Vote" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Subtitle_has_Vote" Type="Self.Subtitle_has_Vote" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Vote">
+              <PropertyRef Name="IdVote" />
+            </Principal>
+            <Dependent Role="Subtitle_has_Vote">
+              <PropertyRef Name="VoteId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="MSkermDataStoreContainer">
+          <EntitySet Name="__MigrationHistory" EntityType="Self.__MigrationHistory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Comment" EntityType="Self.Comment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Genre" EntityType="Self.Genre" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Language" EntityType="Self.Language" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Request" EntityType="Self.Request" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Request_has_Genre" EntityType="Self.Request_has_Genre" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Request_has_Vote" EntityType="Self.Request_has_Vote" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Subtitle" EntityType="Self.Subtitle" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Subtitle_has_Comment" EntityType="Self.Subtitle_has_Comment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Subtitle_has_Genre" EntityType="Self.Subtitle_has_Genre" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Subtitle_has_Vote" EntityType="Self.Subtitle_has_Vote" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Vote" EntityType="Self.Vote" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_User_Id" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_User_Id">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
+            <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+            <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Request_dbo_Language_LanguageId" Association="Self.FK_dbo_Request_dbo_Language_LanguageId">
+            <End Role="Language" EntitySet="Language" />
+            <End Role="Request" EntitySet="Request" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Request_has_Genre_dbo_Genre_GenreId" Association="Self.FK_dbo_Request_has_Genre_dbo_Genre_GenreId">
+            <End Role="Genre" EntitySet="Genre" />
+            <End Role="Request_has_Genre" EntitySet="Request_has_Genre" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Request_has_Genre_dbo_Request_RequestId" Association="Self.FK_dbo_Request_has_Genre_dbo_Request_RequestId">
+            <End Role="Request" EntitySet="Request" />
+            <End Role="Request_has_Genre" EntitySet="Request_has_Genre" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Request_has_Vote_dbo_Request_RequestId" Association="Self.FK_dbo_Request_has_Vote_dbo_Request_RequestId">
+            <End Role="Request" EntitySet="Request" />
+            <End Role="Request_has_Vote" EntitySet="Request_has_Vote" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Request_has_Vote_dbo_Vote_VoteId" Association="Self.FK_dbo_Request_has_Vote_dbo_Vote_VoteId">
+            <End Role="Vote" EntitySet="Vote" />
+            <End Role="Request_has_Vote" EntitySet="Request_has_Vote" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Subtitle_dbo_Language_LanguageId" Association="Self.FK_dbo_Subtitle_dbo_Language_LanguageId">
+            <End Role="Language" EntitySet="Language" />
+            <End Role="Subtitle" EntitySet="Subtitle" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Subtitle_has_Comment_dbo_Subtitle_CommentId" Association="Self.FK_dbo_Subtitle_has_Comment_dbo_Subtitle_CommentId">
+            <End Role="Comment" EntitySet="Comment" />
+            <End Role="Subtitle_has_Comment" EntitySet="Subtitle_has_Comment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Subtitle_has_Comment_dbo_Subtitle_SubtitleId" Association="Self.FK_dbo_Subtitle_has_Comment_dbo_Subtitle_SubtitleId">
+            <End Role="Subtitle" EntitySet="Subtitle" />
+            <End Role="Subtitle_has_Comment" EntitySet="Subtitle_has_Comment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Subtitle_has_Genre_dbo_Genre_GenreId" Association="Self.FK_dbo_Subtitle_has_Genre_dbo_Genre_GenreId">
+            <End Role="Genre" EntitySet="Genre" />
+            <End Role="Subtitle_has_Genre" EntitySet="Subtitle_has_Genre" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Subtitle_has_Genre_dbo_Subtitle_SubtitleId" Association="Self.FK_dbo_Subtitle_has_Genre_dbo_Subtitle_SubtitleId">
+            <End Role="Subtitle" EntitySet="Subtitle" />
+            <End Role="Subtitle_has_Genre" EntitySet="Subtitle_has_Genre" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Subtitle_has_Vote_dbo_Subtitle_SubtitleId" Association="Self.FK_dbo_Subtitle_has_Vote_dbo_Subtitle_SubtitleId">
+            <End Role="Subtitle" EntitySet="Subtitle" />
+            <End Role="Subtitle_has_Vote" EntitySet="Subtitle_has_Vote" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Subtitle_has_Vote_dbo_Vote_VoteId" Association="Self.FK_dbo_Subtitle_has_Vote_dbo_Vote_VoteId">
+            <End Role="Vote" EntitySet="Vote" />
+            <End Role="Subtitle_has_Vote" EntitySet="Subtitle_has_Vote" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="MSkermData" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="C__MigrationHistory">
+          <Key>
+            <PropertyRef Name="MigrationId" />
+            <PropertyRef Name="ContextKey" />
+          </Key>
+          <Property Name="MigrationId" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ContextKey" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Model" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+          <Property Name="ProductVersion" Type="String" MaxLength="32" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetRole">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="AspNetUsers" Relationship="Self.AspNetUserRoles" FromRole="AspNetRoles" ToRole="AspNetUsers" />
+        </EntityType>
+        <EntityType Name="AspNetUserClaim">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ClaimType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ClaimValue" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="User_Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="AspNetUser" Relationship="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_User_Id" FromRole="AspNetUserClaims" ToRole="AspNetUsers" />
+        </EntityType>
+        <EntityType Name="AspNetUserLogin">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="LoginProvider" />
+            <PropertyRef Name="ProviderKey" />
+          </Key>
+          <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LoginProvider" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ProviderKey" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="AspNetUser" Relationship="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUserLogins" ToRole="AspNetUsers" />
+        </EntityType>
+        <EntityType Name="AspNetUser">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="UserName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PasswordHash" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SecurityStamp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Discriminator" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="AspNetUserClaims" Relationship="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_User_Id" FromRole="AspNetUsers" ToRole="AspNetUserClaims" />
+          <NavigationProperty Name="AspNetUserLogins" Relationship="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserLogins" />
+          <NavigationProperty Name="AspNetRoles" Relationship="Self.AspNetUserRoles" FromRole="AspNetUsers" ToRole="AspNetRoles" />
+        </EntityType>
+        <EntityType Name="Comment">
+          <Key>
+            <PropertyRef Name="IdComment" />
+          </Key>
+          <Property Name="IdComment" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Content" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="DateCreated" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Subtitles" Relationship="Self.Subtitle_has_Comment" FromRole="Comment" ToRole="Subtitle" />
+        </EntityType>
+        <EntityType Name="Genre">
+          <Key>
+            <PropertyRef Name="IdGenre" />
+          </Key>
+          <Property Name="IdGenre" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Requests" Relationship="Self.Request_has_Genre" FromRole="Genre" ToRole="Request" />
+          <NavigationProperty Name="Subtitles" Relationship="Self.Subtitle_has_Genre" FromRole="Genre" ToRole="Subtitle" />
+        </EntityType>
+        <EntityType Name="Language">
+          <Key>
+            <PropertyRef Name="IdLanguage" />
+          </Key>
+          <Property Name="IdLanguage" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Requests" Relationship="Self.FK_dbo_Request_dbo_Language_LanguageId" FromRole="Language" ToRole="Request" />
+          <NavigationProperty Name="Subtitles" Relationship="Self.FK_dbo_Subtitle_dbo_Language_LanguageId" FromRole="Language" ToRole="Subtitle" />
+        </EntityType>
+        <EntityType Name="Request">
+          <Key>
+            <PropertyRef Name="IdRequest" />
+          </Key>
+          <Property Name="IdRequest" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LanguageId" Type="Int32" Nullable="false" />
+          <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Actors" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Director" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="YearCreated" Type="Int32" />
+          <Property Name="DateAdded" Type="DateTime" Precision="3" />
+          <Property Name="Link" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Language" Relationship="Self.FK_dbo_Request_dbo_Language_LanguageId" FromRole="Request" ToRole="Language" />
+          <NavigationProperty Name="Genres" Relationship="Self.Request_has_Genre" FromRole="Request" ToRole="Genre" />
+          <NavigationProperty Name="Votes" Relationship="Self.Request_has_Vote" FromRole="Request" ToRole="Vote" />
+        </EntityType>
+        <EntityType Name="Subtitle">
+          <Key>
+            <PropertyRef Name="IdSubtitle" />
+          </Key>
+          <Property Name="IdSubtitle" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LanguageId" Type="Int32" Nullable="false" />
+          <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Actors" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Director" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="YearCreated" Type="Int32" />
+          <Property Name="Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="EditContent" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DateAdded" Type="DateTime" Precision="3" />
+          <Property Name="Link" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Download" Type="Int32" />
+          <NavigationProperty Name="Language" Relationship="Self.FK_dbo_Subtitle_dbo_Language_LanguageId" FromRole="Subtitle" ToRole="Language" />
+          <NavigationProperty Name="Comments" Relationship="Self.Subtitle_has_Comment" FromRole="Subtitle" ToRole="Comment" />
+          <NavigationProperty Name="Genres" Relationship="Self.Subtitle_has_Genre" FromRole="Subtitle" ToRole="Genre" />
+          <NavigationProperty Name="Votes" Relationship="Self.Subtitle_has_Vote" FromRole="Subtitle" ToRole="Vote" />
+        </EntityType>
+        <EntityType Name="Vote">
+          <Key>
+            <PropertyRef Name="IdVote" />
+          </Key>
+          <Property Name="IdVote" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Requests" Relationship="Self.Request_has_Vote" FromRole="Vote" ToRole="Request" />
+          <NavigationProperty Name="Subtitles" Relationship="Self.Subtitle_has_Vote" FromRole="Vote" ToRole="Subtitle" />
+        </EntityType>
+        <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_User_Id">
+          <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserClaims" Type="Self.AspNetUserClaim" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserClaims">
+              <PropertyRef Name="User_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserLogins" Type="Self.AspNetUserLogin" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserLogins">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Request_dbo_Language_LanguageId">
+          <End Role="Language" Type="Self.Language" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Request" Type="Self.Request" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Language">
+              <PropertyRef Name="IdLanguage" />
+            </Principal>
+            <Dependent Role="Request">
+              <PropertyRef Name="LanguageId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Subtitle_dbo_Language_LanguageId">
+          <End Role="Language" Type="Self.Language" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Subtitle" Type="Self.Subtitle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Language">
+              <PropertyRef Name="IdLanguage" />
+            </Principal>
+            <Dependent Role="Subtitle">
+              <PropertyRef Name="LanguageId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="AspNetUserRoles">
+          <End Role="AspNetRoles" Type="Self.AspNetRole" Multiplicity="*" />
+          <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="*" />
+        </Association>
+        <Association Name="Request_has_Genre">
+          <End Role="Genre" Type="Self.Genre" Multiplicity="*" />
+          <End Role="Request" Type="Self.Request" Multiplicity="*" />
+        </Association>
+        <Association Name="Request_has_Vote">
+          <End Role="Request" Type="Self.Request" Multiplicity="*" />
+          <End Role="Vote" Type="Self.Vote" Multiplicity="*" />
+        </Association>
+        <Association Name="Subtitle_has_Comment">
+          <End Role="Comment" Type="Self.Comment" Multiplicity="*" />
+          <End Role="Subtitle" Type="Self.Subtitle" Multiplicity="*" />
+        </Association>
+        <Association Name="Subtitle_has_Genre">
+          <End Role="Genre" Type="Self.Genre" Multiplicity="*" />
+          <End Role="Subtitle" Type="Self.Subtitle" Multiplicity="*" />
+        </Association>
+        <Association Name="Subtitle_has_Vote">
+          <End Role="Subtitle" Type="Self.Subtitle" Multiplicity="*" />
+          <End Role="Vote" Type="Self.Vote" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="SkermData" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="C__MigrationHistory" EntityType="Self.C__MigrationHistory" />
+          <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRole" />
+          <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaim" />
+          <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogin" />
+          <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUser" />
+          <EntitySet Name="Comments" EntityType="Self.Comment" />
+          <EntitySet Name="Genres" EntityType="Self.Genre" />
+          <EntitySet Name="Languages" EntityType="Self.Language" />
+          <EntitySet Name="Requests" EntityType="Self.Request" />
+          <EntitySet Name="Subtitles" EntityType="Self.Subtitle" />
+          <EntitySet Name="Votes" EntityType="Self.Vote" />
+          <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_User_Id" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_User_Id">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Request_dbo_Language_LanguageId" Association="Self.FK_dbo_Request_dbo_Language_LanguageId">
+            <End Role="Language" EntitySet="Languages" />
+            <End Role="Request" EntitySet="Requests" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Subtitle_dbo_Language_LanguageId" Association="Self.FK_dbo_Subtitle_dbo_Language_LanguageId">
+            <End Role="Language" EntitySet="Languages" />
+            <End Role="Subtitle" EntitySet="Subtitles" />
+          </AssociationSet>
+          <AssociationSet Name="AspNetUserRoles" Association="Self.AspNetUserRoles">
+            <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+          </AssociationSet>
+          <AssociationSet Name="Request_has_Genre" Association="Self.Request_has_Genre">
+            <End Role="Genre" EntitySet="Genres" />
+            <End Role="Request" EntitySet="Requests" />
+          </AssociationSet>
+          <AssociationSet Name="Request_has_Vote" Association="Self.Request_has_Vote">
+            <End Role="Request" EntitySet="Requests" />
+            <End Role="Vote" EntitySet="Votes" />
+          </AssociationSet>
+          <AssociationSet Name="Subtitle_has_Comment" Association="Self.Subtitle_has_Comment">
+            <End Role="Comment" EntitySet="Comments" />
+            <End Role="Subtitle" EntitySet="Subtitles" />
+          </AssociationSet>
+          <AssociationSet Name="Subtitle_has_Genre" Association="Self.Subtitle_has_Genre">
+            <End Role="Genre" EntitySet="Genres" />
+            <End Role="Subtitle" EntitySet="Subtitles" />
+          </AssociationSet>
+          <AssociationSet Name="Subtitle_has_Vote" Association="Self.Subtitle_has_Vote">
+            <End Role="Subtitle" EntitySet="Subtitles" />
+            <End Role="Vote" EntitySet="Votes" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="MSkermDataStoreContainer" CdmEntityContainer="SkermData">
+          <EntitySetMapping Name="C__MigrationHistory">
+            <EntityTypeMapping TypeName="MSkermData.C__MigrationHistory">
+              <MappingFragment StoreEntitySet="__MigrationHistory">
+                <ScalarProperty Name="MigrationId" ColumnName="MigrationId" />
+                <ScalarProperty Name="ContextKey" ColumnName="ContextKey" />
+                <ScalarProperty Name="Model" ColumnName="Model" />
+                <ScalarProperty Name="ProductVersion" ColumnName="ProductVersion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetRoles">
+            <EntityTypeMapping TypeName="MSkermData.AspNetRole">
+              <MappingFragment StoreEntitySet="AspNetRoles">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUserClaims">
+            <EntityTypeMapping TypeName="MSkermData.AspNetUserClaim">
+              <MappingFragment StoreEntitySet="AspNetUserClaims">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ClaimType" ColumnName="ClaimType" />
+                <ScalarProperty Name="ClaimValue" ColumnName="ClaimValue" />
+                <ScalarProperty Name="User_Id" ColumnName="User_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUserLogins">
+            <EntityTypeMapping TypeName="MSkermData.AspNetUserLogin">
+              <MappingFragment StoreEntitySet="AspNetUserLogins">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="LoginProvider" ColumnName="LoginProvider" />
+                <ScalarProperty Name="ProviderKey" ColumnName="ProviderKey" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUsers">
+            <EntityTypeMapping TypeName="MSkermData.AspNetUser">
+              <MappingFragment StoreEntitySet="AspNetUsers">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+                <ScalarProperty Name="SecurityStamp" ColumnName="SecurityStamp" />
+                <ScalarProperty Name="Discriminator" ColumnName="Discriminator" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Comments">
+            <EntityTypeMapping TypeName="MSkermData.Comment">
+              <MappingFragment StoreEntitySet="Comment">
+                <ScalarProperty Name="IdComment" ColumnName="IdComment" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="Content" ColumnName="Content" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Genres">
+            <EntityTypeMapping TypeName="MSkermData.Genre">
+              <MappingFragment StoreEntitySet="Genre">
+                <ScalarProperty Name="IdGenre" ColumnName="IdGenre" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Languages">
+            <EntityTypeMapping TypeName="MSkermData.Language">
+              <MappingFragment StoreEntitySet="Language">
+                <ScalarProperty Name="IdLanguage" ColumnName="IdLanguage" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Requests">
+            <EntityTypeMapping TypeName="MSkermData.Request">
+              <MappingFragment StoreEntitySet="Request">
+                <ScalarProperty Name="IdRequest" ColumnName="IdRequest" />
+                <ScalarProperty Name="LanguageId" ColumnName="LanguageId" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Actors" ColumnName="Actors" />
+                <ScalarProperty Name="Director" ColumnName="Director" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="YearCreated" ColumnName="YearCreated" />
+                <ScalarProperty Name="DateAdded" ColumnName="DateAdded" />
+                <ScalarProperty Name="Link" ColumnName="Link" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Subtitles">
+            <EntityTypeMapping TypeName="MSkermData.Subtitle">
+              <MappingFragment StoreEntitySet="Subtitle">
+                <ScalarProperty Name="IdSubtitle" ColumnName="IdSubtitle" />
+                <ScalarProperty Name="LanguageId" ColumnName="LanguageId" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Actors" ColumnName="Actors" />
+                <ScalarProperty Name="Director" ColumnName="Director" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="YearCreated" ColumnName="YearCreated" />
+                <ScalarProperty Name="Content" ColumnName="Content" />
+                <ScalarProperty Name="EditContent" ColumnName="EditContent" />
+                <ScalarProperty Name="DateAdded" ColumnName="DateAdded" />
+                <ScalarProperty Name="Link" ColumnName="Link" />
+                <ScalarProperty Name="Download" ColumnName="Download" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Votes">
+            <EntityTypeMapping TypeName="MSkermData.Vote">
+              <MappingFragment StoreEntitySet="Vote">
+                <ScalarProperty Name="IdVote" ColumnName="IdVote" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="AspNetUserRoles" TypeName="MSkermData.AspNetUserRoles" StoreEntitySet="AspNetUserRoles">
+            <EndProperty Name="AspNetRoles">
+              <ScalarProperty Name="Id" ColumnName="RoleId" />
+            </EndProperty>
+            <EndProperty Name="AspNetUsers">
+              <ScalarProperty Name="Id" ColumnName="UserId" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="Request_has_Genre" TypeName="MSkermData.Request_has_Genre" StoreEntitySet="Request_has_Genre">
+            <EndProperty Name="Genre">
+              <ScalarProperty Name="IdGenre" ColumnName="GenreId" />
+            </EndProperty>
+            <EndProperty Name="Request">
+              <ScalarProperty Name="IdRequest" ColumnName="RequestId" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="Request_has_Vote" TypeName="MSkermData.Request_has_Vote" StoreEntitySet="Request_has_Vote">
+            <EndProperty Name="Request">
+              <ScalarProperty Name="IdRequest" ColumnName="RequestId" />
+            </EndProperty>
+            <EndProperty Name="Vote">
+              <ScalarProperty Name="IdVote" ColumnName="VoteId" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="Subtitle_has_Comment" TypeName="MSkermData.Subtitle_has_Comment" StoreEntitySet="Subtitle_has_Comment">
+            <EndProperty Name="Comment">
+              <ScalarProperty Name="IdComment" ColumnName="CommentId" />
+            </EndProperty>
+            <EndProperty Name="Subtitle">
+              <ScalarProperty Name="IdSubtitle" ColumnName="SubtitleId" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="Subtitle_has_Genre" TypeName="MSkermData.Subtitle_has_Genre" StoreEntitySet="Subtitle_has_Genre">
+            <EndProperty Name="Genre">
+              <ScalarProperty Name="IdGenre" ColumnName="GenreId" />
+            </EndProperty>
+            <EndProperty Name="Subtitle">
+              <ScalarProperty Name="IdSubtitle" ColumnName="SubtitleId" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="Subtitle_has_Vote" TypeName="MSkermData.Subtitle_has_Vote" StoreEntitySet="Subtitle_has_Vote">
+            <EndProperty Name="Subtitle">
+              <ScalarProperty Name="IdSubtitle" ColumnName="SubtitleId" />
+            </EndProperty>
+            <EndProperty Name="Vote">
+              <ScalarProperty Name="IdVote" ColumnName="VoteId" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

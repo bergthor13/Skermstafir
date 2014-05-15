@@ -474,6 +474,13 @@ fieldset {
     height: 200px;
 }
 
+#original-text2 {
+    width: 37%;
+    height: 200px;
+    margin-bottom: 60px;
+    max-width: 916px;
+}
+
 .Upprunaleg-thyding {
     margin: 15px 0px;
 }
@@ -493,7 +500,6 @@ fieldset {
 
 .request-box #year, .subtitle-box #year {
 	padding-left: 15px;
-
 }
 
 .request-box #lang, .subtitle-box #lang {
@@ -517,7 +523,17 @@ fieldset {
 	border: solid 1px grey;
 	margin-top: 11px;
     padding: 0px;
-	height:363px;
+	height: 363px;
+    width: 100%;
+    background: #333;
+	position:relative;
+}
+
+#create-request, .subtitle-box {
+	border: solid 1px grey;
+	margin-top: 11px;
+    padding: 0px;
+	height: auto;
     width: 100%;
     background: #333;
 	position:relative;
@@ -537,7 +553,7 @@ fieldset {
     border: solid 1px grey;
 	margin-top: 11px;
     padding: 0px;
-	height:563px;
+	height: auto;
     width: 100%;
     background: #333;
 	position:relative;
@@ -642,17 +658,21 @@ fieldset {
     margin-left:10px;
 }
 
-#comments {
-    margin-left: 150px;
+#titleError
+{
+    padding-left: 16%;
+    color: #b94a48;
+    font-weight: bold;
+    display: none;
 }
 
-#usercomments {
-    max-width: 760px;
+#bottom-request
+{
+    margin-bottom: 30px;
 }
 
-#single-comment {
-    border: 1px solid grey;
-    background: #333;
-    padding: 10px;
-    margin:5px 0px;
+#description-text
+{
+    height: 220px;
+    resize: none;
 }

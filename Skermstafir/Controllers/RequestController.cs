@@ -81,7 +81,7 @@ namespace Skermstafir.Controllers
 			}
 			else
 			{
-				reqModel.request.Actors = fc["director"];
+				reqModel.request.Actors = fc["actors"];
 			}
 
             // Set the username of the creator to either "Anonymous" (if not authenticated)
@@ -236,9 +236,9 @@ namespace Skermstafir.Controllers
 				}
 			}
 			// add union for edge results
-			//foreach (var list in ls) {
-			//	model.modelList = model.modelList.Union(list).ToList();
-			//}
+			foreach (var list in ls) {
+				model.modelList = model.modelList.Union(list).ToList();
+			}
 			return View(model);
 		}
         //Delete request
@@ -287,6 +287,21 @@ namespace Skermstafir.Controllers
 				var existsNo = new { Exists = 0 };
 				return Json(existsNo, JsonRequestBehavior.AllowGet);
 			}
+		}
+		public ActionResult OrderReqByDateAsc()
+		{
+			SkermData db = new SkermData();
+			RequestRepository requestRepo = new RequestRepository(db);
+			RequestModelList list = requestRepo.GetRequestByOldest(0, 100);
+			return View(list);
+		}
+
+		public ActionResult OrderReqByDateDesc()
+		{
+			SkermData db = new SkermData();
+			RequestRepository requestRepo = new RequestRepository(db);
+			RequestModelList list = requestRepo.GetRequestByNewest(0, 100);
+			return View(list);
 		}
 
 	}

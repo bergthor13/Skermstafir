@@ -23,6 +23,14 @@ namespace Skermstafir.Repositories {
 							   select sub).Skip(start).Take(end - start).ToList();
 			return model;
 		}
+		public SubtitleModelList GetSubtitleByOldest(int start, int end)
+		{
+			SubtitleModelList model = new SubtitleModelList();
+			model.modelList = (from sub in db.Subtitles
+							   orderby sub.DateAdded
+							   select sub).Skip(start).Take(end - start).ToList();
+			return model;
+		}
 
 		public SubtitleModelList GetSubtitleByString(String str) {
 			SubtitleModelList model = new SubtitleModelList();
@@ -37,6 +45,15 @@ namespace Skermstafir.Repositories {
 			SubtitleModelList model = new SubtitleModelList();
 			model.modelList = (from sub in db.Subtitles
 							   orderby sub.Download.Value descending
+							   orderby sub.Votes.Count descending
+							   select sub).Skip(start).Take(end - start).ToList();
+			return model;
+		}
+
+		public RequestModelList GetRequestByMostPopular(int start, int end)
+		{
+			RequestModelList model = new RequestModelList();
+			model.modelList = (from sub in db.Requests
 							   orderby sub.Votes.Count descending
 							   select sub).Skip(start).Take(end - start).ToList();
 			return model;
@@ -127,6 +144,7 @@ namespace Skermstafir.Repositories {
 			Vote vote = (from item in db.Votes
 						 where item.UserId == userId
 						 select item).SingleOrDefault();
+
 			return vote;
 		}
 
@@ -159,6 +177,12 @@ namespace Skermstafir.Repositories {
 			List<Vote> voteList = (from item in db.Votes
 									   select item).ToList();
 			return voteList;
+		}
+
+		public void AddVoteToUserId(Vote vote, string userId)
+		{
+			vote.UserId = userId;
+			db.SaveChanges();
 		}
 
 		public void AddCommentToSub(Comment com, Subtitle sub) {

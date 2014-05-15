@@ -12,7 +12,7 @@ namespace Skermstafir.Interfaces {
 		SubtitleModelList GetSubtitleByNewest(int start, int end);
 
 		// queries database to get a list of most popular subtitles starting at index start and ending at index end both inclusive
-		SubtitleModelList GetSubtitleByMostPopular(int start, int end);
+		RequestModelList GetRequestByMostPopular(int start, int end);
 
 		// queries database and gets subtitles from a specific user starting at index start and ending at index end both inclusice
 		SubtitleModelList GetSubtitlesByUserName(String username);

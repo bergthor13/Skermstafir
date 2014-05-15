@@ -41,12 +41,21 @@ namespace Skermstafir.Repositories
             return model;
         }
 
+		public RequestModelList GetRequestByOldest(int start, int end)
+		{
+			RequestModelList model = new RequestModelList();
+			model.modelList = (from req in db.Requests
+							   orderby req.DateAdded ascending
+							   select req).Skip(start).Take(end - start).ToList();
+			return model;
+		}
+
         // queries database and gets most popular requests starting at index start and ending at index end
         public RequestModelList GetByMostPopular(int start, int end)
         {
             RequestModelList model = new RequestModelList();
             model.modelList = (from req in db.Requests
-                               orderby req.Votes.Count
+                               orderby req.Votes.Count descending
                                select req).Skip(start).Take(end - start).ToList();
             return model;
         }
