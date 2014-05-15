@@ -4,119 +4,111 @@
 @{
 	ViewBag.Title = @Model.subtitle.Name;
 }
-
-<div class="subtitle-box">
-	<div class="box-title">
-		@Model.subtitle.Name (@Model.subtitle.YearCreated)
-		<p class="votes-req-page"><a href="javascript:void(0);"><span class="blueup" onclick="PostSubtitleUpvote(@Model.subtitle.IdSubtitle);">▲</span></a> <span id="subVoteCount-@Model.subtitle.IdSubtitle">@Model.subtitle.Votes.Count</span></p>
-	</div>
-
-	<div class="flokkar-view-edit">
-		<input type="checkbox" checked="@Model.genreValue[0]" id="genre1" disabled />
-		<label for="genre1">Kvikmyndir</label>
-		<input type="checkbox" checked="@Model.genreValue[1]" id="genre2" disabled />
-		<label for="genre2">Þættir</label>
-		<input type="checkbox" checked="@Model.genreValue[2]" id="genre3" disabled />
-		<label for="genre3">Barnaefni</label>
-		<input type="checkbox" checked="@Model.genreValue[3]" id="genre4" disabled />
-		<label for="genre4">Heimildir</label> <br />
-		<input type="checkbox" checked="@Model.genreValue[4]" id="genre5" disabled />
-		<label for="genre5">Gaman</label>
-		<input type="checkbox" checked="@Model.genreValue[5]" id="genre6" disabled />
-		<label for="genre6">Spenna</label>
-		<input type="checkbox" checked="@Model.genreValue[6]" id="genre7" disabled />
-		<label for="genre7">Drama</label>
-		<input type="checkbox" checked="@Model.genreValue[7]" id="genre8" disabled />
-		<label for="genre8">Ævintýri</label>
-	</div>
-
-	<span id="description">
-		<p class="make-me-bold">Lýsing:</p>
-        @Model.subtitle.Description
-	</span>
-
-	@if (true)
-{
-    <input id="edit-subtitle" class="btn btn-default downloadbtn" type="button" name="createSubtitle" value="Breyta þýðingu" onclick="location.href='@Url.Action("EditSubtitle", "Subtitle", new { id = Model.subtitle.IdSubtitle })'" />
-}
-
-    <input id="download" class="btn btn-default downloadbtn" type="button" name="createSubtitle" onclick="location.href='@Url.Action("Download", "Subtitle", new { id = Model.subtitle.IdSubtitle })'" value="Niðurhala" />
-
-	<p class="info">
-		<span class="col-md-2">Stofnandi þýðingar:</span>
-		@Model.subtitle.Username
-	</p>
-
-	<p class="info">
-		<span class="col-md-2">Tungumál:</span>
-		<span id="language-with-flag">
-			@if (Model.subtitle.Language.IdLanguage == 1)
-            {
-               <img src="http://www.senojflags.com/images/national-flag-icons/Iceland-Flag.png" alt="Flag" />
-                @Model.subtitle.Language.Name
-            }
-            else
-            {
-                <img src="http://www.senojflags.com/images/national-flag-icons/England-Flag.png" alt="Flag" />
-                @Model.subtitle.Language.Name
-            }
-         </span>
-	<p class="info">
-        <span class="col-md-2">Aðalleikarar:</span>
-        @Model.subtitle.Actors
-	</p>
-
-	<p class="info">
-        <span class="col-md-2">Leikstjóri:</span>
-        @Model.subtitle.Director
-	</p>
-
-	<p class="info">
-        <span class="col-md-2">Útgáfuár:</span>
-        @Model.subtitle.YearCreated
-	</p>
-
-	<p class="info">
-        <span class="col-lg-offset-1"><a href="@Model.subtitle.Link"><b>Linkur á myndband</b></a></span>
-	</p>
-</div>
-
-
-<div class="col-md-6">
-	<h3 align="center">Upprunalegur texti:</h3>
-	<textarea id="originalText" cols="900" rows="40" disabled>@Model.subtitle.Content</textarea>
-</div>
-
-<div class="col-md-6">
-	<h3 align="center">Þýðing:</h3>
-	<textarea id="editedText" cols="900" rows="40" disabled>@Model.subtitle.EditContent</textarea>
-</div>
-
-<div id="comments" class="col-md-8">
-    <h3>Athugasemdir:</h3>
-    @if (User.Identity.IsAuthenticated) { 
-        using (Html.BeginForm("Comment", "Subtitle")) {
-            <ul class="list-group" id="comment" style="max-width: 760px;">
-            <li class="list-group-item" id="comment-box">
-                <div class="form-horizontal">
-                    <label class="sr-only" for="CommentText">Comment</label>
-                    <textarea class="form-control" rows="3" id="CommentText1" name="CommentText1" placeholder="Tjáðu þig um þessa þýðingu."></textarea><br />
-                    <button type="submit" id="btnSave1" value="Save" class="btn btn-primary" onclick="">Senda</button>
-                    <input hidden="hidden" name="id" value="@Model.subtitle.IdSubtitle" />
-                </div>
-            </li>
-        </ul>
-        }
-    }
-            
-    <div id="usercomments">
-    @foreach (var item in Model.subtitle.Comments) {
-        <div id="single-comment">
-            <span class="glyphicon glyphicon-user make-me-green"></span>
-            <span class="make-me-green">@item.Username</span>
-            <span class="commentdate">Sent þann: @item.DateCreated</span>
-            <p>@item.Content </p>
+<div class="row">
+    <div class="subtitle-box">
+        <div class="box-title">
+            @Model.subtitle.Name (@Model.subtitle.YearCreated)
+            <p class="votes-req-page"><a href="javascript:void(0);"><span class="blueup" onclick="PostSubtitleUpvote(@Model.subtitle.IdSubtitle);">▲</span></a> <span id="subVoteCount-@Model.subtitle.IdSubtitle">@Model.subtitle.Votes.Count</span></p>
         </div>
-    }
+        <div class="flokkar-view-edit">
+            <input type="checkbox" checked="@Model.genreValue[0]" id="genre1" disabled />
+            <label for="genre1">Kvikmyndir</label>
+            <input type="checkbox" checked="@Model.genreValue[1]" id="genre2" disabled />
+            <label for="genre2">Þættir</label>
+            <input type="checkbox" checked="@Model.genreValue[2]" id="genre3" disabled />
+            <label for="genre3">Barnaefni</label>
+            <input type="checkbox" checked="@Model.genreValue[3]" id="genre4" disabled />
+            <label for="genre4">Heimildir</label> <br />
+            <input type="checkbox" checked="@Model.genreValue[4]" id="genre5" disabled />
+            <label for="genre5">Gaman</label>
+            <input type="checkbox" checked="@Model.genreValue[5]" id="genre6" disabled />
+            <label for="genre6">Spenna</label>
+            <input type="checkbox" checked="@Model.genreValue[6]" id="genre7" disabled />
+            <label for="genre7">Drama</label>
+            <input type="checkbox" checked="@Model.genreValue[7]" id="genre8" disabled />
+            <label for="genre8">Ævintýri</label>
+        </div>
+        <span id="description">
+            <p class="make-me-bold">Lýsing:</p>
+            @Model.subtitle.Description
+        </span>
+        @if (true)
+        {
+            <input id="edit-subtitle" class="btn btn-default downloadbtn" type="button" name="createSubtitle" value="Breyta þýðingu" onclick="location.href='@Url.Action("EditSubtitle", "Subtitle", new { id = Model.subtitle.IdSubtitle })'" />
+        }
+        <input id="download" class="btn btn-default downloadbtn" type="button" name="createSubtitle" onclick="location.href='@Url.Action("Download", "Subtitle", new { id = Model.subtitle.IdSubtitle })'" value="Niðurhala" />
+        <p class="info">
+            <span class="col-md-2">Stofnandi þýðingar:</span>
+            @Model.subtitle.Username
+        </p>
+        <p class="info">
+            <span class="col-md-2">Tungumál:</span>
+            <span id="language-with-flag">
+                @if (Model.subtitle.Language.IdLanguage == 1)
+                {
+                    <img src="http://www.senojflags.com/images/national-flag-icons/Iceland-Flag.png" alt="Flag" />
+                    @Model.subtitle.Language.Name
+                }
+                else
+                {
+                    <img src="http://www.senojflags.com/images/national-flag-icons/England-Flag.png" alt="Flag" />
+                    @Model.subtitle.Language.Name
+                }
+            </span>
+        <p class="info">
+            <span class="col-md-2">Aðalleikarar:</span>
+            @Model.subtitle.Actors
+        </p>
+        <p class="info">
+            <span class="col-md-2">Leikstjóri:</span>
+            @Model.subtitle.Director
+        </p>
+        <p class="info">
+            <span class="col-md-2">Útgáfuár:</span>
+            @Model.subtitle.YearCreated
+        </p>
+        <p class="info">
+            <span class="col-lg-offset-1"><a href="@Model.subtitle.Link"><b>Linkur á myndband</b></a></span>
+        </p>
+    </div>
+
+    <div class="col-md-6">
+        <h3 align="center">Upprunalegur texti:</h3>
+        <textarea id="originalText" cols="900" rows="40" disabled>@Model.subtitle.Content</textarea>
+    </div>
+    <div class="col-md-6">
+        <h3 align="center">Þýðing:</h3>
+        <textarea id="editedText" cols="900" rows="40" disabled>@Model.subtitle.EditContent</textarea>
+    </div>
+    <div id="comments" class="col-md-8">
+        <h3>Athugasemdir:</h3>
+        @if (User.Identity.IsAuthenticated)
+        {
+            using (Html.BeginForm("Comment", "Subtitle"))
+            {
+                <ul class="list-group" id="comment" style="max-width: 760px;">
+                    <li class="list-group-item" id="comment-box">
+                        <div class="form-horizontal">
+                            <label class="sr-only" for="CommentText">Comment</label>
+                            <textarea class="form-control" rows="3" id="CommentText1" name="CommentText1" placeholder="Tjáðu þig um þessa þýðingu."></textarea><br />
+                            <button type="submit" id="btnSave1" value="Save" class="btn btn-primary" onclick="">Senda</button>
+                            <input hidden="hidden" name="id" value="@Model.subtitle.IdSubtitle" />
+                        </div>
+                    </li>
+                </ul>
+            }
+        }
+
+        <div id="usercomments">
+            @foreach (var item in Model.subtitle.Comments)
+            {
+                <div id="single-comment">
+                    <span class="glyphicon glyphicon-user make-me-green"></span>
+                    <span class="make-me-green">@item.Username</span>
+                    <span class="commentdate">Sent þann: @item.DateCreated</span>
+                    <p>@item.Content </p>
+                </div>
+            }
+        </div>
     </div>
 </div>
