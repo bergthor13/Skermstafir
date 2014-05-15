@@ -155,13 +155,11 @@ namespace Skermstafir.Controllers
 			sModel.subtitle.Link		= rModel.request.Link;
 			sModel.subtitle.Director    = rModel.request.Director;
 			sModel.subtitle.Actors      = rModel.request.Actors;
-			// Put genres in a bool array
-			// FillModel(sModel);
 
 			// Put genres in a bool array
-			foreach (var item in rModel.request.Genres)
+			foreach (var item in sModel.subtitle.Genres)
 			{
-				rModel.genreValue[item.IdGenre - 1] = true;
+				sModel.genreValue[item.IdGenre - 1] = true;
 			}
 
 			return View("CreateSubtitle", sModel);
