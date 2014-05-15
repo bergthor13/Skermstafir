@@ -8,7 +8,7 @@
 <div class="row">
     <div class="subtitle-box">
         <div class="box-title">
-            @Model.subtitle.Name (@Model.subtitle.YearCreated)
+            <p>Þýðing fyrir @Model.subtitle.Name (@Model.subtitle.YearCreated)</p>
             <p class="votes-req-page"><a href="javascript:void(0);"><span class="blueup" onclick="PostSubtitleUpvote(@Model.subtitle.IdSubtitle);">▲</span></a> <span id="subVoteCount-@Model.subtitle.IdSubtitle">@Model.subtitle.Votes.Count</span></p>
         </div>
         <div class="flokkar-view-edit">
@@ -57,12 +57,12 @@
                 }
             </span>
         <p class="info">
-            <span class="col-md-2">Aðalleikarar:</span>
-            @Model.subtitle.Actors
-        </p>
-        <p class="info">
             <span class="col-md-2">Leikstjóri:</span>
             @Model.subtitle.Director
+        </p>
+        <p class="info">
+            <span class="col-md-2">Aðalleikarar:</span>
+            @Model.subtitle.Actors
         </p>
         <p class="info">
             <span class="col-md-2">Útgáfuár:</span>

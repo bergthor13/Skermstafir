@@ -269,6 +269,11 @@ h4.changepw {
     margin: 0;
 }
 
+.rada-eftir-dags {
+    position: absolute;
+    right: 0px;
+}
+
 .fp-list .first-column {
 	width: 20px
 }
@@ -710,7 +715,11 @@ fieldset {
     position: relative;
 }
 
-#originalText, #editedText
+#originalText, #editedText, #CommentText1
 {
     resize: none;
+}
+
+.make-me-relative {
+    position: relative;
 }
