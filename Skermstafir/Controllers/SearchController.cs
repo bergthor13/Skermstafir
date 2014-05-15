@@ -28,7 +28,7 @@ namespace Skermstafir.Controllers
 
 			// Search by language
 			List<Subtitle> langResult = new List<Subtitle>();
-			langResult = sc.GetSubtitleByLanguage(form["language"], 0, 5).modelList;
+			langResult = sc.GetSubtitleByLanguage(form["language"], 0, 10).modelList;
 
 			//Search by creation year
 			int start, end;
