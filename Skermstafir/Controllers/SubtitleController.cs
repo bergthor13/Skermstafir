@@ -64,11 +64,7 @@ namespace Skermstafir.Controllers
                 model.subtitle.Description = fc["description"];
             }
 
-            if (fc["link"] == "")
-            {
-                model.subtitle.Link = "Ekki skráð.";
-            }
-            else
+            if (fc["link"] != "")
             {
                 model.subtitle.Link = fc["link"];
             }
