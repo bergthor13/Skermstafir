@@ -39,7 +39,6 @@ namespace Skermstafir.Tests.Controllers {
 			// Arrange
 			// Act
 			// Assert
-			// Rollback
         }
 
         // queries database and gets most popular requests starting at index start and ending at index end
@@ -49,7 +48,6 @@ namespace Skermstafir.Tests.Controllers {
 			// Arrange
 			// Act
 			// Assert
-			// Rollback
         }
 
         // queries database and gets all requests from a specific user starting at index start and ending at index end both inclusive
@@ -59,7 +57,6 @@ namespace Skermstafir.Tests.Controllers {
 			// Arrange
 			// Act
 			// Assert
-			// Rollback
         }
 
         // queries and gets a request by id
@@ -69,7 +66,6 @@ namespace Skermstafir.Tests.Controllers {
 			// Arrange
 			// Act
 			// Assert
-			// Rollback
         }
 
         // queries database and gets request in language starting at index start and ending at index end both inclusive
@@ -79,7 +75,6 @@ namespace Skermstafir.Tests.Controllers {
 			// Arrange
 			// Act
 			// Assert
-			// Rollback
         }
 
 		[TestMethod]
@@ -87,7 +82,6 @@ namespace Skermstafir.Tests.Controllers {
 			// Arrange
 			// Act
 			// Assert
-			// Rollback
 		}
 
 		[TestMethod]
@@ -95,7 +89,6 @@ namespace Skermstafir.Tests.Controllers {
 			// Arrange
 			// Act
 			// Assert
-			// Rollback
 		}
 
 		[TestMethod]
@@ -103,7 +96,6 @@ namespace Skermstafir.Tests.Controllers {
 			// Arrange
 			// Act
 			// Assert
-			// Rollback
 		}
 
 		[TestMethod]
@@ -139,7 +131,6 @@ namespace Skermstafir.Tests.Controllers {
 			// Arrange
 			// Act
 			// Assert
-			// Rollback
 		}
 	}
 }
