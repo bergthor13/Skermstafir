@@ -145,9 +145,9 @@ namespace Skermstafir.Controllers
 			SubtitleModel sModel = new SubtitleModel();
 			RequestRepository rr = new RequestRepository(db);
 			RequestModel rModel = new RequestModel();
+            SearchRepository searchRepo = new SearchRepository(db);
 			int idValue = id.Value;
 			rModel = rr.GetRequestByID(idValue);
-			sModel.subtitle.Genres      = rModel.request.Genres;
 			sModel.subtitle.YearCreated = rModel.request.YearCreated;
 			sModel.subtitle.Name        = rModel.request.Name;
 			sModel.subtitle.Language    = rModel.request.Language;
@@ -155,14 +155,19 @@ namespace Skermstafir.Controllers
 			sModel.subtitle.Link		= rModel.request.Link;
 			sModel.subtitle.Director    = rModel.request.Director;
 			sModel.subtitle.Actors      = rModel.request.Actors;
-			// Put genres in a bool array
-			// FillModel(sModel);
-
-			// Put genres in a bool array
-			foreach (var item in rModel.request.Genres)
-			{
-				rModel.genreValue[item.IdGenre - 1] = true;
-			}
+            // Put genres in a bool array
+            foreach (var item in rModel.request.Genres)
+            {
+                rModel.genreValue[item.IdGenre - 1] = true;
+            }
+            // Add genres to subtitle model
+            for (int i = 0; i < 8; i++)
+            {
+                if (rModel.genreValue[i] == true)
+                {
+                    sModel.genreValue[i] = true;
+                }
+            }
 
 			return View("CreateSubtitle", sModel);
 		}
