@@ -29,10 +29,10 @@
             <input type="checkbox" checked="@Model.genreValue[7]" id="genre8" disabled />
             <label for="genre8">Ævintýri</label>
         </div>
-        <span id="description">
+        <div id="description">
             <p class="make-me-bold">Lýsing:</p>
             @Model.subtitle.Description
-        </span>
+        </div>
         @if (true)
         {
             <input id="edit-subtitle" class="btn btn-default downloadbtn" type="button" name="createSubtitle" value="Breyta þýðingu" onclick="location.href='@Url.Action("EditSubtitle", "Subtitle", new { id = Model.subtitle.IdSubtitle })'" />

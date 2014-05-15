@@ -449,19 +449,43 @@ namespace Skermstafir.Controllers
 			}
 		}
 
-
+        // Deletes the subtitle that id == 'id'
 		[Authorize]
         public ActionResult DeleteSubtitle(int? id)
         {
-			SkermData db = new SkermData();
-            SubtitleRepository subRepo = new SubtitleRepository(db);
+            // Parameter value check
+            if (!id.HasValue)
+            {
+                return View("Errors/NoSubFound");
+            }
             int idValue = id.Value;
-            subRepo.DeleteSubtitle(idValue);
-            return RedirectToAction("Manage", "Account");
+
+            using (SkermData db = new SkermData())
+            {
+                SubtitleRepository subRepo = new SubtitleRepository(db);
+                SearchRepository serRepo = new SearchRepository(db);
+                Subtitle toBeRemoved = serRepo.GetSubtitleByID(idValue).subtitle;
+
+                // Existence check
+                if (toBeRemoved == null)
+                {
+                    return View("Errors/NoSubFound");
+                }
+                string ownerName = serRepo.GetSubtitleByID(idValue).subtitle.Username;
+                
+                // Authorization check
+                if (ownerName != User.Identity.GetUserName())
+                {
+                    return View("Errors/NoSubFound");
+                }
+
+                subRepo.DeleteSubtitle(idValue);
+                return RedirectToAction("Manage", "Account");
+            }
         }
 
 		// <summary>
-		// posts a comment and returns all comments from that subtitle as JSON
+		// posts a comment to the database and redirects to the subtitle that was commented on
 		// </summary>
 		[Authorize]
 		public ActionResult Comment(FormCollection form) 
@@ -480,17 +504,32 @@ namespace Skermstafir.Controllers
         [Authorize]
         public ActionResult DeleteComment(int? id, int? subID)
         {
+            // Parameter value check
+            if (!id.HasValue || !subID.HasValue)
+            {
+                return View("Errors/NoSubFound");
+            }
+
+            int idValue = id.Value;
+            int idRedirect = subID.Value;
             using (SkermData db = new SkermData())
             {
-                SubtitleRepository subRepo = new SubtitleRepository(db);
-                int idValue = id.Value;
-                int idRedirect = subID.Value;
-                string ownerOfComment = subRepo.GetCommentById(idValue).Username;
-                if (ownerOfComment != User.Identity.GetUserName())
+                SearchRepository serRepo = new SearchRepository(db);
+                Comment toBeRemoved = serRepo.GetCommentById(idValue);
+
+                // Existence check
+                if (toBeRemoved == null)
                 {
                     return View("Errors/NoSubFound");
                 }
-                subRepo.DeleteComment(idValue);
+                string ownerName = toBeRemoved.Username;
+                
+                // Authorization check
+                if (ownerName != User.Identity.GetUserName())
+                {
+                    
+                }
+                serRepo.DeleteComment(idValue);
                 return RedirectToAction("ShowSubtitle", new { id = idRedirect });
             }
         }

@@ -223,5 +223,24 @@ namespace Skermstafir.Repositories {
 			subtitle.Download = downloads;
 			db.SaveChanges();
 		}
+
+        // Delete the comment with the 'id'.
+        public void DeleteComment(int id)
+        {
+            Comment toBeRemoved = (from comment in db.Comments
+                                   where comment.IdComment == id
+                                   select comment).FirstOrDefault();
+            db.Comments.Remove(toBeRemoved);
+            db.SaveChanges();
+        }
+
+        // Get the comment with the 'id'.
+        public Comment GetCommentById(int id)
+        {
+            Comment toBeReturned = (from comment in db.Comments
+                                    where comment.IdComment == id
+                                    select comment).FirstOrDefault();
+            return toBeReturned;
+        }
 	}
 }

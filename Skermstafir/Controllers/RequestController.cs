@@ -244,11 +244,35 @@ namespace Skermstafir.Controllers
         //Delete request
         public ActionResult DeleteRequest(int? id)
         {
-			SkermData db = new SkermData();
-            RequestRepository reqRepo = new RequestRepository(db);
+            // Parameter value check
+            if (!id.HasValue)
+            {
+                return View("Errors/NoSubFound");
+            }
+
             int idValue = id.Value;
-            reqRepo.DeleteRequest(idValue);
-            return RedirectToAction("Manage", "Account");
+            using (SkermData db = new SkermData())
+            {
+                RequestRepository reqRepo = new RequestRepository(db);
+                SearchRepository serRepo = new SearchRepository(db);
+                Request toBeRemoved = reqRepo.GetRequestByID(idValue).request;
+
+                // Existence check
+                if (toBeRemoved == null)
+                {
+                    return View("Errors/NoSubFound");
+                }
+                string ownerName = reqRepo.GetRequestByID(idValue).request.Username;
+
+                // Authorization check
+                if (ownerName != User.Identity.GetUserName())
+                {
+                    return View("Errors/NoSubFound");
+                }
+
+                reqRepo.DeleteRequest(idValue);
+                return RedirectToAction("Manage", "Account");
+            }
         }
 
 		public ActionResult UpvoteRequest(int reqid)
