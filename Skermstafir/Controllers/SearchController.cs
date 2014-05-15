@@ -110,7 +110,7 @@ namespace Skermstafir.Controllers
 			SkermData db = new SkermData();
 			SearchRepository searchRepo = new SearchRepository(db);
 			SubtitleModelList list = searchRepo.GetSubtitleByNewest(0, 100);
-			return View(list);
+			return  View(list);
 		}
 	}
 }
