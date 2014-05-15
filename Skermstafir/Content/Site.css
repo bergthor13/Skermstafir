@@ -617,6 +617,12 @@ fieldset {
     color: #65E17B;
 }
 
+.commentdate {
+    position: absolute;
+    right: 15px;
+    top: 8px;
+}
+
 .flokkar
 {
     margin-top: 10px;
@@ -685,4 +691,5 @@ fieldset {
     background: #333;
     padding: 10px;
     margin:5px 0px;
+    position: relative;
 }
