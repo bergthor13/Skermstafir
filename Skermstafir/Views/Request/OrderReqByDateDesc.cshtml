@@ -4,12 +4,18 @@
 }
 
 @Html.Partial("_SearchRequests")
-<h4>Beiðnir</h4>
-<button type="button"
-		class="btn btn-default downloadbtn"
-		onclick="location.href='@Url.Action("CreateSubtitle", "Subtitle")'">Stofna beiðni</button>
-<button type="button"
-		class="btn btn-default downloadbtn"
-		onclick="location.href='@Url.Action("OrderReqByDateAsc", "Request")'">Raða eftir dagsetningu ▼</button>
+<h3>Beiðnir</h3>
+<div class="make-me-relative">
+    <button type="button"
+            class="btn btn-default downloadbtn"
+            onclick="location.href='@Url.Action("CreateSubtitle", "Subtitle")'">
+        Stofna beiðni
+    </button>
+    <button type="button"
+            class="btn btn-default downloadbtn rada-eftir-dags"
+            onclick="location.href='@Url.Action("OrderReqByDateAsc", "Request")'">
+        Raða eftir dagsetningu ▼
+    </button>
+</div>
 
 @Html.Partial("_SearchResultRequests")

@@ -536,7 +536,7 @@ namespace Skermstafir.Controllers
                 // Authorization check
                 if (ownerName != User.Identity.GetUserName())
                 {
-                    
+                    return View("Errors/NoSubFound");
                 }
                 serRepo.DeleteComment(idValue);
                 return RedirectToAction("ShowSubtitle", new { id = idRedirect });
