@@ -14,14 +14,14 @@ using Skermstafir.Repositories;
 namespace Skermstafir.Controllers
 {
     [Authorize]
-    public class AccountController : Controller
+    public class Order : Controller
     {
-        public AccountController()
+        public Order()
             : this(new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext())))
         {
         }
 
-        public AccountController(UserManager<ApplicationUser> userManager)
+        public Order(UserManager<ApplicationUser> userManager)
         {
             UserManager = userManager;
         }

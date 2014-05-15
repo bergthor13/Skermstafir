@@ -7,11 +7,11 @@ using Skermstafir.Interfaces;
 
 namespace Skermstafir.Repositories
 {
-    public class SubtitleRepository : ISubtitleRepository
+    public class AddCommentToSu : ISubtitleRepository
     {
 		public SkermData db;
 
-		public SubtitleRepository(SkermData connection) 
+		public AddCommentToSu(SkermData connection) 
         {
 			db = connection;
 		}
