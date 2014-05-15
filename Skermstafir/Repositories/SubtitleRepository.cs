@@ -11,7 +11,8 @@ namespace Skermstafir.Repositories
     {
 		public SkermData db;
 
-		public SubtitleRepository(SkermData connection) {
+		public SubtitleRepository(SkermData connection) 
+        {
 			db = connection;
 		}
 
@@ -49,9 +50,7 @@ namespace Skermstafir.Repositories
 			toBeChanged.Link		= editSub.subtitle.Link;
             toBeChanged.Director    = editSub.subtitle.Director;
             toBeChanged.Actors      = editSub.subtitle.Actors;
-            
-			//toBeChanged.Genres = editSub.subtitle.Genres;
-            
+
 			db.SaveChanges();	
         }
 
@@ -71,5 +70,23 @@ namespace Skermstafir.Repositories
 			sub.Comments.Add(com);
 			db.SaveChanges();
 		}
+
+        // Delete the comment with the 'id'.
+        public void DeleteComment(int id)
+        {
+            Comment toBeRemoved = (from comment in db.Comments
+                                   where comment.IdComment == id
+                                   select comment).FirstOrDefault();
+            db.Comments.Remove(toBeRemoved);
+            db.SaveChanges();
+        }
+
+        public Comment GetCommentById(int id)
+        {
+            Comment toBeReturned = (from comment in db.Comments
+                                    where comment.IdComment == id
+                                    select comment).FirstOrDefault();
+            return toBeReturned;
+        }
 	}
 }

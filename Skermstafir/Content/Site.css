@@ -519,21 +519,11 @@ fieldset {
 	width:400px;
 }
 
-.subtitle-box {
-	border: solid 1px grey;
-	margin-top: 11px;
-    padding: 0px;
-	height: 363px;
-    width: 100%;
-    background: #333;
-	position:relative;
-}
-
 #create-request, .subtitle-box {
 	border: solid 1px grey;
 	margin-top: 11px;
-    padding: 0px;
-	height: auto;
+    padding-bottom: 20px;
+	height: 100%;
     width: 100%;
     background: #333;
 	position:relative;
@@ -578,7 +568,7 @@ fieldset {
 
 .subtitle-box #download {
 	position:absolute;
-	right:15px;
+	right:50px;
 	bottom:15px;
 }
 .subtitle-box .info {
@@ -599,7 +589,7 @@ fieldset {
 
 .subtitle-box #edit-subtitle {
 	position:absolute;
-	right:95px;
+	right:135px;
 	bottom:15px;
 }
 
@@ -625,6 +615,27 @@ fieldset {
 
 .make-me-green {
     color: #65E17B;
+}
+
+.commentdate {
+    position: absolute;
+    right: 40px;
+    top: 8px;
+}
+
+.commentdelete {
+    position: absolute;
+    right: 8px;
+    top: 8px;
+    background-color: #428bca;
+    border-color: #357ebd;
+    color: white;
+}
+
+.commentdelete:hover {
+    color: white;
+    background-color: #3672ba;
+    border-color: #3672ba;
 }
 
 .flokkar
@@ -681,6 +692,11 @@ fieldset {
     margin-left: 150px;
 }
 
+#comment-box {
+    background: #333;
+    border: 1px solid grey;
+}
+
 #usercomments {
     max-width: 760px;
 }
@@ -690,4 +706,10 @@ fieldset {
     background: #333;
     padding: 10px;
     margin:5px 0px;
+    position: relative;
+}
+
+#originalText, #editedText
+{
+    resize: none;
 }

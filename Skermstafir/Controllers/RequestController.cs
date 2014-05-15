@@ -185,7 +185,7 @@ namespace Skermstafir.Controllers
 			if (form["startYear"] != "") {
 				start = Convert.ToInt32(form["startYear"]);
 			} else {
-				start = 0;
+				start = 1;
 			}
 			if (form["endYear"] != "") {
 				end = Convert.ToInt32(form["endYear"]);

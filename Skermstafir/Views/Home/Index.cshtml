@@ -34,7 +34,6 @@
                 </div>
                 <h4 class="second-column">@Html.ActionLink((string)item.Name, "ShowSubtitle", new { controller = "Subtitle", id = item.IdSubtitle }, "Subtitle")</h4>
                 <p id="year">Útgáfuár: @item.YearCreated</p>
-
                 <div class="third-column">
                     <button type="button" class="btn btn-default downloadbtn" onclick="location.href='@Url.Action("Download", "Subtitle", new { id = item.IdSubtitle })'">
                         <p>Niðurhala</p>
@@ -62,10 +61,8 @@
                         <img src="http://www.senojflags.com/images/national-flag-icons/England-Flag.png" alt="Flag" />
                     }
                 </div>
-
                 <h4 class="second-column">@Html.ActionLink((string)item.Name, "ShowRequest", new { controller = "Request", id = item.IdRequest }, "Request")</h4>
                 <p id="year">Útgáfuár: @item.YearCreated</p>
-
                 <div class="third-column">
                     <button type="button" class="btn btn-default downloadbtn" onclick="location.href='@Url.Action("CreateSubtitleFromRequest", "Subtitle", new { id = item.IdRequest })'">
                         <p>Stofna þýðingu</p>
@@ -75,7 +72,6 @@
             </div>
         }
     </div>
-
     <div id="newest-translations" class="col-md-6 tranreq-list tranList">
         <p class="box-title">Nýjustu þýðingar</p>
         @foreach (var item in Model.newestSubtitleList.modelList)
@@ -94,10 +90,8 @@
                         <img src="http://www.senojflags.com/images/national-flag-icons/England-Flag.png" alt="Flag" />
                     }
                 </div>
-
                 <h4 class="second-column">@Html.ActionLink((string)item.Name, "ShowSubtitle", new { controller = "Subtitle", id = item.IdSubtitle }, "Subtitle")</h4>
                 <p id="year">Útgáfuár: @item.YearCreated</p>
-
                 <div class="third-column">
                     <button type="button" class="btn btn-default downloadbtn" onclick="location.href='@Url.Action("Download", "Subtitle", new { id = item.IdSubtitle })'">
                         <p>Niðurhala</p>
@@ -107,7 +101,6 @@
             </div>
         }
     </div>
-
     <div id="newest-requests" class="col-md-6 tranreq-list reqList">
         <p class="box-title">Nýjustu beiðnir</p>
         @foreach (var item in Model.newestRequestList.modelList)
@@ -126,10 +119,8 @@
                         <img src="http://www.senojflags.com/images/national-flag-icons/England-Flag.png" alt="Flag" />
                     }
                 </div>
-
                 <h4 class="second-column">@Html.ActionLink((string)item.Name, "ShowRequest", new { controller = "Request", id = item.IdRequest }, "Request")</h4>
                 <p id="year">Útgáfuár: @item.YearCreated</p>
-
                 <div class="third-column">
                     <button type="button" class="btn btn-default downloadbtn" onclick="location.href='@Url.Action("CreateSubtitleFromRequest", "Subtitle", new { id = item.IdRequest })'">
                         <p>Stofna þýðingu</p>

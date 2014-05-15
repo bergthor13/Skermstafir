@@ -44,14 +44,7 @@ namespace Skermstafir.Controllers
             model.subtitle.Username = User.Identity.Name;
 
             // Set basic info to the new subtitle model
-            if(fc["title"] == "")
-            {
-                model.subtitle.Name = "Ekki skráð.";
-            }
-            else
-            {
-                model.subtitle.Name = fc["title"];
-            }
+            model.subtitle.Name = fc["title"];
 
             if (fc["year"] == "")
             {
@@ -71,11 +64,7 @@ namespace Skermstafir.Controllers
                 model.subtitle.Description = fc["description"];
             }
 
-            if (fc["link"] == "")
-            {
-                model.subtitle.Link = "Ekki skráð.";
-            }
-            else
+            if (fc["link"] != "")
             {
                 model.subtitle.Link = fc["link"];
             }
@@ -524,7 +513,8 @@ namespace Skermstafir.Controllers
 		// posts a comment and returns all comments from that subtitle as JSON
 		// </summary>
 		[Authorize]
-		public ActionResult Comment(FormCollection form) {
+		public ActionResult Comment(FormCollection form) 
+        {
 			SkermData db = new SkermData();
 			SearchRepository searchRep = new SearchRepository(db);
 			Subtitle sub = searchRep.GetSubtitleByID(Convert.ToInt32(form["id"])).subtitle;
@@ -535,5 +525,23 @@ namespace Skermstafir.Controllers
 			searchRep.AddCommentToSub(com, sub);
 			return RedirectToAction("ShowSubtitle", new { id = sub.IdSubtitle });
 		}
+
+        [Authorize]
+        public ActionResult DeleteComment(int? id, int? subID)
+        {
+            using (SkermData db = new SkermData())
+            {
+                SubtitleRepository subRepo = new SubtitleRepository(db);
+                int idValue = id.Value;
+                int idRedirect = subID.Value;
+                string ownerOfComment = subRepo.GetCommentById(idValue).Username;
+                if (ownerOfComment != User.Identity.GetUserName())
+                {
+                    return View("Errors/NoSubFound");
+                }
+                subRepo.DeleteComment(idValue);
+                return RedirectToAction("ShowSubtitle", new { id = idRedirect });
+            }
+        }
 	}
 }

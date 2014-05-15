@@ -35,12 +35,12 @@ namespace Skermstafir.Controllers
 			if (form["StartYear"] != "") {
 				start = Convert.ToInt32(form["StartYear"]);
 			} else {
-				start = 0;
+				start = 1; //if not set create impossible condition for search
 			}
 			if (form["EndYear"] != "") {
 				end = Convert.ToInt32(form["EndYear"]);
 			} else {
-				end = 0;
+				end = 0; //if not set create impossible condition for search part 2
 			}
 			List<Subtitle> yearResult = sc.GetSubtitleByCreationDate(start, end, 0, 10).modelList;
 
