@@ -70,5 +70,15 @@ namespace Skermstafir.Repositories
 			sub.Comments.Add(com);
 			db.SaveChanges();
 		}
+
+        // Delete the comment with the 'id'.
+        public void DeleteComment(int id)
+        {
+            Comment toBeRemoved = (from comment in db.Comments
+                                   where comment.IdComment == id
+                                   select comment).FirstOrDefault();
+            db.Comments.Remove(toBeRemoved);
+            db.SaveChanges();
+        }
 	}
 }
