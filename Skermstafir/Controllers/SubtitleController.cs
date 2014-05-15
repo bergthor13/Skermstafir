@@ -376,6 +376,12 @@ namespace Skermstafir.Controllers
 			SkermData db = new SkermData();
 			SearchRepository sr = new SearchRepository(db);
 			Vote vote = sr.GetVoteByUserID(userId);
+			if (vote == null)
+			{
+				vote = new Vote();
+				vote.UserId = userId;
+				db.SaveChanges();
+			}
 			SubtitleModel sub = sr.GetSubtitleByID(subid);
 			Subtitle subtitle = sub.subtitle;
 
