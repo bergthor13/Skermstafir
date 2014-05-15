@@ -13,5 +13,15 @@ namespace Skermstafir.Tests.Controllers
 	[TestClass]
     class SearchControllerTest
     {
+		[TestMethod]
+		public void Search() {
+			// Arrange
+			SearchController searchControl = new SearchController();
+			FormCollection form = new FormCollection();
+			// Act
+			var result = searchControl.Search(form);
+			// Assert
+			Assert.IsNotNull(result);
+		}
     }
 }
