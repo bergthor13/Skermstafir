@@ -6,7 +6,7 @@ using System.Web.Mvc;
 using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Skermstafir;
-using Skermstafir.Controllers;
+using Skermstafir.Repositories;
 using Skermstafir.Models;
 
 namespace Skermstafir.Tests.Controllers {
@@ -15,98 +15,118 @@ namespace Skermstafir.Tests.Controllers {
 
 		// queries database to get the newest starting from start and ending at end bot inclusive
 		[TestMethod]
-		public void GetSubtitleByNewest(int start, int end) {
+		public void GetSubtitleByNewest() {
 			// Arrange
+			Skermstafir.SkermData db = new Skermstafir.SkermData();
+			SearchRepository searchRep = new SearchRepository(db);
 			// Act
+			var result = searchRep.GetSubtitleByNewest(0, 5);
 			// Assert
-			// Rollback
+			for (int i = 0; i < result.modelList.Count - 1; i++) {
+				Assert.IsTrue(result.modelList[i].DateAdded >= result.modelList[i + 1].DateAdded);
+			}
+
+			
 		}
 
 		[TestMethod]
-		public void GetSubtitleByString(String str) {
+		public void GetSubtitleByString() {
 			// Arrange
+			Skermstafir.SkermData db = new Skermstafir.SkermData();
+			SearchRepository searchRep = new SearchRepository(db);
 			// Act
+			var result = searchRep.GetSubtitleByString("S");
 			// Assert
-			// Rollback
+			foreach (var item in result.modelList) {
+				Assert.IsNotNull(item.Name.Contains("S"));
+			}
 		}
 
 		// queries database to get a list of most popular subtitles starting at index start and ending at index end both inclusive
 		[TestMethod]
-		public void GetSubtitleByMostPopular(int start, int end) {
+		public void GetSubtitleByMostPopular() {
 			// Arrange
 			// Act
 			// Assert
-			// Rollback
 		}
 
 		// queries database and gets subtitles from a specific user starting at index start and ending at index end both inclusice
 		[TestMethod]
-		public void GetSubtitlesByUserName(String username) {
+		public void GetSubtitlesByUserName() {
 			// Arrange
 			// Act
 			// Assert
-			// Rollback
 		}
 
 
 		// query database to get a specific subtitle
 		[TestMethod]
-		public void GetSubtitleByID(int id) {
+		public void GetSubtitleByID() {
 			// Arrange
 			// Act
 			// Assert
-			// Rollback
 		}
 
 		// query database to get subtitles by language starting at index start and ending at index end both inclusive
 		[TestMethod]
-		public void GetSubtitleByLanguage(string language, int start, int end) {
+		public void GetSubtitleByLanguage() {
 			// Arrange
 			// Act
 			// Assert
-			// Rollback
 		}
 
 		// query database to get subtitles by creation year starting from start and ending with end both inclusive
 		[TestMethod]
-		public void GetSubtitleByCreationDate(int startYear, int endYear, int start, int end) {
+		public void GetSubtitleByCreationDate() {
 			// Arrange
 			// Act
 			// Assert
-			// Rollback
 		}
 
 
 		// Query database and get a subtitles of a specified genre
 		[TestMethod]
-		public void GetSubtitleByGenre(String genreName) {
+		public void GetSubtitleByGenre() {
 			// Arrange
 			// Act
 			// Assert
-			// Rollback
 		}
 
 		// query database and get a genre by id
 		[TestMethod]
-		public void GetGenreByID(int id) 
+		public void GetGenreByID() 
         {
 			// Arrange
 			// Act
 			// Assert
-			// Rollback
 		}
 
 		// Query database and get a language by its name
-        public void GetLanguageByName(string name)
+        public void GetLanguageByName()
         {
 			// Arrange
 			// Act
 			// Assert
-			// Rollback
         }
 
 		[TestMethod]
-		public void GetVoteByUserID(string userId)
+		public void GetVoteByUserID()
+		{
+			// Arrange
+			// Act
+			// Assert
+		}
+
+		[TestMethod]
+		public void VoteContainsSubtitle()
+		{
+			// Arrange
+			// Act
+			// Assert
+		}
+
+		[TestMethod]
+		public void AddVoteToSubtite()
 		{
 			// Arrange
 			// Act
@@ -115,25 +135,7 @@ namespace Skermstafir.Tests.Controllers {
 		}
 
 		[TestMethod]
-		public void VoteContainsSubtitle(Vote vote, Subtitle subtitle)
-		{
-			// Arrange
-			// Act
-			// Assert
-			// Rollback
-		}
-
-		[TestMethod]
-		public void AddVoteToSubtite(Vote vote, Subtitle subtitle)
-		{
-			// Arrange
-			// Act
-			// Assert
-			// Rollback
-		}
-
-		[TestMethod]
-		public void RemoveVoteFromSubtite(Vote vote, Subtitle subtitle)
+		public void RemoveVoteFromSubtite()
 		{
 			// Arrange
 			// Act
@@ -147,11 +149,10 @@ namespace Skermstafir.Tests.Controllers {
 			// Arrange
 			// Act
 			// Assert
-			// Rollback
 		}
 
 		[TestMethod]
-		public void AddCommentToSub(Comment com, Subtitle sub) {
+		public void AddCommentToSub() {
 			// Arrange
 			// Act
 			// Assert
@@ -159,7 +160,7 @@ namespace Skermstafir.Tests.Controllers {
 		}
 
 		[TestMethod]
-		public void AddDownloadToSubtitle(Subtitle subtitle)
+		public void AddDownloadToSubtitle()
 		{
 			// Arrange
 			// Act
