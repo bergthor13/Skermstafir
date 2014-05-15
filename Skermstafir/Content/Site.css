@@ -478,7 +478,7 @@ fieldset {
 #original-text2 {
     width: 37%;
     height: 200px;
-    margin-bottom: 60px;
+    margin-bottom: 15px;
     max-width: 916px;
 }
 
@@ -744,3 +744,8 @@ fieldset {
 .make-me-relative {
     position: relative;
 }
+.info [type=file] {
+
+	padding-left: 190px;
+	padding-bottom: 15px;
+}.
