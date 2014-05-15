@@ -137,10 +137,6 @@ namespace Skermstafir.Controllers
                     reqModel.request.Genres.Add(searchRepo.GetGenreByID(i));
                     reqModel.genreValue[i - 1] = true;
                 }
-				else
-				{
-					
-				}
             }
             
             // Here the request has all the info it needs and we add it to our Request table.
