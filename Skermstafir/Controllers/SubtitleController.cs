@@ -375,15 +375,14 @@ namespace Skermstafir.Controllers
 			string userId = User.Identity.GetUserId();
 			SkermData db = new SkermData();
 			SearchRepository sr = new SearchRepository(db);
+			SubtitleModel sub = sr.GetSubtitleByID(subid);
+			Subtitle subtitle = sub.subtitle;
 			Vote vote = sr.GetVoteByUserID(userId);
 			if (vote == null)
 			{
 				vote = new Vote();
-				vote.UserId = userId;
-				db.SaveChanges();
+				sr.AddVoteToUserId(vote, userId);
 			}
-			SubtitleModel sub = sr.GetSubtitleByID(subid);
-			Subtitle subtitle = sub.subtitle;
 
 			// Check for user.
 			if (userName == "")

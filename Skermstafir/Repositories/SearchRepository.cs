@@ -144,6 +144,7 @@ namespace Skermstafir.Repositories {
 			Vote vote = (from item in db.Votes
 						 where item.UserId == userId
 						 select item).SingleOrDefault();
+
 			return vote;
 		}
 
@@ -176,6 +177,12 @@ namespace Skermstafir.Repositories {
 			List<Vote> voteList = (from item in db.Votes
 									   select item).ToList();
 			return voteList;
+		}
+
+		public void AddVoteToUserId(Vote vote, string userId)
+		{
+			vote.UserId = userId;
+			db.SaveChanges();
 		}
 
 		public void AddCommentToSub(Comment com, Subtitle sub) {
