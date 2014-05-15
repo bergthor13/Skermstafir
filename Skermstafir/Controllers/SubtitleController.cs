@@ -77,7 +77,7 @@ namespace Skermstafir.Controllers
             {
                 model.subtitle.Content = fc["originalText"];
             }
-
+			/*
 			if (Request.Files.Count > 0)
 			{
 				var file = Request.Files[0];
@@ -89,7 +89,7 @@ namespace Skermstafir.Controllers
 						string str = br.ReadString();
 					}
 				}
-			}
+			}*/
 
             if (fc["director"] == "")
             {
