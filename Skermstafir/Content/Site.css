@@ -709,7 +709,8 @@ fieldset {
     position: relative;
 }
 
-#originalText, #editedText
+#originalText, #editedText, #CommentText1
 {
     resize: none;
+}
 }
