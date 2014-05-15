@@ -47,7 +47,14 @@ namespace Skermstafir.Controllers
         
             // Start adding data into the request model to be added into the database.
             //      Get the name from the title box and make it the reqModel's name.
-            reqModel.request.Name = fc["title"];
+            if(fc["title"] == "")
+            {
+                reqModel.request.Name = "Ekki skráð.";
+            }
+            else
+            {
+                reqModel.request.Name = fc["title"];
+            }
             //      Get the description from the description box and make it the reqModel's description.
             if (fc["description"] == "")
             {
