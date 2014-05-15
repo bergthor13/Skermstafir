@@ -4,7 +4,7 @@
     ViewBag.Title = "Stofna þýðingu";
 }
 
-@using (Html.BeginForm())
+@using (Html.BeginForm("CreateSubtitle", "Subtitle", FormMethod.Post, new { id = "postNew" }))
 {
     @Html.AntiForgeryToken()
     <div class="subtitle-box" id="create-subtitle">
@@ -38,12 +38,17 @@
                       placeholder="Stutt lýsing og söguþráður.">@Model.subtitle.Description</textarea>
         </span>
 
-        <input id="download" class="btn btn-default downloadbtn" type="submit" name="createSubtitle" value="Vista þýðingu" />
+        <input id="download" class="btn btn-default downloadbtn" type="submit" name="createSubtitle" value="Vista þýðingu" onclick="showTitleError();" />
         
         <p class="info">
-            <label for="title" class="col-md-2">Titill:</label>
-            <input type="text" name="title" value="@Model.subtitle.Name" placeholder="t.d. Anchorman 2, The Legend Continues" />
+            <label for="title" class="col-md-2">*Titill:</label>
+            <input id="titleBox" type="text" name="title" value="@Model.subtitle.Name" placeholder="t.d. Anchorman 2, The Legend Continues" />
         </p>
+
+        <p id="titleError">
+            Þú verður að skrá inn titil myndefnis.
+        </p>
+
         <p class="info">
             <span class="col-md-2">Tungumál:</span>
 
@@ -70,7 +75,7 @@
         </p>
         <div class="info">
             <label for="originalText" class="col-md-2">Texti sem á að þýða:</label>
-            <textarea id="original-text" name="originalText" placeholder="Afritaðu textann úr upprunalegu .srt skránni hingað.">@Model.subtitle.Content</textarea>
+            <textarea id="original-text2" name="originalText" placeholder="Afritaðu textann úr upprunalegu .srt skránni hingað.">@Model.subtitle.Content</textarea>
         </div>
     </div>
 }

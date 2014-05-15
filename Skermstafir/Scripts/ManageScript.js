@@ -31,9 +31,8 @@ function DeleteReqCancel() {
 };
 
 function showTitleError() {
-    $("#makeRequest").submit(function(event) {
+    $("#postNew").submit(function(event) {
         if ($("#titleBox").val() === "") {
-            $(".subtitle-box").css("height", "390px");
             $("#titleError").show();
             event.preventDefault();
         }
