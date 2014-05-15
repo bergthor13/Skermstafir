@@ -485,6 +485,11 @@ namespace Skermstafir.Controllers
                 SubtitleRepository subRepo = new SubtitleRepository(db);
                 int idValue = id.Value;
                 int idRedirect = subID.Value;
+                string ownerOfComment = subRepo.GetCommentById(idValue).Username;
+                if (ownerOfComment != User.Identity.GetUserName())
+                {
+                    return View("Errors/NoSubFound");
+                }
                 subRepo.DeleteComment(idValue);
                 return RedirectToAction("ShowSubtitle", new { id = idRedirect });
             }

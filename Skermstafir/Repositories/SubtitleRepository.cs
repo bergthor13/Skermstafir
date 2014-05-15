@@ -80,5 +80,13 @@ namespace Skermstafir.Repositories
             db.Comments.Remove(toBeRemoved);
             db.SaveChanges();
         }
+
+        public Comment GetCommentById(int id)
+        {
+            Comment toBeReturned = (from comment in db.Comments
+                                    where comment.IdComment == id
+                                    select comment).FirstOrDefault();
+            return toBeReturned;
+        }
 	}
 }
