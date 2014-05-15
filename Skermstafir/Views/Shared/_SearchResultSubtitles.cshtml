@@ -12,6 +12,7 @@
                 <th class="min">Útgáfuár</th>
                 <th>Tungumál</th>
                 <th>Stofnandi</th>
+				<th id="dateAdded"><a href="#" onclick="location.href = '@Url.Action("OrderSubByDateDesc", "Search")'">Sett inn</a></th>
                 <th class="min">Niðurhöl</th>
                 <th class="min">Niðurhala</th>
             </tr>
@@ -24,6 +25,7 @@
                     <td>@subtitle.YearCreated</td>
                     <td>@subtitle.Language.Name</td>
                     <td>@subtitle.Username</td>
+					<td>@subtitle.DateAdded</td>
 					@if (subtitle.Download == null)
 					{
 						<td>0</td>
