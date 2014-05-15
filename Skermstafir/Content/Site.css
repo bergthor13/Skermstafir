@@ -681,6 +681,11 @@ fieldset {
     margin-left: 150px;
 }
 
+#comment-box {
+    background: #333;
+    border: 1px solid grey;
+}
+
 #usercomments {
     max-width: 760px;
 }

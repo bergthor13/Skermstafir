@@ -97,10 +97,10 @@
     @if (User.Identity.IsAuthenticated) { 
         using (Html.BeginForm("Comment", "Subtitle")) {
             <ul class="list-group" id="comment" style="max-width: 760px;">
-            <li class="list-group-item">
+            <li class="list-group-item" id="comment-box">
                 <div class="form-horizontal">
                     <label class="sr-only" for="CommentText">Comment</label>
-                    <textarea class="form-control" rows="3" id="CommentText1" name="CommentText1"></textarea><br />
+                    <textarea class="form-control" rows="3" id="CommentText1" name="CommentText1" placeholder="Tjáðu þig um þessa þýðingu."></textarea><br />
                     <button type="submit" id="btnSave1" value="Save" class="btn btn-primary" onclick="">Senda</button>
                     <input hidden="hidden" name="id" value="@Model.subtitle.IdSubtitle" />
                 </div>
@@ -113,8 +113,8 @@
     <div id="usercomments">
     @foreach (var item in Model.subtitle.Comments) {
         <div id="single-comment">
-            <span class="glyphicon glyphicon-user"></span>
-            <span>@item.Username</span>
+            <span class="glyphicon glyphicon-user make-me-green"></span>
+            <span class="make-me-green">@item.Username</span>
             <p>@item.Content </p>
         </div>
     }
