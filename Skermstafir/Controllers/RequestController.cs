@@ -81,7 +81,7 @@ namespace Skermstafir.Controllers
 			}
 			else
 			{
-				reqModel.request.Actors = fc["director"];
+				reqModel.request.Actors = fc["actors"];
 			}
 
             // Set the username of the creator to either "Anonymous" (if not authenticated)
@@ -236,9 +236,9 @@ namespace Skermstafir.Controllers
 				}
 			}
 			// add union for edge results
-			//foreach (var list in ls) {
-			//	model.modelList = model.modelList.Union(list).ToList();
-			//}
+			foreach (var list in ls) {
+				model.modelList = model.modelList.Union(list).ToList();
+			}
 			return View(model);
 		}
         //Delete request
