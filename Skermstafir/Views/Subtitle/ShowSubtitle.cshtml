@@ -35,7 +35,7 @@
         </div>
         @if (true)
         {
-            <input id="edit-subtitle" class="btn btn-default downloadbtn" type="button" name="createSubtitle" value="Breyta þýðingu" onclick="location.href='@Url.Action("EditSubtitle", "Subtitle", new { id = Model.subtitle.IdSubtitle })'" />
+            <input id="edit-subtitle" class="btn btn-default downloadbtn" type="button" name="createSubtitle" value="Breyta" onclick="location.href='@Url.Action("EditSubtitle", "Subtitle", new { id = Model.subtitle.IdSubtitle })'" />
         }
         <input id="download" class="btn btn-default downloadbtn" type="button" name="createSubtitle" onclick="location.href='@Url.Action("Download", "Subtitle", new { id = Model.subtitle.IdSubtitle })'" value="Niðurhala" />
         <p class="info">

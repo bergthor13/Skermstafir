@@ -2,7 +2,6 @@
 	// The object to send to server.
 	var upvote = { "subid": id }
 	var selector = "#subVoteCount-" + id;
-	var selectorInv = "#subVoteCountInv-" + id;
 
 	$.post("/Subtitle/UpvoteSubtitle", upvote, function success(response) {
 		if (response.Exists === 0) {
