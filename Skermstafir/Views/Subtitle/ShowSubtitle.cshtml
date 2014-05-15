@@ -94,14 +94,15 @@
 </div>
 
 <div id="comments" class="col-md-8">
+    <h3>Athugasemdir</h3>
     @if (User.Identity.IsAuthenticated) { 
         using (Html.BeginForm("Comment", "Subtitle")) {
-            <ul class="list-group" id="comment" style="max-width: 560px;">
+            <ul class="list-group" id="comment" style="max-width: 760px;">
             <li class="list-group-item">
                 <div class="form-horizontal">
                     <label class="sr-only" for="CommentText">Comment</label>
                     <textarea class="form-control" rows="3" id="CommentText1" name="CommentText1"></textarea><br />
-                    <button type="submit" id="btnSave1" value="Save" class="btn btn-primary" onclick="">Send</button>
+                    <button type="submit" id="btnSave1" value="Save" class="btn btn-primary" onclick="">Senda</button>
                     <input hidden="hidden" name="id" value="@Model.subtitle.IdSubtitle" />
                 </div>
             </li>
@@ -112,9 +113,11 @@
             
     <div id="usercomments">
     @foreach (var item in Model.subtitle.Comments) {
-        <span class="glyphicon glyphicon-user"></span>
-        <span>@item.Username</span>
-        <p>@item.Content </p>
+        <div id="single-comment">
+            <span class="glyphicon glyphicon-user"></span>
+            <span>@item.Username</span>
+            <p>@item.Content </p>
+        </div>
     }
     </div>
 </div>
