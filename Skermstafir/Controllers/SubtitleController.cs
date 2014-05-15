@@ -39,7 +39,7 @@ namespace Skermstafir.Controllers
 			SkermData db = new SkermData();
             SubtitleModel model = new SubtitleModel();
             SearchRepository search = new SearchRepository(db);
-            SubtitleRepository subRepo = new SubtitleRepository(db);
+            AddCommentToSu subRepo = new AddCommentToSu(db);
 
             model.subtitle.Username = User.Identity.Name;
 
@@ -271,7 +271,7 @@ namespace Skermstafir.Controllers
 			SkermData db = new SkermData();
 			SubtitleModel editedSub = new SubtitleModel();
 			SearchRepository seaR = new SearchRepository(db);
-			SubtitleRepository subR = new SubtitleRepository(db);
+			AddCommentToSu subR = new AddCommentToSu(db);
 			
 			// Get the subtitle
 			editedSub = seaR.GetSubtitleByID(idValue);
@@ -511,7 +511,7 @@ namespace Skermstafir.Controllers
 
             using (SkermData db = new SkermData())
             {
-                SubtitleRepository subRepo = new SubtitleRepository(db);
+                AddCommentToSu subRepo = new AddCommentToSu(db);
                 SearchRepository serRepo = new SearchRepository(db);
                 Subtitle toBeRemoved = serRepo.GetSubtitleByID(idValue).subtitle;
 
