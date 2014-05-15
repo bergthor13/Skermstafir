@@ -269,11 +269,6 @@ h4.changepw {
     margin: 0;
 }
 
-.rada-eftir-dags {
-    position: absolute;
-    right: 0px;
-}
-
 .fp-list .first-column {
 	width: 20px
 }
@@ -718,6 +713,32 @@ fieldset {
 #originalText, #editedText, #CommentText1
 {
     resize: none;
+}
+
+.errorBody
+{
+    padding:0px;
+	text-align:center;
+}
+
+#firstError
+{
+    color: #FFA540;
+}
+
+#secondError
+{
+    color: #D47575;
+}
+
+#thirdError
+{
+    color: #b94a48;
+}
+
+.rada-eftir-dags {
+    position: absolute;
+    right: 0px;
 }
 
 .make-me-relative {
