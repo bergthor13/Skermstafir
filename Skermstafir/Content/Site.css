@@ -519,21 +519,11 @@ fieldset {
 	width:400px;
 }
 
-.subtitle-box {
-	border: solid 1px grey;
-	margin-top: 11px;
-    padding: 0px;
-	height: 363px;
-    width: 100%;
-    background: #333;
-	position:relative;
-}
-
 #create-request, .subtitle-box {
 	border: solid 1px grey;
 	margin-top: 11px;
-    padding: 0px;
-	height: auto;
+    padding-bottom: 20px;
+	height: 100%;
     width: 100%;
     background: #333;
 	position:relative;
@@ -578,7 +568,7 @@ fieldset {
 
 .subtitle-box #download {
 	position:absolute;
-	right:15px;
+	right:50px;
 	bottom:15px;
 }
 .subtitle-box .info {
