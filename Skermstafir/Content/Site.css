@@ -714,4 +714,24 @@ fieldset {
 {
     resize: none;
 }
+
+.errorBody
+{
+    padding:0px;
+	text-align:center;
+}
+
+#firstError
+{
+    color: #FFA540;
+}
+
+#secondError
+{
+    color: #D47575;
+}
+
+#thirdError
+{
+    color: #b94a48;
 }
