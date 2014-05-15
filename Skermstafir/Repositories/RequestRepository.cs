@@ -10,6 +10,10 @@ namespace Skermstafir.Repositories
     public class RequestRepository : IRequestRepository
     {
 		SkermData db = new SkermData();
+
+		public RequestRepository(SkermData connection) {
+			db = connection;
+		}
         // adds new request to database
         public void AddRequest(RequestModel newRequest)
         {

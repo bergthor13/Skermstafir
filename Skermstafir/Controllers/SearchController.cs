@@ -16,9 +16,10 @@ namespace Skermstafir.Controllers
         public ActionResult Search(FormCollection form)
         {
 			// SETUP
+			SkermData db = new SkermData();
             SubtitleModelList result = new SubtitleModelList();
 			result.modelList = new List<Subtitle>();
-  			SearchRepository sc = new SearchRepository();
+  			SearchRepository sc = new SearchRepository(db);
 			// search by string
 			List<Subtitle> stringResult = new List<Subtitle>();
 			if (form["SearchValue"] != "") {

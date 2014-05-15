@@ -10,7 +10,11 @@ using Microsoft.AspNet.Identity;
 
 namespace Skermstafir.Repositories {
 	public class SearchRepository : ISearchRepository {
-		public SkermData db = new SkermData();
+		public SkermData db;
+		public SearchRepository(SkermData connection) {
+			db = connection;
+		}
+
 		// queries database to get the newest starting from start and ending at end bot inclusive
 		public SubtitleModelList GetSubtitleByNewest(int start, int end) {
 			SubtitleModelList model = new SubtitleModelList();

@@ -36,9 +36,10 @@ namespace Skermstafir.Controllers
         [HttpPost]
         public ActionResult CreateSubtitle(FormCollection fc)
         {
+			SkermData db = new SkermData();
             SubtitleModel model = new SubtitleModel();
-            SearchRepository search = new SearchRepository();
-            SubtitleRepository subRepo = new SubtitleRepository();
+            SearchRepository search = new SearchRepository(db);
+            SubtitleRepository subRepo = new SubtitleRepository(db);
 
             model.subtitle.Username = User.Identity.Name;
 
@@ -121,7 +122,8 @@ namespace Skermstafir.Controllers
             {
                 if (fc["genre" + i.ToString()] == "on")
                 {
-                    model.subtitle.Genres.Add(search.GetGenreByID(i));
+					Genre genre = search.GetGenreByID(i);
+                    model.subtitle.Genres.Add(genre);
                 }
             }
 			model.subtitle.DateAdded = DateTime.Now;
@@ -139,8 +141,9 @@ namespace Skermstafir.Controllers
 		[Authorize]
 		public ActionResult CreateSubtitleFromRequest(int? id)
 		{
+			SkermData db = new SkermData();
 			SubtitleModel sModel = new SubtitleModel();
-			RequestRepository rr = new RequestRepository();
+			RequestRepository rr = new RequestRepository(db);
 			RequestModel rModel = new RequestModel();
 			int idValue = id.Value;
 			rModel = rr.GetRequestByID(idValue);
@@ -168,7 +171,8 @@ namespace Skermstafir.Controllers
 		[Authorize]
 		public ActionResult CreateSubtitleFromRequest(int? id, FormCollection fc)
 		{
-			RequestRepository reqRepo = new RequestRepository();
+			SkermData db = new SkermData();
+			RequestRepository reqRepo = new RequestRepository(db);
 			int idValue = id.Value;
 			reqRepo.DeleteRequest(idValue);
 			return CreateSubtitle(fc);
@@ -192,7 +196,8 @@ namespace Skermstafir.Controllers
 				int idValue = id.Value;
 
 				// Get the desired item.
-				SearchRepository sr = new SearchRepository();
+				SkermData db = new SkermData();
+				SearchRepository sr = new SearchRepository(db);
 				SubtitleModel result;
 				result = sr.GetSubtitleByID(idValue);
 
@@ -226,7 +231,8 @@ namespace Skermstafir.Controllers
 				int idValue = id.Value;
 
 				// Get the desired item.
-				SearchRepository sr = new SearchRepository();
+				SkermData db = new SkermData();
+				SearchRepository sr = new SearchRepository(db);
                 SubtitleModel result = sr.GetSubtitleByID(idValue);
 
 				// Fill the empty model variables (genreValue[] and artistsForView).
@@ -247,9 +253,10 @@ namespace Skermstafir.Controllers
 		public ActionResult EditSubtitle(int? id, FormCollection fd, Subtitle sub)
 		{
 			int idValue = id.Value;
+			SkermData db = new SkermData();
 			SubtitleModel editedSub = new SubtitleModel();
-			SearchRepository seaR = new SearchRepository();
-			SubtitleRepository subR = new SubtitleRepository();
+			SearchRepository seaR = new SearchRepository(db);
+			SubtitleRepository subR = new SubtitleRepository(db);
 			
 			// Get the subtitle
 			editedSub = seaR.GetSubtitleByID(idValue);
@@ -335,8 +342,8 @@ namespace Skermstafir.Controllers
 		{
 			string userName = User.Identity.GetUserName();
 			string userId = User.Identity.GetUserId();
-
-			SearchRepository sr = new SearchRepository();
+			SkermData db = new SkermData();
+			SearchRepository sr = new SearchRepository(db);
 			Vote vote = sr.GetVoteByUserID(userId);
 			SubtitleModel sub = sr.GetSubtitleByID(subid);
 			Subtitle subtitle = sub.subtitle;
@@ -382,8 +389,8 @@ namespace Skermstafir.Controllers
 
 			// Convert ID from Nullable int to int.
 			int idValue = id.Value;
-
-			SearchRepository sr = new SearchRepository();
+			SkermData db = new SkermData();
+			SearchRepository sr = new SearchRepository(db);
 			SubtitleModel result;
 			try
 			{
@@ -413,7 +420,8 @@ namespace Skermstafir.Controllers
 		[Authorize]
         public ActionResult DeleteSubtitle(int? id)
         {
-            SubtitleRepository subRepo = new SubtitleRepository();
+			SkermData db = new SkermData();
+            SubtitleRepository subRepo = new SubtitleRepository(db);
             int idValue = id.Value;
             subRepo.DeleteSubtitle(idValue);
             return RedirectToAction("Manage", "Account");
@@ -424,7 +432,8 @@ namespace Skermstafir.Controllers
 		// </summary>
 		[Authorize]
 		public ActionResult Comment(FormCollection form) {
-			SearchRepository searchRep = new SearchRepository();
+			SkermData db = new SkermData();
+			SearchRepository searchRep = new SearchRepository(db);
 			Subtitle sub = searchRep.GetSubtitleByID(Convert.ToInt32(form["id"])).subtitle;
 			Comment com = new Comment();
 			com.Content = form["CommentText1"];

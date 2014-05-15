@@ -9,7 +9,12 @@ namespace Skermstafir.Repositories
 {
     public class SubtitleRepository : ISubtitleRepository
     {
-		public SkermData db = new SkermData();
+		public SkermData db;
+
+		public SubtitleRepository(SkermData connection) {
+			db = connection;
+		}
+
         // Add a SubtitleModel object to database
         public void AddSubtitle(SubtitleModel model)
         {

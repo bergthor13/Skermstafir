@@ -13,8 +13,9 @@ namespace Skermstafir.Controllers
 		public ActionResult Index()
 		{
             ViewBag.Message = "Forsíða";
-            SearchRepository sRep = new SearchRepository();
-            RequestRepository rRep = new RequestRepository();
+			SkermData db = new SkermData();
+            SearchRepository sRep = new SearchRepository(db);
+            RequestRepository rRep = new RequestRepository(db);
             MultipleModelLists model = new MultipleModelLists();
             model.newestRequestList = rRep.GetRequestByNewest(0, 3);
             model.popularRequestList = rRep.GetByMostPopular(0, 3);
@@ -32,8 +33,9 @@ namespace Skermstafir.Controllers
 		public ActionResult Requests()
 		{
 			ViewBag.Message = "Beiðnir";
+			SkermData db = new SkermData();
 			RequestModelList result = new RequestModelList();
-			RequestRepository sc = new RequestRepository();
+			RequestRepository sc = new RequestRepository(db);
 			result = sc.GetRequestByNewest(0, 100);
 			return View("Requests", result);
 		}
@@ -41,8 +43,9 @@ namespace Skermstafir.Controllers
         public ActionResult Subtitles()
         {
             ViewBag.Message = "Þýðingar";
+			SkermData db = new SkermData();
             SubtitleModelList result = new SubtitleModelList();
-			SearchRepository sc = new SearchRepository();
+			SearchRepository sc = new SearchRepository(db);
             result = sc.GetSubtitleByNewest(0, 100);
             return View("Subtitles", result);
         }

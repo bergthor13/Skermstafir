@@ -24,7 +24,8 @@ namespace Skermstafir.Controllers
 
 			try
 			{
-				RequestRepository sr = new RequestRepository();
+				SkermData db = new SkermData();
+				RequestRepository sr = new RequestRepository(db);
 				int idValue = id.Value;
 				RequestModel result = sr.GetRequestByID(idValue);
 				FillModel(result);
@@ -39,9 +40,10 @@ namespace Skermstafir.Controllers
         [HttpPost]
 		public ActionResult CreateRequest(FormCollection fc)
 		{
+			SkermData db = new SkermData();
 			RequestModel reqModel = new RequestModel();
-            RequestRepository reqRepo = new RequestRepository();
-            SearchRepository searchRepo = new SearchRepository();
+            RequestRepository reqRepo = new RequestRepository(db);
+            SearchRepository searchRepo = new SearchRepository(db);
         
             // Start adding data into the request model to be added into the database.
             //      Get the name from the title box and make it the reqModel's name.
@@ -163,8 +165,9 @@ namespace Skermstafir.Controllers
 		}
 
 		public ActionResult Search(FormCollection form) {
+			SkermData db = new SkermData();
 			RequestModelList model = new RequestModelList();
-			RequestRepository reqRep = new RequestRepository();
+			RequestRepository reqRep = new RequestRepository(db);
 
 			// get by string
 			List<Request> stringResult = reqRep.GetRequestsByString(form["searchValue"]).modelList;
@@ -237,8 +240,8 @@ namespace Skermstafir.Controllers
         //Delete request
         public ActionResult DeleteRequest(int? id)
         {
-            
-            RequestRepository reqRepo = new RequestRepository();
+			SkermData db = new SkermData();
+            RequestRepository reqRepo = new RequestRepository(db);
             int idValue = id.Value;
             reqRepo.DeleteRequest(idValue);
             return RedirectToAction("Manage", "Account");
@@ -248,8 +251,8 @@ namespace Skermstafir.Controllers
 		{
 			string userName = User.Identity.GetUserName();
 			string userId = User.Identity.GetUserId();
-
-			RequestRepository reqRepo = new RequestRepository();
+			SkermData db = new SkermData();
+			RequestRepository reqRepo = new RequestRepository(db);
 			Vote vote = reqRepo.GetVoteByUserID(userId);
 			RequestModel req = reqRepo.GetRequestByID(reqid);
 			Request request = req.request;
