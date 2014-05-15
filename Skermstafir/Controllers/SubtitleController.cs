@@ -19,8 +19,48 @@ namespace Skermstafir.Controllers
     {
 
 		/// <summary>
-		/// Creates a new translation.
+		/// GET: Gets the translation to be edited with the ID 'id'
 		/// </summary>
+		/// <param name="id">ID of the subtitle.</param>
+		/// <returns>ActionResult</returns>
+		public ActionResult ShowSubtitle(int? id) // THIS ONE IS READY (I think).
+		{
+			if (id == null)
+			{
+				return View("Errors/NoSubFound");
+			}
+
+			try
+			{
+				// Convert ID from Nullable int to int.
+				int idValue = id.Value;
+
+				// Get the desired item.
+				SkermData db = new SkermData();
+				SearchRepository sr = new SearchRepository(db);
+				SubtitleModel result;
+
+				result = sr.GetSubtitleByID(idValue);
+
+				// Fill the empty model variables (genreValue[] and artistsForView).
+				FillModel(result);
+
+				return View(result);
+			}
+			catch (NoSubtitleFoundException)
+			{
+				return View("Errors/NoSubFound");
+			}
+		}
+
+		// =======================================================================================
+		// CREATE SUBTITLE
+
+		/// <summary>
+		/// GET: Creates a new subtitle.
+		/// </summary>
+		/// <param name="fc">FormCollection from form</param>
+		/// <returns>ActionResult</returns>
 		[Authorize]
 		[HttpGet]
 		public ActionResult CreateSubtitle()
@@ -29,9 +69,11 @@ namespace Skermstafir.Controllers
 			return View(model);
 		}
 
-        /// <summary>
-        /// Creates a new translation.
-        /// </summary>
+		/// <summary>
+        /// POST: Creates a new subtitle.
+		/// </summary>
+		/// <param name="fc">FormCollection from form.</param>
+		/// <returns>ActionResult</returns>
         [Authorize]
         [HttpPost]
         public ActionResult CreateSubtitle(FormCollection fc)
@@ -77,19 +119,20 @@ namespace Skermstafir.Controllers
             {
                 model.subtitle.Content = fc["originalText"];
             }
-			/*
+
 			if (Request.Files.Count > 0)
 			{
 				var file = Request.Files[0];
 				if (file != null && file.ContentLength > 0)
 				{
 					Stream stream = file.InputStream;
-					using (BinaryReader br = new BinaryReader(stream))
+					using (StreamReader br = new StreamReader(stream))
 					{
-						string str = br.ReadString();
+						string sub = br.ReadToEnd();
+						model.subtitle.Content = sub;
 					}
 				}
-			}*/
+			}
 
             if (fc["director"] == "")
             {
@@ -142,10 +185,11 @@ namespace Skermstafir.Controllers
         }
 
 		/// <summary>
-		/// Creates a subtitle from the request with the ID 'id'.
+		/// GET: Takes all data from the request with ID 'id' and
+		/// puts it into a new subtitle.
 		/// </summary>
-		/// <param name="id"></param>
-		/// <returns></returns>
+		/// <param name="id">ID of the request.</param>
+		/// <returns>ActionResult</returns>
 		[HttpGet]
 		[Authorize]
 		public ActionResult CreateSubtitleFromRequest(int? id)
@@ -181,6 +225,13 @@ namespace Skermstafir.Controllers
 			return View("CreateSubtitle", sModel);
 		}
 
+		/// <summary>
+		/// POST: Creates a subtitle from the request with the ID 'id',
+		/// and then deletes the request.
+		/// </summary>
+		/// <param name="id">ID of the request.</param>
+		/// <param name="fc">FormCollection from form.</param>
+		/// <returns>ActionResult</returns>
 		[HttpPost]
 		[Authorize]
 		public ActionResult CreateSubtitleFromRequest(int? id, FormCollection fc)
@@ -192,44 +243,14 @@ namespace Skermstafir.Controllers
 			return CreateSubtitle(fc);
 		}
 
-
-
-		///<summary>
-        /// Gets the translation to be edited with the ID 'id'
-		///</summary>
-        public ActionResult ShowSubtitle(int? id) // THIS ONE IS READY (I think).
-        {
-			if (id == null)
-			{
-				return View("Errors/NoSubFound");
-			}
-
-            try
-			{
-				// Convert ID from Nullable int to int.
-				int idValue = id.Value;
-
-				// Get the desired item.
-				SkermData db = new SkermData();
-				SearchRepository sr = new SearchRepository(db);
-				SubtitleModel result;
-
-				result = sr.GetSubtitleByID(idValue);
-
-				// Fill the empty model variables (genreValue[] and artistsForView).
-				FillModel(result);
-				
-				return View(result);
-			}
-			catch (NoSubtitleFoundException)
-			{
-				return View("Errors/NoSubFound");
-			}
-        }
+		// =======================================================================================
+		// EDIT AND DELETE
 
 		/// <summary>
-		/// Gets the translation to be edited with the ID subtitleID
-		/// </summary> 
+		/// GET: Gets the translation to be edited with the ID 'id'
+		/// </summary>
+		/// <param name="id">ID of the subtitle.</param>
+		/// <returns>ActionResult</returns>
 		[Authorize]
 		[HttpGet]
 		public ActionResult EditSubtitle(int? id) // THIS ONE IS READY (I think).
@@ -252,7 +273,6 @@ namespace Skermstafir.Controllers
 
 				// Fill the empty model variables (genreValue[] and artistsForView).
 				FillModel(result);
-				
 				return View(result);
             }
 			catch (NoSubtitleFoundException)
@@ -260,11 +280,17 @@ namespace Skermstafir.Controllers
                 return View("Errors/NoSubFound");
             }
 		}
-		//<summary>
-		// Takes the form data submitted and sends it to the repository.
-		//</ summary>
+		
+		/// <summary>
+		/// POST: Takes the form data submitted and sends it to the repository.
+		/// </summary>
+		/// <param name="id">ID of the subtitle.</param>
+		/// <param name="fd">FormCollection returned from form.</param>
+		/// <param name="sub">Subtitle returned from form.</param>
+		/// <returns>ActionResult</returns>
+		// Not validating input may not be good practice.
 		[Authorize]
-		[HttpPost]
+		[HttpPost, ValidateInput(false)]
 		public ActionResult EditSubtitle(int? id, FormCollection fd, Subtitle sub)
 		{
 			int idValue = id.Value;
@@ -275,6 +301,7 @@ namespace Skermstafir.Controllers
 			
 			// Get the subtitle
 			editedSub = seaR.GetSubtitleByID(idValue);
+
 
 			// Change the subtitle
             if (fd["year"] == "")
@@ -361,16 +388,57 @@ namespace Skermstafir.Controllers
 					}
 				}
 			}
-
 			// Finally we update the subtitle.
 			subR.ChangeExistingSubtitle(idValue, editedSub);
 			
 			return RedirectToAction("ShowSubtitle", new { id = idValue });
 		}
 
-		//<summary>
-		// Add upvote to subtitle
-		//</summary>
+		/// <summary>
+		/// Deletes the subtitle with the ID 'id'
+		/// </summary>
+		/// <param name="id">ID of the subtitle.</param>
+		/// <returns>ActionResult</returns>
+		[Authorize]
+        public ActionResult DeleteSubtitle(int? id)
+        {
+            // Parameter value check
+            if (!id.HasValue)
+            {
+                return View("Errors/NoSubFound");
+            }
+            int idValue = id.Value;
+
+            using (SkermData db = new SkermData())
+            {
+                SubtitleRepository subRepo = new SubtitleRepository(db);
+                SearchRepository serRepo = new SearchRepository(db);
+                Subtitle toBeRemoved = serRepo.GetSubtitleByID(idValue).subtitle;
+
+                // Existence check
+                if (toBeRemoved == null)
+                {
+                    return View("Errors/NoSubFound");
+                }
+                string ownerName = serRepo.GetSubtitleByID(idValue).subtitle.Username;
+                
+                // Authorization check
+                if (ownerName != User.Identity.GetUserName())
+                {
+                    return View("Errors/NoSubFound");
+                }
+
+                subRepo.DeleteSubtitle(idValue);
+                return RedirectToAction("Manage", "Account");
+            }
+        }
+
+		/// <summary>
+		/// POST: Adds upvote to subtitle.
+		/// </summary>
+		/// <param name="subid">ID of the subtitle to upvote.</param>
+		/// <returns>ActionResult</returns>
+		[HttpPost]
 		public ActionResult UpvoteSubtitle(int subid)
 		{
 			string userName = User.Identity.GetUserName();
@@ -415,127 +483,13 @@ namespace Skermstafir.Controllers
 
 		}
 
-		//<summary>
-		// Downloads the .srt file.
-		//</summary>
-		public FileResult Download(int? id)
-		{
-			if (id == null)
-			{
-				return File(Encoding.UTF8.GetBytes("Þýðing fannst ekki."), "text/plain", "FannstEkki.srt");
-			}
-
-			// Convert ID from Nullable int to int.
-			int idValue = id.Value;
-			SkermData db = new SkermData();
-			SearchRepository sr = new SearchRepository(db);
-			SubtitleModel result;
-
-			try
-			{
-				// Get the desired subtitle.
-				result = sr.GetSubtitleByID(idValue);
-			}
-			catch (NoSubtitleFoundException)
-			{
-				return File(Encoding.UTF8.GetBytes("Þýðing fannst ekki."), "text/plain", "FannstEkki.srt");
-			}
-
-			if (result.subtitle.EditContent == null)
-			{
-				return File(Encoding.UTF8.GetBytes("Ekki hefur verið byrjað á þýðingunni."), "text/plain", result.subtitle.Name + ".srt");
-			}
-
-			sr.AddDownloadToSubtitle(result.subtitle);
-			return File(Encoding.UTF8.GetBytes(result.subtitle.EditContent), "text/plain", result.subtitle.Name + ".srt");
-		}
-
-
-		//<summary>
-		// Downloads the .srt file.
-		//</summary>
-		public FileResult Upload(int? id)
-		{
-			if (id == null)
-			{
-				return File(Encoding.UTF8.GetBytes("Þýðing fannst ekki."), "text/plain", "FannstEkki.srt");
-			}
-
-			// Convert ID from Nullable int to int.
-			int idValue = id.Value;
-			SkermData db = new SkermData();
-			SearchRepository sr = new SearchRepository(db);
-			SubtitleModel result;
-
-			try
-			{
-				// Get the desired subtitle.
-				result = sr.GetSubtitleByID(idValue);
-			}
-			catch (NoSubtitleFoundException)
-			{
-				return File(Encoding.UTF8.GetBytes("Þýðing fannst ekki."), "text/plain", "FannstEkki.srt");
-			}
-
-			if (result.subtitle.EditContent == null)
-			{
-				return File(Encoding.UTF8.GetBytes("Ekki hefur verið byrjað á þýðingunni."), "text/plain", result.subtitle.Name + ".srt");
-			}
-
-			sr.AddDownloadToSubtitle(result.subtitle);
-			return File(Encoding.UTF8.GetBytes(result.subtitle.EditContent), "text/plain", result.subtitle.Name + ".srt");
-		}
-
+		// =======================================================================================
+		// COMMENTS
 		/// <summary>
-		/// Helper Function. Fills in the rest of the model (genreValue[] and artistsForView)
-		/// </summary> 
-		public void FillModel(SubtitleModel sm)
-		{
-			// Put genres in a bool array
-			foreach (var item in sm.subtitle.Genres)
-			{
-				 sm.genreValue[item.IdGenre-1] = true;
-			}
-		}
-
-        // Deletes the subtitle that id == 'id'
-		[Authorize]
-        public ActionResult DeleteSubtitle(int? id)
-        {
-            // Parameter value check
-            if (!id.HasValue)
-            {
-                return View("Errors/NoSubFound");
-            }
-            int idValue = id.Value;
-
-            using (SkermData db = new SkermData())
-            {
-                SubtitleRepository subRepo = new SubtitleRepository(db);
-                SearchRepository serRepo = new SearchRepository(db);
-                Subtitle toBeRemoved = serRepo.GetSubtitleByID(idValue).subtitle;
-
-                // Existence check
-                if (toBeRemoved == null)
-                {
-                    return View("Errors/NoSubFound");
-                }
-                string ownerName = serRepo.GetSubtitleByID(idValue).subtitle.Username;
-                
-                // Authorization check
-                if (ownerName != User.Identity.GetUserName())
-                {
-                    return View("Errors/NoSubFound");
-                }
-
-                subRepo.DeleteSubtitle(idValue);
-                return RedirectToAction("Manage", "Account");
-            }
-        }
-
-		// <summary>
-		// posts a comment to the database and redirects to the subtitle that was commented on
-		// </summary>
+		/// Posts a comment to the database and redirects to the subtitle that was commented on.
+		/// </summary>
+		/// <param name="form">Data from the form.</param>
+		/// <returns>ActionResult</returns>
 		[Authorize]
 		public ActionResult Comment(FormCollection form) 
         {
@@ -550,6 +504,12 @@ namespace Skermstafir.Controllers
 			return RedirectToAction("ShowSubtitle", new { id = sub.IdSubtitle });
 		}
 
+		/// <summary>
+		/// Posts a comment to the database and redirects to the subtitle that was commented on.
+		/// </summary>
+		/// <param name="id">ID of the comment</param>
+		/// <param name="id">ID of the subtitle that was commented on.</param>
+		/// <returns>ActionResult</returns>
         [Authorize]
         public ActionResult DeleteComment(int? id, int? subID)
         {
@@ -582,5 +542,61 @@ namespace Skermstafir.Controllers
                 return RedirectToAction("ShowSubtitle", new { id = idRedirect });
             }
         }
+
+		// =======================================================================================
+		// DOWNLOAD
+		/// <summary>
+		/// Downloads the subtitle with the ID 'id'
+		/// </summary>
+		/// <param name="id">ID of the subtitle.</param>
+		/// <returns>FileResult</returns>
+		public FileResult Download(int? id)
+		{
+			if (id == null)
+			{
+				return File(Encoding.UTF8.GetBytes("Þýðing fannst ekki."), "text/plain", "FannstEkki.srt");
+			}
+
+			// Convert ID from Nullable int to int.
+			int idValue = id.Value;
+			SkermData db = new SkermData();
+			SearchRepository sr = new SearchRepository(db);
+			SubtitleModel result;
+
+			try
+			{
+				// Get the desired subtitle.
+				result = sr.GetSubtitleByID(idValue);
+			}
+			catch (NoSubtitleFoundException)
+			{
+				return File(Encoding.UTF8.GetBytes("Þýðing fannst ekki."), "text/plain", "FannstEkki.srt");
+			}
+
+			if (result.subtitle.EditContent == null)
+			{
+				return File(Encoding.UTF8.GetBytes("Ekki hefur verið byrjað á þýðingunni."), "text/plain", result.subtitle.Name + ".srt");
+			}
+
+			sr.AddDownloadToSubtitle(result.subtitle);
+			return File(Encoding.UTF8.GetBytes(result.subtitle.EditContent), "text/plain", result.subtitle.Name + ".srt");
+		}
+
+		// =======================================================================================
+		// HELPER FUNCTIONS
+
+		/// <summary>
+		/// Helper Function. Fills in the genreValue[].
+		/// </summary>
+		/// <param name="sm">SubtitleModel to fill in to.</param>
+		/// <returns>void</returns>
+		public void FillModel(SubtitleModel sm)
+		{
+			// Put genres in a bool array
+			foreach (var item in sm.subtitle.Genres)
+			{
+				sm.genreValue[item.IdGenre - 1] = true;
+			}
+		}
 	}
 }

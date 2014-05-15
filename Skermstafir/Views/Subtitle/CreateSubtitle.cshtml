@@ -73,11 +73,17 @@
             <label for="link" class="col-md-2">Hlekkur á myndskeið:</label>
             <input type="text" name="link" value="@Model.subtitle.Link" placeholder="t.d. af YouTube, Vimeo o.þ.h." />
         </p>
+
         <div class="info">
             <label for="originalText" class="col-md-2">Texti sem á að þýða:</label>
             <textarea id="original-text2" name="originalText" placeholder="Afritaðu textann úr upprunalegu .srt skránni hingað.">@Model.subtitle.Content</textarea>
         </div>
 
+		<div class="info">
+			<label for="originalText" class="col-md-2">EÐA: Settu inn skrá</label>
+			<input type="file" name="file" value=" " />
+		</div>
+
+
     </div>
-	<input type="file" name="file" value=" " />
 }
