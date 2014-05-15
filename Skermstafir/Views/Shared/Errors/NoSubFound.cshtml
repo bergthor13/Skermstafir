@@ -1,9 +1,12 @@
 ﻿@model System.Web.Mvc.HandleErrorInfo
 
 @{
-    ViewBag.Title = "Þýðing fannst ekki";
+    ViewBag.Title = "Aðgerð mistókst";
 }
-
-<h1 class="text-danger">Þýðing fannst ekki.</h1>
-<h2 class="text-danger">Ekki fannst sú þýðing sem þú leitaðir að. Afsakið þetta.</h2>
-
+<div class="errorBody">
+    <p><h1 id="firstError" class="text-danger"><span class="glyphicon glyphicon-warning-sign"></span> 404</h1></p>
+    <h1 class="text-danger">Síðasta aðgerð mistókst</h1>
+    <h2 id="secondError" class="text-danger">Ekki tókst að framkvæma það sem þú vildir gera, sorry <span class="glyphicon glyphicon-heart"></span></h2>
+    <a href="@Url.Content("/")"><img id="logo" src="~/Content/Pictures/rooster.png" alt="Logo Skermstafa" width="80" /></a>
+    <h3 id="thirdError">Ýttu á hanann til að fara aftur á forsíðuna!</h3>
+</div>
