@@ -44,14 +44,7 @@ namespace Skermstafir.Controllers
             model.subtitle.Username = User.Identity.Name;
 
             // Set basic info to the new subtitle model
-            if(fc["title"] == "")
-            {
-                model.subtitle.Name = "Ekki skráð.";
-            }
-            else
-            {
-                model.subtitle.Name = fc["title"];
-            }
+            model.subtitle.Name = fc["title"];
 
             if (fc["year"] == "")
             {
