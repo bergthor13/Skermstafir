@@ -676,3 +676,18 @@ fieldset {
     height: 220px;
     resize: none;
 }
+
+#comments {
+    margin-left: 150px;
+}
+
+#usercomments {
+    max-width: 760px;
+}
+
+#single-comment {
+    border: 1px solid grey;
+    background: #333;
+    padding: 10px;
+    margin:5px 0px;
+}
