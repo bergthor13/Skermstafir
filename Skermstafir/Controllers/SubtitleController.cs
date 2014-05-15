@@ -390,7 +390,7 @@ namespace Skermstafir.Controllers
 		{
 			if (id == null)
 			{
-				return null;
+				return File(Encoding.UTF8.GetBytes("Þýðing fannst ekki."), "text/plain", "FannstEkki.srt");
 			}
 
 			// Convert ID from Nullable int to int.
@@ -406,7 +406,7 @@ namespace Skermstafir.Controllers
 			}
 			catch (NoSubtitleFoundException)
 			{
-				return null;
+				return File(Encoding.UTF8.GetBytes("Þýðing fannst ekki."), "text/plain", "FannstEkki.srt");
 			}
 
 			if (result.subtitle.EditContent == null)
