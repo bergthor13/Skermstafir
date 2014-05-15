@@ -288,6 +288,21 @@ namespace Skermstafir.Controllers
 				return Json(existsNo, JsonRequestBehavior.AllowGet);
 			}
 		}
+		public ActionResult OrderReqByDateAsc()
+		{
+			SkermData db = new SkermData();
+			RequestRepository requestRepo = new RequestRepository(db);
+			RequestModelList list = requestRepo.GetRequestByOldest(0, 100);
+			return View(list);
+		}
+
+		public ActionResult OrderReqByDateDesc()
+		{
+			SkermData db = new SkermData();
+			RequestRepository requestRepo = new RequestRepository(db);
+			RequestModelList list = requestRepo.GetRequestByNewest(0, 100);
+			return View(list);
+		}
 
 	}
 }

@@ -4,7 +4,14 @@
 }
 
 @Html.Partial("_SearchRequests")
+<h4>Beiðnir</h4>
 <button type="button" class="btn btn-default downloadbtn" onclick="location.href='@Url.Action("CreateRequest", "Request")'">
     <p>Stofna beiðni</p>
+</button>
+
+<button type="button"
+		class="btn btn-default downloadbtn"
+		onclick="location.href='@Url.Action("OrderReqByDateDesc", "Request")'">
+	Raða eftir dagsetningu
 </button>
 @Html.Partial("_SearchResultRequests")

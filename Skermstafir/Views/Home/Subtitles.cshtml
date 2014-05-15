@@ -5,8 +5,7 @@
 
 @Html.Partial("_SearchSubtitles")
 
-@if (Request.IsAuthenticated)
-{
+<h4>Þýðingar</h4>
     <button type="button" class="btn btn-default downloadbtn" onclick="location.href='@Url.Action("CreateSubtitle", "Subtitle")'">
         <p>Stofna þýðingu</p>
     </button>
@@ -14,5 +13,5 @@
 			class="btn btn-default downloadbtn"
 			onclick="location.href='@Url.Action("OrderSubByDateDesc", "Search")'">Raða eftir dagsetningu</button>
 	
-}
+
 @Html.Partial("_SearchResultSubtitles")
