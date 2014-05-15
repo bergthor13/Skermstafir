@@ -642,3 +642,10 @@ fieldset {
     margin-left:10px;
 }
 
+#titleError
+{
+    padding-left: 16%;
+    color: #b94a48;
+    font-weight: bold;
+    display: none;
+}

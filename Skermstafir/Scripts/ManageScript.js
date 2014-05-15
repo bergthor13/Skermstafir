@@ -29,3 +29,16 @@ function DeleteReqCancel() {
     $(".deletecancel").replaceWith("<button type=\"button\" id=\"" + ID + "\" class=\"btn btn-default deletebtn\" onclick=\"DeleteReq($(this), $(this).attr('id'));\"><span class=\"glyphicon glyphicon-trash\"></span></button>");
     stillOpen = false;
 };
+
+function showTitleError() {
+    $("#makeRequest").submit(function(event) {
+        if ($("#titleBox").val() === "") {
+            $(".subtitle-box").css("height", "390px");
+            $("#titleError").show();
+            event.preventDefault();
+        }
+        else {
+            $("#titleError").hide();
+        }
+    });
+};
