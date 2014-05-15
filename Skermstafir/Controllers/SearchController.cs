@@ -96,5 +96,21 @@ namespace Skermstafir.Controllers
 			}
 			return View(result);
         }
+
+		public ActionResult OrderSubByDateAsc()
+		{
+			SkermData db = new SkermData();
+			SearchRepository searchRepo = new SearchRepository(db);
+			SubtitleModelList list = searchRepo.GetSubtitleByOldest(0,100);
+			return View(list);
+		}
+
+		public ActionResult OrderSubByDateDesc()
+		{
+			SkermData db = new SkermData();
+			SearchRepository searchRepo = new SearchRepository(db);
+			SubtitleModelList list = searchRepo.GetSubtitleByNewest(0, 100);
+			return View(list);
+		}
 	}
 }

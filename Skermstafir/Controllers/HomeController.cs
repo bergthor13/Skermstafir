@@ -36,7 +36,7 @@ namespace Skermstafir.Controllers
 			SkermData db = new SkermData();
 			RequestModelList result = new RequestModelList();
 			RequestRepository sc = new RequestRepository(db);
-			result = sc.GetRequestByNewest(0, 100);
+			result = sc.GetByMostPopular(0, 100);
 			return View("Requests", result);
 		}
 
@@ -46,7 +46,7 @@ namespace Skermstafir.Controllers
 			SkermData db = new SkermData();
             SubtitleModelList result = new SubtitleModelList();
 			SearchRepository sc = new SearchRepository(db);
-            result = sc.GetSubtitleByNewest(0, 100);
+            result = sc.GetSubtitleByMostPopular(0, 100);
             return View("Subtitles", result);
         }
     }
