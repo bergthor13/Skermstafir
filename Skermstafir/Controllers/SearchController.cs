@@ -91,9 +91,9 @@ namespace Skermstafir.Controllers
 			}
 			// canceled becouse it made results confusing
 			// get the rest of the results
-			//foreach (var item in lists) {
-			//	result.modelList = result.modelList.Union(item).ToList();
-			//}
+			foreach (var item in lists) {
+				result.modelList = result.modelList.Union(item).ToList();
+			}
 			return View(result);
         }
 	}

@@ -297,7 +297,6 @@
     <Content Include="Views\Shared\_FrontPageTableCellReq.cshtml" />
     <Content Include="Views\Shared\_FrontPageTableCellTrans.cshtml" />
     <Content Include="Views\Shared\_SearchRequests.cshtml" />
-    <Content Include="Views\Shared\_SearchResult.cshtml" />
     <Content Include="Views\Shared\_SearchResultRequests.cshtml" />
     <Content Include="Views\Subtitle\ShowSubtitle.cshtml" />
     <Content Include="Views\Subtitle\EditSubtitle.cshtml" />

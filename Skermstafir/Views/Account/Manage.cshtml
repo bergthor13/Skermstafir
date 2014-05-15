@@ -24,11 +24,12 @@
     @{
         string userID = User.Identity.GetUserId();
         string userName = User.Identity.GetUserName();
-        Skermstafir.Repositories.SearchRepository sRep = new Skermstafir.Repositories.SearchRepository();
-        Skermstafir.Repositories.SubtitleRepository subRep = new Skermstafir.Repositories.SubtitleRepository();
-        Skermstafir.Repositories.RequestRepository reqRep = new Skermstafir.Repositories.RequestRepository();
+        SkermData db = new SkermData();
+        Skermstafir.Repositories.SearchRepository sRep = new Skermstafir.Repositories.SearchRepository(db);
+        Skermstafir.Repositories.SubtitleRepository subRep = new Skermstafir.Repositories.SubtitleRepository(db);
+        Skermstafir.Repositories.RequestRepository reqRep = new Skermstafir.Repositories.RequestRepository(db);
         ManageModelList model = new ManageModelList();
-        model.subList = sRep.GetSubtitlesByUserID(userID);
+        model.subList = sRep.GetSubtitlesByUserName(userName);
         model.reqList = reqRep.GetRequestsByUser(userName);
     }
     @Html.Partial("_ManagePartial", model)
