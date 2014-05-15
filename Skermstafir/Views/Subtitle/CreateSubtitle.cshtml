@@ -4,7 +4,7 @@
     ViewBag.Title = "Stofna þýðingu";
 }
 
-@using (Html.BeginForm("CreateSubtitle", "Subtitle", FormMethod.Post, new { id = "postNew" }))
+@using (Html.BeginForm("CreateSubtitle", "Subtitle", FormMethod.Post, new { id = "postNew", enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
     <div class="subtitle-box" id="create-subtitle">
@@ -77,5 +77,7 @@
             <label for="originalText" class="col-md-2">Texti sem á að þýða:</label>
             <textarea id="original-text2" name="originalText" placeholder="Afritaðu textann úr upprunalegu .srt skránni hingað.">@Model.subtitle.Content</textarea>
         </div>
+
     </div>
+	<input type="file" name="file" value=" " />
 }

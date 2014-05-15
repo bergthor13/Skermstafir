@@ -78,6 +78,19 @@ namespace Skermstafir.Controllers
                 model.subtitle.Content = fc["originalText"];
             }
 
+			if (Request.Files.Count > 0)
+			{
+				var file = Request.Files[0];
+				if (file != null && file.ContentLength > 0)
+				{
+					Stream stream = file.InputStream;
+					using (BinaryReader br = new BinaryReader(stream))
+					{
+						string str = br.ReadString();
+					}
+				}
+			}
+
             if (fc["director"] == "")
             {
                 model.subtitle.Director = "Ekki skráð.";
@@ -406,6 +419,42 @@ namespace Skermstafir.Controllers
 		// Downloads the .srt file.
 		//</summary>
 		public FileResult Download(int? id)
+		{
+			if (id == null)
+			{
+				return File(Encoding.UTF8.GetBytes("Þýðing fannst ekki."), "text/plain", "FannstEkki.srt");
+			}
+
+			// Convert ID from Nullable int to int.
+			int idValue = id.Value;
+			SkermData db = new SkermData();
+			SearchRepository sr = new SearchRepository(db);
+			SubtitleModel result;
+
+			try
+			{
+				// Get the desired subtitle.
+				result = sr.GetSubtitleByID(idValue);
+			}
+			catch (NoSubtitleFoundException)
+			{
+				return File(Encoding.UTF8.GetBytes("Þýðing fannst ekki."), "text/plain", "FannstEkki.srt");
+			}
+
+			if (result.subtitle.EditContent == null)
+			{
+				return File(Encoding.UTF8.GetBytes("Ekki hefur verið byrjað á þýðingunni."), "text/plain", result.subtitle.Name + ".srt");
+			}
+
+			sr.AddDownloadToSubtitle(result.subtitle);
+			return File(Encoding.UTF8.GetBytes(result.subtitle.EditContent), "text/plain", result.subtitle.Name + ".srt");
+		}
+
+
+		//<summary>
+		// Downloads the .srt file.
+		//</summary>
+		public FileResult Upload(int? id)
 		{
 			if (id == null)
 			{

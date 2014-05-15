@@ -1,50 +1,48 @@
 ﻿@using Microsoft.AspNet.Identity
-    @if (Model.modelList.Count == 0) 
-    {
+    @if (Model.modelList.Count == 0) {
         <br />
-        <p>Því miður fundum við engar þýðingar sem passa við leitina þína, en vonandi getur þessi köttur minnkað vonbrigðin</p>
-        <img src="http://placekitten.com/500/500" alt="here be catz" />
-    }
-    else
-    {
-        <table class="table table-striped">
-                <thead>
-                    <tr>
-                        <th class="min">Upp</th>
-                        <th>Titill</th>
-                        <th class="min">Útgáfuár</th>
-                        <th>Tungumál</th>
-                        <th>Stofnandi</th>
-                        <th class="min">Niðurhöl</th>
-                        <th class="min">Niðurhala</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach (var subtitle in Model.modelList)
-                    {
-                        <tr>
-                            <td align="center"><a href="javascript:void(0);"><p onclick="PostSubtitleUpvote(@subtitle.IdSubtitle);" class="blueup">▲</p></a> <span id="subVoteCount-@subtitle.IdSubtitle">@subtitle.Votes.Count</span></td>
-                            <td>@Html.ActionLink((string)subtitle.Name, "ShowSubtitle", new { controller = "Subtitle", id = subtitle.IdSubtitle }, "Subtitle")</td>
-                            <td>@subtitle.YearCreated</td>
-                            <td>@subtitle.Language.Name</td>
-                            <td>@subtitle.Username</td>
-					        @if (subtitle.Download == null)
-					        {
-						        <td>0</td>
-					        }
-					        else
-					        {
-						        <td>@subtitle.Download</td>
-					        }
+    <p>Því miður fundum við engar þýðingar sem passa við leitina þína, en vonandi getur þessi köttur minnkað vonbrigðin</p>
+    <img src="http://placekitten.com/500/500" alt="here be catz" />
+         } else {
+<table class="table table-striped">
+        <thead>
+            <tr>
+                <th class="min">Upp</th>
+                <th>Titill</th>
+                <th class="min">Útgáfuár</th>
+                <th>Tungumál</th>
+                <th>Stofnandi</th>
+				<th id="dateAdded"><a href="#" onclick="location.href = '@Url.Action("OrderSubByDateDesc", "Search")'">Sett inn</a></th>
+                <th class="min">Niðurhöl</th>
+                <th class="min">Niðurhala</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var subtitle in Model.modelList) {
+                <tr>
+                    <td align="center"><a href="javascript:void(0);"><p onclick="PostSubtitleUpvote(@subtitle.IdSubtitle);" class="blueup">▲</p></a> <span id="subVoteCount-@subtitle.IdSubtitle">@subtitle.Votes.Count</span></td>
+                    <td>@Html.ActionLink((string)subtitle.Name, "ShowSubtitle", new { controller = "Subtitle", id = subtitle.IdSubtitle }, "Subtitle")</td>
+                    <td>@subtitle.YearCreated</td>
+                    <td>@subtitle.Language.Name</td>
+                    <td>@subtitle.Username</td>
+					<td>@subtitle.DateAdded</td>
+					@if (subtitle.Download == null)
+					{
+						<td>0</td>
+					}
+					else
+					{
+						<td>@subtitle.Download</td>
+					}
                     
-                            <td align="right">
-                                <button type="button" class="btn btn-default downloadbtn" onclick="location.href='@Url.Action("Download", "Subtitle", new { id = subtitle.IdSubtitle })'">
-                                    <p>Niðurhala</p>
-                                </button>
-                            </td>
-                        </tr>
-                    }
-                </tbody>
-            </table>
+                    <td align="right">
+                        <button type="button" class="btn btn-default downloadbtn" onclick="location.href='@Url.Action("Download", "Subtitle", new { id = subtitle.IdSubtitle })'">
+                            <p>Niðurhala</p>
+                        </button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
 }
 	
