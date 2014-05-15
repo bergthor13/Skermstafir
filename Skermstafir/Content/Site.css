@@ -619,8 +619,23 @@ fieldset {
 
 .commentdate {
     position: absolute;
-    right: 15px;
+    right: 40px;
     top: 8px;
+}
+
+.commentdelete {
+    position: absolute;
+    right: 8px;
+    top: 8px;
+    background-color: #428bca;
+    border-color: #357ebd;
+    color: white;
+}
+
+.commentdelete:hover {
+    color: white;
+    background-color: #3672ba;
+    border-color: #3672ba;
 }
 
 .flokkar

@@ -106,7 +106,13 @@
                     <span class="glyphicon glyphicon-user make-me-green"></span>
                     <span class="make-me-green">@item.Username</span>
                     <span class="commentdate">Sent þann: @item.DateCreated</span>
-                    <p>@item.Content </p>
+                    @if (item.Username == User.Identity.GetUserName())
+                    {
+                        <button type="button" class="btn btn-default btn-xs commentdelete" onclick="location.href='@Url.Action("DeleteComment", "Subtitle", new { id = item.IdComment, subID = Model.subtitle.IdSubtitle })'">
+                            <span class="glyphicon glyphicon-trash"></span>
+                        </button>
+                    }
+                    <p>@item.Content</p>
                 </div>
             }
         </div>

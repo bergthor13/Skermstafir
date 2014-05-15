@@ -464,7 +464,8 @@ namespace Skermstafir.Controllers
 		// posts a comment and returns all comments from that subtitle as JSON
 		// </summary>
 		[Authorize]
-		public ActionResult Comment(FormCollection form) {
+		public ActionResult Comment(FormCollection form) 
+        {
 			SkermData db = new SkermData();
 			SearchRepository searchRep = new SearchRepository(db);
 			Subtitle sub = searchRep.GetSubtitleByID(Convert.ToInt32(form["id"])).subtitle;
@@ -475,5 +476,18 @@ namespace Skermstafir.Controllers
 			searchRep.AddCommentToSub(com, sub);
 			return RedirectToAction("ShowSubtitle", new { id = sub.IdSubtitle });
 		}
+
+        [Authorize]
+        public ActionResult DeleteComment(int? id, int? subID)
+        {
+            using (SkermData db = new SkermData())
+            {
+                SubtitleRepository subRepo = new SubtitleRepository(db);
+                int idValue = id.Value;
+                int idRedirect = subID.Value;
+                subRepo.DeleteComment(idValue);
+                return RedirectToAction("ShowSubtitle", new { id = idRedirect });
+            }
+        }
 	}
 }
