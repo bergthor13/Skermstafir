@@ -23,6 +23,14 @@ namespace Skermstafir.Repositories {
 							   select sub).Skip(start).Take(end - start).ToList();
 			return model;
 		}
+		public SubtitleModelList GetSubtitleByOldest(int start, int end)
+		{
+			SubtitleModelList model = new SubtitleModelList();
+			model.modelList = (from sub in db.Subtitles
+							   orderby sub.DateAdded
+							   select sub).Skip(start).Take(end - start).ToList();
+			return model;
+		}
 
 		public SubtitleModelList GetSubtitleByString(String str) {
 			SubtitleModelList model = new SubtitleModelList();
@@ -37,6 +45,15 @@ namespace Skermstafir.Repositories {
 			SubtitleModelList model = new SubtitleModelList();
 			model.modelList = (from sub in db.Subtitles
 							   orderby sub.Download.Value descending
+							   orderby sub.Votes.Count descending
+							   select sub).Skip(start).Take(end - start).ToList();
+			return model;
+		}
+
+		public RequestModelList GetRequestByMostPopular(int start, int end)
+		{
+			RequestModelList model = new RequestModelList();
+			model.modelList = (from sub in db.Requests
 							   orderby sub.Votes.Count descending
 							   select sub).Skip(start).Take(end - start).ToList();
 			return model;

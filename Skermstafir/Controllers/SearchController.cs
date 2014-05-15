@@ -28,7 +28,7 @@ namespace Skermstafir.Controllers
 
 			// Search by language
 			List<Subtitle> langResult = new List<Subtitle>();
-			langResult = sc.GetSubtitleByLanguage(form["language"], 0, 5).modelList;
+			langResult = sc.GetSubtitleByLanguage(form["language"], 0, 10).modelList;
 
 			//Search by creation year
 			int start, end;
@@ -96,5 +96,21 @@ namespace Skermstafir.Controllers
 			}
 			return View(result);
         }
+
+		public ActionResult OrderSubByDateAsc()
+		{
+			SkermData db = new SkermData();
+			SearchRepository searchRepo = new SearchRepository(db);
+			SubtitleModelList list = searchRepo.GetSubtitleByOldest(0,100);
+			return View(list);
+		}
+
+		public ActionResult OrderSubByDateDesc()
+		{
+			SkermData db = new SkermData();
+			SearchRepository searchRepo = new SearchRepository(db);
+			SubtitleModelList list = searchRepo.GetSubtitleByNewest(0, 100);
+			return View(list);
+		}
 	}
 }

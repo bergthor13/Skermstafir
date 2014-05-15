@@ -46,7 +46,7 @@ namespace Skermstafir.Repositories
         {
             RequestModelList model = new RequestModelList();
             model.modelList = (from req in db.Requests
-                               orderby req.Votes.Count
+                               orderby req.Votes.Count descending
                                select req).Skip(start).Take(end - start).ToList();
             return model;
         }

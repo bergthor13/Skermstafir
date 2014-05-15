@@ -44,7 +44,14 @@ namespace Skermstafir.Controllers
             model.subtitle.Username = User.Identity.Name;
 
             // Set basic info to the new subtitle model
-            model.subtitle.Name = fc["title"];
+            if(fc["title"] == "")
+            {
+                model.subtitle.Name = "Ekki skráð.";
+            }
+            else
+            {
+                model.subtitle.Name = fc["title"];
+            }
 
             if (fc["year"] == "")
             {
@@ -304,6 +311,15 @@ namespace Skermstafir.Controllers
                 editedSub.subtitle.Description = fd["description"];
             }
 
+            if (fd["link"] == "")
+            {
+                editedSub.subtitle.Link = "Ekki skráð.";
+            }
+            else
+            {
+                editedSub.subtitle.Link = fd["link"];
+            }
+
             if (fd["director"] == "")
             {
                 editedSub.subtitle.Director = "Ekki skráð";
@@ -311,6 +327,15 @@ namespace Skermstafir.Controllers
             else
             {
                 editedSub.subtitle.Director = fd["director"];
+            }
+
+            if (fd["actor"] == "")
+            {
+                editedSub.subtitle.Actors = "Ekki skráð.";
+            }
+            else
+            {
+                editedSub.subtitle.Actors = fd["actors"];
             }
 
 			// Add the genres selected to the subtitle.
@@ -390,7 +415,7 @@ namespace Skermstafir.Controllers
 		{
 			if (id == null)
 			{
-				return null;
+				return File(Encoding.UTF8.GetBytes("Þýðing fannst ekki."), "text/plain", "FannstEkki.srt");
 			}
 
 			// Convert ID from Nullable int to int.
@@ -406,7 +431,7 @@ namespace Skermstafir.Controllers
 			}
 			catch (NoSubtitleFoundException)
 			{
-				return null;
+				return File(Encoding.UTF8.GetBytes("Þýðing fannst ekki."), "text/plain", "FannstEkki.srt");
 			}
 
 			if (result.subtitle.EditContent == null)
