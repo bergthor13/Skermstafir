@@ -20,24 +20,26 @@
     //Makes sure that comments are not empty. (View = Subtitle/ShowSubtitle)
     $("#btnSave1").click(function () {
         if ($("#CommentText1").val() === "") {
-            $("#CommentText1").toggleClass("commentError").fadeIn();
+            $("#CommentText1").addClass("commentError").fadeIn();
             $("#titleError2").fadeIn();
             event.preventDefault();
         }
         else {
             $("#titleError").hide();
+            $("#CommentText1").removeClass("commentError");
         }
     });
 
     // Makes sure that requests and subtitles have titles.
     $("#postNew").submit(function(event) {
         if ($("#titleBox").val() === "") {
-            $("#titleBox").toggleClass("commentError").fadeIn();
+            $("#titleBox").addClass("commentError").fadeIn();
             $("#titleError").fadeIn();
             event.preventDefault();
         }
         else {
             $("#titleError").hide();
+            $("#titleBox").removeClass("commentError");
         }
     });
 });
