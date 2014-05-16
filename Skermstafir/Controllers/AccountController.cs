@@ -120,8 +120,8 @@ namespace Skermstafir.Controllers
         public ActionResult Manage(ManageMessageId? message)
         {
             ViewBag.StatusMessage =
-                message == ManageMessageId.ChangePasswordSuccess ? "Lykilorð þitt hefur verið breytt."
-                : message == ManageMessageId.SetPasswordSuccess ? "Lykilorð vistað."
+                message == ManageMessageId.ChangePasswordSuccess ? "Lykilorðinu hefur verið breytt."
+                : message == ManageMessageId.SetPasswordSuccess ? "Lykilorðið hefur verið vistað."
                 : message == ManageMessageId.RemoveLoginSuccess ? "Utanaðkomandi innskráning fjarlægð."
                 : message == ManageMessageId.Error ? "Villa kom upp á!"
                 : "";
