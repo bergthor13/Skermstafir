@@ -20,8 +20,14 @@
 			    </div>
 			    <h4 class="second-column">@Html.ActionLink((string)subtitle.Name, "ShowSubtitle", new { controller = "Subtitle", id = subtitle.IdSubtitle }, "Subtitle")</h4>
 			    <p id="year">Útgáfuár: @subtitle.YearCreated</p>
-			    <div class="third-column">
-                    <button type="button" id="sub @subtitle.IdSubtitle" class="btn btn-default deletebtn" onclick="DeleteSub($(this), $(this).attr('id'));">
+			    <div class="third-column" id="sub @subtitle.IdSubtitle">
+                    <button type="button" class="btn btn-default deleteok" onclick="location.href='@Url.Action("DeleteSubtitle", "Subtitle", new { id = subtitle.IdSubtitle })'">
+                        <span class="glyphicon glyphicon-ok"></span>
+                    </button>
+                    <button type="button" class="btn btn-default deletecancel">
+                        <span class="glyphicon glyphicon-remove"></span>
+                    </button>
+                    <button type="button" class="btn btn-default deletebtn">
                         <span class="glyphicon glyphicon-trash"></span>
                     </button>
 			    </div>
@@ -51,7 +57,13 @@
                 <h4 class="second-column">@Html.ActionLink((string)request.Name, "ShowRequest", new { controller = "Request", id = request.IdRequest }, "Request")</h4>
                 <p id="year">Útgáfuár: @request.YearCreated</p>
                 <div class="third-column">
-                    <button type="button" id="req @request.IdRequest" class="btn btn-default deletebtn" onclick="DeleteReq($(this), $(this).attr('id'));">
+                    <button type="button" class="btn btn-default deleteok" onclick="location.href='@Url.Action("DeleteRequest", "Request", new { id = request.IdRequest })'">
+                        <span class="glyphicon glyphicon-ok"></span>
+                    </button>
+                    <button type="button" class="btn btn-default deletecancel">
+                        <span class="glyphicon glyphicon-remove"></span>
+                    </button>
+                    <button type="button" class="btn btn-default deletebtn">
                         <span class="glyphicon glyphicon-trash"></span>
                     </button>
                 </div>

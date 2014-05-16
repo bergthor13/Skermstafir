@@ -1,43 +1,44 @@
-﻿var stillOpen = false;
+﻿$(document).ready(function () {
+    var stillOpen = false;
 
-function DeleteSub(theElement, theID) {
-    if (stillOpen == false) {
-        var realID = theID.substring(4);
-        $(theElement).replaceWith("<button type=\"button\" id=\"" + theID + "\" class=\"btn btn-default deleteok\" onclick=\"location.href=\'/Subtitle/DeleteSubtitle/" + realID + "\'\"><span class=\"glyphicon glyphicon-ok\"></span></button> <button type=\"button\" class=\"btn btn-default deletecancel\" onclick=\"DeleteSubCancel();\"><span class=\"glyphicon glyphicon-remove\"></span></button>");
-        stillOpen = true;
-    }
-};
+    // Makes a click event on all trashcans. (View = Account/Manage)
+    $(".deletebtn").click(function () {
+        if (stillOpen == false) {
+            $(this).parent().children().show();
+            $(this).hide();
+            stillOpen = true;
+        }
+    });
 
-function DeleteReq(theElement, theID) {
-    if (stillOpen == false) {
-        var realID = theID.substring(4);
-        $(theElement).replaceWith("<button type=\"button\" id=\"" + theID + "\" class=\"btn btn-default deleteok\" onclick=\"location.href=\'/Request/DeleteRequest/" + realID + "\'\"><span class=\"glyphicon glyphicon-ok\"></span></button> <button type=\"button\" class=\"btn btn-default deletecancel\" onclick=\"DeleteReqCancel();\"><span class=\"glyphicon glyphicon-remove\"></span></button>");
-        stillOpen = true;
-    }
-};
+    // Makes a click event on all cancel delete buttons. (View = Account/Manage)
+    $(".deletecancel").click(function () {
+        $(this).parent().children().hide();
+        $(this).parent().find(".deletebtn").show();
+        stillOpen = false;
+    });
 
-function DeleteSubCancel() {
-    var ID = $(".deleteok").attr('id');
-    $(".deleteok").remove();
-    $(".deletecancel").replaceWith("<button type=\"button\" id=\"" + ID + "\" class=\"btn btn-default deletebtn\" onclick=\"DeleteSub($(this), $(this).attr('id'));\"><span class=\"glyphicon glyphicon-trash\"></span></button>");
-    stillOpen = false;
-};
-
-function DeleteReqCancel() {
-    var ID = $(".deleteok").attr('id');
-    $(".deleteok").remove();
-    $(".deletecancel").replaceWith("<button type=\"button\" id=\"" + ID + "\" class=\"btn btn-default deletebtn\" onclick=\"DeleteReq($(this), $(this).attr('id'));\"><span class=\"glyphicon glyphicon-trash\"></span></button>");
-    stillOpen = false;
-};
-
-function showTitleError() {
-    $("#postNew").submit(function(event) {
-        if ($("#titleBox").val() === "") {
-            $("#titleError").show();
+    //Makes sure that comments are not empty. (View = Subtitle/ShowSubtitle)
+    $("#btnSave1").click(function () {
+        if ($("#CommentText1").val() === "") {
+            $("#CommentText1").toggleClass("commentError").fadeIn();
+            $("#titleError2").fadeIn();
             event.preventDefault();
         }
         else {
             $("#titleError").hide();
         }
     });
-};
+
+    // Makes sure that requests and subtitles have titles.
+    $("#postNew").submit(function(event) {
+        if ($("#titleBox").val() === "") {
+            $("#titleBox").toggleClass("commentError").fadeIn();
+            $("#titleError").fadeIn();
+            event.preventDefault();
+        }
+        else {
+            $("#titleError").hide();
+        }
+    });
+});
+
