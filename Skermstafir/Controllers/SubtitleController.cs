@@ -269,21 +269,6 @@ namespace Skermstafir.Controllers
 
 
 
-		///<summary>
-        /// Gets the translation to be edited with the ID 'id'
-		///</summary>
-        public ActionResult ShowSubtitle(int? id) // THIS ONE IS READY (I think).
-        {
-			if (!id.HasValue)
-			{
-				return View("Errors/NoSubFound");
-			}
-
-            try
-			{
-				// Convert ID from Nullable int to int.
-				int idValue = id.Value;
-
 		/// <summary>
 		/// GET: Gets the translation to be edited with the ID 'id'
 		/// </summary> 
