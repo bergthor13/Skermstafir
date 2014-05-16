@@ -69,16 +69,17 @@ namespace Skermstafir.Controllers
 			return View(model);
 		}
 
-		/// <summary>
+        /// <summary>
         /// POST: Creates a new subtitle.
-		/// </summary>
+        /// </summary>
 		/// <param name="fc">FormCollection from form.</param>
 		/// <returns>ActionResult</returns>
         [Authorize]
         [HttpPost]
         public ActionResult CreateSubtitle(FormCollection fc)
         {
-			SkermData db = new SkermData();
+			using(SkermData db = new SkermData())
+            {
             SubtitleModel model = new SubtitleModel();
             SearchRepository search = new SearchRepository(db);
             SubtitleRepository subRepo = new SubtitleRepository(db);
@@ -131,8 +132,8 @@ namespace Skermstafir.Controllers
 						string sub = br.ReadToEnd();
 						model.subtitle.Content = sub;
 					}
+					}
 				}
-			}
 
             if (fc["director"] == "")
             {
@@ -181,7 +182,8 @@ namespace Skermstafir.Controllers
 			model.subtitle.DateAdded = DateTime.Now;
             subRepo.AddSubtitle(model);
 
-            return this.RedirectToAction("ShowSubtitle", new { id = model.subtitle.IdSubtitle });
+                return RedirectToAction("ShowSubtitle", new { id = model.subtitle.IdSubtitle });
+        }
         }
 
 		/// <summary>
@@ -194,13 +196,28 @@ namespace Skermstafir.Controllers
 		[Authorize]
 		public ActionResult CreateSubtitleFromRequest(int? id)
 		{
-			SkermData db = new SkermData();
+            // Parameter value check
+            if (!id.HasValue)
+            {
+                return View("Errors/NoSubFound");
+            }
+            int idValue = id.Value;
+
+            using (SkermData db = new SkermData())
+            {
 			SubtitleModel sModel = new SubtitleModel();
 			RequestRepository rr = new RequestRepository(db);
 			RequestModel rModel = new RequestModel();
             SearchRepository searchRepo = new SearchRepository(db);
-			int idValue = id.Value;
+                try
+                {
 			rModel = rr.GetRequestByID(idValue);
+                }
+                catch(Exception)
+                {
+                    return View("Errors/NoSubFound");
+                }
+
 			sModel.subtitle.YearCreated = rModel.request.YearCreated;
 			sModel.subtitle.Name        = rModel.request.Name;
 			sModel.subtitle.Language    = rModel.request.Language;
@@ -224,6 +241,7 @@ namespace Skermstafir.Controllers
 
 			return View("CreateSubtitle", sModel);
 		}
+		}
 
 		/// <summary>
 		/// POST: Creates a subtitle from the request with the ID 'id',
@@ -236,19 +254,24 @@ namespace Skermstafir.Controllers
 		[Authorize]
 		public ActionResult CreateSubtitleFromRequest(int? id, FormCollection fc)
 		{
-			SkermData db = new SkermData();
+            if (!id.HasValue)
+            {
+                return View("Errors/NoSubFound");
+            }
+            using (SkermData db = new SkermData())
+            {
 			RequestRepository reqRepo = new RequestRepository(db);
 			int idValue = id.Value;
 			reqRepo.DeleteRequest(idValue);
 			return CreateSubtitle(fc);
 		}
+		}
 
-		// =======================================================================================
-		// EDIT AND DELETE
+
 
 		/// <summary>
 		/// GET: Gets the translation to be edited with the ID 'id'
-		/// </summary>
+		/// </summary> 
 		/// <param name="id">ID of the subtitle.</param>
 		/// <returns>ActionResult</returns>
 		[Authorize]
@@ -293,14 +316,27 @@ namespace Skermstafir.Controllers
 		[HttpPost, ValidateInput(false)]
 		public ActionResult EditSubtitle(int? id, FormCollection fd, Subtitle sub)
 		{
+            if (!id.HasValue)
+            {
+                return View("Error/NoSubFound");
+            }
 			int idValue = id.Value;
-			SkermData db = new SkermData();
+
+            using (SkermData db = new SkermData())
+            {
 			SubtitleModel editedSub = new SubtitleModel();
 			SearchRepository seaR = new SearchRepository(db);
 			SubtitleRepository subR = new SubtitleRepository(db);
 			
 			// Get the subtitle
+                try
+                {
 			editedSub = seaR.GetSubtitleByID(idValue);
+                }
+                catch (NoSubtitleFoundException)
+                {
+                    return View("Errors/NoSubFound");
+                }
 
 
 			// Change the subtitle
@@ -392,6 +428,7 @@ namespace Skermstafir.Controllers
 			subR.ChangeExistingSubtitle(idValue, editedSub);
 			
 			return RedirectToAction("ShowSubtitle", new { id = idValue });
+		}
 		}
 
 		/// <summary>
@@ -512,14 +549,14 @@ namespace Skermstafir.Controllers
 		/// <returns>ActionResult</returns>
         [Authorize]
         public ActionResult DeleteComment(int? id, int? subID)
-        {
+		{
             // Parameter value check
             if (!id.HasValue || !subID.HasValue)
-            {
+			{
                 return View("Errors/NoSubFound");
-            }
+			}
 
-            int idValue = id.Value;
+			int idValue = id.Value;
             int idRedirect = subID.Value;
             using (SkermData db = new SkermData())
             {
@@ -528,19 +565,19 @@ namespace Skermstafir.Controllers
 
                 // Existence check
                 if (toBeRemoved == null)
-                {
+			{
                     return View("Errors/NoSubFound");
-                }
+			}
                 string ownerName = toBeRemoved.Username;
-                
+
                 // Authorization check
                 if (ownerName != User.Identity.GetUserName())
-                {
+			{
                     return View("Errors/NoSubFound");
-                }
+			}
                 serRepo.DeleteComment(idValue);
                 return RedirectToAction("ShowSubtitle", new { id = idRedirect });
-            }
+		}
         }
 
 		// =======================================================================================
@@ -587,7 +624,7 @@ namespace Skermstafir.Controllers
 
 		/// <summary>
 		/// Helper Function. Fills in the genreValue[].
-		/// </summary>
+		/// </summary> 
 		/// <param name="sm">SubtitleModel to fill in to.</param>
 		/// <returns>void</returns>
 		public void FillModel(SubtitleModel sm)
@@ -596,7 +633,7 @@ namespace Skermstafir.Controllers
 			foreach (var item in sm.subtitle.Genres)
 			{
 				sm.genreValue[item.IdGenre - 1] = true;
-			}
-		}
+            }
+        }
 	}
 }

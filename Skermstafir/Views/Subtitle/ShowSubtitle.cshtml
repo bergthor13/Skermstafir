@@ -84,14 +84,17 @@
         <h3>Athugasemdir:</h3>
         @if (User.Identity.IsAuthenticated)
         {
-            using (Html.BeginForm("Comment", "Subtitle"))
+            using (Html.BeginForm("Comment", "Subtitle", FormMethod.Post, new { id = "postComment" }))
             {
                 <ul class="list-group" id="comment" style="max-width: 760px;">
                     <li class="list-group-item" id="comment-box">
                         <div class="form-horizontal">
                             <label class="sr-only" for="CommentText">Comment</label>
                             <textarea class="form-control" rows="3" id="CommentText1" name="CommentText1" placeholder="Tjáðu þig um þessa þýðingu."></textarea><br />
-                            <button type="submit" id="btnSave1" value="Save" class="btn btn-primary" onclick="">Senda</button>
+                            <p id="titleError2">
+                                Athugasemd getur ekki verið auð.
+                            </p>
+                            <button type="submit" id="btnSave1" value="Save" class="btn btn-primary" >Senda</button>
                             <input hidden="hidden" name="id" value="@Model.subtitle.IdSubtitle" />
                         </div>
                     </li>

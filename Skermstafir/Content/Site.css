@@ -670,7 +670,7 @@ fieldset {
     margin-left:10px;
 }
 
-#titleError
+#titleError, #titleError2
 {
     padding-left: 16%;
     color: #b94a48;
@@ -744,8 +744,22 @@ fieldset {
 .make-me-relative {
     position: relative;
 }
+
+.deletecancel, .deleteok
+{
+    display: none;
+}
+
+.commentError
+{
+    border: solid #b94a48;
+}
 .info [type=file] {
 
 	padding-left: 190px;
 	padding-bottom: 15px;
-}.
+}
+
+#star {
+	margin-left: 20px;
+}
