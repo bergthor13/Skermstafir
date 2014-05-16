@@ -4,8 +4,8 @@
     // Makes a click event on all trashcans. (View = Account/Manage)
     $(".deletebtn").click(function () {
         if (stillOpen == false) {
-            $(this).parent().children().show();
             $(this).hide();
+            $(this).parent().find(".deleteok, .deletecancel").fadeIn();
             stillOpen = true;
         }
     });
@@ -13,7 +13,7 @@
     // Makes a click event on all cancel delete buttons. (View = Account/Manage)
     $(".deletecancel").click(function () {
         $(this).parent().children().hide();
-        $(this).parent().find(".deletebtn").show();
+        $(this).parent().find(".deletebtn").fadeIn();
         stillOpen = false;
     });
 
