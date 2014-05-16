@@ -36,109 +36,111 @@ namespace Skermstafir.Controllers
         [HttpPost]
         public ActionResult CreateSubtitle(FormCollection fc)
         {
-			SkermData db = new SkermData();
-            SubtitleModel model = new SubtitleModel();
-            SearchRepository search = new SearchRepository(db);
-            SubtitleRepository subRepo = new SubtitleRepository(db);
+			using(SkermData db = new SkermData())
+            {
+                SubtitleModel model = new SubtitleModel();
+                SearchRepository search = new SearchRepository(db);
+                SubtitleRepository subRepo = new SubtitleRepository(db);
 
-            model.subtitle.Username = User.Identity.Name;
+                model.subtitle.Username = User.Identity.Name;
 
-            // Set basic info to the new subtitle model
-            model.subtitle.Name = fc["title"];
+                // Set basic info to the new subtitle model
+                model.subtitle.Name = fc["title"];
 
-            if (fc["year"] == "")
-            {
-                model.subtitle.YearCreated = 0;
-            }
-            else
-            {
-                model.subtitle.YearCreated = Convert.ToInt32(fc["year"]);
-            }
-
-            if (fc["description"] == "")
-            {
-                model.subtitle.Description = "Ekki skráð.";
-            }
-            else
-            {
-                model.subtitle.Description = fc["description"];
-            }
-
-            if (fc["link"] != "")
-            {
-                model.subtitle.Link = fc["link"];
-            }
-
-            if (fc["originalText"] == "")
-            {
-                model.subtitle.Content = "Ekki skráð.";
-            }
-            else
-            {
-                model.subtitle.Content = fc["originalText"];
-            }
-			/*
-			if (Request.Files.Count > 0)
-			{
-				var file = Request.Files[0];
-				if (file != null && file.ContentLength > 0)
-				{
-					Stream stream = file.InputStream;
-					using (BinaryReader br = new BinaryReader(stream))
-					{
-						string str = br.ReadString();
-					}
-				}
-			}*/
-
-            if (fc["director"] == "")
-            {
-                model.subtitle.Director = "Ekki skráð.";
-            }
-            else
-            {
-                model.subtitle.Director = fc["director"];
-            }
-			if (fc["actors"] == "")
-			{
-				model.subtitle.Actors = "Ekki skráð.";
-			}
-			else
-			{
-				model.subtitle.Actors = fc["actors"];
-			}
-
-            if (fc["actors"] == "")
-            {
-                model.subtitle.Actors = "Ekki skráð.";
-            }
-            else
-            {
-                model.subtitle.Actors = fc["actors"];
-            }
-
-            // Set language of Subtitle model
-            if (fc["language"] == "Íslenska")
-            {
-                model.subtitle.LanguageId = 1;
-            }
-            if (fc["language"] == "Enska")
-            {
-                model.subtitle.LanguageId = 2;
-            }
-            // Set genres of Subtitle model
-            for (int i = 1; i < 9; i++)
-            {
-                if (fc["genre" + i.ToString()] == "on")
+                if (fc["year"] == "")
                 {
-					Genre genre = search.GetGenreByID(i);
-                    model.subtitle.Genres.Add(genre);
+                    model.subtitle.YearCreated = 0;
                 }
-            }
-			model.subtitle.DateAdded = DateTime.Now;
-            subRepo.AddSubtitle(model);
+                else
+                {
+                    model.subtitle.YearCreated = Convert.ToInt32(fc["year"]);
+                }
 
-            return this.RedirectToAction("ShowSubtitle", new { id = model.subtitle.IdSubtitle });
+                if (fc["description"] == "")
+                {
+                    model.subtitle.Description = "Ekki skráð.";
+                }
+                else
+                {
+                    model.subtitle.Description = fc["description"];
+                }
+
+                if (fc["link"] != "")
+                {
+                    model.subtitle.Link = fc["link"];
+                }
+
+                if (fc["originalText"] == "")
+                {
+                    model.subtitle.Content = "Ekki skráð.";
+                }
+                else
+                {
+                    model.subtitle.Content = fc["originalText"];
+                }
+			    /*
+			    if (Request.Files.Count > 0)
+			    {
+				    var file = Request.Files[0];
+				    if (file != null && file.ContentLength > 0)
+				    {
+					    Stream stream = file.InputStream;
+					    using (BinaryReader br = new BinaryReader(stream))
+					    {
+						    string str = br.ReadString();
+					    }
+				    }
+			    }*/
+
+                if (fc["director"] == "")
+                {
+                    model.subtitle.Director = "Ekki skráð.";
+                }
+                else
+                {
+                    model.subtitle.Director = fc["director"];
+                }
+			    if (fc["actors"] == "")
+			    {
+				    model.subtitle.Actors = "Ekki skráð.";
+			    }
+			    else
+			    {
+				    model.subtitle.Actors = fc["actors"];
+			    }
+
+                if (fc["actors"] == "")
+                {
+                    model.subtitle.Actors = "Ekki skráð.";
+                }
+                else
+                {
+                    model.subtitle.Actors = fc["actors"];
+                }
+
+                // Set language of Subtitle model
+                if (fc["language"] == "Íslenska")
+                {
+                    model.subtitle.LanguageId = 1;
+                }
+                if (fc["language"] == "Enska")
+                {
+                    model.subtitle.LanguageId = 2;
+                }
+                // Set genres of Subtitle model
+                for (int i = 1; i < 9; i++)
+                {
+                    if (fc["genre" + i.ToString()] == "on")
+                    {
+					    Genre genre = search.GetGenreByID(i);
+                        model.subtitle.Genres.Add(genre);
+                    }
+                }
+			    model.subtitle.DateAdded = DateTime.Now;
+                subRepo.AddSubtitle(model);
+
+                return RedirectToAction("ShowSubtitle", new { id = model.subtitle.IdSubtitle });
+            }
         }
 
 		/// <summary>
@@ -150,46 +152,68 @@ namespace Skermstafir.Controllers
 		[Authorize]
 		public ActionResult CreateSubtitleFromRequest(int? id)
 		{
-			SkermData db = new SkermData();
-			SubtitleModel sModel = new SubtitleModel();
-			RequestRepository rr = new RequestRepository(db);
-			RequestModel rModel = new RequestModel();
-            SearchRepository searchRepo = new SearchRepository(db);
-			int idValue = id.Value;
-			rModel = rr.GetRequestByID(idValue);
-			sModel.subtitle.YearCreated = rModel.request.YearCreated;
-			sModel.subtitle.Name        = rModel.request.Name;
-			sModel.subtitle.Language    = rModel.request.Language;
-			sModel.subtitle.Description = rModel.request.Description;
-			sModel.subtitle.Link		= rModel.request.Link;
-			sModel.subtitle.Director    = rModel.request.Director;
-			sModel.subtitle.Actors      = rModel.request.Actors;
-            // Put genres in a bool array
-            foreach (var item in rModel.request.Genres)
+            // Parameter value check
+            if (!id.HasValue)
             {
-                rModel.genreValue[item.IdGenre - 1] = true;
+                return View("Errors/NoSubFound");
             }
-            // Add genres to subtitle model
-            for (int i = 0; i < 8; i++)
-            {
-                if (rModel.genreValue[i] == true)
-                {
-                    sModel.genreValue[i] = true;
-                }
-            }
+            int idValue = id.Value;
 
-			return View("CreateSubtitle", sModel);
+            using (SkermData db = new SkermData())
+            {
+			    SubtitleModel sModel = new SubtitleModel();
+			    RequestRepository rr = new RequestRepository(db);
+			    RequestModel rModel = new RequestModel();
+                SearchRepository searchRepo = new SearchRepository(db);
+                try
+                {
+                    rModel = rr.GetRequestByID(idValue);
+                }
+                catch(Exception)
+                {
+                    return View("Errors/NoSubFound");
+                }
+
+			    sModel.subtitle.YearCreated = rModel.request.YearCreated;
+			    sModel.subtitle.Name        = rModel.request.Name;
+			    sModel.subtitle.Language    = rModel.request.Language;
+			    sModel.subtitle.Description = rModel.request.Description;
+			    sModel.subtitle.Link		= rModel.request.Link;
+			    sModel.subtitle.Director    = rModel.request.Director;
+			    sModel.subtitle.Actors      = rModel.request.Actors;
+                // Put genres in a bool array
+                foreach (var item in rModel.request.Genres)
+                {
+                    rModel.genreValue[item.IdGenre - 1] = true;
+                }
+                // Add genres to subtitle model
+                for (int i = 0; i < 8; i++)
+                {
+                    if (rModel.genreValue[i] == true)
+                    {
+                        sModel.genreValue[i] = true;
+                    }
+                }
+
+			    return View("CreateSubtitle", sModel);
+            }
 		}
 
 		[HttpPost]
 		[Authorize]
 		public ActionResult CreateSubtitleFromRequest(int? id, FormCollection fc)
 		{
-			SkermData db = new SkermData();
-			RequestRepository reqRepo = new RequestRepository(db);
-			int idValue = id.Value;
-			reqRepo.DeleteRequest(idValue);
-			return CreateSubtitle(fc);
+            if (!id.HasValue)
+            {
+                return View("Errors/NoSubFound");
+            }
+            using (SkermData db = new SkermData())
+            {
+			    RequestRepository reqRepo = new RequestRepository(db);
+			    int idValue = id.Value;
+			    reqRepo.DeleteRequest(idValue);
+			    return CreateSubtitle(fc);
+            }
 		}
 
 
@@ -199,7 +223,7 @@ namespace Skermstafir.Controllers
 		///</summary>
         public ActionResult ShowSubtitle(int? id) // THIS ONE IS READY (I think).
         {
-			if (id == null)
+			if (!id.HasValue)
 			{
 				return View("Errors/NoSubFound");
 			}
@@ -210,7 +234,7 @@ namespace Skermstafir.Controllers
 				int idValue = id.Value;
 
 				// Get the desired item.
-				SkermData db = new SkermData();
+                SkermData db = new SkermData();
 				SearchRepository sr = new SearchRepository(db);
 				SubtitleModel result;
 
@@ -246,7 +270,7 @@ namespace Skermstafir.Controllers
 				int idValue = id.Value;
 
 				// Get the desired item.
-				SkermData db = new SkermData();
+                SkermData db = new SkermData();
 				SearchRepository sr = new SearchRepository(db);
                 SubtitleModel result = sr.GetSubtitleByID(idValue);
 
@@ -267,105 +291,119 @@ namespace Skermstafir.Controllers
 		[HttpPost]
 		public ActionResult EditSubtitle(int? id, FormCollection fd, Subtitle sub)
 		{
+            if (!id.HasValue)
+            {
+                return View("Error/NoSubFound");
+            }
 			int idValue = id.Value;
-			SkermData db = new SkermData();
-			SubtitleModel editedSub = new SubtitleModel();
-			SearchRepository seaR = new SearchRepository(db);
-			SubtitleRepository subR = new SubtitleRepository(db);
+
+            using (SkermData db = new SkermData())
+            {
+			    SubtitleModel editedSub = new SubtitleModel();
+			    SearchRepository seaR = new SearchRepository(db);
+			    SubtitleRepository subR = new SubtitleRepository(db);
 			
-			// Get the subtitle
-			editedSub = seaR.GetSubtitleByID(idValue);
+			    // Get the subtitle
+                try
+                {
+                    editedSub = seaR.GetSubtitleByID(idValue);
+                }
+                catch (NoSubtitleFoundException)
+                {
+                    return View("Errors/NoSubFound");
+                }
 
-			// Change the subtitle
-            if (fd["year"] == "")
-            {
-                editedSub.subtitle.YearCreated = 0;
-            }
-            else
-            {
-                editedSub.subtitle.YearCreated = Convert.ToInt32(fd["year"]);
-            }
+			    // Change the subtitle
+                if (fd["year"] == "")
+                {
+                    editedSub.subtitle.YearCreated = 0;
+                }
+                else
+                {
+                    editedSub.subtitle.YearCreated = Convert.ToInt32(fd["year"]);
+                }
 
-            if (fd["originalText"] == "")
-            {
-                editedSub.subtitle.Content = "Ekki skráð";
-            }
-            else
-            {
-                editedSub.subtitle.Content = fd["originalText"];
-            }
+                if (fd["originalText"] == "")
+                {
+                    editedSub.subtitle.Content = "Ekki skráð";
+                }
+                else
+                {
+                    editedSub.subtitle.Content = fd["originalText"];
+                }
 
-            if (fd["editedText"] == "")
-            {
-                editedSub.subtitle.EditContent = "Ekki skráð";
-            }
-            else
-            {
-                editedSub.subtitle.EditContent = fd["editedText"];
-            }
+                if (fd["editedText"] == "")
+                {
+                    editedSub.subtitle.EditContent = "Ekki skráð";
+                }
+                else
+                {
+                    editedSub.subtitle.EditContent = fd["editedText"];
+                }
 
-            if (fd["description"] == "")
-            {
-                editedSub.subtitle.Description = "Ekki skráð";
-            }
-            else
-            {
-                editedSub.subtitle.Description = fd["description"];
-            }
+                if (fd["description"] == "")
+                {
+                    editedSub.subtitle.Description = "Ekki skráð";
+                }
+                else
+                {
+                    editedSub.subtitle.Description = fd["description"];
+                }
 
-            if (fd["link"] == "")
-            {
-                editedSub.subtitle.Link = "Ekki skráð.";
-            }
-            else
-            {
-                editedSub.subtitle.Link = fd["link"];
-            }
+                if (fd["link"] == "")
+                {
+                    editedSub.subtitle.Link = "Ekki skráð.";
+                }
+                else
+                {
+                    editedSub.subtitle.Link = fd["link"];
+                }
 
-            if (fd["director"] == "")
-            {
-                editedSub.subtitle.Director = "Ekki skráð";
-            }
-            else
-            {
-                editedSub.subtitle.Director = fd["director"];
-            }
+                if (fd["director"] == "")
+                {
+                    editedSub.subtitle.Director = "Ekki skráð";
+                }
+                else
+                {
+                    editedSub.subtitle.Director = fd["director"];
+                }
 
-            if (fd["actor"] == "")
-            {
-                editedSub.subtitle.Actors = "Ekki skráð.";
-            }
-            else
-            {
-                editedSub.subtitle.Actors = fd["actors"];
-            }
+                if (fd["actor"] == "")
+                {
+                    editedSub.subtitle.Actors = "Ekki skráð.";
+                }
+                else
+                {
+                    editedSub.subtitle.Actors = fd["actors"];
+                }
 
-			// Add the genres selected to the subtitle.
-			for (int i = 1; i <= 8; i++)
-			{
-				if (fd["genre" + i.ToString()] == "on")
-				{
-					Genre gen = seaR.GetGenreByID(i);
-					if (gen != null)
-					{
-						subR.AddGenreToSubtitle(gen, editedSub.subtitle);
-					}
-				}
-				else
-				{
-					Genre gen = seaR.GetGenreByID(i);
-					if (gen != null)
-					{
-						subR.RemoveGenreToSubtitle(gen, editedSub.subtitle);
+			    // Add the genres selected to the subtitle.
+			    for (int i = 1; i <= 8; i++)
+			    {
+				    if (fd["genre" + i.ToString()] == "on")
+				    {
+					    Genre gen = seaR.GetGenreByID(i);
+					    if (gen != null)
+					    {
+						    subR.AddGenreToSubtitle(gen, editedSub.subtitle);
+					    }
+				    }
+				    else
+				    {
+					    Genre gen = seaR.GetGenreByID(i);
+					    if (gen != null)
+					    {
+						    subR.RemoveGenreToSubtitle(gen, editedSub.subtitle);
 
-					}
-				}
-			}
+					    }
+				    }
+			    }
 
-			// Finally we update the subtitle.
-			subR.ChangeExistingSubtitle(idValue, editedSub);
+			    // Finally we update the subtitle.
+			    subR.ChangeExistingSubtitle(idValue, editedSub);
 			
-			return RedirectToAction("ShowSubtitle", new { id = idValue });
+			    return RedirectToAction("ShowSubtitle", new { id = idValue });
+            }
 		}
 
 		//<summary>
