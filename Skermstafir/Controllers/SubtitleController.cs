@@ -36,6 +36,7 @@ namespace Skermstafir.Controllers
 				int idValue = id.Value;
 
 				// Get the desired item.
+                // Here we would use "using" for resource management if we had more time.
 				SkermData db = new SkermData();
 				SearchRepository sr = new SearchRepository(db);
 				SubtitleModel result;
@@ -290,6 +291,7 @@ namespace Skermstafir.Controllers
 				int idValue = id.Value;
 
 				// Get the desired item.
+                // Here we would use "using" for resource management if we had more time.
 				SkermData db = new SkermData();
 				SearchRepository sr = new SearchRepository(db);
                 SubtitleModel result = sr.GetSubtitleByID(idValue);
@@ -480,6 +482,7 @@ namespace Skermstafir.Controllers
 		{
 			string userName = User.Identity.GetUserName();
 			string userId = User.Identity.GetUserId();
+            // Here we would use "using" for resource management if we had more time.
 			SkermData db = new SkermData();
 			SearchRepository sr = new SearchRepository(db);
 			SubtitleModel sub = sr.GetSubtitleByID(subid);
@@ -530,6 +533,7 @@ namespace Skermstafir.Controllers
 		[Authorize]
 		public ActionResult Comment(FormCollection form) 
         {
+            // Here we would use "using" for resource management if we had more time.
 			SkermData db = new SkermData();
 			SearchRepository searchRep = new SearchRepository(db);
 			Subtitle sub = searchRep.GetSubtitleByID(Convert.ToInt32(form["id"])).subtitle;
@@ -596,6 +600,7 @@ namespace Skermstafir.Controllers
 
 			// Convert ID from Nullable int to int.
 			int idValue = id.Value;
+            // Here we would use "using" for resource management if we had more time.
 			SkermData db = new SkermData();
 			SearchRepository sr = new SearchRepository(db);
 			SubtitleModel result;

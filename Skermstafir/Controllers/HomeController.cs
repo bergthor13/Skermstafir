@@ -13,6 +13,7 @@ namespace Skermstafir.Controllers
 		public ActionResult Index()
 		{
             ViewBag.Message = "Forsíða";
+            // Here we would use "using" for resource management if we had more time.
 			SkermData db = new SkermData();
             SearchRepository sRep = new SearchRepository(db);
             RequestRepository rRep = new RequestRepository(db);
@@ -33,6 +34,7 @@ namespace Skermstafir.Controllers
 		public ActionResult Requests()
 		{
 			ViewBag.Message = "Beiðnir";
+            // Here we would use "using" for resource management if we had more time.
 			SkermData db = new SkermData();
 			RequestModelList result = new RequestModelList();
 			RequestRepository sc = new RequestRepository(db);
@@ -43,6 +45,7 @@ namespace Skermstafir.Controllers
         public ActionResult Subtitles()
         {
             ViewBag.Message = "Þýðingar";
+            // Here we would use "using" for resource management if we had more time.
 			SkermData db = new SkermData();
             SubtitleModelList result = new SubtitleModelList();
 			SearchRepository sc = new SearchRepository(db);

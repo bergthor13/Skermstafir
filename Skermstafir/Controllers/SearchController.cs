@@ -16,6 +16,7 @@ namespace Skermstafir.Controllers
         public ActionResult Search(FormCollection form)
         {
 			// SETUP
+            // Here we would use "using" for resource management if we had more time.
 			SkermData db = new SkermData();
             SubtitleModelList result = new SubtitleModelList();
 			result.modelList = new List<Subtitle>();
@@ -99,6 +100,7 @@ namespace Skermstafir.Controllers
 
 		public ActionResult OrderSubByDateAsc()
 		{
+            // Here we would use "using" for resource management if we had more time.
 			SkermData db = new SkermData();
 			SearchRepository searchRepo = new SearchRepository(db);
 			SubtitleModelList list = searchRepo.GetSubtitleByOldest(0,100);
@@ -107,6 +109,7 @@ namespace Skermstafir.Controllers
 
 		public ActionResult OrderSubByDateDesc()
 		{
+            // Here we would use "using" for resource management if we had more time.
 			SkermData db = new SkermData();
 			SearchRepository searchRepo = new SearchRepository(db);
 			SubtitleModelList list = searchRepo.GetSubtitleByNewest(0, 100);

@@ -24,6 +24,7 @@ namespace Skermstafir.Controllers
 
 			try
 			{
+                // Here we would use "using" for resource management if we had more time.
 				SkermData db = new SkermData();
 				RequestRepository sr = new RequestRepository(db);
 				int idValue = id.Value;
@@ -40,6 +41,7 @@ namespace Skermstafir.Controllers
         [HttpPost]
 		public ActionResult CreateRequest(FormCollection fc)
 		{
+            // Here we would use "using" for resource management if we had more time.
 			SkermData db = new SkermData();
 			RequestModel reqModel = new RequestModel();
             RequestRepository reqRepo = new RequestRepository(db);
@@ -167,7 +169,9 @@ namespace Skermstafir.Controllers
 			}
 		}
 
-		public ActionResult Search(FormCollection form) {
+		public ActionResult Search(FormCollection form) 
+        {
+            // Here we would use "using" for resource management if we had more time.
 			SkermData db = new SkermData();
 			RequestModelList model = new RequestModelList();
 			RequestRepository reqRep = new RequestRepository(db);
@@ -279,6 +283,7 @@ namespace Skermstafir.Controllers
 		{
 			string userName = User.Identity.GetUserName();
 			string userId = User.Identity.GetUserId();
+            // Here we would use "using" for resource management if we had more time.
 			SkermData db = new SkermData();
 			RequestRepository reqRepo = new RequestRepository(db);
 			Vote vote = reqRepo.GetVoteByUserID(userId);
@@ -314,6 +319,7 @@ namespace Skermstafir.Controllers
 		}
 		public ActionResult OrderReqByDateAsc()
 		{
+            // Here we would use "using" for resource management if we had more time.
 			SkermData db = new SkermData();
 			RequestRepository requestRepo = new RequestRepository(db);
 			RequestModelList list = requestRepo.GetRequestByOldest(0, 100);
@@ -322,6 +328,7 @@ namespace Skermstafir.Controllers
 
 		public ActionResult OrderReqByDateDesc()
 		{
+            // Here we would use "using" for resource management if we had more time.
 			SkermData db = new SkermData();
 			RequestRepository requestRepo = new RequestRepository(db);
 			RequestModelList list = requestRepo.GetRequestByNewest(0, 100);
