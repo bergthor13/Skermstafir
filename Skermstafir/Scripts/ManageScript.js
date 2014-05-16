@@ -25,9 +25,14 @@
             event.preventDefault();
         }
         else {
-            $("#titleError").hide();
+            $("#titleError2").fadeOut();
             $("#CommentText1").removeClass("commentError");
         }
+    });
+
+    $("#CommentText1").click(function () {
+        $("#titleError2").fadeOut();
+        $("#CommentText1").removeClass("commentError");
     });
 
     // Makes sure that requests and subtitles have titles.
@@ -41,6 +46,12 @@
             $("#titleError").hide();
             $("#titleBox").removeClass("commentError");
         }
+
+        $("#titleBox").click(function () {
+            $("#titleError").fadeOut();
+            $("#titleBox").removeClass("commentError");
+        });
+
     });
 });
 
