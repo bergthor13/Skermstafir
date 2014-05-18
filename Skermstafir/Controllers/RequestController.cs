@@ -194,7 +194,7 @@ namespace Skermstafir.Controllers
 			if (form["endYear"] != "") {
 				end = Convert.ToInt32(form["endYear"]);
 			} else {
-				end = 0;
+				end = -1;
 			}
 			List<Request> yearResult = reqRep.GetRequestsByYear(start, end).modelList;
 			List<Request> genreResult = new List<Request>();
