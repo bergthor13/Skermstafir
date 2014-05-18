@@ -252,7 +252,7 @@ namespace Skermstafir.Controllers
 		/// <param name="fc">FormCollection from form.</param>
 		/// <returns>ActionResult</returns>
 		[HttpPost]
-		[Authorize]
+		[Authorize, ValidateInput(false)]
 		public ActionResult CreateSubtitleFromRequest(int? id, FormCollection fc)
 		{
             if (!id.HasValue)
