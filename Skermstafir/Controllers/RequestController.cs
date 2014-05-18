@@ -290,6 +290,12 @@ namespace Skermstafir.Controllers
 			RequestModel req = reqRepo.GetRequestByID(reqid);
 			Request request = req.request;
 
+			if (vote == null)
+			{
+				vote = new Vote();
+				reqRepo.AddVoteToUserId(vote, userId);
+			}
+
 			// Check for user.
 			if (userName == "")
 			{
