@@ -93,7 +93,7 @@ namespace Skermstafir.Repositories
             modelList.modelList = (from req in db.Requests
                                     where req.Language.Name == language
                                     orderby req.IdRequest
-                                    select req).Skip(start).Take(end - start).ToList();
+                                    select req).ToList();
             return modelList;
         }
 
