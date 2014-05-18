@@ -160,5 +160,11 @@ namespace Skermstafir.Repositories
 						 select item).SingleOrDefault();
 			return vote;
 		}
+
+		public void AddVoteToUserId(Vote vote, string userId)
+		{
+			vote.UserId = userId;
+			db.SaveChanges();
+		}
 	}
 }

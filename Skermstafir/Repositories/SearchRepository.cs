@@ -99,7 +99,7 @@ namespace Skermstafir.Repositories {
 			model.modelList = (from sub in db.Subtitles
 							   where sub.Language.Name == language
 							   orderby sub.DateAdded
-							   select sub).Skip(start).ToList();
+							   select sub).ToList();
 			return model;
 		}
 
