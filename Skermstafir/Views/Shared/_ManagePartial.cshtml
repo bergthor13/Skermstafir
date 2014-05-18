@@ -21,6 +21,7 @@
 			    <h4 class="second-column">@Html.ActionLink((string)subtitle.Name, "ShowSubtitle", new { controller = "Subtitle", id = subtitle.IdSubtitle }, "Subtitle")</h4>
 			    <p id="year">Útgáfuár: @subtitle.YearCreated</p>
 			    <div class="third-column" id="sub @subtitle.IdSubtitle">
+                    <span id="deletemessage">Ertu viss?</span>
                     <button type="button" class="btn btn-default deleteok" onclick="location.href='@Url.Action("DeleteSubtitle", "Subtitle", new { id = subtitle.IdSubtitle })'">
                         <span class="glyphicon glyphicon-ok"></span>
                     </button>

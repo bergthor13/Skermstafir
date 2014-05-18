@@ -5,7 +5,7 @@
     $(".deletebtn").click(function () {
         if (stillOpen == false) {
             $(this).hide();
-            $(this).parent().find(".deleteok, .deletecancel").fadeIn();
+            $(this).parent().find(".deleteok, .deletecancel, #deletemessage").fadeIn();
             stillOpen = true;
         }
     });
