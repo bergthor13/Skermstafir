@@ -76,7 +76,7 @@ namespace Skermstafir.Controllers
 		/// <param name="fc">FormCollection from form.</param>
 		/// <returns>ActionResult</returns>
         [Authorize]
-        [HttpPost]
+		[HttpPost, ValidateInput(false)]
         public ActionResult CreateSubtitle(FormCollection fc)
         {
 			using(SkermData db = new SkermData())
