@@ -745,7 +745,7 @@ fieldset {
     position: relative;
 }
 
-.deletecancel, .deleteok
+.deletecancel, .deleteok, #deletemessage
 {
     display: none;
 }
